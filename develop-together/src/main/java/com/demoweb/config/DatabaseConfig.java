@@ -64,19 +64,3 @@ public class DatabaseConfig {
 	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
