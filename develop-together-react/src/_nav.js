@@ -195,6 +195,23 @@ const _nav = [
     ],
   },
   {
+    component: CNavGroup,
+    name: '강의',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: '강의',
+        to: '/class/class',
+      },
+      {
+        component: CNavItem,
+        name: '강사',
+        to: '/class/teacher',
+      },
+    ],
+  },
+  {
     component: CNavItem,
     name: 'Charts',
     to: '/charts',
