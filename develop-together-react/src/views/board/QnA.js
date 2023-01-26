@@ -1,6 +1,6 @@
 import { cilAlignLeft, cilCheckCircle, cilLoopCircular, cilPencil } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CFormInput, CFormSelect, CNavLink } from '@coreui/react'
+import { CButton, CCard, CCardBody, CCol, CFormInput, CNavLink } from '@coreui/react'
 import { NavLink } from 'react-router-dom'
 
 const QnA = () => {
