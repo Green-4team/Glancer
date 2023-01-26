@@ -4,6 +4,7 @@ import {
   cilBell,
   cilCalculator,
   cilChartPie,
+  cilCommentBubble,
   cilCursor,
   cilDescription,
   cilDrop,
@@ -41,6 +42,16 @@ const _nav = [
     name: 'Typography',
     to: '/theme/typography',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavTitle,
+    name: '게시판',
+  },
+  {
+    component: CNavItem,
+    name: 'Q&A',
+    to: '/board/qna',
+    icon: <CIcon icon={cilCommentBubble} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
