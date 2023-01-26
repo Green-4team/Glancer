@@ -36,20 +36,26 @@ const AppHeader = () => {
         </CHeaderBrand>
         <div style={{marginLeft:'auto',marginRight:'auto'}}>
         <CHeaderNav className="d-none d-md-flex me-auto">
+          <div style={{marginRight: 50}}>
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
-              프로젝트
-            </CNavLink>
+            <CNavLink to="/dashboard" component={NavLink}>프로젝트</CNavLink>
           </CNavItem>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <div style={{marginRight: 50}}>
           <CNavItem>
             <CNavLink href="#">강의</CNavLink>
           </CNavItem>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <div style={{marginRight: 50}}>
+          <CNavItem>
+            <CNavLink to='/board/qna' component={NavLink}>게시판</CNavLink>
+          </CNavItem>
+          </div>
+          <div style={{marginRight: 50}}>
           <CNavItem>
             <CNavLink href="#">블로그</CNavLink>
           </CNavItem>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
         </CHeaderNav>
         </div>
         <CHeaderNav>
