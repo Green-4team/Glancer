@@ -36,6 +36,10 @@ const Range = React.lazy(() => import('./views/forms/range/Range'))
 const Select = React.lazy(() => import('./views/forms/select/Select'))
 const Validation = React.lazy(() => import('./views/forms/validation/Validation'))
 
+//Class
+const Class = React.lazy(() => import('./views/class/class/Class'))
+const Teacher = React.lazy(() => import('./views/class/teacher/Teacher'))
+
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
 // Icons
@@ -50,6 +54,8 @@ const Modals = React.lazy(() => import('./views/notifications/modals/Modals'))
 const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
+
+//로그인 회원가입
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -77,6 +83,8 @@ const routes = [
   { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
   { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
   { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
+  { path: '/class/class', name: 'Class', element: Class },
+  { path: '/class/teacher', name: 'Teacher', element: Teacher },
   { path: '/charts', name: 'Charts', element: Charts },
   { path: '/forms', name: 'Forms', element: FormControl, exact: true },
   { path: '/forms/form-control', name: 'Form Control', element: FormControl },
