@@ -37,7 +37,7 @@ const AppHeader = () => {
         <div style={{marginLeft:'auto',marginRight:'auto'}}>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
+            <CNavLink to="/project/freelancer" component={NavLink}>
               프로젝트
             </CNavLink>
           </CNavItem>

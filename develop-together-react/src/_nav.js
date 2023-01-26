@@ -212,6 +212,23 @@ const _nav = [
     ],
   },
   {
+    component: CNavGroup,
+    name: '구인&구직',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: '프리랜서 보기',
+        to: '/project/freelancer',
+      },
+      {
+        component: CNavItem,
+        name: '프로젝트 보기',
+        to: '/project/project',
+      },
+    ],
+  },
+  {
     component: CNavItem,
     name: 'Charts',
     to: '/charts',
