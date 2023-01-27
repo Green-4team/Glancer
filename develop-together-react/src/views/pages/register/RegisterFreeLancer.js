@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import 'src/views/pages/registerButton.css'
 import {
+  CButton,
   CCard,
   CCardBody,
   CCol,
@@ -11,6 +12,11 @@ import {
   CFormInput,
   CInputGroup,
   CInputGroupText,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -20,10 +26,11 @@ import { useNavigate } from 'react-router-dom'
 
 const RegisterFreeLancer = (props) => {
 
-  const [memberInfo, setMemberInfo] = useState({})
+  const [memberInfo, setMemberInfo] = useState({
+  })
 
   const navigate = useNavigate();
-
+  const [visible, setVisible] = useState(false)
   //로그인 회원가입 
   const insertMemberInfo = () => {
     // 서버에 데이터 전송 
@@ -32,14 +39,26 @@ const RegisterFreeLancer = (props) => {
               memberInfo,
               { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
         .then( response => {
-          alert(response.data);
+          alert('회원가입 완료');
           navigate("/login");
         })
-        .catch( e => {
-          alert("error");
+        .catch( e => {          
+          // alert('error')
+          
         });
         
   };
+  
+  // if (memberInfo.userId === null) {
+  //   alert('아이디를 입력해주세요');
+  // } if (memberInfo.password === null) {
+  //   alert('비밀번호를 입력해주세요');
+  // } if (memberInfo.name === null) {
+  //   alert('성함을 입력해주세요');
+  // }
+   
+    
+
   return (
     <div className=" min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -54,8 +73,8 @@ const RegisterFreeLancer = (props) => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="사용자 ID" autoComplete="username" 
-                                value={memberInfo.userId} 
+                    <CFormInput id="userid" placeholder="사용자 ID" autoComplete="username" 
+                                value={memberInfo.userId}
                                 onChange={(e) => {setMemberInfo({...memberInfo, "memberId": e.target.value})}} />
                   </CInputGroup>                 
                   <CInputGroup className="mb-3">
@@ -114,8 +133,9 @@ const RegisterFreeLancer = (props) => {
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
                     <CFormInput placeholder="Email"
-                    value={memberInfo.email} 
-                    onChange={(e) => {setMemberInfo({...memberInfo, "email": e.target.value})}}
+                    value={memberInfo.email}
+                    onChange={(e) => {setMemberInfo({...memberInfo, "email": e.target.value})}}                   
+                    
                     autoComplete="email" />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
@@ -140,8 +160,9 @@ const RegisterFreeLancer = (props) => {
                   </CInputGroup>                      
                   <div className="d-grid">
                     <button type='submit' 
+                    itemID='submitFreelancer'
                     onClick={
-                      (e) => { 
+                      (e) => {                         
                         insertMemberInfo(memberInfo); 
                         setMemberInfo({});
                         e.preventDefault();
