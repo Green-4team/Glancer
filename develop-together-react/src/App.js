@@ -20,6 +20,7 @@ const RegisterFreeLancer = React.lazy(() => import('./views/pages/register/Regis
 const RegisterCompany = React.lazy(() => import('./views/pages/register/RegisterCompany'))
 const RegisterAcademy = React.lazy(() => import('./views/pages/register/RegisterAcademy'))
 
+
 class App extends Component {
   render() {
     return (
