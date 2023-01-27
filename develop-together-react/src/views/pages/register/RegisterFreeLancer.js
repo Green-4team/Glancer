@@ -15,7 +15,7 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { CFormCheck, CFormSelect } from '@coreui/react/dist'
 
-const Register = () => {
+const RegisterFreeLancer = () => {
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -105,4 +105,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default RegisterFreeLancer
