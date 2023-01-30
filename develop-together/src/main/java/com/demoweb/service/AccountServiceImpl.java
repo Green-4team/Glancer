@@ -1,5 +1,7 @@
 package com.demoweb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -8,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.demoweb.common.Util;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.CompanyDetailDto;
+import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.mapper.MemberMapper;
 
@@ -44,6 +49,9 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void insertFreeLancerInfo(AllMemberRegisterDto freelancerregister) {
 	
+		String password = Util.getHashedString(freelancerregister.getPassword(), "SHA-256");
+		freelancerregister.setPassword(password);
+		
 		memberMapper.insertFreeLancerInfo(freelancerregister);
 		
 	}
@@ -51,6 +59,48 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void insertFreeLancerDetailInfo(FreeLancerRegisterDetailDto freelancerregisterdetail) {
 		memberMapper.insertFreeLancerDetailInfo(freelancerregisterdetail);
+		
+	}
+
+	@Override
+	public void insertacademyInfo(AllMemberRegisterDto academyregister) {
+		
+		String passwd = Util.getHashedString(academyregister.getPassword(), "SHA-256");
+		academyregister.setPassword(passwd);
+		memberMapper.insertacademyInfo(academyregister);
+		
+	}
+
+	@Override
+	public void insertacademyDetailInfo(CompanyDto academyDetail) {
+		memberMapper.insertacademyDetailInfo(academyDetail);
+		
+	}
+
+
+	@Override
+	public boolean checkDuplication(String memberId) {
+		int count = memberMapper.selectCountByMemberId(memberId);
+		return count == 0;
+	}
+
+	@Override
+	public void insertCompanyInfo(AllMemberRegisterDto companyregister) {
+		String password = Util.getHashedString(companyregister.getPassword(), "SHA-256");
+		companyregister.setPassword(password);
+		memberMapper.insertCompanyInfo(companyregister);
+		
+	}
+
+	@Override
+	public void insertCompanyDetailInfo(CompanyDto companyDetail) {
+		memberMapper.insertCompanyDetailInfo(companyDetail);
+		
+	}
+
+	@Override
+	public void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail) {
+		memberMapper.insertCompanyMoreDetailInfo(companyMoreDetail);
 		
 	}
 

@@ -41,7 +41,10 @@ const Validation = React.lazy(() => import('./views/forms/validation/Validation'
 //Class
 const ClassMain = React.lazy(() => import('./views/class/class/ClassMain'))
 const ClassDetailMain = React.lazy(() => import('./views/class/class/classdetail/ClassDetailMain'))
+const ClassRegisterMain = React.lazy(() => import('./views/class/class/classregister/ClassRegisterMain'))
 const TeacherMain = React.lazy(() => import('./views/class/teacher/TeacherMain'))
+const TeacherDetailMain = React.lazy(() => import('./views/class/teacher/teacherdetail/TeacherDetailMain'))
+const TeacherRegisterMain = React.lazy(() => import('./views/class/teacher/teacherregister/TeacherRegisterMain'))
 
 //Project
 const FreelancerMain = React.lazy(() => import('./views/project/freelancer/FreelancerMain'))
@@ -101,8 +104,11 @@ const routes = [
 
   
   { path: '/class/class', name: 'ClassMain', element: ClassMain },
-  { path: '/class/class/classDetail', name: 'ClassDetailMain', element: ClassDetailMain },
+  { path: '/class/class/classdetail', name: 'ClassDetailMain', element: ClassDetailMain },
+  { path: '/class/class/classregister', name: 'ClassRegisterMain', element: ClassRegisterMain },
   { path: '/class/teacher', name: 'TeacherMain', element: TeacherMain },
+  { path: '/class/teacher/teacherdetail', name: 'TeacherDetailMain', element: TeacherDetailMain },
+  { path: '/class/teacher/teacherregister', name: 'TeacherRegisterMain', element: TeacherRegisterMain },
   { path: '/charts', name: 'Charts', element: Charts },
   { path: '/forms', name: 'Forms', element: FormControl, exact: true },
   { path: '/forms/form-control', name: 'Form Control', element: FormControl },

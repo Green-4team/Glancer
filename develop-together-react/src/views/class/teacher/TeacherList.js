@@ -1,6 +1,6 @@
 
 import React from 'react'
-import classimg from "src/assets/images/class.jpg"
+import teacherimg from "src/assets/images/teacher.jpg"
 import { CCard, CCardBody,CImage,CBadge, CCol,  } from "@coreui/react"
 import { Link } from 'react-router-dom';
 import { BsFillStarFill } from "react-icons/bs";
@@ -23,12 +23,12 @@ function list(){
                 <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
                     <CCardBody>
                         <div className="clearfix">
-                            <Link to="/class/class/classdetail" style={{textDecoration: "none", color: "black"}}>
-                            <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
+                            <Link to="/class/teacher/teacherdetail" style={{textDecoration: "none", color: "black"}}>
+                            <CImage  align="start" style={{borderRadius: 10}} src={teacherimg} width={150} height={225} />
                             <CCardBody style={{ marginLeft:'150px'}}>
-                            <h2>강의 명</h2>
+                            <h2>강사 명</h2>
                             <br></br>
-                            <h4 style={{ marginBottom:"10px"}}>강의 소개 </h4>                            
+                            <h4 style={{ marginBottom:"10px"}}>강사 소개 </h4>                            
                                 { aa() } 
                             
                             <br></br><br></br>
@@ -42,6 +42,7 @@ function list(){
                                        <BsFillStarFill size="20" color="orange"/>
                                        <BsFillStarFill size="20" color="orange"/>
                                        <AiOutlineStar size="23"/></div></strong></h5>
+                                       <h5><strong>경력 : </strong></h5>
                                     </CCol>                             
                             </CCardBody>
                             </Link>
@@ -54,7 +55,7 @@ function list(){
 }
 
 
-const ClassList = (props) => {
+const TeacherList = (props) => {
     
     return (
         <div>
@@ -66,4 +67,4 @@ const ClassList = (props) => {
 
 };
 
-export default ClassList;
+export default TeacherList;
