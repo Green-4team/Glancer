@@ -1,8 +1,10 @@
 import React from 'react'
 
+
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
+const QnA = React.lazy(() => import('./views/board/QnA'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -39,6 +41,12 @@ const Validation = React.lazy(() => import('./views/forms/validation/Validation'
 const Class = React.lazy(() => import('./views/class/class/Class'))
 const Teacher = React.lazy(() => import('./views/class/teacher/Teacher'))
 
+//Project
+const FreelancerMain = React.lazy(() => import('./views/project/freelancer/FreelancerMain'))
+const ProjectMain = React.lazy(() => import('./views/project/project/ProjectMain'))
+const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer/freelancerdetail/FreelancerDetailMain'))
+
+
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
 // Icons
@@ -62,6 +70,7 @@ const routes = [
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
+  { path: '/board/qna', name: 'Q&A', element: QnA },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
@@ -81,6 +90,13 @@ const routes = [
   { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
   { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
   { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
+  
+  { path: '/project/freelancer', name: 'FreelancerMain', element: FreelancerMain },
+  { path: '/project/project', name: 'ProjectMain', element: ProjectMain },
+  { path: '/project/freelancer/freelancerdetail', name: 'FreelancerDetailMain', element: FreelancerDetailMain },
+  
+
+  
   { path: '/class/class', name: 'Class', element: Class },
   { path: '/class/teacher', name: 'Teacher', element: Teacher },
   { path: '/charts', name: 'Charts', element: Charts },

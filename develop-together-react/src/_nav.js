@@ -4,6 +4,7 @@ import {
   cilBell,
   cilCalculator,
   cilChartPie,
+  cilCommentBubble,
   cilCursor,
   cilDescription,
   cilDrop,
@@ -41,6 +42,16 @@ const _nav = [
     name: 'Typography',
     to: '/theme/typography',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavTitle,
+    name: '게시판',
+  },
+  {
+    component: CNavItem,
+    name: 'Q&A',
+    to: '/board/qna',
+    icon: <CIcon icon={cilCommentBubble} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -208,6 +219,23 @@ const _nav = [
         component: CNavItem,
         name: '강사',
         to: '/class/teacher',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: '구인&구직',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: '프리랜서 보기',
+        to: '/project/freelancer',
+      },
+      {
+        component: CNavItem,
+        name: '프로젝트 보기',
+        to: '/project/project',
       },
     ],
   },

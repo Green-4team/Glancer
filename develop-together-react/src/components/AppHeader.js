@@ -1,22 +1,21 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { cilMenu, cilSearch } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
 import {
   CContainer,
   CHeader,
   CHeaderBrand,
   CHeaderDivider,
   CHeaderNav,
-  CHeaderToggler,
-  CNavLink,
-  CNavItem,
+  CHeaderToggler, CNavItem, CNavLink
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu, cilSearch } from '@coreui/icons'
 
-import { AppBreadcrumb } from './index'
-import { AppHeaderDropdown } from './header/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+
+
 import { logo } from 'src/assets/brand/logo'
+import { AppHeaderDropdown } from './header/index'
+import { AppBreadcrumb } from './index'
 
 const AppHeader = () => {
   const dispatch = useDispatch()
@@ -36,20 +35,34 @@ const AppHeader = () => {
         </CHeaderBrand>
         <div style={{marginLeft:'auto',marginRight:'auto'}}>
         <CHeaderNav className="d-none d-md-flex me-auto">
+          <div style={{marginRight: 50}}>
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
-              프로젝트
+            <CNavLink to="/project/freelancer" component={NavLink}>
+              프리랜서
             </CNavLink>
           </CNavItem>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <CNavItem>
+            <CNavLink to="/project/project" component={NavLink}>
+              프로젝트
+            </CNavLink>
+          </CNavItem>
+          </div>
+          <div style={{marginRight: 50}}>
+          <CNavItem>
             <CNavLink href="#">강의</CNavLink>
           </CNavItem>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <div style={{marginRight: 50}}>
+          <CNavItem>
+            <CNavLink to='/board/qna' component={NavLink}>게시판</CNavLink>
+          </CNavItem>
+          </div>
+          <div style={{marginRight: 50}}>
           <CNavItem>
             <CNavLink href="#">블로그</CNavLink>
           </CNavItem>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
         </CHeaderNav>
         </div>
         <CHeaderNav>
