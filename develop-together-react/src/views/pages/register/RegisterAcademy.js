@@ -18,9 +18,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router'
 
 
-
-
-
 const RegisterAcademy = () => {
 
 
@@ -28,18 +25,19 @@ const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
 
-const [ doubleCheckId, setDoubleCheckId] = useState([]);
-useEffect( 
-  () => {
-    const loadTodos = async (e) => {
-      //const response = await axios.get("http://localhost:8080/react-web/demo/load-todos");
-      const response = await axios.get("/react-web/account/loadMemberId");
-      setDoubleCheckId(response.data);
-      console.log(response.data)
-    };
-    loadTodos();
-  }, []
-);
+//useEffect( 
+  // () => {
+  //   const loadTodos = async (e) => {
+  //     //const response = await axios.get("http://localhost:8080/react-web/demo/load-todos");
+  //     const response = await axios.get("http://127.0.0.1:8081/account/loadMemberId");
+  //     setDoubleCheckId(response.data);
+  //     //console.log(response.data)
+  //   };
+  //   loadTodos();
+  // }, []
+//);
+
+
 
 const [academyInfo, setAcademyInfo] = useState({
   memberId: '',
@@ -52,55 +50,59 @@ const [academyInfo, setAcademyInfo] = useState({
   memail: '',
   address:'',
   companytype: '1',
-})
+});
 const insertAcademyInfo = () => {
 
-  if (academyInfo.memberId.length === 0) {
-    alert('아이디를 입력해주세요');
-    return;
-  } else if (academyInfo.memberId === doubleCheckId.memberId) {
-    alert('이미 있는 아이디 입니다');
-    return;
-  } else if (academyInfo.password.match(passwordRegEx)  === null) {
-    alert('비밀번호는 반드시 영어 대소문자와 숫자를 조합한 8 ~ 20 자로 입력해주세요');
-    return;
-  } else if (academyInfo.password !== academyInfo.checkPassword){
-    alert('비밀번호가 일치하지 않습니다');
-    return;
-  } else if (academyInfo.name.length === 0 ) {
-    alert('학원명을 입력해주세요');
-    return;
-  } else if (academyInfo.mname.length === 0 ) {
-    alert('담당자 명을 입력해주세요');
-    return;
-  } else if (academyInfo.mpostion.length === 0 ) {
-    alert('담당자 직책 입력해주세요');
-    return;
-  } else if (academyInfo.mphone.length === 0 ) {
-    alert('담당자 연락처를 입력해주세요');
-    return;
-  } else if (academyInfo.memail.length === 0 ) {
-    alert('담당자 이메일을 입력해주세요');
-    return;
-  } else if (academyInfo.memail.match(emailRegEx)  === null) {
-    alert('이메일 형식을 맞춰주세요');
-    return;
-  } else if (academyInfo.address.length === 0 ) {
-    alert('학원 주소를 입력해주세요');
-    return;
-  }
-  // 서버에 데이터 전송 
-  // axios.post("http://127.0.0.1:8080/react-web/demo/add-todo", 
-  axios.post("http://127.0.0.1:8081/account/academyRegister", 
-              academyInfo,
-            { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
-      .then( response => {
-        alert('회원가입 완료');
-        navigate('/login');
-      })
-      .catch( e => {          
-        alert('error');
-      });
+  axios.get("http://127.0.0.1:8081/account/checkDuplication?memberId=" + academyInfo.memberId)
+       .then((response) => {
+          if (!response.data.validation) {
+            alert('이미 있는 아이디입니다.')
+            return;
+          } else if (academyInfo.memberId.length === 0) {
+            alert('아이디를 입력해주세요');
+            return;
+          } else if (academyInfo.password.match(passwordRegEx)  === null) {
+            alert('비밀번호는 반드시 영어 대소문자와 숫자를 조합한 8 ~ 20 자로 입력해주세요');
+            return;
+          } else if (academyInfo.password !== academyInfo.checkPassword){
+            alert('비밀번호가 일치하지 않습니다');
+            return;
+          } else if (academyInfo.name.length === 0 ) {
+            alert('학원명을 입력해주세요');
+            return;
+          } else if (academyInfo.mname.length === 0 ) {
+            alert('담당자 명을 입력해주세요');
+            return;
+          } else if (academyInfo.mpostion.length === 0 ) {
+            alert('담당자 직책 입력해주세요');
+            return;
+          } else if (academyInfo.mphone.length === 0 ) {
+            alert('담당자 연락처를 입력해주세요');
+            return;
+          } else if (academyInfo.memail.length === 0 ) {
+            alert('담당자 이메일을 입력해주세요');
+            return;
+          } else if (academyInfo.memail.match(emailRegEx)  === null) {
+            alert('이메일 형식을 맞춰주세요');
+            return;
+          } else if (academyInfo.address.length === 0 ) {
+            alert('학원 주소를 입력해주세요');
+            return;
+          }
+          // 서버에 데이터 전송 
+          // axios.post("http://127.0.0.1:8080/react-web/demo/add-todo", 
+          axios.post("http://127.0.0.1:8081/account/academyRegister", 
+                      academyInfo,
+                    { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+              .then( response => {
+                alert('회원가입 완료');
+                navigate('/login');
+              })
+              .catch( e => {          
+                alert('error');
+              });
+        });
+ 
       
 };
 
@@ -190,12 +192,11 @@ const insertAcademyInfo = () => {
                     autoComplete="account" />
                   </CInputGroup>
                   <div className="d-grid">
-                    <button type='submit' 
-                    itemID='submitFreelancer'
+                    <button type='submit'
                     onClick={
                       (e) => {                         
                         insertAcademyInfo(academyInfo); 
-                        setAcademyInfo({});
+                        // setAcademyInfo({});
                         e.preventDefault();
                     } 
                     }

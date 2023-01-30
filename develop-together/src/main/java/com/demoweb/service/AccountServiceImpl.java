@@ -1,5 +1,7 @@
 package com.demoweb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.demoweb.common.Util;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.mapper.MemberMapper;
@@ -67,9 +71,28 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+
 	@Override
-	public void loadMemberId(AllMemberRegisterDto loadmemberId) {
-		memberMapper.loadMemberId(loadmemberId);
+	public boolean checkDuplication(String memberId) {
+		int count = memberMapper.selectCountByMemberId(memberId);
+		return count == 0;
+	}
+
+	@Override
+	public void insertCompanyInfo(AllMemberRegisterDto companyregister) {
+		memberMapper.insertCompanyInfo(companyregister);
+		
+	}
+
+	@Override
+	public void insertCompanyDetailInfo(CompanyDto companyDetail) {
+		memberMapper.insertCompanyDetailInfo(companyDetail);
+		
+	}
+
+	@Override
+	public void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail) {
+		memberMapper.insertCompanyMoreDetailInfo(companyMoreDetail);
 		
 	}
 

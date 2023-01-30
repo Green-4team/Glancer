@@ -1,5 +1,8 @@
 package com.demoweb.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
@@ -62,18 +66,32 @@ public class AccountController {
 	}
 
 	@CrossOrigin
-	@GetMapping(path = {"/loadMemberId"})
+	@GetMapping(path = {"/checkDuplication"})
 	@ResponseBody
-	private Object LoadMemberId(HttpServletRequest req, AllMemberRegisterDto loadmemberId) {
-		ServletContext application = req.getServletContext();
+	private HashMap<String, Object> checkDuplication(String memberId) {
 		
-		Object AllAccountregisters  = (Object)application.getAttribute("register");
+		boolean valid = accountService.checkDuplication(memberId);
 		
-		accountService.loadMemberId(loadmemberId);
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("validation", valid);
 		
-		return AllAccountregisters;
+		return response;
 	}
 	
+	@CrossOrigin
+	@PostMapping(path = {"/comapanyRegister"})
+	@ResponseBody
+	private Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail,HttpServletRequest req) {
+		
+		ServletContext application = req.getServletContext();
+		
+		Object companyregisters  = (Object)application.getAttribute("register");
+		accountService.insertCompanyInfo(companyregister);
+		accountService.insertCompanyDetailInfo(companyDetail);
+		accountService.insertCompanyMoreDetailInfo(companyMoreDetail);
+		
+		return companyregisters;
+	}
 }
 
 

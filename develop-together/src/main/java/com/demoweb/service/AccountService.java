@@ -1,7 +1,11 @@
 package com.demoweb.service;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
+
+import java.util.List;
+
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 
@@ -18,6 +22,12 @@ public interface AccountService {
 
 	void insertacademyDetailInfo(CompanyDto academyDetail);
 
-	void loadMemberId(AllMemberRegisterDto loadmemberId);
+	boolean checkDuplication(String memberId);
+
+	void insertCompanyInfo(AllMemberRegisterDto companyregister);
+
+	void insertCompanyDetailInfo(CompanyDto companyDetail);
+
+	void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail);
 
 }
