@@ -14,6 +14,7 @@ import org.apache.ibatis.annotations.SelectKey;
 
 import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.BoardTagDto;
 
 @Mapper
 public interface BoardMapper {
@@ -26,11 +27,19 @@ public interface BoardMapper {
 //			   resultType = Integer.class, keyProperty = "boardNo", before = false)
 	void insertBoard(BoardDto board);
 	
-	@Select("SELECT boardNo, topicNo, memberId, title, content, regDate, views, deleted " +
-			"FROM board " +
+	@Select("SELECT b.boardNo, b.topicNo, b.memberId, b.title, b.content, b.regDate, b.views, b.deleted, t.topicName " +
+			"FROM board b " +
+			"INNER JOIN topic t " +
+			"ON b.topicNo = t.topicNo " +
 			"ORDER BY boardno DESC " +
 			"LIMIT #{ from }, #{ count }")
 	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("count")int count);
+	
+	@Select("SELECT bt.boardTagNo, bt.tagNo, bt.boardNo, bt.boardType, t.tagName " +
+			"FROM tag t, boardtag bt " +
+			"WHERE t.tagNo = bt.tagNo " +
+			"AND bt.boardNo = #{ boardNo } AND bt.boardType = #{ boardType } ")
+	List<BoardTagDto> selectBoardTagByBoardNo(@Param("boardNo") int boardNo, @Param("boardType") String boardType);
 	
 	@Select("SELECT COUNT(*) FROM board")
 	int selectBoardCount();
@@ -62,6 +71,8 @@ public interface BoardMapper {
 					 		 many = @Many(select = "com.demoweb.mapper.BoardCommentMapper.selectCommentByBoardNo"))
 			 })
 	BoardDto selectBoardByBoardNo2(int boardNo);
+
+	
 
 }
 

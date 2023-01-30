@@ -12,6 +12,7 @@ import com.demoweb.dao.BoardDao;
 import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.BoardTagDto;
 import com.demoweb.mapper.BoardCommentMapper;
 import com.demoweb.mapper.BoardMapper;
 
@@ -58,36 +59,9 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	
-	@Override
-	public List<BoardDto> findBoardByPage(int pageNo, int pageSize) {
-		
-		int from = (pageNo - 1) * pageSize;
-		int count = pageSize;
-		
-		List<BoardDto> boards = boardMapper.selectBoardByPage(from, from + count);
-		return boards;
-		
-	}
 	
-	// 글 번호를 받아서 게시글 조회 및 반환
-	@Override
-	public BoardDto findBoardByBoardNo(int boardNo) {
-		
-		// Board와 BoardAttach를 각각 조회
-//		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);		
-//		if (board != null) {
-//			List<BoardAttachDto> attachments = boardMapper.selectBoardAttachByBoardNo(boardNo);
-//			board.setAttachments(attachments);
-//		}
-		
-		// Board와 BoardAttach를 한 번에 조회
-		BoardDto board = boardMapper.selectBoardByBoardNo2(boardNo);
-		
-		// Comment 조회
-		
-		return board;
-		
-	}
+	
+	
 	
 	// 글 번호를 받아서 게시글 조회수 증가
 	@Override
@@ -114,13 +88,7 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
-	@Override
-	public int findBoardCount() {
-		
-		int boardCount = boardMapper.selectBoardCount();
-		return boardCount;
-		
-	}
+	
 	
 	@Override
 	public void modifyBoard(BoardDto board) {
@@ -182,7 +150,57 @@ public class BoardServiceImpl implements BoardService {
 		commentMapper.insertReComment(commentDto);
 	}
 
+	
 
+
+	////////////////////////////////////////////////////////
+	
+	@Override
+	public List<BoardDto> findBoardByPage(int pageNo, int pageSize) {
+		
+		int from = (pageNo - 1) * pageSize;
+		int count = pageSize;
+		
+		List<BoardDto> boards = boardMapper.selectBoardByPage(from, from + count);
+		return boards;
+		
+	}
+	
+	@Override
+	public List<BoardTagDto> findBoardTagByBoardNo(int boardNo, String boardType) {
+		
+		List<BoardTagDto> tags = boardMapper.selectBoardTagByBoardNo(boardNo, boardType);
+		return tags;
+		
+	}
+	
+	@Override
+	public int findBoardCount() {
+		
+		int boardCount = boardMapper.selectBoardCount();
+		return boardCount;
+		
+	}
+	
+	// 글 번호를 받아서 게시글 조회 및 반환
+	@Override
+	public BoardDto findBoardByBoardNo(int boardNo) { // 0130 여기부터
+		
+		// Board와 BoardAttach를 각각 조회
+//			BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);		
+//			if (board != null) {
+//				List<BoardAttachDto> attachments = boardMapper.selectBoardAttachByBoardNo(boardNo);
+//				board.setAttachments(attachments);
+//			}
+		
+		// Board와 BoardAttach를 한 번에 조회
+		BoardDto board = new BoardDto(); 
+//				boardMapper.selectBoardByBoardNo2(boardNo);
+		
+		return board;
+		
+	}
+	
 }
 
 

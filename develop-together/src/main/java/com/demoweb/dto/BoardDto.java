@@ -28,4 +28,7 @@ public class BoardDto {
 	private int views;
 	private boolean deleted;
 	
+	private String topicName;
+	private List<BoardTagDto> tags;
+	
 }

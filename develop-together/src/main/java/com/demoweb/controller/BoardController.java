@@ -27,53 +27,69 @@ import com.demoweb.common.Util;
 import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.BoardTagDto;
 import com.demoweb.service.BoardService;
+import com.demoweb.ui.ThePager;
 import com.demoweb.view.DownloadView;
 
 @Controller
 @RequestMapping(path = { "/board" })
 public class BoardController {
 	
-	private final int PAGE_SIZE = 5; 	// 한 페이지에 표시되는 데이터 개수
+	private final int PAGE_SIZE = 1; 	// 한 페이지에 표시되는 데이터 개수
 	private final int PAGER_SIZE = 5;	// 한 번에 표시할 페이지 번호 개수
-	private final String LINK_URL = "list"; // 페이지 번호를 클릭했을 때 이동할 페이지 경로
+	private final String LINK_URL = "#/board/qna"; // 페이지 번호를 클릭했을 때 이동할 페이지 경로
 	
 	@Autowired
 	@Qualifier("boardService")
 	private BoardService boardService;
 	
 	@CrossOrigin
-	@GetMapping(path = {"/qnaList"})
 	@ResponseBody
-	private HashMap<String, Object> showBoardList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
-		
-//		Object freelancerregisters  = (Object)application.getAttribute("freelancerregisters");
-//		accountService.insertFreeLancerInfo(freelancerregister);
-//		accountService.insertFreeLancerDetailInfo(freelancerregisterdetail);
-//		
-		
-		
-		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
-				// 2. 데이터 처리 ( 데이터 조회 )		
-//				List<BoardDto> boards = boardService.findBoardByPage(pageNo, PAGE_SIZE);
-//				int boardCount = boardService.findBoardCount();
-				
-//				ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
-//				
-//				// 3. View에서 읽을 수 있도록 데이터 저장
-//				model.addAttribute("boards", boards);
-//				model.addAttribute("pager", pager);
-//				model.addAttribute("pageNo", pageNo);
+	@GetMapping(path = {"/qnaList"})
+	private HashMap<String, Object> showBoardList(@RequestParam(defaultValue = "1") int pageNo) {
 		
 		List<BoardDto> results = boardService.findBoardByPage(pageNo, PAGE_SIZE);
-//		int boardCount = boardService.findBoardCount();
+		for (BoardDto result : results) {
+			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+			result.setTags(tags);
+		}
+		int boardCount = boardService.findBoardCount();
+		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
 		
 		HashMap<String, Object> boardList = new HashMap<>();
 		boardList.put("page", pageNo);
 		boardList.put("results", results);
+		boardList.put("pager", pager);
 		
 		return boardList;
+		
 	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/qnaDetail"})
+	private HashMap<String, Object> showBoardDetail(@RequestParam(defaultValue = "1") int boardNo) {
+		
+		BoardDto result = boardService.findBoardByBoardNo(boardNo);
+		
+//		for (BoardDto result : results) {
+//			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+//			result.setTags(tags);
+//		}
+//		int boardCount = boardService.findBoardCount();
+//		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
+//		
+		HashMap<String, Object> boardDetail = new HashMap<>();
+//		boardList.put("page", pageNo);
+//		boardList.put("results", results);
+//		boardList.put("pager", pager);
+		
+//		return boardList;
+		return boardDetail;
+		
+	}
+	
 		
 	@GetMapping(path = { "/detail" })
 	public String showBoardDetail(@RequestParam(defaultValue = "-1") int boardNo, 

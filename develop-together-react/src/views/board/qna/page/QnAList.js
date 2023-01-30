@@ -1,13 +1,22 @@
-import { cilAlignLeft, cilLoopCircular, cilPencil } from "@coreui/icons";
+import { cilAlignLeft, cilChevronDoubleLeft, cilChevronDoubleRight, cilLoopCircular, cilPencil } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
 import { CButton, CCard, CCardBody, CCol, CFormInput } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import QnAListItem from "./QnAListItem";
+
+const HoverBlueBlock = styled.div`
+div {
+  display: inline-block;
+}
+.hoverBlue:hover {color: #24a0ed;}
+`;
 
 const QnAList = (props) => {
   const [results, setResults] = useState(null);
   const [page, setPage] = useState(1);
+  const [pager, setPager] = useState(null);
 
   // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
@@ -16,6 +25,7 @@ const QnAList = (props) => {
       const response = await axios.get(url);
       setResults(response.data.results);
       setPage(response.data.page);
+      setPager(response.data.pager);
     };
     loadQnAList();
   }, [page]);
@@ -23,7 +33,8 @@ const QnAList = (props) => {
   if (!results) {
     return;
   }
-
+  const {pageNo, pageCount} = pager;
+  
   return (
     <>
       <CCol xs={10} style={{margin: 'auto'}}>
@@ -46,10 +57,32 @@ const QnAList = (props) => {
             <hr />
             <table className="table">
               <thead>
-                <tr>
-                  <th style={{width: "20%"}}><CIcon icon={cilLoopCircular} size="lg"/></th>
-                  <th style={{width: "60%"}}><CFormInput type="text" placeholder="Q&A 내에서 검색" style={{borderRadius: 40, width: '40%', margin: 'auto'}}/></th>
-                  <th style={{width: "20%"}}><div style={{textAlign: 'right'}}>Example</div></th>
+                <tr style={{verticalAlign: "middle"}}>
+                  <th style={{width: "30%"}}>
+                    <HoverBlueBlock>
+                      <div class="hoverBlue">
+                        <CIcon icon={cilLoopCircular} size="lg"/>
+                      </div>
+                    </HoverBlueBlock>
+                  </th>
+                  <th style={{width: "40%"}}><CFormInput type="text" placeholder="Q&A 내에서 검색" style={{borderRadius: 40, width: '60%', margin: 'auto'}}/></th>
+                  <th style={{width: "30%"}}>
+                    <div style={{textAlign: 'right', fontWeight: "normal", fontSize: 14}}>
+                      <HoverBlueBlock>
+                        <div>{pageNo} / {pageCount} 페이지</div>
+                        <CButton onClick={() => setPage(page - 1)}
+                                 disabled={page === 1}
+                                 style={{marginLeft: 16, color: "black", backgroundColor: "white", border: "none"}}>
+                          <div class="hoverBlue"><CIcon icon={cilChevronDoubleLeft} size="lg" /></div>
+                        </CButton>
+                        <CButton onClick={() => setPage(page + 1)}
+                                 disabled={page === pageCount}
+                                 style={{color: "black", backgroundColor: "white", border: "none"}}>
+                          <div class="hoverBlue"><CIcon icon={cilChevronDoubleRight} size="lg" /></div>
+                        </CButton>
+                      </HoverBlueBlock>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -58,7 +91,7 @@ const QnAList = (props) => {
                 })}
               </tbody>
             </table>
-            {/* <Pagination total={500} page={page} setPage={setPage} /> */}
+              {/* <Pagination total={500} page={page} setPage={setPage} /> */}
           </CCardBody>
         </CCard>
       </CCol>

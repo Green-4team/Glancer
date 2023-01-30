@@ -1,5 +1,8 @@
 package com.demoweb.ui;
 
+import lombok.Getter;
+
+@Getter
 public class ThePager {
 	
 	private int pageSize;//한 페이지당 데이터 개수

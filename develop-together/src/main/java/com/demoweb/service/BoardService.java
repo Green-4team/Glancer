@@ -5,6 +5,7 @@ import java.util.List;
 import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.BoardTagDto;
 
 public interface BoardService {
 
@@ -12,17 +13,11 @@ public interface BoardService {
 
 	List<BoardDto> findAllBoard();
 
-	List<BoardDto> findBoardByPage(int pageNo, int pageSize);
-
-	BoardDto findBoardByBoardNo(int boardNo);
-
 	void increaseBoardReadCount(int boardNo);
 
 	void deleteBoard(int boardNo);
 
 	BoardAttachDto findBoardAttachByAttachNo(int attachNo);
-
-	int findBoardCount();
 
 	void modifyBoard(BoardDto board);
 	
@@ -39,5 +34,15 @@ public interface BoardService {
 	void updateComment(BoardCommentDto comment);
 
 	void writeReComment(BoardCommentDto commentDto);
+
+	/////////////////////////////////////////////////
+	
+	List<BoardDto> findBoardByPage(int pageNo, int pageSize);
+	
+	List<BoardTagDto> findBoardTagByBoardNo(int boardNo, String boardType);
+	
+	int findBoardCount();
+	
+	BoardDto findBoardByBoardNo(int boardNo);
 
 }

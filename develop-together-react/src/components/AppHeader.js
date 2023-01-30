@@ -97,7 +97,7 @@ const AppHeader = () => {
             <div class="dropdown">
               <button class="dropbtn">게시판</button>
               <div class="dropdown-content">
-                <CNavLink to='/board/qna' component={NavLink}>Q&A</CNavLink>
+                <CNavLink to='/board/qna/page' component={NavLink}>Q&A</CNavLink>
                 <CNavLink to='/#' component={NavLink}>Link 2</CNavLink>
               </div>
             </div>
