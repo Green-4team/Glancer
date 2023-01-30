@@ -1,5 +1,7 @@
 package com.demoweb.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -7,6 +9,8 @@ import org.apache.ibatis.annotations.Select;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.CompanyDetailDto;
+import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 
 @Mapper // mapper interface 구현 객체 생성 자동으로 처리
@@ -30,6 +34,39 @@ public interface MemberMapper {
 	@Insert(" insert into memberdetail (memberid, name, birthday, email, phone, occupation, workstate, startdate ) " +
 			"values ( #{ memberId }, #{ name } , #{ birthday }, #{ email } , #{ phone } ,#{ occupation } ,#{ workstate } , #{ startdate }) ")
 	void insertFreeLancerDetailInfo(FreeLancerRegisterDetailDto freelancerregisterdetail);
+
+
+	
+	@Insert("INSERT INTO member (memberid, password ) " +
+			"VALUES ( #{ memberId }, #{ password  } ) ")
+	void insertacademyInfo(AllMemberRegisterDto academyregister);
+
+
+	
+	@Insert("insert into company (memberid, name, mname, mpostion, mphone, memail, address, companytype ) " + 
+			"values ( #{ memberId }, #{ name }, #{ mname }, #{ mpostion }, #{ mphone }, #{ memail }, #{ address }, #{ companytype } ) ")
+	void insertacademyDetailInfo(CompanyDto academyDetail);
+
+	
+	@Select("select memberid from member " )
+	List<AllMemberRegisterDto> loadMemberId();
+
+
+	@Select("select count(*) from member where memberId = #{ memberId }" )
+	int selectCountByMemberId(String memberId);
+
+	@Insert("INSERT INTO member (memberid, password ) " +
+			"VALUES ( #{ memberId }, #{ password  } ) ")
+	void insertCompanyInfo(AllMemberRegisterDto companyregister);
+
+	@Insert("insert into company (memberid, name, mname, mpostion, mphone, memail, address, companytype ) " + 
+			"values ( #{ memberId }, #{ name }, #{ mname }, #{ mpostion }, #{ mphone }, #{ memail }, #{ address }, #{ companytype } ) ")
+	void insertCompanyDetailInfo(CompanyDto companyDetail);
+
+
+	@Insert("insert into companydetail (memberid, headcount, contnent, annualsales, crn, br ) " +
+			"values ( #{ memberId } , #{ headcount }, #{ contnent }, #{ annualsales }, #{ crn }, #{ br } ) " )
+	void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail);
 	
 	
 

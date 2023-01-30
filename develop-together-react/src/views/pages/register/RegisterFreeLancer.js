@@ -37,8 +37,12 @@ const RegisterFreeLancer = (props) => {
   const navigate = useNavigate();
   //로그인 회원가입 
   const insertMemberInfo = () => {
-
-    if (memberInfo.memberId.length === 0) {
+    axios.get("http://127.0.0.1:8081/account/checkDuplication?memberId=" + memberInfo.memberId)
+    .then((response) => {
+       if (!response.data.validation) {
+         alert('이미 있는 아이디입니다.')
+         return;
+       } else if (memberInfo.memberId.length === 0) {
       alert('아이디를 입력해주세요');
       return;
     } else if (memberInfo.password !== memberInfo.checkPassword){
@@ -69,8 +73,6 @@ const RegisterFreeLancer = (props) => {
       alert('업무 시작 가능일을 입력해주세요');
       return;
     } 
-    // 서버에 데이터 전송 
-    // axios.post("http://127.0.0.1:8080/react-web/demo/add-todo", 
     axios.post("http://127.0.0.1:8081/account/freelancerRegister", 
               memberInfo,
               { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
@@ -82,13 +84,11 @@ const RegisterFreeLancer = (props) => {
           alert('error');              
         });
         
-  };
+  });
   
+}
   
-  
-    
-
-  return (
+    return (
     <div className=" min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
@@ -191,12 +191,10 @@ const RegisterFreeLancer = (props) => {
                     </div>
                   </CInputGroup>                      
                   <div className="d-grid">
-                    <button type='submit' 
-                    itemID='submitFreelancer'
+                    <button type='submit'
                     onClick={
                       (e) => {                         
-                        insertMemberInfo(memberInfo); 
-                        setMemberInfo({});
+                        insertMemberInfo(memberInfo);
                         e.preventDefault();
                     } 
                     }
