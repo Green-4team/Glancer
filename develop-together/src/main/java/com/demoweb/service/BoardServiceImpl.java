@@ -61,7 +61,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardDto> findBoardByPage(int pageNo, int pageSize) {
 		
-		int from = (pageNo - 1) * pageSize + 1;
+		int from = (pageNo - 1) * pageSize;
 		int count = pageSize;
 		
 		List<BoardDto> boards = boardMapper.selectBoardByPage(from, from + count);

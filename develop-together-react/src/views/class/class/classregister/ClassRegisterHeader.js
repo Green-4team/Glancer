@@ -35,7 +35,7 @@ function aa(){
     return arr
 }
 
-const ClassDetailHeader = (props) => {
+const ClassRegisterHeader = (props) => {
     return (
             <CRow>
                 <CCol xs={10} style={{ margin: "auto" }}>
@@ -87,4 +87,4 @@ const ClassDetailHeader = (props) => {
     );
 };
 
-export default ClassDetailHeader;
+export default ClassRegisterHeader;

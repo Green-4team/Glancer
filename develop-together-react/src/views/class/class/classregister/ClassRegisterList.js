@@ -45,7 +45,7 @@ function project(){
 
 
 
-const ClassDetailList = (props) => {
+const ClassRegisterList = (props) => {
 
     const [activeKey, setActiveKey] = useState(1)
 
@@ -74,4 +74,4 @@ const ClassDetailList = (props) => {
 
 };
 
-export default ClassDetailList;
+export default ClassRegisterList;
