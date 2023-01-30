@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.demoweb.common.Util;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
-import com.demoweb.dto.FreeLancerRegisterDto;
+import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.mapper.MemberMapper;
 
@@ -42,7 +42,7 @@ public class AccountServiceImpl implements AccountService {
 //	}
 
 	@Override
-	public void insertFreeLancerInfo(FreeLancerRegisterDto freelancerregister) {
+	public void insertFreeLancerInfo(AllMemberRegisterDto freelancerregister) {
 	
 		memberMapper.insertFreeLancerInfo(freelancerregister);
 		
