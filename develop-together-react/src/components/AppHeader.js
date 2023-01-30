@@ -14,14 +14,53 @@ import { NavLink } from 'react-router-dom'
 
 
 import { logo } from 'src/assets/brand/logo'
+import styled from 'styled-components'
 import { AppHeaderDropdown } from './header/index'
 import { AppBreadcrumb } from './index'
+
+const DropMenuBlock = styled.div`
+.dropbtn {
+  color: gray;
+  background-color: white;
+  border: none;
+  padding: 8px;
+}
+ 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+ 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+ 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover {color: #24a0ed;}
+
+.dropdown-content a:hover {color: #24a0ed;}
+ 
+.dropdown:hover .dropdown-content {display: block;}
+
+`;
 
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
   return (
+    <DropMenuBlock>
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
         <CHeaderToggler
@@ -55,7 +94,13 @@ const AppHeader = () => {
           </div>
           <div style={{marginRight: 50}}>
           <CNavItem>
-            <CNavLink to='/board/qna' component={NavLink}>게시판</CNavLink>
+            <div class="dropdown">
+              <button class="dropbtn">게시판</button>
+              <div class="dropdown-content">
+                <CNavLink to='/board/qna' component={NavLink}>Q&A</CNavLink>
+                <CNavLink to='/#' component={NavLink}>Link 2</CNavLink>
+              </div>
+            </div>
           </CNavItem>
           </div>
           <div style={{marginRight: 50}}>
@@ -92,6 +137,7 @@ const AppHeader = () => {
         <AppBreadcrumb />
       </CContainer>
     </CHeader>
+    </DropMenuBlock>
   )
 }
 
