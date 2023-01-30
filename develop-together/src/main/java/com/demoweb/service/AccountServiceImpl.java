@@ -49,6 +49,9 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void insertFreeLancerInfo(AllMemberRegisterDto freelancerregister) {
 	
+		String password = Util.getHashedString(freelancerregister.getPassword(), "SHA-256");
+		freelancerregister.setPassword(password);
+		
 		memberMapper.insertFreeLancerInfo(freelancerregister);
 		
 	}
@@ -61,6 +64,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void insertacademyInfo(AllMemberRegisterDto academyregister) {
+		
+		String passwd = Util.getHashedString(academyregister.getPassword(), "SHA-256");
+		academyregister.setPassword(passwd);
 		memberMapper.insertacademyInfo(academyregister);
 		
 	}
@@ -80,6 +86,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void insertCompanyInfo(AllMemberRegisterDto companyregister) {
+		String password = Util.getHashedString(companyregister.getPassword(), "SHA-256");
+		companyregister.setPassword(password);
 		memberMapper.insertCompanyInfo(companyregister);
 		
 	}
