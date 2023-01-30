@@ -8,13 +8,8 @@ import lombok.Data;
 @Data
 public class BoardDto {
 		
-	private int boardNo;
-	private String title;
 	private String writer;
-	private String content;
-	private Date regDate;
 	private int readCount;
-	private boolean deleted;
 	
 	// Board 테이블과 BoartAttach 테이블 사이의 1:Many 관계를 구현한 필드 (변수)
 	private List<BoardAttachDto> attachments;
@@ -24,5 +19,13 @@ public class BoardDto {
 	// Board 테이블과 BoartComment 테이블 사이의 1:Many 관계를 구현한 필드 (변수)
 	private List<BoardCommentDto> comments;
 	
+	private int boardNo;
+	private int topicNo;
+	private String memberId;
+	private String title;
+	private String content;
+	private Date regDate;
+	private int views;
+	private boolean deleted;
 	
 }

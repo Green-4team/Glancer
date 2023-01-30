@@ -19,26 +19,18 @@ import com.demoweb.dto.BoardDto;
 public interface BoardMapper {
 	
 	
-	@Insert("INSERT INTO board (boardno, title, writer, content) " +
-			"VALUES (board_sequence.nextval, #{ title }, #{ writer }, #{ content })")
+	@Insert("INSERT INTO board (title, writer, content) " +
+			"VALUES (#{ title }, #{ writer }, #{ content })")
 	@Options(useGeneratedKeys = true, keyColumn = "boardno", keyProperty = "boardNo")
-//	@SelectKey(statement = "SELECT board_sequence.currval FROM DUAL", 
+//	@SelectKey(statement = "SELECT LAST_INSERT_ID()", 
 //			   resultType = Integer.class, keyProperty = "boardNo", before = false)
 	void insertBoard(BoardDto board);
 	
-	@Select("select t2.boardno, t2.title, t2.writer, t2.regdate, t2.readcount, t2.deleted " +
-			"from " +
-			"( " +
-			"    select rownum idx, t1.* " +
-			"    from " +
-			"    (" +
-			"        select b.* " +
-			"        from board b " +
-			"        order by b.boardno desc " +
-			"    ) t1 " +
-			") t2 " +
-			"where t2.idx >= #{ from } and t2.idx < #{ to }")
-	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("to")int to);
+	@Select("SELECT boardNo, topicNo, memberId, title, content, regDate, views, deleted " +
+			"FROM board " +
+			"ORDER BY boardno DESC " +
+			"LIMIT #{ from }, #{ count }")
+	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("count")int count);
 	
 	@Select("SELECT COUNT(*) FROM board")
 	int selectBoardCount();
