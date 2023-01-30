@@ -45,7 +45,7 @@ function project(){
 
 
 
-const ClassDetailList = (props) => {
+const TeacherRegisterList = (props) => {
 
     const [activeKey, setActiveKey] = useState(1)
 
@@ -59,7 +59,7 @@ const ClassDetailList = (props) => {
             <CNavLink style={{height:'42px'}}
               active={activeKey === 1}
               onClick={() => setActiveKey(1)}
-            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>강의 정보</span>
+            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>강사 정보</span>
             </CNavLink>
           </CNavItem>
         </CNav>
@@ -74,4 +74,4 @@ const ClassDetailList = (props) => {
 
 };
 
-export default ClassDetailList;
+export default TeacherRegisterList;

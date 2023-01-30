@@ -13,7 +13,9 @@ import { BiTime } from "react-icons/bi"
 import { BsFillPersonFill } from "react-icons/bs"
 import { BiBuildingHouse } from "react-icons/bi"
 import { MdSubject } from "react-icons/md"
-import { BsTelephoneFill } from "react-icons/bs"
+import { TfiEmail } from "react-icons/tfi"
+import { FaHome } from "react-icons/fa"
+import { SiHtmlacademy } from "react-icons/si"
 
 
 const styles = StyleSheet.create({
@@ -35,7 +37,7 @@ function aa(){
     return arr
 }
 
-const ClassDetailHeader = (props) => {
+const TeacherDetailHeader = (props) => {
     return (
             <CRow>
                 <CCol xs={10} style={{ margin: "auto" }}>
@@ -44,18 +46,17 @@ const ClassDetailHeader = (props) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                 <div style={styles.namecard}>
-                                    <div style={{fontSize:"50px", marginTop:"60px"}}>강의 명</div>
-
+                                    <div style={{fontSize:"50px", marginTop:"60px"}}>강사 명</div>
                                 </div>
                                                                                                  
                                     <CCol xs={{ span: 12 }}>
-                                    <div className="p-1"> <h3>강의 정보</h3></div>
+                                    <div className="p-1"> <h3>강사 정보</h3></div>
                                         <br></br>
-                                        <div><strong>< BsFillPersonFill />&nbsp;정원 : </strong></div>
-                                        <div><strong>< BiBuildingHouse />&nbsp;강의 지역 : </strong></div>
+                                        <div><strong>< BsFillPersonFill />&nbsp;이름 : </strong></div>
+                                        <div><strong>< TfiEmail />&nbsp;이메일: </strong></div>
+                                        <div><strong>< FaHome />&nbsp;지역: </strong></div>
                                         <div><strong>< MdSubject />&nbsp;사용 언어 : { aa() }</strong></div>
-                                        <div><strong>< BiTime />&nbsp;강의 시작일 : </strong></div>
-                                        <div><strong>< BiTime />&nbsp;강의 종료일 : </strong></div>
+                                        <div><strong>< SiHtmlacademy />&nbsp;경력 : </strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
@@ -64,7 +65,7 @@ const ClassDetailHeader = (props) => {
                                     <hr></hr>
                                     <CCol xs={{ span: 4 }}>
                                         <br></br>
-                                       <div><strong>강의 평점 
+                                       <div><strong>강사 평점 
                                         <div style={{display:"inline",marginLeft:"80px" }} >
                                        <BsFillStarFill  size="20" color="orange"/>
                                        <BsFillStarFill size="20" color="orange"/>
@@ -75,8 +76,6 @@ const ClassDetailHeader = (props) => {
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <CCol xs={{ span: 4 }}>
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}> 
-                                            <CButton color="primary" value='submit' shape="rounded-pill" size="middle">강의 신청</CButton>
-                                            &nbsp;&nbsp;
                                             <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
                                             &nbsp;&nbsp;
                                             <CButton color="primary" value='delete' shape="rounded-pill" size="middle">삭제</CButton>
@@ -92,4 +91,4 @@ const ClassDetailHeader = (props) => {
     );
 };
 
-export default ClassDetailHeader;
+export default TeacherDetailHeader;

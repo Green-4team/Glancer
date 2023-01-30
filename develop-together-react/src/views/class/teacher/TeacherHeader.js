@@ -3,7 +3,7 @@ import React from 'react'
 import { CCard, CCardBody, CCol, CRow, CContainer, CButton } from "@coreui/react"
 import { Link } from 'react-router-dom';
 
-const ClassHeader = (props) => {
+const TeacherHeader = (props) => {
     
     return (
         <div>
@@ -14,12 +14,12 @@ const ClassHeader = (props) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                     <CCol xs={{ span: 12 }}>
-                                        <div className="p-1"><strong>Glancer가 보증하는 강의!</strong></div>
+                                        <div className="p-1"><strong>Glancer가 보증하는 강사진!</strong></div>
                                     </CCol>                                
                                     <CCol xs={{ span: 0 }}>
-                                        <div className="p-1" > <h2>원하는 강의를 찾아주세요.</h2> <br></br>
-                                        <Link to="/class/class/classregister">
-                                            <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
+                                        <div className="p-1" > <h2>나에게 맞는 강사를 찾아주세요.</h2> <br></br>
+                                        <Link to="/class/teacher/teacherregister">
+                                            <CButton color="primary" shape="rounded-pill" size="lg">강사 등록</CButton>
                                         </Link>
                                         </div>
                                     </CCol>                           
@@ -36,4 +36,4 @@ const ClassHeader = (props) => {
 
 };
 
-export default ClassHeader;
+export default TeacherHeader;

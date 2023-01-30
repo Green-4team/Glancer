@@ -52,7 +52,7 @@ function aa(){
     return arr
 }
 
-const ClassRegisterHeader = (props) => {
+const TeacherRegisterHeader = (props) => {
     return (
         <div className=" min-vh-150 d-flex flex-row align-items-center">
           <CContainer>
@@ -61,32 +61,31 @@ const ClassRegisterHeader = (props) => {
                 <CCard className="mx-2 " style={{zIndex:0}}>
                   <CCardBody className="p-4">
                     <CForm>
-                      <h1>강의 등록</h1>
-                      <p className="text-medium-emphasis">Register education information</p>
+                      <h1>강사 등록</h1>
+                      <p className="text-medium-emphasis">Register teacher information</p>
                       
                       
                       <CInputGroup className="mb-3">
-                        <CInputGroupText>강의 명</CInputGroupText>
-                        <CFormInput placeholder="강의 명" 
+                        <CInputGroupText>이름</CInputGroupText>
+                        <CFormInput placeholder="이름" 
                         //  value={memberInfo.name} 
                         //  onChange={(e) => {setMemberInfo({...memberInfo, "name": e.target.value})}}
                         autoComplete="name" />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
-                        <CInputGroupText>정원</CInputGroupText>
-                        <CFormInput placeholder="숫자로만 입력해주세요." 
+                        <CInputGroupText>이메일</CInputGroupText>
+                        <CFormInput placeholder="이메일" 
                         //  value={memberInfo.name} 
                         //  onChange={(e) => {setMemberInfo({...memberInfo, "name": e.target.value})}}
                         autoComplete="email" />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>지역</CInputGroupText>
-                        <CFormInput placeholder="강의 지역" 
+                        <CFormInput placeholder="지역" 
                         //  value={memberInfo.name} 
                         //  onChange={(e) => {setMemberInfo({...memberInfo, "name": e.target.value})}}
                         autoComplete="region" />
                       </CInputGroup>
-            
                       <CInputGroup className="mb-3">
                         <CInputGroupText>사용 언어</CInputGroupText>
                         <CFormInput placeholder="언어" 
@@ -96,23 +95,15 @@ const ClassRegisterHeader = (props) => {
                       </CInputGroup>
                       
                       <CInputGroup className="mb-3">
-                        <CInputGroupText>강의 시작일</CInputGroupText>
-                        <CFormInput type='date' placeholder="강의 시작일"
-                            // value={memberInfo.birthday} 
-                            // onChange={(e) => {setMemberInfo({...memberInfo, "birthday": e.target.value})}}
-                            autoComplete="startdate"/>
+                        <CInputGroupText>경력</CInputGroupText>
+                        <CFormInput type="text"
+                        // value={memberInfo.phone} 
+                        // onChange={(e) => {setMemberInfo({...memberInfo, "phone": e.target.value})}}
+                        placeholder="숫자로만 입력해주세요." autoComplete="career" />
                       </CInputGroup>
 
                       <CInputGroup className="mb-3">
-                        <CInputGroupText>강의 종료일</CInputGroupText>
-                        <CFormInput type='date' placeholder="강의 종료일"
-                            // value={memberInfo.birthday} 
-                            // onChange={(e) => {setMemberInfo({...memberInfo, "birthday": e.target.value})}}
-                            autoComplete="enddate"/>
-                      </CInputGroup>
-
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>강의 소개</CInputGroupText>
+                        <CInputGroupText>소개 내용</CInputGroupText>
                         <CFormInput placeholder="소개 내용을 입력해주세요." 
                         //  value={memberInfo.name} 
                         //  onChange={(e) => {setMemberInfo({...memberInfo, "name": e.target.value})}}
@@ -130,7 +121,7 @@ const ClassRegisterHeader = (props) => {
                         // } 
                         // }
                         >
-                          <div>강의 등록하기</div>
+                          <div>강사 등록하기</div>
                         <span className='first'></span>
                         <span className='second'></span>
                         <span className='third'></span>
@@ -147,4 +138,4 @@ const ClassRegisterHeader = (props) => {
       )
 };
 
-export default ClassRegisterHeader;
+export default TeacherRegisterHeader;
