@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.demoweb.common.Util;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.mapper.MemberMapper;
 
@@ -51,6 +52,24 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void insertFreeLancerDetailInfo(FreeLancerRegisterDetailDto freelancerregisterdetail) {
 		memberMapper.insertFreeLancerDetailInfo(freelancerregisterdetail);
+		
+	}
+
+	@Override
+	public void insertacademyInfo(AllMemberRegisterDto academyregister) {
+		memberMapper.insertacademyInfo(academyregister);
+		
+	}
+
+	@Override
+	public void insertacademyDetailInfo(CompanyDto academyDetail) {
+		memberMapper.insertacademyDetailInfo(academyDetail);
+		
+	}
+
+	@Override
+	public void loadMemberId(AllMemberRegisterDto loadmemberId) {
+		memberMapper.loadMemberId(loadmemberId);
 		
 	}
 

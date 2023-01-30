@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
 
@@ -39,16 +40,40 @@ public class AccountController {
 		
 		ServletContext application = req.getServletContext();
 		
-		Object freelancerregisters  = (Object)application.getAttribute("freelancerregisters");
+		Object freelancerregisters  = (Object)application.getAttribute("register");
 		accountService.insertFreeLancerInfo(freelancerregister);
 		accountService.insertFreeLancerDetailInfo(freelancerregisterdetail);
 		
 		return freelancerregisters;
 	}
 	
-	
-	
+	@CrossOrigin
+	@PostMapping(path = {"/academyRegister"})
+	@ResponseBody
+	private Object AcademyRegister(AllMemberRegisterDto academyregister,CompanyDto academyDetail, HttpServletRequest req) {
+		
+		ServletContext application = req.getServletContext();
+		
+		Object academyregisters  = (Object)application.getAttribute("register");
+		accountService.insertacademyInfo(academyregister);
+		accountService.insertacademyDetailInfo(academyDetail);
+		
+		return academyregisters;
+	}
 
+	@CrossOrigin
+	@GetMapping(path = {"/loadMemberId"})
+	@ResponseBody
+	private Object LoadMemberId(HttpServletRequest req, AllMemberRegisterDto loadmemberId) {
+		ServletContext application = req.getServletContext();
+		
+		Object AllAccountregisters  = (Object)application.getAttribute("register");
+		
+		accountService.loadMemberId(loadmemberId);
+		
+		return AllAccountregisters;
+	}
+	
 }
 
 

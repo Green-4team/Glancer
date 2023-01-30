@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
 
 @Mapper // mapper interface 구현 객체 생성 자동으로 처리
@@ -30,6 +31,22 @@ public interface MemberMapper {
 	@Insert(" insert into memberdetail (memberid, name, birthday, email, phone, occupation, workstate, startdate ) " +
 			"values ( #{ memberId }, #{ name } , #{ birthday }, #{ email } , #{ phone } ,#{ occupation } ,#{ workstate } , #{ startdate }) ")
 	void insertFreeLancerDetailInfo(FreeLancerRegisterDetailDto freelancerregisterdetail);
+
+
+	
+	@Insert("INSERT INTO member (memberid, password ) " +
+			"VALUES ( #{ memberId }, #{ password  } ) ")
+	void insertacademyInfo(AllMemberRegisterDto academyregister);
+
+
+	
+	@Insert("insert into company (memberid, name, mname, mpostion, mphone, memail, address, companytype ) " + 
+			"values ( #{ memberId }, #{ name }, #{ mname }, #{ mpostion }, #{ mphone }, #{ memail }, #{ address }, #{ companytype } ) ")
+	void insertacademyDetailInfo(CompanyDto academyDetail);
+
+	
+	@Select("select memberid from member " )
+	void loadMemberId(AllMemberRegisterDto loadmemberId);
 	
 	
 

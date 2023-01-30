@@ -9,8 +9,5 @@ public class AllMemberRegisterDto {
 	
 	private String memberId;
 	private String password;
-	
-	
-
 
 }
