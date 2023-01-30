@@ -3,7 +3,7 @@ import React from 'react'
 import classimg from "src/assets/images/class.jpg"
 import { CCard, CCardBody,CImage,CBadge, CCol,  } from "@coreui/react"
 import { Link } from 'react-router-dom';
-import { BiTime } from "react-icons/bi"
+
 
 
 
@@ -33,8 +33,6 @@ function list(){
                             
                             <br></br><br></br>
                             &nbsp;
-                            <h5 style={{marginTop:"-10px"}}>경력 : </h5>
-                            <br></br>
                             <h5 style={{marginTop:"-10px"}}>평점 : </h5>                             
                             </CCardBody>
                             </Link>
