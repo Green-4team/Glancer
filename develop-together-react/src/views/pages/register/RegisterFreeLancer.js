@@ -194,8 +194,7 @@ const RegisterFreeLancer = (props) => {
                     <button type='submit'
                     onClick={
                       (e) => {                         
-                        insertMemberInfo(memberInfo); 
-                        setMemberInfo({});
+                        insertMemberInfo(memberInfo);
                         e.preventDefault();
                     } 
                     }
