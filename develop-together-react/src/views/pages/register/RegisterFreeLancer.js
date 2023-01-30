@@ -51,9 +51,6 @@ const RegisterFreeLancer = (props) => {
     } else if (memberInfo.name.length === 0){
       alert('성명을 입력해주세요');
       return;
-    } else if (memberInfo.name.length === 0) {
-      alert('성명을 입력해주세요');
-      return;
     } else if (memberInfo.birthday.length === 0) {
       alert('생년월일을 입력해주세요');
       return;
@@ -97,7 +94,7 @@ const RegisterFreeLancer = (props) => {
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={9} lg={7} xl={6}>
-            <CCard className="mx-4 " style={{zIndex:0}}>
+            <CCard className="mx-2 " style={{zIndex:0}}>
               <CCardBody className="p-4">
                 <CForm>
                   <h1>프리랜서 계정 생성</h1>

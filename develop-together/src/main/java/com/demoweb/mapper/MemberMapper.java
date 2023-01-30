@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
-import com.demoweb.dto.FreeLancerRegisterDto;
+import com.demoweb.dto.FreeAllMemberRegisterDto;
 import com.demoweb.dto.MemberDto;
 
 @Mapper // mapper interface 구현 객체 생성 자동으로 처리
@@ -24,7 +24,7 @@ public interface MemberMapper {
 	
 	@Insert("INSERT INTO member (memberid, password) " +
 			"VALUES ( #{ memberId }, #{ password  }) ")
-	void insertFreeLancerInfo(FreeLancerRegisterDto freelancerregister);
+	void insertFreeLancerInfo(FreeAllMemberRegisterDto freelancerregister);
 
 	
 	@Insert(" insert into memberdetail (memberid, name, birthday, email, phone, occupation, workstate, startdate ) " +
