@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 import 'src/views/pages/registerButton.css'
 import {
-  CButton,
   CCard,
   CCardBody,
   CCol,
@@ -12,11 +11,6 @@ import {
   CFormInput,
   CInputGroup,
   CInputGroupText,
-  CModal,
-  CModalBody,
-  CModalFooter,
-  CModalHeader,
-  CModalTitle,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -27,12 +21,58 @@ import { useNavigate } from 'react-router-dom'
 const RegisterFreeLancer = (props) => {
 
   const [memberInfo, setMemberInfo] = useState({
-  })
+    memberId: '',
+    password: '',
+    checkPassword: '',
+    name: '',
+    birthday: '',
+    occupation: '',
+    phone: '',
+    startdate: '',
+    email: '',
+    workstate:'',
 
+  })
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(false)
   //로그인 회원가입 
   const insertMemberInfo = () => {
+
+    if (memberInfo.memberId.length === 0) {
+      alert('아이디를 입력해주세요');
+      return;
+    } else if (memberInfo.password !== memberInfo.checkPassword){
+      alert('비밀번호가 일치하지 않습니다');
+      return;
+    } else if (memberInfo.password.match(passwordRegEx)  === null) {
+      alert('비밀번호는 반드시 영어 대소문자와 숫자를 조합한 8 ~ 20 자로 입력해주세요');
+      return;
+    } else if (memberInfo.name.length === 0){
+      alert('성명을 입력해주세요');
+      return;
+    } else if (memberInfo.name.length === 0) {
+      alert('성명을 입력해주세요');
+      return;
+    } else if (memberInfo.birthday.length === 0) {
+      alert('생년월일을 입력해주세요');
+      return;
+    } else if (memberInfo.occupation.length === 0) {
+      alert('직종을 선택해주세요');
+      return;
+    } else if (memberInfo.phone.length === 0) {
+      alert('전화번호를 입력해주세요');
+      return;
+    } else if (memberInfo.email.length === 0) {
+      alert('이메일을 입력해주세요');
+      return;
+    } else if (memberInfo.email.match(emailRegEx) === null) {
+      alert('이메일 형식이 맞지 않습니다');
+      return;
+    } else if (memberInfo.startdate.length === 0) {
+      alert('업무 시작 가능일을 입력해주세요');
+      return;
+    } 
     // 서버에 데이터 전송 
     // axios.post("http://127.0.0.1:8080/react-web/demo/add-todo", 
     axios.post("http://127.0.0.1:8081/account/freelancerRegister", 
@@ -40,23 +80,16 @@ const RegisterFreeLancer = (props) => {
               { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
         .then( response => {
           alert('회원가입 완료');
-          navigate("/login");
+          navigate('/login');
         })
         .catch( e => {          
-          // alert('error')
-          
+          alert('error');              
         });
         
   };
   
-  // if (memberInfo.userId === null) {
-  //   alert('아이디를 입력해주세요');
-  // } if (memberInfo.password === null) {
-  //   alert('비밀번호를 입력해주세요');
-  // } if (memberInfo.name === null) {
-  //   alert('성함을 입력해주세요');
-  // }
-   
+  
+  
     
 
   return (
@@ -73,9 +106,10 @@ const RegisterFreeLancer = (props) => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput id="userid" placeholder="사용자 ID" autoComplete="username" 
-                                value={memberInfo.userId}
-                                onChange={(e) => {setMemberInfo({...memberInfo, "memberId": e.target.value})}} />
+                    <CFormInput placeholder='사용자 ID' autoComplete="userId" 
+                                value={memberInfo.memberId}
+                                onChange={(e) => {setMemberInfo({...memberInfo, "memberId": e.target.value})}}
+                                />
                   </CInputGroup>                 
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -85,7 +119,7 @@ const RegisterFreeLancer = (props) => {
                       type="password"
                       value={memberInfo.password}
                       onChange={(e) => {setMemberInfo({...memberInfo, "password": e.target.value})}}
-                      placeholder="비밀번호"
+                      placeholder="비밀번호는 영어 대소문자와 숫자를 조합한 8 ~ 20 자로 입력해주세요"
                       autoComplete="new-password"
                     />
                   </CInputGroup>
@@ -95,6 +129,8 @@ const RegisterFreeLancer = (props) => {
                     </CInputGroupText>
                     <CFormInput
                       type="password"
+                      value={memberInfo.checkPassword}
+                      onChange={(e) => {setMemberInfo({...memberInfo, "checkPassword": e.target.value})}}
                       placeholder="비밀번호 확인"
                       autoComplete="new-password"
                     />
@@ -151,7 +187,7 @@ const RegisterFreeLancer = (props) => {
                     <div style={{marginTop:'5px'}}>
                     <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" 
                     value={memberInfo.workstate} 
-                    onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 0})}} label="가능" />
+                    onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 0})}} label="가능" defaultChecked/>
                     <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" 
                     value={memberInfo.workstate} 
                     onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 1})}}
