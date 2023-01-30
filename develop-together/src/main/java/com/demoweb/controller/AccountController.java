@@ -18,7 +18,7 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
-import com.demoweb.dto.FreeAllMemberRegisterDto;
+import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
 
@@ -35,7 +35,7 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/freelancerRegister"})
 	@ResponseBody
-	private Object FreelancerRegister(FreeAllMemberRegisterDto freelancerregister,FreeLancerRegisterDetailDto freelancerregisterdetail , HttpServletRequest req) {
+	private Object FreelancerRegister(AllMemberRegisterDto freelancerregister,FreeLancerRegisterDetailDto freelancerregisterdetail , HttpServletRequest req) {
 		
 		ServletContext application = req.getServletContext();
 		

@@ -29,8 +29,7 @@ const RegisterFreeLancer = (props) => {
     occupation: '',
     phone: '',
     startdate: '',
-    email: '',
-    workstate:'',
+    email: '',    
 
   })
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
