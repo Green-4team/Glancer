@@ -44,6 +44,7 @@ const Teacher = React.lazy(() => import('./views/class/teacher/Teacher'))
 //Project
 const FreelancerMain = React.lazy(() => import('./views/project/freelancer/FreelancerMain'))
 const ProjectMain = React.lazy(() => import('./views/project/project/ProjectMain'))
+const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer/freelancerdetail/FreelancerDetailMain'))
 
 
 const Charts = React.lazy(() => import('./views/charts/Charts'))
@@ -92,6 +93,7 @@ const routes = [
   
   { path: '/project/freelancer', name: 'FreelancerMain', element: FreelancerMain },
   { path: '/project/project', name: 'ProjectMain', element: ProjectMain },
+  { path: '/project/freelancer/freelancerdetail', name: 'FreelancerDetailMain', element: FreelancerDetailMain },
   
 
   

@@ -8,8 +8,10 @@ import {
   CHeaderNav,
   CHeaderToggler, CNavItem, CNavLink
 } from '@coreui/react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+
 
 import { logo } from 'src/assets/brand/logo'
 import { AppHeaderDropdown } from './header/index'
@@ -36,6 +38,12 @@ const AppHeader = () => {
           <div style={{marginRight: 50}}>
           <CNavItem>
             <CNavLink to="/project/freelancer" component={NavLink}>
+              프리랜서
+            </CNavLink>
+          </CNavItem>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <CNavItem>
+            <CNavLink to="/project/project" component={NavLink}>
               프로젝트
             </CNavLink>
           </CNavItem>
