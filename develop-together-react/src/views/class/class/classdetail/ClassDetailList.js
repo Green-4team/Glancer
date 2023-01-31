@@ -5,15 +5,8 @@ import { CCard, CCardBody, CCol,CBadge,CImage, CCardHeader, CNav, CNavItem, CNav
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-
-const DramaMainMediaBlock = styled.div`
-
-
-  margin-left: -15px;
-  margin-right: -15px;
- 
- 
-`;
+import axios from 'axios';
+import ClassDetailItem from './ClassDetailItem';
 
 
 function aa(){
@@ -24,51 +17,43 @@ function aa(){
     return arr
 }
 
-function project(){
-    var arr = [];
-    for (var i = 0; i < 5; i++) {
-    arr.push(<CCol xs={12} >
-                <CCard textColor='dark' style={{margin:5}}>
-                    <CCardBody style={{ marginLeft:'0px'}}>
-                    <strong>개발, PL</strong> <br></br>
-                    <h4>프로젝트명 </h4>
-                    <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
-                    <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
-                        { aa() }                                       
-                    </CCardBody>
-                </CCard>
-            </CCol>)
-    }
-    return arr
-}
-
-
-
 
 const ClassDetailList = (props) => {
 
-    const [activeKey, setActiveKey] = useState(1)
+    const [results, setResults] = useState(null);
+
+    useEffect(() => {
+      const loadClassDetail = async (e) => {
+          const url = `http://127.0.0.1:8081/class/class/classdetail`;
+          const response = await axios.get(url);
+          setResults(response.data.results);
+      };
+      loadClassDetail();
+    }, [])
+
+    if (!results) {
+      return;
+    }
 
     
     return (
-        <CCol xs={10} style={{margin: "auto"}}>
-    <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
-      <CCardHeader style={{height:'45px'}}>
+      <CCol xs={10} style={{margin: "auto"}}>
+        <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
+        <CCardHeader style={{height:'45px'}}>
         <CNav style={{paddingLeft:0 , marginTop:-5}} variant="tabs" role="tablist">
           <CNavItem >
             <CNavLink style={{height:'42px'}}
-              active={activeKey === 1}
-              onClick={() => setActiveKey(1)}
+              
             > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>강의 정보</span>
             </CNavLink>
           </CNavItem>
         </CNav>
-      </CCardHeader>
-      <CCardBody>
-        강의 세부 정보
-      </CCardBody>
-    </CCard>
-  </CCol>
+        </CCardHeader>
+        <CCardBody>
+          강의 세부 정보
+        </CCardBody>
+        </CCard>
+      </CCol>
       
     );
 
