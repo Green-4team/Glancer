@@ -184,7 +184,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 글 번호를 받아서 게시글 조회 및 반환
 	@Override
-	public BoardDto findBoardByBoardNo(int boardNo) { // 0130 여기부터
+	public BoardDto findBoardByBoardNo(int boardNo) {
 		
 		// Board와 BoardAttach를 각각 조회
 //			BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);		
@@ -194,8 +194,8 @@ public class BoardServiceImpl implements BoardService {
 //			}
 		
 		// Board와 BoardAttach를 한 번에 조회
-		BoardDto board = new BoardDto(); 
-//				boardMapper.selectBoardByBoardNo2(boardNo);
+		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);
+//		BoardDto board = boardMapper.selectBoardByBoardNo2(boardNo);
 		
 		return board;
 		
