@@ -19,9 +19,11 @@ import { AppHeaderDropdown } from './header/index'
 import { AppBreadcrumb } from './index'
 
 const DropMenuBlock = styled.div`
+
 .dropbtn {
   color: gray;
   background-color: white;
+  font-size: 12pt;
   border: none;
   padding: 8px;
 }
@@ -103,7 +105,7 @@ const AppHeader = () => {
             <div class="dropdown">
               <button class="dropbtn">게시판</button>
               <div class="dropdown-content">
-                <CNavLink to='/board/qna/page' component={NavLink}>Q&A</CNavLink>
+                <CNavLink to='/board/qna/list' component={NavLink}>Q&A</CNavLink>
                 <CNavLink to='/#' component={NavLink}>Link 2</CNavLink>
               </div>
             </div>

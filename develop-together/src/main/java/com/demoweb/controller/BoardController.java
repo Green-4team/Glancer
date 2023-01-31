@@ -36,7 +36,7 @@ import com.demoweb.view.DownloadView;
 @RequestMapping(path = { "/board" })
 public class BoardController {
 	
-	private final int PAGE_SIZE = 1; 	// 한 페이지에 표시되는 데이터 개수
+	private final int PAGE_SIZE = 5; 	// 한 페이지에 표시되는 데이터 개수
 	private final int PAGER_SIZE = 5;	// 한 번에 표시할 페이지 번호 개수
 	private final String LINK_URL = "#/board/qna"; // 페이지 번호를 클릭했을 때 이동할 페이지 경로
 	
@@ -47,7 +47,7 @@ public class BoardController {
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/qnaList"})
-	private HashMap<String, Object> showBoardList(@RequestParam(defaultValue = "1") int pageNo) {
+	private HashMap<String, Object> showBoardList(int pageNo) {
 		
 		List<BoardDto> results = boardService.findBoardByPage(pageNo, PAGE_SIZE);
 		for (BoardDto result : results) {
@@ -72,6 +72,8 @@ public class BoardController {
 	private HashMap<String, Object> showBoardDetail(@RequestParam(defaultValue = "1") int boardNo) {
 		
 		BoardDto result = boardService.findBoardByBoardNo(boardNo);
+		List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+		result.setTags(tags);
 		
 //		for (BoardDto result : results) {
 //			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
@@ -81,6 +83,7 @@ public class BoardController {
 //		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
 //		
 		HashMap<String, Object> boardDetail = new HashMap<>();
+		boardDetail.put("result", result);
 //		boardList.put("page", pageNo);
 //		boardList.put("results", results);
 //		boardList.put("pager", pager);

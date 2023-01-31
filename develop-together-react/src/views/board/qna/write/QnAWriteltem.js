@@ -7,7 +7,7 @@ const HoverBlueBlock = styled.div`
 .hoverBlue:hover {color: #24a0ed;}
 `;
 
-const QnADetailItem = ({ result }) => {
+const QnAWriteItem = ({ result }) => {
   const { /* boardNo, topicNo, deleted, */ memberId, title, content, regDate, views, topicName, tags } = result;
 
   return (
@@ -70,4 +70,4 @@ const QnADetailItem = ({ result }) => {
   )
 }
 
-export default QnADetailItem
+export default QnAWriteItem

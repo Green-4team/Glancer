@@ -4,8 +4,9 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
-const QnAPage = React.lazy(() => import('./views/board/qna/page/QnA'))
+const QnAList = React.lazy(() => import('./views/board/qna/list/QnA'))
 const QnADetail = React.lazy(() => import('./views/board/qna/detail/QnA'))
+const QnAWrite = React.lazy(() => import('./views/board/qna/write/QnA'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -75,8 +76,9 @@ const routes = [
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
-  { path: '/board/qna/page', name: 'Q&APage', element: QnAPage },
+  { path: '/board/qna/list', name: 'Q&AList', element: QnAList },
   { path: '/board/qna/detail', name: 'Q&ADetail', element: QnADetail },
+  { path: '/board/qna/write', name: 'Q&AWrite', element: QnAWrite },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },

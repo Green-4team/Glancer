@@ -1,7 +1,8 @@
-import { cilCheckCircle } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
-import { CButton, CNavLink } from '@coreui/react'
-import { NavLink } from 'react-router-dom'
+import { cilCheckCircle } from '@coreui/icons';
+import CIcon from '@coreui/icons-react';
+import { CButton, CNavLink } from '@coreui/react';
+import { BsChatLeftDots, BsEye } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HoverBlueBlock = styled.div`
@@ -16,6 +17,7 @@ const QnAListItem = ({ result }) => {
       
       <tr>
         <td colSpan={3}>
+          <div style={{marginTop: 10, marginBottom: 10}}>
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <div style={{display: 'inline-block'}}>{memberId} {regDate}</div>
             <div style={{display: 'inline-block', textAlign: 'right', marginLeft: 'auto'}}><CIcon icon={cilCheckCircle} size="lg" /></div>
@@ -40,7 +42,9 @@ const QnAListItem = ({ result }) => {
                 })
               }
             </div>
-            <div>{views} 댓글수</div>
+            <div style={{fontSize: 16}}><BsEye />&nbsp;{views}&nbsp;&nbsp;&nbsp;&nbsp;<BsChatLeftDots />&nbsp;댓글수</div>
+            
+          </div>
           </div>
         </td>
       </tr>

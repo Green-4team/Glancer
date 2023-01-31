@@ -27,6 +27,40 @@ public interface BoardMapper {
 //			   resultType = Integer.class, keyProperty = "boardNo", before = false)
 	void insertBoard(BoardDto board);
 	
+	
+	
+	
+	
+//	@Select("SELECT boardno, title, writer, content, readcount, regdate " +
+//			"FROM board " +
+//			"WHERE boardno = #{ boardNo } AND deleted = '0'")
+//	BoardDto selectBoardByBoardNo(int boardNo);
+//	
+//	@Select("SELECT attachno, boardno, userfilename, savedfilename, downloadcount " +
+//			"FROM boardattach " +
+//			"WHERE boardno = #{ boardNo } ")
+//	List<BoardAttachDto> selectBoardAttachByBoardNo(int boardNo);
+//	
+//	@Select("SELECT boardno, title, writer, content, readcount, regdate " +
+//			"FROM board " +
+//			"WHERE boardno = #{ boardNo } AND deleted = '0'")
+//	@Results(id = "boardResultMap",
+//			 value = {
+//					 @Result(column = "boardno", property = "boardNo", id = true),
+//					 @Result(column = "title", property = "title"),
+//					 @Result(column = "writer", property = "writer"),
+//					 @Result(column = "content", property = "content"),
+//					 @Result(column = "readcount", property = "readCount"),
+//					 @Result(column = "regdate", property = "regDate"),
+//					 @Result(column = "boardno", property = "attachments", 
+//					 		 many = @Many(select = "selectBoardAttachByBoardNo")),
+//					 @Result(column = "boardno", property = "comments", 
+//					 		 many = @Many(select = "com.demoweb.mapper.BoardCommentMapper.selectCommentByBoardNo"))
+//			 })
+//	BoardDto selectBoardByBoardNo2(int boardNo);
+
+	//////////////////////////////////
+	
 	@Select("SELECT b.boardNo, b.topicNo, b.memberId, b.title, b.content, b.regDate, b.views, b.deleted, t.topicName " +
 			"FROM board b " +
 			"INNER JOIN topic t " +
@@ -41,38 +75,13 @@ public interface BoardMapper {
 			"AND bt.boardNo = #{ boardNo } AND bt.boardType = #{ boardType } ")
 	List<BoardTagDto> selectBoardTagByBoardNo(@Param("boardNo") int boardNo, @Param("boardType") String boardType);
 	
-	@Select("SELECT COUNT(*) FROM board")
+	@Select("SELECT COUNT(*) FROM board ")
 	int selectBoardCount();
 	
-	@Select("SELECT boardno, title, writer, content, readcount, regdate " +
-			"FROM board " +
-			"WHERE boardno = #{ boardNo } AND deleted = '0'")
+	@Select("SELECT b.boardno, b.topicno, b.memberid, b.title, b.content, b.regdate, b.views, b.deleted, t.topicname " +
+			"FROM board b, topic t " +
+			"WHERE b.topicno = t.topicno AND boardno = #{ boardNo } AND deleted = '0' ")
 	BoardDto selectBoardByBoardNo(int boardNo);
-	
-	@Select("SELECT attachno, boardno, userfilename, savedfilename, downloadcount " +
-			"FROM boardattach " +
-			"WHERE boardno = #{ boardNo } ")
-	List<BoardAttachDto> selectBoardAttachByBoardNo(int boardNo);
-	
-	@Select("SELECT boardno, title, writer, content, readcount, regdate " +
-			"FROM board " +
-			"WHERE boardno = #{ boardNo } AND deleted = '0'")
-	@Results(id = "boardResultMap",
-			 value = {
-					 @Result(column = "boardno", property = "boardNo", id = true),
-					 @Result(column = "title", property = "title"),
-					 @Result(column = "writer", property = "writer"),
-					 @Result(column = "content", property = "content"),
-					 @Result(column = "readcount", property = "readCount"),
-					 @Result(column = "regdate", property = "regDate"),
-					 @Result(column = "boardno", property = "attachments", 
-					 		 many = @Many(select = "selectBoardAttachByBoardNo")),
-					 @Result(column = "boardno", property = "comments", 
-					 		 many = @Many(select = "com.demoweb.mapper.BoardCommentMapper.selectCommentByBoardNo"))
-			 })
-	BoardDto selectBoardByBoardNo2(int boardNo);
-
-	
 
 }
 
