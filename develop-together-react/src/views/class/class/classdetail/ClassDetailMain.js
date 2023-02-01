@@ -3,13 +3,7 @@ import React from 'react'
 
 import {} from "@coreui/react"
 import ClassDetailHeader from "./ClassDetailHeader";
-import ClassDetailList from "./ClassDetailList";
 import { useLocation } from 'react-router-dom';
-
-
-
-
-
 
 
 const ClassDetailMain = (props) => {
