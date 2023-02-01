@@ -23,12 +23,12 @@ const ClassDetailList = (props) => {
     const [results, setResults] = useState(null);
 
     useEffect(() => {
-      const loadClassDetail = async (e) => {
+      const loadClassDetailList = async (e) => {
           const url = `http://127.0.0.1:8081/class/class/classdetail`;
           const response = await axios.get(url);
           setResults(response.data.results);
       };
-      loadClassDetail();
+      loadClassDetailList();
     }, [])
 
     if (!results) {

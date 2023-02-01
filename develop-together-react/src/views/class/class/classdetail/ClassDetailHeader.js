@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 
 import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CButton, CImage } from "@coreui/react"
 
@@ -14,6 +14,8 @@ import { BsFillPersonFill } from "react-icons/bs"
 import { BiBuildingHouse } from "react-icons/bi"
 import { MdSubject } from "react-icons/md"
 import { BsTelephoneFill } from "react-icons/bs"
+import ClassDetailItem from './ClassDetailItem';
+import axios from 'axios';
 
 
 const styles = StyleSheet.create({
@@ -36,6 +38,21 @@ function aa(){
 }
 
 const ClassDetailHeader = (props) => {
+    const [results, setResults] = useState(null);
+
+    useEffect(() => {
+        const loadClassDetailHeader = async (e) => {
+            const url = `http://127.0.0.1:8081/class/class/classdetail`;
+            const response = await axios.get(url);
+            setResults(response.data.results);
+        };
+        loadClassDetailHeader();
+    }, []);
+
+    if (!results) {
+        return;
+    }
+
     return (
             <CRow>
                 <CCol xs={10} style={{ margin: "auto" }}>
@@ -44,7 +61,7 @@ const ClassDetailHeader = (props) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                 <div style={styles.namecard}>
-                                    <div style={{fontSize:"50px", marginTop:"60px"}}>강의 명</div>
+                                    <div style={{fontSize:"50px", marginTop:"60px"}}>{results.name}</div>
 
                                 </div>
                                                                                                  
