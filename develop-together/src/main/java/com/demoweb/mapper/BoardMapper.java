@@ -20,12 +20,7 @@ import com.demoweb.dto.BoardTagDto;
 public interface BoardMapper {
 	
 	
-	@Insert("INSERT INTO board (title, writer, content) " +
-			"VALUES (#{ title }, #{ writer }, #{ content })")
-	@Options(useGeneratedKeys = true, keyColumn = "boardno", keyProperty = "boardNo")
-//	@SelectKey(statement = "SELECT LAST_INSERT_ID()", 
-//			   resultType = Integer.class, keyProperty = "boardNo", before = false)
-	void insertBoard(BoardDto board);
+	
 	
 	
 	
@@ -83,6 +78,12 @@ public interface BoardMapper {
 			"WHERE b.topicno = t.topicno AND boardno = #{ boardNo } AND deleted = '0' ")
 	BoardDto selectBoardByBoardNo(int boardNo);
 
+	@Insert("INSERT INTO board (topicno, memberid, title, content) " +
+			"VALUES (#{ topicno }, #{ memberid }, #{ title }, #{ content }) ")
+//	@SelectKey(statement = "SELECT LAST_INSERT_ID()", 
+//			   resultType = Integer.class, keyProperty = "boardNo", before = false)
+	void insertBoard(BoardDto board);
+	
 }
 
 
