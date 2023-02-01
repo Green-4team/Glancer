@@ -9,6 +9,7 @@ import axios from 'axios';
 import ClassDetailItem from './ClassDetailItem';
 
 
+
 function aa(){
     var arr = [];
     for (var i = 0; i < 10; i++) {
@@ -18,18 +19,19 @@ function aa(){
 }
 
 
-const ClassDetailList = (props) => {
+const ClassDetailList = ({ classno }) => {
 
     const [results, setResults] = useState(null);
-
+    
     useEffect(() => {
       const loadClassDetailList = async (e) => {
-          const url = `http://127.0.0.1:8081/class/class/classdetail`;
+          const url = `http://127.0.0.1:8081/class/class/classdetail?classno=${classno}`;
           const response = await axios.get(url);
           setResults(response.data.results);
+          
       };
       loadClassDetailList();
-    }, [])
+    }, [classno]);
 
     if (!results) {
       return;
@@ -50,7 +52,7 @@ const ClassDetailList = (props) => {
         </CNav>
         </CCardHeader>
         <CCardBody>
-          강의 세부 정보
+          {results.content}
         </CCardBody>
         </CCard>
       </CCol>
