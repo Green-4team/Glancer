@@ -13,9 +13,9 @@ public interface ClassMapper {
 	@Select("SELECT * FROM class")
 	List<ClassDto> selectAllClassList();
 
-	@Select("SELECT classno, name, startdate, enddate, content, classtime, price, rate, crowd " +
+	@Select("SELECT classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
 			"FROM class " +
 			"WHERE classno = #{ classno } AND deleted = '0' ")
-	List<ClassDto> selectClassDetail(int classno);
+	ClassDto selectClassDetail(int classno);
 	
 }
