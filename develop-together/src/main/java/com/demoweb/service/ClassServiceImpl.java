@@ -24,9 +24,9 @@ public class ClassServiceImpl implements ClassService{
 	}
 
 	@Override
-	public List<ClassDto> findClassDetail(int classno) {
+	public ClassDto findClassDetail(int classno) {
 		
-		List<ClassDto> classDetail = classMapper.selectClassDetail(classno);
+		ClassDto classDetail = classMapper.selectClassDetail(classno);
 		return classDetail;
 	}
 

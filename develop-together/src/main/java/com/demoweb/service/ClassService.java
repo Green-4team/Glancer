@@ -8,6 +8,6 @@ public interface ClassService {
 
 	List<ClassDto> findClass();
 
-	List<ClassDto> findClassDetail(int classno);
+	ClassDto findClassDetail(int classno);
 	
 }

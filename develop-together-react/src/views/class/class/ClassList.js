@@ -43,7 +43,7 @@ const ClassList = (props) => {
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
                             <CCardBody>
                             <div className="clearfix">
-                            <Link to="/class/class/classdetail" style={{textDecoration: "none", color: "black"}}>
+                            <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
                             <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
                             <CCardBody style={{ marginLeft:'150px'}}>
                             <h2>{result.name}</h2>

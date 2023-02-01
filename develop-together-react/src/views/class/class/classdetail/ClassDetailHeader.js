@@ -1,7 +1,7 @@
 
 import React, { Component, useEffect, useState } from 'react'
 
-import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CButton, CImage } from "@coreui/react"
+import { CCard, CCardBody, CCol,CBadge, CImage, CRow, CContainer, CButton, CCardHeader, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from "@coreui/react"
 
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import classimg from "src/assets/images/class.jpg"
@@ -14,6 +14,7 @@ import { BsFillPersonFill } from "react-icons/bs"
 import { BiBuildingHouse } from "react-icons/bi"
 import { MdSubject } from "react-icons/md"
 import { BsTelephoneFill } from "react-icons/bs"
+import { GrMoney } from "react-icons/gr"
 import ClassDetailItem from './ClassDetailItem';
 import axios from 'axios';
 
@@ -37,17 +38,17 @@ function aa(){
     return arr
 }
 
-const ClassDetailHeader = (props) => {
+const ClassDetailHeader = ({ classno }) => {
     const [results, setResults] = useState(null);
 
     useEffect(() => {
         const loadClassDetailHeader = async (e) => {
-            const url = `http://127.0.0.1:8081/class/class/classdetail`;
+            const url = `http://127.0.0.1:8081/class/class/classdetail?classno=${classno}`;
             const response = await axios.get(url);
             setResults(response.data.results);
         };
         loadClassDetailHeader();
-    }, []);
+    }, [classno]);
 
     if (!results) {
         return;
@@ -68,11 +69,12 @@ const ClassDetailHeader = (props) => {
                                     <CCol xs={{ span: 12 }}>
                                     <div className="p-1"> <h3>강의 정보</h3></div>
                                         <br></br>
-                                        <div><strong>< BsFillPersonFill />&nbsp;정원 : </strong></div>
-                                        <div><strong>< BiBuildingHouse />&nbsp;강의 지역 : </strong></div>
+                                        <div><strong>< BsFillPersonFill />&nbsp;정원 : {results.crowd}</strong></div>
+                                        <div><strong>< BiBuildingHouse />&nbsp;강의 지역 : {results.region}</strong></div>
                                         <div><strong>< MdSubject />&nbsp;사용 언어 : { aa() }</strong></div>
-                                        <div><strong>< BiTime />&nbsp;강의 시작일 : </strong></div>
-                                        <div><strong>< BiTime />&nbsp;강의 종료일 : </strong></div>
+                                        <div><strong>< GrMoney />&nbsp;강의 비용 : {results.price}</strong></div>
+                                        <div><strong>< BiTime />&nbsp;강의 시작일 : {results.startdate}</strong></div>
+                                        <div><strong>< BiTime />&nbsp;강의 종료일 : {results.enddate}</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
@@ -105,6 +107,26 @@ const ClassDetailHeader = (props) => {
                         </CCardBody>
                     </CCard>
                 </CCol>
+            
+
+            <CCol xs={10} style={{margin: "auto"}}>
+            <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
+            <CCardHeader style={{height:'45px'}}>
+            <CNav style={{paddingLeft:0 , marginTop:-5}} variant="tabs" role="tablist">
+            <CNavItem >
+                <CNavLink style={{height:'42px'}}
+                
+                > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>강의 상세 정보</span>
+                </CNavLink>
+            </CNavItem>
+            </CNav>
+            </CCardHeader>
+            <CCardBody>
+            {results.content}
+            </CCardBody>
+            </CCard>
+            </CCol>
+
             </CRow>
     );
 };
