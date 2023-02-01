@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.demoweb.dto.BoardTagDto;
 import com.demoweb.dto.ClassDto;
+import com.demoweb.dto.ClassTagDto;
 import com.demoweb.mapper.ClassMapper;
 
 @Service("classService")
@@ -24,10 +26,24 @@ public class ClassServiceImpl implements ClassService{
 	}
 
 	@Override
-	public List<ClassDto> findClassDetail(int classno) {
+	public ClassDto findClassDetail(int classno) {
 		
-		List<ClassDto> classDetail = classMapper.selectClassDetail(classno);
+		ClassDto classDetail = classMapper.selectClassDetail(classno);
 		return classDetail;
+	}
+
+	@Override
+	public List<ClassTagDto> findClassTagByClassNo(int classno, String classType) {
+		
+		List<ClassTagDto> tags = classMapper.selectClassTagByClassNo(classno, classType);
+		return tags;
+	}
+
+	@Override
+	public void deleteClass(int classno) {
+		
+		classMapper.deleteClass(classno);
+		
 	}
 
 }

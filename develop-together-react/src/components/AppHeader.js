@@ -78,15 +78,13 @@ const AppHeader = () => {
         <CHeaderNav className="d-none d-md-flex me-auto">
           <div style={{marginRight: 50}}>
           <CNavItem>
-            <CNavLink to="/project/freelancer" component={NavLink}>
-              프리랜서
-            </CNavLink>
-          </CNavItem>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <CNavItem>
-            <CNavLink to="/project/project" component={NavLink}>
-              프로젝트
-            </CNavLink>
+            <div class="dropdown">
+              <button class="dropbtn">구인&구직</button>
+              <div class="dropdown-content">
+                <CNavLink to='/project/freelancer' component={NavLink}>프리랜서</CNavLink>
+                <CNavLink to='/project/project' component={NavLink}>프로젝트</CNavLink>
+              </div>
+            </div>
           </CNavItem>
           </div>
           <div style={{marginRight: 50}}>

@@ -1,17 +1,23 @@
 package com.demoweb.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.ClassDto;
+import com.demoweb.dto.ClassTagDto;
 import com.demoweb.service.ClassService;
 
 @Controller
@@ -28,6 +34,10 @@ public class ClassController {
 	private HashMap<String, Object> showClassList() {
 		
 		List<ClassDto> results = classService.findClass();
+//		for (BoardDto result : results) {
+//			List<ClassTagDto> tags = classService.findClassTag(results.getClassno(), "class");
+//			results.setTags(tags);
+//		}
 		
 		HashMap<String, Object> classList = new HashMap<>();
 		classList.put("results", results);
@@ -35,16 +45,29 @@ public class ClassController {
 		return classList;
 	}
 	
+	
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/class/classdetail"})
 	private HashMap<String, Object> showClassDetail(int classno) {
 		
-		List<ClassDto> results = classService.findClassDetail(classno);
+		ClassDto results = classService.findClassDetail(classno);
+		List<ClassTagDto> tags = classService.findClassTagByClassNo(results.getClassno(), "class");
+		results.setTags(tags);
 		
 		HashMap<String, Object> classDetail = new HashMap<>();
 		classDetail.put("results", results);
-		classDetail.put("classno", classno);
+		
+		
 		return classDetail;
+	}
+	
+	@GetMapping(path = {"/{classno}/delete" })
+	public String deleteClass(@PathVariable("classno") int classno, Model model) {
+		
+		classService.deleteClass(classno);
+		
+		return "redirect:/class/class";
+		
 	}
 }
