@@ -1,0 +1,43 @@
+영화 상세
+
+인물 상세
+
+검색-목록
+
+홈-박스오피스
+
+영화 순위-필터 검색
+	||
+드라마 순위-필터 검색
+
+목록 
+
+
+https://newsapi.org/v2/top-headlines?country=kr&category=sports&apiKey=db4defe7779a4b8c9d3d65b8ce37798e
+
+
+
+
+랭크 제목 개봉일 (전일 대비 증감 비율)-auidChange)
+
+
+6b4c779cba85c26ce5e2fc716ac93b81
+
+
+https://api.themoviedb.org/3/certification/movie/list?api_key=6b4c779cba85c26ce5e2fc716ac93b81
+
+
+https://api.themoviedb.org/3/movie/20227762?api_key=6b4c779cba85c26ce5e2fc716ac93b81&language=ko
+
+
+
+
+
+https://api.themoviedb.org/3/search/movie?api_key=6b4c779cba85c26ce5e2fc716ac93b81&language=ko&page=1&primary_release_year=2022-11-23&query=올뺴미
+
+
+
+
+
+
+https://openapi.naver.com/v1/search/movie.json?query=올빼미

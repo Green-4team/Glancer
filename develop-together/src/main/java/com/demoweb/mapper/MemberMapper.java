@@ -64,8 +64,8 @@ public interface MemberMapper {
 	void insertCompanyDetailInfo(CompanyDto companyDetail);
 
 
-	@Insert("insert into companydetail (memberid, headcount, contnent, annualsales, crn, br ) " +
-			"values ( #{ memberId } , #{ headcount }, #{ contnent }, #{ annualsales }, #{ crn }, #{ br } ) " )
+	@Insert("insert into companydetail (memberid, headcount, contnent, annualsales, crn, br, uniquebr ) " +
+			"values ( #{ memberId } , #{ headcount }, #{ contnent }, #{ annualsales }, #{ crn }, #{ br }, #{ uniquebr } ) " )
 	void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail);
 
 

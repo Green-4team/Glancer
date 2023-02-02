@@ -56,8 +56,10 @@ const DropMenuBlock = styled.div`
 .dropdown:hover .dropdown-content {display: block;}
 
 `;
+const AppHeader = (props) => {
 
-const AppHeader = () => {
+  const {loginInfo} = props; 
+  
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
