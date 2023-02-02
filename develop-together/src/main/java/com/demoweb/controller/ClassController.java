@@ -1,6 +1,5 @@
 package com.demoweb.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.ClassTagDto;
 import com.demoweb.service.ClassService;
@@ -34,10 +31,12 @@ public class ClassController {
 	private HashMap<String, Object> showClassList() {
 		
 		List<ClassDto> results = classService.findClass();
-//		for (BoardDto result : results) {
-//			List<ClassTagDto> tags = classService.findClassTag(results.getClassno(), "class");
-//			results.setTags(tags);
-//		}
+		
+		for (ClassDto result : results) {
+			List<ClassTagDto> tags = classService.findClassTag(result.getClassno());
+			System.out.println(tags);
+			result.setTags(tags);
+		}
 		
 		HashMap<String, Object> classList = new HashMap<>();
 		classList.put("results", results);

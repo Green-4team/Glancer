@@ -46,4 +46,11 @@ public class ClassServiceImpl implements ClassService{
 		
 	}
 
+	@Override
+	public List<ClassTagDto> findClassTag(int classno) {
+		
+		List<ClassTagDto> tags = classMapper.selectClassTag(classno);
+		return tags;
+	}
+
 }
