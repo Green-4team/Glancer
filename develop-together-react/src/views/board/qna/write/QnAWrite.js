@@ -12,8 +12,10 @@ const QnAWrite = (props) => {
     topicNo: '',
     memberId: 'gyu',
     title: '',
-    content: ''
+    content: '',
+    tag: ''
   })
+
 
   const input = document.querySelector('input[name=basic]');
   let tagify = new Tagify(input); // initialize Tagify
@@ -62,8 +64,13 @@ const QnAWrite = (props) => {
             </div>
             <div style={{marginTop: 30}}>
               <CFormLabel>태그</CFormLabel>
+              {/* <MultipleValueTextInput
+                onItemAdded={(item, allItems) => console.log(`item added: ${board.tag}`)}
+                onItemDeleted={(item, allItems) => console.log(`Item removed: ${board.tag}`)}
+                placeholder="hi" /> */}
+
               <div>
-              <input name='basic' ></input>
+              <input name='basic' value={board.tag} onChange={ (e) => {setBoard({...board, "tag": e.target.value})}}></input>
               </div>
 
 
