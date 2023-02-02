@@ -38,6 +38,21 @@ public class AccountController {
 	
 	
 	@CrossOrigin
+	@PostMapping(path = {"/login"})
+	@ResponseBody
+	private Object login( String memberId, String password,HttpSession session) {
+		
+		AllMemberRegisterDto login = accountService.findCustomerByIdAndPasswd(memberId, password); // 회원 정보 조회(아이디, 비밀번호)
+		
+		if (login != null ) {
+			session.setAttribute("loginuser", login);
+		}
+		
+		return login;
+	}
+	
+	
+	@CrossOrigin
 	@PostMapping(path = {"/freelancerRegister"})
 	@ResponseBody
 	private Object FreelancerRegister(AllMemberRegisterDto freelancerregister,FreeLancerRegisterDetailDto freelancerregisterdetail , HttpServletRequest req) {

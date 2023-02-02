@@ -67,6 +67,10 @@ public interface MemberMapper {
 	@Insert("insert into companydetail (memberid, headcount, contnent, annualsales, crn, br ) " +
 			"values ( #{ memberId } , #{ headcount }, #{ contnent }, #{ annualsales }, #{ crn }, #{ br } ) " )
 	void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail);
+
+
+	@Select("select memberid, password from member where memberid = #{memberId} and password = #{password} " )
+	AllMemberRegisterDto selectCustomerByIdAndPasswd(@Param("memberId") String memberId, @Param("password") String password);
 	
 	
 

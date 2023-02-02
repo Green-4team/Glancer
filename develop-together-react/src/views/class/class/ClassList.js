@@ -73,19 +73,18 @@ const ClassList = (props) => {
                             <CCardBody style={{ marginLeft:'150px'}}>
                             <h2>{result.name}</h2>
                             <br></br>
-                            <h4 style={{ marginBottom:"10px"}}> </h4>                            
+                            <h3 style={{ marginBottom:"10px"}}> </h3>                            
                             <div><strong>&nbsp;사용 언어 : &nbsp;
-                                        {
-                                                // <CNavLink to='/dashboard' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
-                                                //     <HoverBlueBlock>
-                                                //         <div class="hoverBlue">#{ tagName }</div>
-                                                //     </HoverBlueBlock>
-                                                // </CNavLink>
-                                                    <CBadge style={{margin:"2px"}} color="info">{ result.tag }</CBadge>
-                                                
-                                        }</strong></div>
+                            {
+                                result.tags.map((tag) => {
+                                    const { tagName } = tag;
+                                        return  (
+                                                <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
+                                            )
+                                        })
+                            }</strong></div>
                             
-                            <br></br><br></br>
+                            <br></br>
                             &nbsp;
                             <CCol xs={{ span: 4 }}>
                                         

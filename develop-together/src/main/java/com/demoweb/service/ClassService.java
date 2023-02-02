@@ -15,5 +15,7 @@ public interface ClassService {
 	List<ClassTagDto> findClassTagByClassNo(int classno, String classType);
 
 	void deleteClass(int classno);
+
+	List<ClassTagDto> findClassTag(int classno);
 	
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -15,8 +15,41 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
+
+  const [loginInfo, setLoginInfo] = useState({
+    memberId: '',
+    password: '',       
+
+  });
+  const login = () => {
+  if (loginInfo.memberId.length === 0) {
+    alert('아이디를 입력해주세요');
+    return;
+  } else if (loginInfo.password.length === 0){
+    alert('비밀번호를 입력해주세요');
+  }
+
+      axios.post("http://127.0.0.1:8081/account/login?memberId=" + loginInfo.memberId +"password=" + loginInfo.password , 
+      loginInfo,
+      { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+    .then( response => {
+    alert('로그인 완료');
+    navigate('/project/project');
+    })
+    .catch( e => {          
+    alert('error');              
+    });
+  }
+
+
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -32,7 +65,10 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="ID" autoComplete="username" />
+                      <CFormInput placeholder="ID"
+                       value={loginInfo.memberId}
+                       onChange={(e) => {setLoginInfo({...loginInfo, "memberId": e.target.value})}}
+                      autoComplete="username" />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -41,12 +77,21 @@ const Login = () => {
                       <CFormInput
                         type="password"
                         placeholder="Password"
+                        value={loginInfo.password}
+                        onChange={(e) => {setLoginInfo({...loginInfo, "password": e.target.value})}}
                         autoComplete="current-password"
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton color="primary"
+                        onClick={
+                          (e) => {                         
+                            login(loginInfo);
+                            e.preventDefault();
+                        } 
+                        }
+                        className="px-4">
                           Login
                         </CButton>
                       </CCol>

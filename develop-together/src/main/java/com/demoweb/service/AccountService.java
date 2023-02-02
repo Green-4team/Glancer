@@ -30,4 +30,6 @@ public interface AccountService {
 
 	void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail);
 
+	AllMemberRegisterDto findCustomerByIdAndPasswd(String memberId, String password);
+
 }
