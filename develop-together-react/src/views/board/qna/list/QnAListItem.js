@@ -1,6 +1,7 @@
 import { cilCheckCircle } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
 import { CButton, CNavLink } from '@coreui/react';
+import moment from 'moment/moment';
 import { BsChatLeftDots, BsEye } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -19,7 +20,7 @@ const QnAListItem = ({ result }) => {
         <td colSpan={3}>
           <div style={{marginTop: 10, marginBottom: 10}}>
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
-            <div style={{display: 'inline-block'}}>{memberId} {regDate}</div>
+            <div style={{display: 'inline-block'}}>{memberId} · {moment(regDate).startOf('hour').fromNow()}</div>
             <div style={{display: 'inline-block', textAlign: 'right', marginLeft: 'auto'}}><CIcon icon={cilCheckCircle} size="lg" /></div>
           </div>
           <HoverBlueBlock>
