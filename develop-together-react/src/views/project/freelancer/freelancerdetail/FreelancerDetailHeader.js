@@ -1,16 +1,12 @@
 
-import React, { Component } from 'react'
-
-import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CButton, CImage } from "@coreui/react"
-
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CImage } from "@coreui/react"
+import { StyleSheet } from 'react-native'
 import classimg from "src/assets/images/class.jpg"
-import CIcon from '@coreui/icons-react';
-import * as icon from '@coreui/icons';
-import { FaBeer } from 'react-icons/fa';
 import { BsFillStarFill } from "react-icons/bs";  
 import { AiOutlineStar } from "react-icons/ai";  
-
+import axios from 'axios';
+import { async } from 'regenerator-runtime';
 
 
 const styles = StyleSheet.create({
@@ -23,6 +19,7 @@ const styles = StyleSheet.create({
     marginBottom:"50px"
    }
 });
+
 function aa(){
     var arr = [];
     for (var i = 0; i < 10; i++) {
@@ -31,7 +28,25 @@ function aa(){
     return arr
 }
 
-const FreelancerDetailHeader = (props) => {
+
+
+
+const FreelancerDetailHeader = ({memberid }) => {
+    const [results, setResults] = useState(null);
+
+    useEffect(() => {
+        const loadFreelancerDetailHeader = async (e) => {
+            const url = `http://127.0.0.1:8081/project/freelancer/freelancerdetail?memberid=${memberid}`;
+            const response = await axios.get(url);
+            setResults(response.data.results);
+        };
+        loadFreelancerDetailHeader();
+    }, [memberid]);
+
+    if (!results) {
+        return;
+    }
+
     return (
         <div>
             <CRow>
