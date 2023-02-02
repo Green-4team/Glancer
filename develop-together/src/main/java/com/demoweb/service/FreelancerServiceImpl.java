@@ -1,0 +1,45 @@
+package com.demoweb.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.demoweb.dto.ClassDto;
+import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.mapper.ClassMapper;
+import com.demoweb.mapper.FreelancerMapper;
+
+@Service("freelancerService")
+public class FreelancerServiceImpl implements FreelancerService{
+
+	@Autowired
+	@Qualifier("freelancerMapper")
+	private FreelancerMapper freelancerMapper;
+	
+	@Override
+	public List<FreelancerHeaderDto> findFreelancerMainList() {
+
+		List<FreelancerHeaderDto> freelancerMainList = freelancerMapper.selectFreelancerMainList();
+		
+		return freelancerMainList;
+	}
+	
+	
+	
+	
+
+	@Override
+	public FreelancerHeaderDto showFreelancerHeader(String memberid) {
+
+		FreelancerHeaderDto freelancerHeaderDetail = freelancerMapper.showFreelancerHeaderDetail(memberid);
+		
+		
+		return freelancerHeaderDetail;
+	}
+
+	
+	
+
+}
