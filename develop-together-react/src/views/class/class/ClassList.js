@@ -1,20 +1,20 @@
 
 import React, { useEffect, useState } from 'react'
 import classimg from "src/assets/images/class.jpg"
-import { CCard, CCardBody,CImage,CBadge, CCol,  } from "@coreui/react"
+import { CCard, CRow, CContainer, CButton, CCardBody,CImage,CBadge, CCol,  } from "@coreui/react"
 import { Link } from 'react-router-dom';
 import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
 import axios from 'axios';
 import ClassListItem from './ClassListItem';
 
-function aa(){
-    var arr = [];
-    for (var i = 0; i < 10; i++) {
-    arr.push(<CBadge style={{margin:"2px"}}color="info">danger</CBadge>)
-    }
-    return arr
-}
+// function aa(){
+//     var arr = [];
+//     for (var i = 0; i < 10; i++) {
+//     arr.push(<CBadge style={{margin:"2px"}}color="info">danger</CBadge>)
+//     }
+//     return arr
+// }
 
 
 const ClassList = (props) => {
@@ -35,6 +35,31 @@ const ClassList = (props) => {
 
     return (
         <>
+            <div>
+            <CRow>
+                <CCol xs={10} style={{ margin: "auto" }}>
+                    <CCard className="mb-2">
+                        <CCardBody>
+                            <CContainer>
+                                <CRow xs={{ gutter: 0 }}>
+                                    <CCol xs={{ span: 12 }}>
+                                        <div className="p-1"><strong>Glancer가 보증하는 강의!</strong></div>
+                                    </CCol>                                
+                                    <CCol xs={{ span: 0 }}>
+                                        <div className="p-1" > <h2>원하는 강의를 찾아주세요.</h2> <br></br>
+                                        <Link to="/class/class/classregister">
+                                            <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
+                                        </Link>
+                                        </div>
+                                    </CCol>                           
+                                </CRow>
+                            </CContainer>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
+            </CRow>
+           
+        </div> 
             <CCol xs={10} style={{margin: "auto"}}>
                 
                     
@@ -49,7 +74,16 @@ const ClassList = (props) => {
                             <h2>{result.name}</h2>
                             <br></br>
                             <h4 style={{ marginBottom:"10px"}}> </h4>                            
-                                { aa() } 
+                            <div><strong>&nbsp;사용 언어 : &nbsp;
+                                        {
+                                                // <CNavLink to='/dashboard' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
+                                                //     <HoverBlueBlock>
+                                                //         <div class="hoverBlue">#{ tagName }</div>
+                                                //     </HoverBlueBlock>
+                                                // </CNavLink>
+                                                    <CBadge style={{margin:"2px"}} color="info">{ result.tag }</CBadge>
+                                                
+                                        }</strong></div>
                             
                             <br></br><br></br>
                             &nbsp;

@@ -9,8 +9,6 @@ import com.demoweb.dto.BoardTagDto;
 
 public interface BoardService {
 
-	void writeBoard(BoardDto board);
-
 	List<BoardDto> findAllBoard();
 
 	void increaseBoardReadCount(int boardNo);
@@ -44,5 +42,7 @@ public interface BoardService {
 	int findBoardCount();
 	
 	BoardDto findBoardByBoardNo(int boardNo);
+	
+	void writeBoard(BoardDto board);
 
 }

@@ -15,8 +15,14 @@ import { BiBuildingHouse } from "react-icons/bi"
 import { MdSubject } from "react-icons/md"
 import { BsTelephoneFill } from "react-icons/bs"
 import { GrMoney } from "react-icons/gr"
+import { NavLink } from 'react-router-dom';
 import ClassDetailItem from './ClassDetailItem';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const HoverBlueBlock = styled.div`
+.hoverBlue:hover {color: #24a0ed;}
+`;
 
 
 const styles = StyleSheet.create({
@@ -36,7 +42,7 @@ function aa(){
     arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
     }
     return arr
-}
+} 
 
 const ClassDetailHeader = ({ classno }) => {
     const [results, setResults] = useState(null);
@@ -71,7 +77,20 @@ const ClassDetailHeader = ({ classno }) => {
                                         <br></br>
                                         <div><strong>< BsFillPersonFill />&nbsp;정원 : {results.crowd}</strong></div>
                                         <div><strong>< BiBuildingHouse />&nbsp;강의 지역 : {results.region}</strong></div>
-                                        <div><strong>< MdSubject />&nbsp;사용 언어 : { aa() }</strong></div>
+                                        <div><strong>< MdSubject />&nbsp;사용 언어 : &nbsp;
+                                        {
+                                            results.tags.map((tag) => {
+                                            const { tagName } = tag;
+                                            return  (
+                                                // <CNavLink to='/dashboard' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
+                                                //     <HoverBlueBlock>
+                                                //         <div class="hoverBlue">#{ tagName }</div>
+                                                //     </HoverBlueBlock>
+                                                // </CNavLink>
+                                                    <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
+                                                )
+                                            })
+                                        }</strong></div>
                                         <div><strong>< GrMoney />&nbsp;강의 비용 : {results.price}</strong></div>
                                         <div><strong>< BiTime />&nbsp;강의 시작일 : {results.startdate}</strong></div>
                                         <div><strong>< BiTime />&nbsp;강의 종료일 : {results.enddate}</strong></div>
@@ -82,15 +101,16 @@ const ClassDetailHeader = ({ classno }) => {
                                     <br></br>
                                     <hr></hr>
                                     <CCol xs={{ span: 4 }}>
-                                        <br></br>
-                                       <div><strong>강의 평점 
-                                        <div style={{display:"inline",marginLeft:"80px" }} >
-                                       <BsFillStarFill  size="20" color="orange"/>
-                                       <BsFillStarFill size="20" color="orange"/>
-                                       <BsFillStarFill size="20" color="orange"/>
-                                       <BsFillStarFill size="20" color="orange"/>
-                                       <AiOutlineStar size="23"/></div></strong></div>
-                                    </CCol>
+                                        
+                                        <h5><strong>강의 평점 : {results.rate}
+                                        <div style={{display:"inline",marginLeft:"30px" }} >
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill size="20" color="orange"/>
+                                        <BsFillStarFill size="20" color="orange"/>
+                                        <BsFillStarFill size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/></div></strong></h5>
+                                    </CCol>              
+                                       
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <CCol xs={{ span: 4 }}>
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}> 

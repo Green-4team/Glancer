@@ -75,22 +75,22 @@ public class BoardController {
 		List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
 		result.setTags(tags);
 		
-//		for (BoardDto result : results) {
-//			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
-//			result.setTags(tags);
-//		}
-//		int boardCount = boardService.findBoardCount();
-//		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
-//		
 		HashMap<String, Object> boardDetail = new HashMap<>();
 		boardDetail.put("result", result);
-//		boardList.put("page", pageNo);
-//		boardList.put("results", results);
-//		boardList.put("pager", pager);
 		
-//		return boardList;
 		return boardDetail;
 		
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/qnaWrite"})
+	private String writeBoard(BoardDto board) {
+		
+		System.out.println(board);
+		boardService.writeBoard(board);
+		
+		return "success";
 	}
 	
 		

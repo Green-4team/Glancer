@@ -65,12 +65,6 @@ const AppHeader = () => {
     <DropMenuBlock>
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
-        <CHeaderToggler
-          className="ps-1"
-          onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
-        >
-          <CIcon icon={cilMenu} size="lg" />
-        </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
         </CHeaderBrand>
@@ -129,7 +123,6 @@ const AppHeader = () => {
           </CNavItem>
           <CNavItem>
             <CNavLink to="/login" component={NavLink}>
-              {/* <CIcon icon={cilEnvelopeOpen} size="lg" /> */}
               로그인
             </CNavLink>
           </CNavItem>

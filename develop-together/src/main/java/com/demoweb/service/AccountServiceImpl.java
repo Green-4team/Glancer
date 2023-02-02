@@ -104,4 +104,11 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+	@Override
+	public AllMemberRegisterDto findCustomerByIdAndPasswd(String memberId, String password) {
+		password = Util.getHashedString(password, "SHA-256");
+		AllMemberRegisterDto login = memberMapper.selectCustomerByIdAndPasswd(memberId, password);
+		return login;
+	}
+
 }

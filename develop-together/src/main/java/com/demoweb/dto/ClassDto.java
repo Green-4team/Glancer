@@ -3,6 +3,7 @@ package com.demoweb.dto;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -23,5 +24,5 @@ public class ClassDto {
 	private String crowd;
 	private boolean deleted;
 	
-	
+	private List<ClassTagDto> tags;
 }
