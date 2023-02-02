@@ -39,18 +39,18 @@ public class FreelancerController {
 		return freelancerList;
 	}
 	
-//	@CrossOrigin
-//	@ResponseBody
-//	@GetMapping(path = {"/freelancer/freelancerdetail"})
-//	private HashMap<String, Object> showFreelancerHeader(String memberid) {
-//		
-//		FreelancerHeaderDto results = freelancerService.showFreelancerHeader(memberid);
-//		
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-//		
-//		HashMap<String, Object> freelancerHeader = new HashMap<>();
-//		freelancerHeader.put("results", results);
-//		freelancerHeader.put("memberid", memberid);
-//		return freelancerHeader;
-//	}
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/freelancer/freelancerdetail"})
+	private HashMap<String, Object> showFreelancerDetailHeader(String memberid) {
+		
+		FreelancerHeaderDto results = freelancerService.showFreelancerDetailHeader(memberid);
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+		
+		HashMap<String, Object> freelancerDetailHeader = new HashMap<>();
+		freelancerDetailHeader.put("results", results);
+		freelancerDetailHeader.put("memberid", memberid);
+		return freelancerDetailHeader;
+	}
 }

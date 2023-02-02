@@ -24,7 +24,7 @@ public interface FreelancerMapper {
 	@Select("SELECT memberid, title, introduce, rate, education, career, educontent, certificate " +
 			"FROM freelancer " +
 			"WHERE memberid = #{ memberid } ")
-	FreelancerHeaderDto showFreelancerHeaderDetail(String memberid);
+	FreelancerHeaderDto selectFreelancerHeaderDetail(String memberid);
 
 	
 	

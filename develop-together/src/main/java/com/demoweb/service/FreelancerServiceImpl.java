@@ -31,9 +31,9 @@ public class FreelancerServiceImpl implements FreelancerService{
 	
 
 	@Override
-	public FreelancerHeaderDto showFreelancerHeader(String memberid) {
+	public FreelancerHeaderDto showFreelancerDetailHeader(String memberid) {
 
-		FreelancerHeaderDto freelancerHeaderDetail = freelancerMapper.showFreelancerHeaderDetail(memberid);
+		FreelancerHeaderDto freelancerHeaderDetail = freelancerMapper.selectFreelancerHeaderDetail(memberid);
 		
 		
 		return freelancerHeaderDetail;

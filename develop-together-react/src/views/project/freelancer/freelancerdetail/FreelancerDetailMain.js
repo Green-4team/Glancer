@@ -17,9 +17,9 @@ const FreelancerMain = (props) => {
     return (
         <div>
            
-            {/* <FreelancerDetailHeader memberid={memberid}/> */}
+            <FreelancerDetailHeader memberid={memberid}/>
 
-            {/* <FreelancerDetailList memberid={memberid} /> */}
+            <FreelancerDetailList memberid={memberid} />
 
         </div> 
       
