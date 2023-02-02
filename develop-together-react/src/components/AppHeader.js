@@ -56,7 +56,6 @@ const DropMenuBlock = styled.div`
 .dropdown:hover .dropdown-content {display: block;}
 
 `;
-
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)

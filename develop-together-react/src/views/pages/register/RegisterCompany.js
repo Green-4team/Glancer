@@ -1,5 +1,5 @@
 import 'src/views/pages/registerButton.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -20,12 +20,15 @@ import { useNavigate } from 'react-router';
 
 
 
-const RegisterCompany = () => {
+const RegisterCompany = (props) => {
+
 
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
   const navigate = useNavigate();
   
+
+
   //useEffect( 
     // () => {
     //   const loadTodos = async (e) => {
@@ -55,7 +58,7 @@ const RegisterCompany = () => {
     contnent: '',
     annualsales: '',
     crn: '',
-    br: '',
+    br: null,
   });
   const insertCompanyInfo = () => {
   
@@ -96,10 +99,16 @@ const RegisterCompany = () => {
               return;
             }
             // 서버에 데이터 전송 
+
+            const formData = new FormData();
+            const keys = Object.keys(companyInfo);
+            for (var i = 0; i < keys.length; i++) {
+              formData.append(keys[i], companyInfo[keys[i]]);
+            }
             // axios.post("http://127.0.0.1:8080/react-web/demo/add-todo", 
             axios.post("http://127.0.0.1:8081/account/comapanyRegister", 
-                        companyInfo,
-                      { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+                        formData,
+                      { headers: { "Content-Type": "multipart/form-data" } })
                 .then( response => {
                   alert('회원가입 완료');
                   navigate('/login');
@@ -227,8 +236,9 @@ const RegisterCompany = () => {
                   </CInputGroup>
                   <CInputGroup className="mb-3">                    
                     <CFormInput type='file' placeholder="사업자 등록증"
-                     value={companyInfo.br}
-                     onChange={(e) => {setCompanyInfo({...companyInfo, "br": e.target.value})}}
+                     onChange={(e) => {
+                      setCompanyInfo({...companyInfo, "br": e.target.files[0]})
+                    }}
                     autoComplete="businessCard" />
                     <CInputGroupText>사업자 등록증</CInputGroupText>
                   </CInputGroup>

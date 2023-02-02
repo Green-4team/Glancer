@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -18,10 +18,8 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
-
+const Login = ({setUserInfo}) => {
   const navigate = useNavigate();
-
 
   const [loginInfo, setLoginInfo] = useState({
     memberId: '',
@@ -29,6 +27,7 @@ const Login = () => {
 
   });
   const login = () => {
+    
   if (loginInfo.memberId.length === 0) {
     alert('아이디를 입력해주세요');
     return;
@@ -44,7 +43,7 @@ const Login = () => {
     navigate('/project/project');
     })
     .catch( e => {          
-    alert('error');              
+    alert('아이디 또는 비밀번호를 확인해주세요');              
     });
   }
 
@@ -58,7 +57,7 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm >
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">
@@ -86,8 +85,9 @@ const Login = () => {
                       <CCol xs={6}>
                         <CButton color="primary"
                         onClick={
-                          (e) => {                         
-                            login(loginInfo);
+                          (e) => {   
+                            login(loginInfo);           
+                            setUserInfo(loginInfo);
                             e.preventDefault();
                         } 
                         }

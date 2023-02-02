@@ -22,19 +22,33 @@ const RegisterAcademy = React.lazy(() => import('./views/pages/register/Register
 
 
 class App extends Component {
+
+  constructor(loginInfo) {
+    super(loginInfo);
+    this.state = {
+      "loginInfo": {'memberId' : loginInfo.memberId, 'password': loginInfo.password},
+    }
+  }
+
+  setUserInfo = (loginInfo) => {
+    this.setState(loginInfo)
+    debugger;
+  };
+  
   render() {
     return (
       <HashRouter>
         <Suspense fallback={loading}>
-          <Routes>
-            <Route exact path="/login" name="Login Page" element={<Login />} />
+          <Routes>            
+          
+            <Route exact path="/login" name="Login Page" element={<Login setUserInfo={this.setUserInfo}/>} />
             <Route exact path="/ChooseRegisterType" name="Register Type Page" element={<ChooseRegisterType />} />
             <Route exact path="/RegisterFreeLancer" name="RegisterFreeLancer Page" element={<RegisterFreeLancer />} />
-            <Route exact path="/RegisterCompany" name="RegisterCompany Page" element={<RegisterCompany />} />
+            <Route exact path="/RegisterCompany" name="RegisterCompany Page" element={<RegisterCompany loginInfo={this.state.loginInfo} />} />
             <Route exact path="/RegisterAcademy" name="RegisterAcademy Page" element={<RegisterAcademy />} />
             <Route exact path="/404" name="Page 404" element={<Page404 />} />
             <Route exact path="/500" name="Page 500" element={<Page500 />} />
-            <Route path="*" name="Home" element={<DefaultLayout />} />
+            <Route path="*" name="Home" element={<DefaultLayout loginInfo={this.state.loginInfo}/>} />
           </Routes>
         </Suspense>
       </HashRouter>

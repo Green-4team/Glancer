@@ -12,6 +12,9 @@ public class CompanyDetailDto {
 	private String contnent;
 	private String annualsales;
 	private String crn;
+	
+	
 	private String br;
+	private String uniquebr;
 	
 }

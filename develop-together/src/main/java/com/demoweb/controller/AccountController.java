@@ -1,5 +1,6 @@
 package com.demoweb.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
+import com.demoweb.common.Util;
 import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
@@ -44,9 +47,7 @@ public class AccountController {
 		
 		AllMemberRegisterDto login = accountService.findCustomerByIdAndPasswd(memberId, password); // 회원 정보 조회(아이디, 비밀번호)
 		
-		if (login != null ) {
-			session.setAttribute("loginuser", login);
-		}
+		
 		
 		return login;
 	}
@@ -96,10 +97,30 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/comapanyRegister"})
 	@ResponseBody
-	private Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail,HttpServletRequest req) {
+	private Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail, MultipartFile br,  HttpServletRequest req) {
+		
+
+
 		
 		ServletContext application = req.getServletContext();
+		if (br != null) {
 		
+		String path = application.getRealPath("src/main/webapp/resources/br-save");
+		String fileName = br.getOriginalFilename(); //파일 이름 가져오기
+		if (fileName != null && fileName.length() > 0) {
+		String uniqueFileName = Util.makeUniqueFileName(fileName);
+			try {
+				br.transferTo(new File(path, uniqueFileName));//파일 저장
+				System.out.println("2");
+			
+				
+				companyMoreDetail.setBr(fileName);				
+				companyMoreDetail.setUniquebr(uniqueFileName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		  }
+		}
 		Object companyregisters  = (Object)application.getAttribute("register");
 		accountService.insertCompanyInfo(companyregister);
 		accountService.insertCompanyDetailInfo(companyDetail);
@@ -107,6 +128,7 @@ public class AccountController {
 		
 		return companyregisters;
 	}
+		
 }
 
 
