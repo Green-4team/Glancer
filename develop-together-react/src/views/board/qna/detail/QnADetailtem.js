@@ -1,4 +1,5 @@
 import { CButton, CFormTextarea, CNavLink } from '@coreui/react';
+import moment from 'moment';
 import { BsEye } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,16 +19,18 @@ const QnADetailItem = ({ result }) => {
         <hr />
         <div>
           <div>{memberId}</div>
-          <div>{regDate} · <BsEye /> {views}</div>
+          <div>{moment(regDate).startOf('hour').fromNow()} · <BsEye /> {views}</div>
           <div style={{fontWeight: "bold", fontSize: 30, marginTop: 20}}>{title}</div>
-          <div style={{marginTop: 30, marginBottom: 30}}>{content}</div>
+          <div style={{marginTop: 30, marginBottom: 30}}>
+            <div dangerouslySetInnerHTML={{__html: content}}></div>
+          </div>
+          
           <div style={{marginBottom: 30}}>
           {
             tags.map((tag) => {
               const { tagName } = tag;
               return  (
                         <CNavLink to='/dashboard' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
-                          
                             <div class="hoverBlue"
                                  style={{backgroundColor: 'gainsboro',
                                          borderRadius: 15,
@@ -36,7 +39,6 @@ const QnADetailItem = ({ result }) => {
                                          paddingTop: 1,
                                          paddingBottom: 1,
                                          fontSize: 14}} >#{ tagName }</div>
-                          
                         </CNavLink>
                       )
             })
