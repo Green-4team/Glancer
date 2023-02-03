@@ -20,6 +20,7 @@ import {
   cilSettings,
   cilTask,
   cilUser,
+  cilAlignLeft,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
@@ -33,14 +34,14 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-        <CAvatar src={avatar8} size="md" />
+      <CIcon icon={cilAlignLeft} className="me-2" size='lg' style={{marginTop:'7px'}}/>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownHeader className="bg-light fw-semibold py-2">{loginInfo.memberId}님 환영합니다</CDropdownHeader>
-        <CDropdownItem>
-          <CButton onClick={ (e) => { 
-            onLogout(null);
-            navigate('/login');
+        <CDropdownItem href="" >
+          <CButton onClick={ (e) => {     
+            
+            onLogout();
             e.preventDefault();} } 
             style={{direction: 'none'}} >
         <CIcon icon={cilLockLocked} className="me-2" />
