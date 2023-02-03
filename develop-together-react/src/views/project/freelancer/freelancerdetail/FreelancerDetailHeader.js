@@ -56,21 +56,21 @@ const FreelancerDetailHeader = ({memberid }) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                 <div style={styles.namecard}>
-                                    <div style={{fontSize:"50px", marginTop:"60px"}}>개발자 누구누구입니다.</div>
+                                    <div style={{fontSize:"50px", marginTop:"60px"}}>개발자 {results.name} 입니다.</div>
 
                                 </div>
                                                                   
                                     <CCol xs={{ span: 12 }}>
-                                        <div className="p-1"> <h3>제목입니다.</h3></div>
+                                        <div className="p-1"> <h3>{results.title}</h3></div>
                                     </CCol>                                
                                     <CCol xs={{ span: 12 }}>
-                                       <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>개발자이름 | 평점 | 경력 몇년</strong></div>
+                                       <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>{results.name} | 평점{results.rate} 점 | 경력 {results.careeryear}년</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
                                     </CCol>
                                     <CCol xs={{ span: 2 }} style={{marginRight:"0px"}}>
-                                       <div><CImage style={{borderRadius: 60}} src={classimg} width={100} height={100} /> <br></br> <div style={{marginLeft:"25px", marginTop:"10px", fontWeight:"bold"}}> 정윤석</div></div>
+                                       <div><CImage style={{borderRadius: 60}} src={classimg} width={100} height={100} /> <br></br> <div style={{marginLeft:"25px", marginTop:"10px", fontWeight:"bold"}}> {results.name}</div></div>
                                     </CCol>
                                     <CCol xs={{ span: 4 }}>
                                        <div><strong>활동평가 
@@ -135,7 +135,7 @@ const FreelancerDetailHeader = ({memberid }) => {
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                         <hr></hr>
-                                        <strong>소개글 써주세요 소개글 써주세요 소개글 써주세요 소개글 써주세요 소개글 써주세요 소개글 써주세요 소개글 써주세요 소개글 써주세요 </strong>
+                                        <strong>{results.introduce} </strong>
                                     </CCol>  
                                    
                                 </CRow>

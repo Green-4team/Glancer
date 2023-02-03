@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.mapper.ClassMapper;
 import com.demoweb.mapper.FreelancerMapper;
 
@@ -31,12 +32,23 @@ public class FreelancerServiceImpl implements FreelancerService{
 	
 
 	@Override
-	public FreelancerHeaderDto showFreelancerHeader(String memberid) {
+	public FreelancerHeaderDto showFreelancerDetailHeader(String memberid) {
 
-		FreelancerHeaderDto freelancerHeaderDetail = freelancerMapper.showFreelancerHeaderDetail(memberid);
+		FreelancerHeaderDto freelancerHeaderDetail = freelancerMapper.selectFreelancerHeaderDetail(memberid);
 		
 		
 		return freelancerHeaderDetail;
+	}
+
+
+
+
+
+	@Override
+	public void insertprojectHistory(ProjectHistoryDto projectHistoryRegist) {
+		
+		freelancerMapper.insertProjectHistory(projectHistoryRegist);
+		
 	}
 
 	

@@ -17,5 +17,6 @@ public class FreelancerHeaderDto {
 	private String certificate;
 	private String name;
 	private String occupation;
+	private int careeryear;
 
 }

@@ -4,8 +4,6 @@ import React, { Component, useEffect, useState } from 'react'
 import { CCard, CCardBody, CCol,CBadge, CImage, CRow, CContainer, CButton, CCardHeader, CNav, CNavItem, CNavLink, CTabContent, CTabPane } from "@coreui/react"
 
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import classimg from "src/assets/images/class.jpg"
-import CIcon from '@coreui/icons-react';
 import * as icon from '@coreui/icons';
 import { BsFillStarFill } from "react-icons/bs";  
 import { AiOutlineStar } from "react-icons/ai";
@@ -13,16 +11,13 @@ import { BiTime } from "react-icons/bi"
 import { BsFillPersonFill } from "react-icons/bs"
 import { BiBuildingHouse } from "react-icons/bi"
 import { MdSubject } from "react-icons/md"
-import { BsTelephoneFill } from "react-icons/bs"
 import { GrMoney } from "react-icons/gr"
-import { NavLink } from 'react-router-dom';
-import ClassDetailItem from './ClassDetailItem';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const HoverBlueBlock = styled.div`
-.hoverBlue:hover {color: #24a0ed;}
-`;
+// const HoverBlueBlock = styled.div`
+// .hoverBlue:hover {color: #24a0ed;}
+// `;
 
 
 const styles = StyleSheet.create({
