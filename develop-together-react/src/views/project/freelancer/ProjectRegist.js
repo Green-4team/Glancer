@@ -41,60 +41,18 @@ const [projectRegist, setProjectRegist] = useState({
 });
 const insertProjectHistoryRegist = () => {
 
-  // axios.get("http://127.0.0.1:8081/account/checkDuplication?memberId=" + projectRegist.memberId)
-  //      .then((response) => {
-  //         if (!response.data.validation) {
-  //           alert('이미 있는 아이디입니다.')
-  //           return;
-  //         } else if (projectRegist.memberId.length === 0) {
-  //           alert('아이디를 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.password.match(passwordRegEx)  === null) {
-  //           alert('비밀번호는 반드시 영어 대소문자와 숫자를 조합한 8 ~ 20 자로 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.password !== projectRegist.checkPassword){
-  //           alert('비밀번호가 일치하지 않습니다');
-  //           return;
-  //         } else if (projectRegist.name.length === 0 ) {
-  //           alert('학원명을 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.mname.length === 0 ) {
-  //           alert('담당자 명을 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.mpostion.length === 0 ) {
-  //           alert('담당자 직책 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.mphone.length === 0 ) {
-  //           alert('담당자 연락처를 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.memail.length === 0 ) {
-  //           alert('담당자 이메일을 입력해주세요');
-  //           return;
-  //         } else if (projectRegist.memail.match(emailRegEx)  === null) {
-  //           alert('이메일 형식을 맞춰주세요');
-  //           return;
-  //         } else if (projectRegist.address.length === 0 ) {
-  //           alert('학원 주소를 입력해주세요');
-  //           return;
-  //         }
-          // 서버에 데이터 전송 
-          // axios.post("http://127.0.0.1:8080/react-web/demo/add-todo", 
           axios.post("http://127.0.0.1:8081/project/projectRegister", 
                       projectRegist,
                     { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
               .then( response => {
-                alert('회원가입 완료');
-                navigate('/login');
+                alert('프로젝트 등록 완료');
+                navigate('/project/freelancer');
               })
               .catch( e => {          
                 alert('error');
               });
         };
- 
-      
-
-
-
+   
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -105,8 +63,7 @@ const insertProjectHistoryRegist = () => {
                 <CForm>
                   <h1>프로젝트 등록</h1>
                   <p className="text-medium-emphasis">Regist your projects</p>
-                  
-                   
+                                    
                   <CRow className="mb-3">
                     <CFormLabel className="col-sm-2 col-form-label" >멤버아이디</CFormLabel>
                     <CCol sm={10}>

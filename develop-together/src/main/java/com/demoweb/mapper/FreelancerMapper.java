@@ -41,4 +41,10 @@ public interface FreelancerMapper {
 
 	
 	
+	@Select("SELECT * from projecthistory " +
+			"WHERE memberid = 'qwe' ")
+	void findProjectHistory(String memberid);
+
+	
+	
 }
