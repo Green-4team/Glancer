@@ -51,6 +51,7 @@ public class FreelancerController {
 		HashMap<String, Object> freelancerDetailHeader = new HashMap<>();
 		freelancerDetailHeader.put("results", results);
 		freelancerDetailHeader.put("memberid", memberid);
+		System.out.println("222");
 		return freelancerDetailHeader;
 	}
 }
