@@ -51,14 +51,11 @@ const TeacherRegisterMain = React.lazy(() => import('./views/class/teacher/teach
 const FreelancerMain = React.lazy(() => import('./views/project/freelancer/FreelancerMain'))
 const ProjectMain = React.lazy(() => import('./views/project/project/ProjectMain'))
 const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer/freelancerdetail/FreelancerDetailMain'))
-<<<<<<< HEAD
 
 //Search
 const SearchMain = React.lazy(() => import('./views/search/SearchMain'))
-=======
+
 const ProjectRegist = React.lazy(() => import('./views/project/freelancer/ProjectRegist'))
- 
->>>>>>> 7921c27e7f0f5dadeefab4d694331b5010b07f43
 
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
