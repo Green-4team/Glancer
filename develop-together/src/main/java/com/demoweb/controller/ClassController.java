@@ -1,7 +1,11 @@
 package com.demoweb.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,9 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.demoweb.common.Util;
+import com.demoweb.dto.BoardAttachDto;
+import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.ClassTagDto;
 import com.demoweb.service.ClassService;
@@ -60,6 +70,24 @@ public class ClassController {
 		
 		return classDetail;
 	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/classRegister"})
+	private String writeClass(ClassDto register, String languages) {
+		String[] languages2 = languages.split(",");
+//		System.out.println(register);
+		classService.writeClass(register, languages2);
+		
+		return "success";
+	}
+	
+	@GetMapping(path = {"/write"})
+	public String showRegisterClassForm() {
+		
+		return "register/write";
+	}
+
 	
 	@GetMapping(path = {"/{classno}/delete" })
 	public String deleteClass(@PathVariable("classno") int classno, Model model) {

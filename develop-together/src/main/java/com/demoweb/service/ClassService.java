@@ -17,5 +17,7 @@ public interface ClassService {
 	void deleteClass(int classno);
 
 	List<ClassTagDto> findClassTag(int classno);
+
+	void writeClass(ClassDto register, String[] tags);
 	
 }
