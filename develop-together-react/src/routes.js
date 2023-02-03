@@ -52,6 +52,8 @@ const FreelancerMain = React.lazy(() => import('./views/project/freelancer/Freel
 const ProjectMain = React.lazy(() => import('./views/project/project/ProjectMain'))
 const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer/freelancerdetail/FreelancerDetailMain'))
 
+//Search
+const SearchMain = React.lazy(() => import('./views/search/SearchMain'))
 
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
@@ -112,6 +114,11 @@ const routes = [
   { path: '/class/teacher', name: 'TeacherMain', element: TeacherMain },
   { path: '/class/teacher/teacherdetail', name: 'TeacherDetailMain', element: TeacherDetailMain },
   { path: '/class/teacher/teacherregister', name: 'TeacherRegisterMain', element: TeacherRegisterMain },
+  
+  
+  { path: '/search', name: 'SearchMain', element: SearchMain },
+
+  
   { path: '/charts', name: 'Charts', element: Charts },
   { path: '/forms', name: 'Forms', element: FormControl, exact: true },
   { path: '/forms/form-control', name: 'Form Control', element: FormControl },

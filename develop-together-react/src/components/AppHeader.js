@@ -119,7 +119,7 @@ const AppHeader = (props) => {
             </CNavLink>
           </CNavItem> */}
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink to="/search" component={NavLink}>
               <CIcon icon={cilSearch} size="lg" />
             </CNavLink>
           </CNavItem>
