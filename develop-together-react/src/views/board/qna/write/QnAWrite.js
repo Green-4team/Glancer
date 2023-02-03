@@ -1,46 +1,41 @@
-import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import { CButton, CCard, CCardBody, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CNavLink } from "@coreui/react";
+import { CButton, CCard, CCardBody, CCol, CForm, CFormInput, CFormLabel, CFormSelect } from "@coreui/react";
+import Tagify from "@yaireo/tagify";
+import "@yaireo/tagify/dist/tagify.css"; // Tagify CSS
 import axios from "axios";
-import { Component, useState } from "react";
-import { Navigate, NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CFormCKEditor from "../../other/CFormCKEditor";
 
 const QnAWrite = (props) => {
 
-  // const [result, setResult] = useState(null);
-  
-  // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
-  // useEffect(() => {
-  //   const loadQnAList = async (e) => {
-  //     const url = `http://127.0.0.1:8081/board/qnaDetail?boardNo=`;
-  //     const response = await axios.get(url);
-  //     setResult(response.data.result);
-  //     // setPage(response.data.page);
-  //     // setPager(response.data.pager);
-  //   };
-  //   loadQnAList();
-  // }, []);
-
-  // if (!result) {
-  //   return;
-  // }
-  // const {pageNo, pageCount} = pager;
-
   const [board, setBoard] = useState({
-    topicno: '',
-    memberid: 'gyu',
+    topicNo: '',
+    memberId: 'gyu',
     title: '',
-    content: ''
+    content: '',
+    tag: ''
   })
 
+
+  const input = document.querySelector('input[name=basic]');
+  let tagify = new Tagify(input); // initialize Tagify
+  
+  // 태그가 추가되면 이벤트 발생
+  tagify.on('add', function() {
+    console.log(tagify.value); // 입력된 태그 정보 객체
+  })
+  tagify = new Tagify(input, {
+    whitelist : ["apple"],
+    blacklist : ["fuck", "shit"]
+  })
+
+  const navigate = useNavigate();
   const insertBoard = () => {
     const url = "http://127.0.0.1:8081/board/qnaWrite";
     axios.post(url, board, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
           .then( response => {
             alert('게시물이 등록되었습니다');
-            Navigate('/board/qna/list');
+            navigate('/board/qna/list');
           })
           .catch( e => {
             alert('error');
@@ -56,7 +51,7 @@ const QnAWrite = (props) => {
             <h2>궁금증 해결하기</h2>
             <div style={{marginTop: 30}}>
               <CFormLabel>토픽</CFormLabel>
-              <CFormSelect value={board.topicno} onChange={(e) => {setBoard({...board, "topicno": e.target.value})}}>
+              <CFormSelect value={board.topicNo} onChange={(e) => {setBoard({...board, "topicNo": e.target.value})}}>
                 <option>토픽을 선택해주세요</option>
                 <option value={1}>기술</option>
                 <option value={2}>커리어</option>
@@ -64,11 +59,23 @@ const QnAWrite = (props) => {
               </CFormSelect>
             </div>
             <div style={{marginTop: 30}}>
-              제목
+              <CFormLabel>제목</CFormLabel>
               <CFormInput value={board.title} onChange={(e) => {setBoard({...board, "title": e.target.value})}} />
             </div>
             <div style={{marginTop: 30}}>
-              태그<CFormInput></CFormInput>
+              <CFormLabel>태그</CFormLabel>
+              {/* <MultipleValueTextInput
+                onItemAdded={(item, allItems) => console.log(`item added: ${board.tag}`)}
+                onItemDeleted={(item, allItems) => console.log(`Item removed: ${board.tag}`)}
+                placeholder="hi" /> */}
+
+              <div>
+              <input name='basic' value={board.tag} onChange={ (e) => {setBoard({...board, "tag": e.target.value})}}></input>
+              </div>
+
+
+
+
             </div>
             <div style={{marginTop: 30}}>
               본문<CFormCKEditor onChange2={(data)=> {setBoard({...board, "content": data})}} />
@@ -83,7 +90,6 @@ const QnAWrite = (props) => {
                                       }}}>취소</CButton>
             <CButton color="info"
                      style={{color: 'white', marginLeft: 10}}
-                     type="submit"
                      onClick={(e) => { if (window.confirm("게시물을 등록하시겠습니까?")) {
                                         insertBoard(board);
                                         e.preventDefault();

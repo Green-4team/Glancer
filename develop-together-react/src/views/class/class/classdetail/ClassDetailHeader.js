@@ -42,7 +42,7 @@ function aa(){
     arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
     }
     return arr
-} 
+}
 
 const ClassDetailHeader = ({ classno }) => {
     const [results, setResults] = useState(null);

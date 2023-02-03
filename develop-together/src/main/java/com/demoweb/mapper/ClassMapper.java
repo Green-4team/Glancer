@@ -22,12 +22,18 @@ public interface ClassMapper {
 			"WHERE classno = #{ classno } AND deleted = '0' ")
 	ClassDto selectClassDetail(int classno);
 
-	
 	@Select("SELECT ct.classTagNo, ct.tagNo, ct.classno, ct.classType, t.tagName " +
 			"FROM tag t, classtag ct " +
 			"WHERE t.tagNo = ct.tagNo " +
 			"AND ct.classno = #{ classno } AND ct.classType = #{ classType } ")
 	List<ClassTagDto> selectClassTagByClassNo(@Param("classno") int classno, @Param("classType") String classType);
+	
+	
+	@Select("SELECT ct.classTagNo, ct.tagNo, ct.classno, ct.classType, t.tagName " +
+			"FROM tag t, classtag ct " +
+			"WHERE t.tagNo = ct.tagNo AND ct.classno = #{ classno } " )
+	List<ClassTagDto> selectClassTag(int classno);
+	
 	
 	@Delete("DELETE from class " +
 			"WHERE classno = #{classno} ")

@@ -79,7 +79,8 @@ public interface BoardMapper {
 	BoardDto selectBoardByBoardNo(int boardNo);
 
 	@Insert("INSERT INTO board (topicno, memberid, title, content) " +
-			"VALUES (#{ topicno }, #{ memberid }, #{ title }, #{ content }) ")
+			"VALUES (#{ topicNo }, #{ memberId }, #{ title }, #{ content }) ")
+	@Options(useGeneratedKeys = true, keyColumn = "boardno", keyProperty = "boardNo")
 //	@SelectKey(statement = "SELECT LAST_INSERT_ID()", 
 //			   resultType = Integer.class, keyProperty = "boardNo", before = false)
 	void insertBoard(BoardDto board);

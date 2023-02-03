@@ -72,6 +72,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 //로그인 회원가입
 
 const routes = [
+  
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
@@ -133,5 +134,7 @@ const routes = [
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
 ]
+
+
 
 export default routes
