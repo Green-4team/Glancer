@@ -53,4 +53,23 @@ public class ClassServiceImpl implements ClassService{
 		return tags;
 	}
 
+	@Override
+	public void writeClass(ClassDto register, String[] tags) {
+		
+		// register.getClassno() == 0
+		classMapper.insertClass(register);
+		// register.getClassno() == 새로 만들어진 classno
+		
+		if (tags != null) {
+			for (String tagno : tags) {
+				ClassTagDto dto = new ClassTagDto();
+				dto.setTagNo(Integer.parseInt(tagno));
+				dto.setClassno(register.getClassno());
+				classMapper.insertClassTags(dto);
+			}
+		}
+		
+		
+	}
+
 }

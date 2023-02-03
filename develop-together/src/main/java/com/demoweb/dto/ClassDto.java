@@ -15,8 +15,8 @@ public class ClassDto {
 	private String name;
 	private String region;
 	private int tagno;
-	private Date startdate;
-	private Date enddate;
+	private String startdate;
+	private String enddate;
 	private String content;
 	private String classtime;
 	private int price;

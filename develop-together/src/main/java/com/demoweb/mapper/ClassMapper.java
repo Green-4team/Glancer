@@ -3,7 +3,9 @@ package com.demoweb.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -14,7 +16,8 @@ import com.demoweb.dto.ClassTagDto;
 @Mapper
 public interface ClassMapper {
 
-	@Select("SELECT * FROM class")
+	@Select("SELECT * FROM class " +
+			"ORDER BY classno DESC ")
 	List<ClassDto> selectAllClassList();
 
 	@Select("SELECT classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
@@ -38,5 +41,15 @@ public interface ClassMapper {
 	@Delete("DELETE from class " +
 			"WHERE classno = #{classno} ")
 	void deleteClass(int classno);
+
+	
+	@Insert("INSERT INTO class (name, crowd, region, startdate, enddate, content) " +
+			"VALUES (#{name}, #{crowd}, #{region}, #{startdate}, #{enddate}, #{content}) ")
+	@Options(useGeneratedKeys = true, keyColumn = "classno", keyProperty = "classno")
+	void insertClass(ClassDto register);
+
+	@Insert("INSERT INTO classtag (tagno, classno) " +
+			"VALUES (#{tagNo}, #{classno})")
+	void insertClassTags(ClassTagDto classTagDto);
 	
 }
