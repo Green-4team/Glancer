@@ -10,7 +10,7 @@ import {
 } from '@coreui/react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 
 import { logo } from 'src/assets/brand/logo'
@@ -58,7 +58,7 @@ const DropMenuBlock = styled.div`
 `;
 const AppHeader = (props) => {
 
-  const {loginInfo} = props; 
+  const {loginInfo, logout} = props; 
   
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
@@ -124,14 +124,14 @@ const AppHeader = (props) => {
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink to="/login" component={NavLink}>
-              로그인
-            </CNavLink>
+          { loginInfo === null ? <CNavLink to="/login" component={NavLink} >로그인</CNavLink> 
+          : 
+          <CHeaderNav className="ms-3">
+          <AppHeaderDropdown loginInfo={loginInfo} logout={logout} />
+        </CHeaderNav>}
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav className="ms-3">
-          <AppHeaderDropdown />
-        </CHeaderNav>
+        
       </CContainer>
       <CHeaderDivider />
       <CContainer fluid>

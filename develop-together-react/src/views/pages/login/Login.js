@@ -18,7 +18,7 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Login = ({setUserInfo}) => {
+const Login = ({onLogin}) => {
   const navigate = useNavigate();
 
   const [loginInfo, setLoginInfo] = useState({
@@ -28,23 +28,33 @@ const Login = ({setUserInfo}) => {
   });
   const login = () => {
     
-  if (loginInfo.memberId.length === 0) {
-    alert('아이디를 입력해주세요');
-    return;
-  } else if (loginInfo.password.length === 0){
-    alert('비밀번호를 입력해주세요');
-  }
+    if (loginInfo.memberId.length === 0) {
+      alert('아이디를 입력해주세요');
+      return;
+    } else if (loginInfo.password.length === 0){
+      alert('비밀번호를 입력해주세요');
+      return;
+    } 
 
-      axios.post("http://127.0.0.1:8081/account/login?memberId=" + loginInfo.memberId +"password=" + loginInfo.password , 
-      loginInfo,
-      { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
-    .then( response => {
-    alert('로그인 완료');
-    navigate('/project/project');
-    })
-    .catch( e => {          
-    alert('아이디 또는 비밀번호를 확인해주세요');              
-    });
+    axios.post("http://127.0.0.1:8081/account/login", 
+                loginInfo,
+                { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+          .then( response => {
+    
+            console.log(response.data);
+            
+            if(response.data === null || response.data === '') {
+              alert('error');
+              return;
+            } else {
+              onLogin(loginInfo);
+              alert('로그인 완료');
+              navigate('/project/project');
+            }
+          })
+        .catch( e => {    
+          alert('아이디 또는 비밀번호를 확인해주세요');              
+        });
   }
 
 
@@ -87,7 +97,7 @@ const Login = ({setUserInfo}) => {
                         onClick={
                           (e) => {   
                             login(loginInfo);           
-                            setUserInfo(loginInfo);
+                           
                             e.preventDefault();
                         } 
                         }

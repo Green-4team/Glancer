@@ -43,12 +43,22 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/login"})
 	@ResponseBody
-	private Object login( String memberId, String password,HttpSession session) {
+	public Object login( String memberId, String password,HttpSession session) {
 		
 		AllMemberRegisterDto login = accountService.findCustomerByIdAndPasswd(memberId, password); // 회원 정보 조회(아이디, 비밀번호)
 		
-		
-		
+//		
+//		System.out.println(login);
+//		if(login == null ) {
+//			
+//			System.out.println("hello");
+//			
+//			HashMap<String, Object> response = new HashMap<>();
+//			response.put("loginfail", login);
+//			return response;
+//			
+//			
+//		}
 		return login;
 	}
 	
@@ -56,7 +66,7 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/freelancerRegister"})
 	@ResponseBody
-	private Object FreelancerRegister(AllMemberRegisterDto freelancerregister,FreeLancerRegisterDetailDto freelancerregisterdetail , HttpServletRequest req) {
+	public Object FreelancerRegister(AllMemberRegisterDto freelancerregister,FreeLancerRegisterDetailDto freelancerregisterdetail , HttpServletRequest req) {
 		
 		ServletContext application = req.getServletContext();
 		
@@ -70,7 +80,7 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/academyRegister"})
 	@ResponseBody
-	private Object AcademyRegister(AllMemberRegisterDto academyregister,CompanyDto academyDetail, HttpServletRequest req) {
+	public Object AcademyRegister(AllMemberRegisterDto academyregister,CompanyDto academyDetail, HttpServletRequest req) {
 		
 		ServletContext application = req.getServletContext();
 		
@@ -84,7 +94,7 @@ public class AccountController {
 	@CrossOrigin
 	@GetMapping(path = {"/checkDuplication"})
 	@ResponseBody
-	private HashMap<String, Object> checkDuplication(String memberId) {
+	public HashMap<String, Object> checkDuplication(String memberId) {
 		
 		boolean valid = accountService.checkDuplication(memberId);
 		
@@ -97,7 +107,7 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/comapanyRegister"})
 	@ResponseBody
-	private Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail, MultipartFile br,  HttpServletRequest req) {
+	public Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail, MultipartFile br,  HttpServletRequest req) {
 		
 
 
@@ -105,7 +115,7 @@ public class AccountController {
 		ServletContext application = req.getServletContext();
 		if (br != null) {
 		
-		String path = application.getRealPath("src/main/webapp/resources/br-save");
+		String path = application.getRealPath("src/main/webapp/board-attachments");
 		String fileName = br.getOriginalFilename(); //파일 이름 가져오기
 		if (fileName != null && fileName.length() > 0) {
 		String uniqueFileName = Util.makeUniqueFileName(fileName);
