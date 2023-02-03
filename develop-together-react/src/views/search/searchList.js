@@ -1,66 +1,69 @@
-import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+
+import React, { useEffect, useState } from 'react'
+import { CCard, CRow, CContainer, CButton, CCardBody, CBadge, CCol,  } from "@coreui/react"
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import SearchItem from './SearchItem';
 
 const SearchList = (props) => {
-
     const [results, setResults] = useState(null);
+    const [tagType, setTagType] = useState("field");
 
-    const [category, setCategory] = useState(null); // 검색창 태그분류
-    const [tagPage, setTagPage] = useState(null); // 태그 하위분류 페이지
-    const [tag, setTag] = useState(null);
-
-    const [searchKeyword, setSearchKeyword] = useState(null);
-    const [searchResults, setSearchResult] = useState(null);
-
-    const [pageType, setPageType] = useState(null);
-
-    const [page, setPage] = useState(1);
-    const [total_pages, setTotal_pages] = useState(null);
-
-    useEffect( () => {
-
-        if (searchKeyword === null | searchKeyword === "") {
-            const loadPersonList = async (e) => {
-                
-                const response = await axios.get();
-                setResults(response.data.results);
-                setPage(response.data.page);
-                setTotal_pages(response.data.total_pages);
-                setPageType("field");
-                setSearchKeyword(null);
-            }
-            loadPersonList();
-            
-        } else {
-            const searchPersonList = async (e) =>{
-                
-                const responseSearch = await axios.get();
-                setSearchResult(responseSearch.data.results);
-                setPage(responseSearch.data.page);
-                setPageType("searchKeyword");
-            }
-            searchPersonList();
-        }
-    }, [page, searchKeyword] );
+    useEffect(() => {
+        const loadSearchList = async (e)  => {
+            const url = `http://127.0.0.1:8081/search/search`;
+            const response = await axios.get(url);
+            setResults(response.data.results);
+        };
+        loadSearchList();
+    }, [])
 
     if (!results) {
         return;
     }
-
-    if (pageType === "field") {
+    if (tagType === "field") {
         return;
-    } else if (pageType === "tech") {
+    } else if (tagType === "tech") {
         return;
-    } else if (pageType === "local") {
+    } else if (tagType === "local") {
         return;
-    } else if (pageType === "skill") {
+    } else if (tagType === "skill") {
         return;
-    } else if (pageType === "searchKeyword") {
-        return;
-    } else {
+    } else if (tagType === "searchKeyword") {
         return;
     }
+
+        <CCol xs={10} style={{margin: "auto"}}>
+            
+                
+                {results.map((result) => {
+                    return (
+                        <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
+                        <CCardBody>
+                        <div className="clearfix">
+                        <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
+                        <CCardBody style={{ marginLeft:'150px'}}>
+                        <h2>{result.name}</h2>
+                        <br></br>   
+                        <h3 style={{ marginBottom:"10px"}}> </h3>                            
+                        <div><strong>&nbsp;사용 언어 : &nbsp;
+                        {
+                            result.tags.map((tag) => {
+                                const { tagName } = tag;
+                                    return  (
+                                            <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
+                                        )
+                                    })
+                        }</strong></div>
+                        </CCardBody>
+                        </Link>
+                    </div>
+                    </CCardBody>
+                    </CCard>
+                )
+                })}
+                
+        </CCol>               
 };
 
 export default SearchList;

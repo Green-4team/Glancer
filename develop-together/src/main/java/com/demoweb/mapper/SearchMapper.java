@@ -14,9 +14,9 @@ public interface SearchMapper {
 	
 	@Select("SELECT memberid " +
 			"FROM freelancer " +
-			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}'" +
-			"LIKE '%#{searchKeyword}%'" +
-			"ORDER BY boardno DESC ")
+			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}' " +
+			"LIKE '%#{searchKeyword}%' " +
+			"ORDER BY boardno DESC")
 	List<SearchDto> selectFreelancerResultBySearch(
 			@Param("field")String field,
 			@Param("tech")String tech,
@@ -27,9 +27,9 @@ public interface SearchMapper {
 	
 	@Select("SELECT projectno " +
 			"FROM project " +
-			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}'" +
-			"LIKE '%#{searchKeyword}%'" +
-			"ORDER BY boardno DESC ")
+			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}' " +
+			"LIKE '%#{searchKeyword}%' " +
+			"ORDER BY boardno DESC")
 	List<SearchDto> selectProjectResultBySearch(
 			@Param("field")String field,
 			@Param("tech")String tech,

@@ -107,20 +107,20 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/comapanyRegister"})
 	@ResponseBody
-	public Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail, MultipartFile br,  HttpServletRequest req) {
+	public Object CompanyRegister(AllMemberRegisterDto companyregister,CompanyDto companyDetail,CompanyDetailDto companyMoreDetail, MultipartFile brFile,  HttpServletRequest req) {
 		
 
 
 		
 		ServletContext application = req.getServletContext();
-		if (br != null) {
+		if (brFile != null && brFile.getOriginalFilename().length() > 0) {
 		
-		String path = application.getRealPath("src/main/webapp/board-attachments");
-		String fileName = br.getOriginalFilename(); //파일 이름 가져오기
+		String path = application.getRealPath("/board-attachments");
+		String fileName = brFile.getOriginalFilename(); //파일 이름 가져오기
 		if (fileName != null && fileName.length() > 0) {
 		String uniqueFileName = Util.makeUniqueFileName(fileName);
 			try {
-				br.transferTo(new File(path, uniqueFileName));//파일 저장
+				brFile.transferTo(new File(path, uniqueFileName));//파일 저장
 				System.out.println("2");
 			
 				

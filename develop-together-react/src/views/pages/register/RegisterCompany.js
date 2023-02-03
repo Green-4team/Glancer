@@ -63,7 +63,7 @@ const RegisterCompany = (props) => {
     contnent: '',
     annualsales: '',
     crn: '',
-    br: null,
+    brFile: null,
   });
   const insertCompanyInfo = () => {
   
@@ -242,7 +242,7 @@ const RegisterCompany = (props) => {
                   <CInputGroup className="mb-3">                    
                     <CFormInput type='file' placeholder="사업자 등록증"
                      onChange={(e) => {
-                      setCompanyInfo({...companyInfo, "br": e.target.files[0]})
+                      setCompanyInfo({...companyInfo, "brFile": e.target.files[0]})
                     }}
                     autoComplete="businessCard" />
                     <CInputGroupText>사업자 등록증</CInputGroupText>
