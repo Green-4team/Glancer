@@ -24,12 +24,9 @@ import {
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
-import avatar8 from './../../assets/images/avatars/8.jpg'
-import { useNavigate } from 'react-router'
-
 const AppHeaderDropdown = ({onLogout, loginInfo}) => {
  
-  const navigate = useNavigate();
+  
 
   return (
     <CDropdown variant="nav-item">
