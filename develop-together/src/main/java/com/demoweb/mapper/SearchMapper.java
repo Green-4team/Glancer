@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.SearchDto;
 
 @Mapper
 public interface SearchMapper {
@@ -13,9 +14,10 @@ public interface SearchMapper {
 	
 	@Select("SELECT memberid " +
 			"FROM freelancer " +
-			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}', searchKeyword='#{searchKeyword}'" +
+			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}'" +
+			"LIKE '%#{searchKeyword}%'" +
 			"ORDER BY boardno DESC ")
-	List<BoardDto> selectFreelancerResultBySearch(
+	List<SearchDto> selectFreelancerResultBySearch(
 			@Param("field")String field,
 			@Param("tech")String tech,
 			@Param("local")String local,
@@ -25,18 +27,16 @@ public interface SearchMapper {
 	
 	@Select("SELECT projectno " +
 			"FROM project " +
-			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}', searchKeyword='#{searchKeyword}'" +
+			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}'" +
+			"LIKE '%#{searchKeyword}%'" +
 			"ORDER BY boardno DESC ")
-	List<BoardDto> selectProjectResultBySearch(
+	List<SearchDto> selectProjectResultBySearch(
 			@Param("field")String field,
 			@Param("tech")String tech,
 			@Param("local")String local,
 			@Param("skill")String skill,
 			@Param("searchKeyword")String searchKeyword
 			);
-	
-	@Select("SELECT COUNT(*) FROM board")
-	int selectBoardCount();
 	
 
 }

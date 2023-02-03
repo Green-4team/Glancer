@@ -11,7 +11,7 @@ public interface FreelancerService {
 
 //	ClassDto findClassDetail(String memberid);
 
-	FreelancerHeaderDto showFreelancerHeader(String memberid);
+	FreelancerHeaderDto showFreelancerDetailHeader(String memberid);
 
 	List<FreelancerHeaderDto> findFreelancerMainList();
 		
