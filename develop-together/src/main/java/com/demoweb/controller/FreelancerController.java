@@ -4,17 +4,25 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.ClassDto;
+import com.demoweb.dto.CompanyDto;
+import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.service.ClassService;
 import com.demoweb.service.FreelancerService;
 
@@ -54,4 +62,20 @@ public class FreelancerController {
 		System.out.println("222");
 		return freelancerDetailHeader;
 	}
+	
+	@CrossOrigin
+	@PostMapping(path = {"/projectRegister"})
+	@ResponseBody
+	private Object projectHistoryRegist(ProjectHistoryDto projectHistoryRegist) {
+		
+
+		
+		freelancerService.insertprojectHistory(projectHistoryRegist);
+		
+		
+		return "";
+	}
+	
+	
+	
 }

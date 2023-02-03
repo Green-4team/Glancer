@@ -70,7 +70,7 @@ const FreelancerDetailHeader = ({memberid }) => {
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
                                     </CCol>
                                     <CCol xs={{ span: 2 }} style={{marginRight:"0px"}}>
-                                       <div><CImage style={{borderRadius: 60}} src={classimg} width={100} height={100} /> <br></br> <div style={{marginLeft:"25px", marginTop:"10px", fontWeight:"bold"}}> 정윤석</div></div>
+                                       <div><CImage style={{borderRadius: 60}} src={classimg} width={100} height={100} /> <br></br> <div style={{marginLeft:"25px", marginTop:"10px", fontWeight:"bold"}}> {results.name}</div></div>
                                     </CCol>
                                     <CCol xs={{ span: 4 }}>
                                        <div><strong>활동평가 
