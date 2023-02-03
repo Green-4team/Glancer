@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
 import axios from 'axios';
-import ClassListItem from './ClassListItem';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
 // function aa(){
 //     var arr = [];
@@ -16,6 +16,17 @@ import ClassListItem from './ClassListItem';
 //     return arr
 // }
 
+// const styles = StyleSheet.create({
+//     namecard: { 
+//       textAlign:"center",
+//       backgroundColor: "skyblue",
+//       height:"400px",
+//       width:"300px",
+//       borderRadius:"10px",
+//       fontSize:"30px",
+//       marginBottom:"50px"
+//      }
+//   });
 
 const ClassList = (props) => {
     const[results, setResults] = useState(null);
@@ -65,16 +76,30 @@ const ClassList = (props) => {
                     
                     {results.map((result) => {
                         return (
-                            <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
+                            <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
                             <div className="clearfix">
                             <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
-                            <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
-                            <CCardBody style={{ marginLeft:'150px'}}>
+                            {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
+                            <div style={{textAlign:"center",
+                                        display:'inline-block',
+                                        verticalAlign:'top',
+                                        backgroundColor: "skyblue",
+                                        height:"200px",
+                                        width:"300px",
+                                        borderRadius:"10px",
+                                        fontSize:"30px",
+                                        marginLeft:"20px",
+                                        marginTop:"20px"
+                                        }}>
+                                    <div style={{borderRadius: 10, display:'inline-block', padding: '70px 0px'}}>{result.name}</div>
+
+                                </div>
+                            <CCardBody style={{ textAlign:'center', marginLeft:'80px',  display:'inline-block', width:'500px'}}>
                             <h2>{result.name}</h2>
                             <br></br>
                             <h3 style={{ marginBottom:"10px"}}> </h3>                            
-                            <div><strong>&nbsp;사용 언어 : &nbsp;
+                            <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;사용 언어 : &nbsp;
                             {
                                 result.tags.map((tag) => {
                                     const { tagName } = tag;
@@ -86,7 +111,7 @@ const ClassList = (props) => {
                             
                             <br></br>
                             &nbsp;
-                            <CCol xs={{ span: 4 }}>
+                            <CCol xs={{ span: 12 }}>
                                         
                                         <h5><strong>평점 : {result.rate}
                                         <div style={{display:"inline",marginLeft:"30px" }} >
@@ -95,6 +120,7 @@ const ClassList = (props) => {
                                         <BsFillStarFill size="20" color="orange"/>
                                         <BsFillStarFill size="20" color="orange"/>
                                         <AiOutlineStar size="23"/></div></strong></h5>
+                                        
                                     </CCol>                             
                             </CCardBody>
                             </Link>

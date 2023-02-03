@@ -61,24 +61,40 @@ const ClassRegisterHeader = (props) => {
     name: '',
     crowd: '',
     region: '',
-    language: '',
+    languages: '',
     startdate: '',
     enddate: '',
     content: ''
   })
 
+  const changeLanguage = (e) => {
+    
+    let languages = (register.languages.length === 0) ? [] : register.languages.split(",");
+    if (e.target.checked) {
+      languages = [...languages, e.target.value];
+    } else {
+      for (var i = 0; i < languages.length; i++) {
+        if (e.target.value === languages[i]) {
+          languages.splice(i, 1);
+        }
+      }
+    }
+    setRegister({...register, "languages": languages.toString()});
+    console.log(register);
+  }
+
 
   const navigate = useNavigate();
   const insertClass = () => {
-    
-    const url = "http://127.0.0.1:8081/class/class/classregister";
+    // 유효성 검사
+    const url = "http://127.0.0.1:8081/class/classRegister";
     axios.post(url, register, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강의가 등록되었습니다.');
             navigate('/class/class');
           })
           .catch(e => {
-            alert('error');
+            alert('빈 항목을 입력해주세요.');
           });
         }
 
@@ -131,14 +147,14 @@ const ClassRegisterHeader = (props) => {
                           <option value={7}>sql</option>
                         </CFormSelect> */}
                         {/* <CFormCheck value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}}> */}
-                        <CFormCheck inline id="inlineCheckbox1" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="maven"/>
-                        <CFormCheck inline id="inlineCheckbox2" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="gradle"/>
-                        <CFormCheck inline id="inlineCheckbox3" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="java"/>
-                        <CFormCheck inline id="inlineCheckbox4" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="python"/>
+                        <CFormCheck inline id="inlineCheckbox1" value={1} onChange={ changeLanguage } label="maven"/>
+                        <CFormCheck inline id="inlineCheckbox2" value={2} onChange={ changeLanguage } label="gradle"/>
+                        <CFormCheck inline id="inlineCheckbox3" value={3} onChange={ changeLanguage } label="java"/>
+                        <CFormCheck inline id="inlineCheckbox4" value={4} onChange={ changeLanguage } label="python"/>
                         <br></br>
-                        <CFormCheck inline id="inlineCheckbox5" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="javascript"/>
-                        <CFormCheck inline id="inlineCheckbox6" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="cpu"/>
-                        <CFormCheck inline id="inlineCheckbox7" value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}} label="sql"/>
+                        <CFormCheck inline id="inlineCheckbox5" value={5} onChange={ changeLanguage } label="javascript"/>
+                        <CFormCheck inline id="inlineCheckbox6" value={6} onChange={ changeLanguage } label="cpu"/>
+                        <CFormCheck inline id="inlineCheckbox7" value={7} onChange={ changeLanguage } label="sql"/>
                         {/* </CFormCheck> */}
                         </div>
                       </CInputGroup>
@@ -168,12 +184,11 @@ const ClassRegisterHeader = (props) => {
                       </CInputGroup>
                                    
                       <div className="d-grid">
-                        <button type='submit' 
+                        <button
                         itemID='submitClass'
                         onClick={
                           (e) => {                         
-                            insertClass(register); 
-                            setRegister({});
+                            insertClass(register);
                             e.preventDefault();
                           } 
                         }>
