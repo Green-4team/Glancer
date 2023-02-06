@@ -34,4 +34,6 @@ public interface AccountService {
 
 	FreeLancerRegisterDetailDto loadFreeLancerInfo(String memberId);
 
+	void updateFreeLancerInfo(String memberId);
+
 }

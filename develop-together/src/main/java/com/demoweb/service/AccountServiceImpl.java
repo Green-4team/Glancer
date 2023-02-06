@@ -119,4 +119,10 @@ public class AccountServiceImpl implements AccountService {
 		return results;
 	}
 
+	@Override
+	public void updateFreeLancerInfo(String memberId) {
+		
+		memberMapper.updateFreeLancerInfo(memberId);
+	}
+
 }

@@ -106,6 +106,7 @@ const ClassDetailHeader = ({ classno }) => {
                                             })
                                         }</strong></div>
                                         <div><strong>< GrMoney />&nbsp;강의 비용 : {results.price}</strong></div>
+                                        <div><strong>< BiTime />&nbsp;총 강의 시간 : {results.classtime}</strong></div>
                                         <div><strong>< BiTime />&nbsp;강의 시작일 : {results.startdate}</strong></div>
                                         <div><strong>< BiTime />&nbsp;강의 종료일 : {results.enddate}</strong></div>
                                     </CCol>
@@ -114,7 +115,9 @@ const ClassDetailHeader = ({ classno }) => {
                                     </CCol>
                                     <br></br>
                                     <hr></hr>
-                                    <CCol xs={{ span: 4 }}>평점 : &nbsp;
+                                    <CCol xs={{ span: 4 }}>
+                                    <h5><strong>평점 : 
+                                        <div style={{display:"inline",marginLeft:"30px" }} >
                                         {results.rate === 0 ? 
                                         <>
                                         <AiOutlineStar size="23"/>
@@ -156,7 +159,7 @@ const ClassDetailHeader = ({ classno }) => {
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
-                                        </>}
+                                        </>}</div></strong></h5>
                                     </CCol>              
                                        
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

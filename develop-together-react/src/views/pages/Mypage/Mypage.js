@@ -23,7 +23,7 @@ const Mypage = (props) => {
         <CCollapse className="navbar-collapse" >
           <CNavbarNav>
             <CNavItem>
-              <CNavLink href="#">
+              <CNavLink >
                프로젝트 지원 현왕 
               </CNavLink>
             </CNavItem>            
