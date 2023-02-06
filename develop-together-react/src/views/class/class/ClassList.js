@@ -115,35 +115,35 @@ const ClassList = (props) => {
                                         
                                         <h5><strong>평점 : 
                                         <div style={{display:"inline",marginLeft:"30px" }} >
-                                        {results.rate === 0 ? 
+                                        {result.rate === 0 ? 
                                         <>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
-                                        </> : results.rate === 1 ? 
+                                        </> : result.rate === 1 ? 
                                         <>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
-                                        </> : results.rate === 2 ? 
+                                        </> : result.rate === 2 ? 
                                         <>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
-                                        </> : results.rate === 3 ?
+                                        </> : result.rate === 3 ?
                                         <>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <AiOutlineStar size="23"/>
                                         <AiOutlineStar size="23"/>
-                                        </> : results.rate === 4 ?
+                                        </> : result.rate === 4 ?
                                         <>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>

@@ -64,6 +64,7 @@ const ClassRegisterHeader = (props) => {
     price: '',
     region: '',
     languages: '',
+    classtime: '',
     startdate: '',
     enddate: '',
     content: ''
@@ -145,16 +146,6 @@ const ClassRegisterHeader = (props) => {
                         <CInputGroupText>사용 언어</CInputGroupText>
                         &nbsp;&nbsp;&nbsp;
                         <div style={{marginTop: 0}}>
-                        {/* <CFormSelect value={register.classno} onChange={(e) => {setRegister({...register, "classno": e.target.value})}}>
-                          <option>사용 언어을 선택해주세요</option>
-                          <option value={1}>maven</option>
-                          <option value={2}>gradle</option>
-                          <option value={3}>java</option>
-                          <option value={4}>python</option>
-                          <option value={5}>javascript</option>
-                          <option value={6}>cpu</option>
-                          <option value={7}>sql</option>
-                        </CFormSelect> */}
                         {/* <CFormCheck value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}}> */}
                         <CFormCheck inline id="inlineCheckbox1" value={1} onChange={ changeLanguage } label="maven"/>
                         <CFormCheck inline id="inlineCheckbox2" value={2} onChange={ changeLanguage } label="gradle"/>
@@ -167,7 +158,13 @@ const ClassRegisterHeader = (props) => {
                         {/* </CFormCheck> */}
                         </div>
                       </CInputGroup>
-                      
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText>총 강의 시간</CInputGroupText>
+                        <CFormInput placeholder="총 강의 시간" 
+                         value={register.classtime} 
+                         onChange={(e) => {setRegister({...register, "classtime": e.target.value})}}
+                        autoComplete="classtime" />
+                      </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 시작일</CInputGroupText>
                         <CFormInput type='date' placeholder="강의 시작일"
