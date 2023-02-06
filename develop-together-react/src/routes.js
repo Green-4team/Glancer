@@ -51,11 +51,13 @@ const TeacherRegisterMain = React.lazy(() => import('./views/class/teacher/teach
 const FreelancerMain = React.lazy(() => import('./views/project/freelancer/FreelancerMain'))
 const ProjectMain = React.lazy(() => import('./views/project/project/ProjectMain'))
 const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer/freelancerdetail/FreelancerDetailMain'))
+const ProjectRegist = React.lazy(() => import('./views/project/freelancer/ProjectRegist'))
+const PersonalHistoryRegist = React.lazy(() => import('./views/project/freelancer/PersonalHistoryRegist'))
 
 //Search
 const SearchMain = React.lazy(() => import('./views/search/SearchMain'))
 
-const ProjectRegist = React.lazy(() => import('./views/project/freelancer/ProjectRegist'))
+
 
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
@@ -108,6 +110,7 @@ const routes = [
   { path: '/project/project', name: 'ProjectMain', element: ProjectMain },
   { path: '/project/freelancer/freelancerdetail', name: 'FreelancerDetailMain', element: FreelancerDetailMain },
   { path: '/project/freelancer/projectregist', name: 'ProjectRegist', element: ProjectRegist },
+  { path: '/project/freelancer/personalhistoryregist', name: 'PersonalHistoryRegist', element: PersonalHistoryRegist },
 
   
   { path: '/class/class', name: 'ClassMain', element: ClassMain },
