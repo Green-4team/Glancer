@@ -40,5 +40,11 @@ public interface FreelancerMapper {
 	void insertProjectHistory(ProjectHistoryDto projectHistoryRegist);
 
 	
+
+	@Select("SELECT projectname, projectstart, projectend, client, company, position, device, os, language, dbms, tool, work, memberid from projecthistory " +
+			"WHERE memberid = #{memberid} ")
+	List<ProjectHistoryDto> findProjectHistory(String memberid);
+
+	
 	
 }

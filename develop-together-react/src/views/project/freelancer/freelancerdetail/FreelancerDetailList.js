@@ -5,6 +5,7 @@ import { CCard, CCardBody, CCol,CBadge,CImage, CCardHeader, CNav, CNavItem, CNav
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const DramaMainMediaBlock = styled.div`
 
@@ -24,32 +25,46 @@ function aa(){
     return arr
 }
 
-function project(){
-    var arr = [];
-    for (var i = 0; i < 5; i++) {
-    arr.push(<CCol xs={12} >
-                <CCard textColor='dark' style={{margin:5}}>
-                    <CCardBody style={{ marginLeft:'0px'}}>
-                    <strong>개발, PL</strong> <br></br>
-                    <h4>프로젝트명 </h4>
-                    <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
-                    <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
-                        { aa() }                                       
-                    </CCardBody>
-                </CCard>
-            </CCol>)
-    }
-    return arr
-}
 
 
 
 
-const FreelancerDetailList = (props) => {
+
+const FreelancerDetailList = ({memberid}) => {
+
+
+//     arr.push(<CCol xs={12} >
+//                 <CCard textColor='dark' style={{margin:5}}>
+//                     <CCardBody style={{ marginLeft:'0px'}}>
+//                     <strong>개발, PL</strong> <br></br>
+//                     <h4>{results.name} </h4>
+//                     <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
+//                     <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
+//                         { aa() }                                       
+//                     </CCardBody>
+//                 </CCard>
+//             </CCol>)
+//     }
+//     return arr
+// }
+
 
     const [activeKey, setActiveKey] = useState(1)
+    const [results, setResults] = useState(null);
 
-    
+    useEffect(() => {
+      const loadFreelancerDetailList = async (e) => {
+        const response = await axios.get(`http://127.0.0.1:8081/project/freelancerDetailList?memberid=${memberid}` )
+        setResults(response.data.results)
+        console.log(response.data.results)
+      }
+      loadFreelancerDetailList();
+    }, [memberid])
+
+    if (!results) {
+      return;
+    }
+
     return (
         <CCol xs={10} style={{margin: "auto"}}>
     <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
@@ -78,7 +93,26 @@ const FreelancerDetailList = (props) => {
             <CCol xs={15}>
               <CCardBody>
                 <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>
-                    { project() }
+                    {results.map((result) => {
+                      return(
+                        <CCol xs={12} >
+                   <CCard textColor='dark' style={{margin:5}}>
+                     <CCardBody style={{ marginLeft:'0px'}}>
+                    <strong>개발, PL</strong> <br></br>
+                    <h4>{result.device} </h4>
+                    <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
+                    <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
+                         { aa() }                                       
+                     </CCardBody>
+                 </CCard>
+             </CCol>
+
+
+
+                      )
+
+
+                    })}
                 </DramaMainMediaBlock>
               </CCardBody>
             </CCol>

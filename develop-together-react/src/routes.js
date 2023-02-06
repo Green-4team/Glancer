@@ -72,7 +72,7 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-//로그인 회원가입
+const Mypage = React.lazy(() => import('./views/pages/Mypage/Mypage'))
 
 const routes = [
   
@@ -141,6 +141,7 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+  { path: '/Mypage', name: 'Mypage', element: Mypage },
 ]
 
 
