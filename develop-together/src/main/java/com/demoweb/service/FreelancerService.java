@@ -17,6 +17,8 @@ public interface FreelancerService {
 	List<FreelancerHeaderDto> findFreelancerMainList();
 
 	void insertprojectHistory(ProjectHistoryDto projectHistoryRegist);
+
+	List<ProjectHistoryDto> findprojectHistoryy(String memberid);
 		
 	
 }

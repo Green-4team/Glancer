@@ -51,6 +51,18 @@ public class FreelancerServiceImpl implements FreelancerService{
 		
 	}
 
+
+
+
+
+	@Override
+	public List<ProjectHistoryDto> findprojectHistoryy(String memberid) {
+
+		List<ProjectHistoryDto> projectHistory = freelancerMapper.findProjectHistory(memberid);
+		
+		return projectHistory;
+	}
+
 	
 	
 

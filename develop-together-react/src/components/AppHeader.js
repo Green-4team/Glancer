@@ -14,6 +14,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 
 import { logo } from 'src/assets/brand/logo'
+import FreelancerDetailList from 'src/views/project/freelancer/freelancerdetail/FreelancerDetailList'
 import styled from 'styled-components'
 import { AppHeaderDropdown } from './header/index'
 import { AppBreadcrumb } from './index'
@@ -77,7 +78,7 @@ const AppHeader = (props) => {
             <div class="dropdown">
               <button class="dropbtn">구인&구직</button>
               <div class="dropdown-content">
-                <CNavLink to='/project/freelancer' component={NavLink}>프리랜서</CNavLink>
+                <Link to='/project/freelancer' loginInfo={loginInfo} component={NavLink}>프리랜서</Link>
                 <CNavLink to='/project/project' component={NavLink}>프로젝트</CNavLink>
               </div>
             </div>

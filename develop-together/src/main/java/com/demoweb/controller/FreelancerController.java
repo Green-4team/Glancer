@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,13 +69,29 @@ public class FreelancerController {
 	@ResponseBody
 	private Object projectHistoryRegist(ProjectHistoryDto projectHistoryRegist) {
 		
-
+		
 		
 		freelancerService.insertprojectHistory(projectHistoryRegist);
 		
 		
 		return "";
 	}
+	
+	@CrossOrigin
+	@GetMapping(path = {"/freelancerDetailList"})
+	@ResponseBody
+	private Object showProjectHistoryList(String memberid) {
+		
+		System.out.println("333");
+		
+		
+		List<ProjectHistoryDto> projectHistory = freelancerService.findprojectHistoryy(memberid);
+		HashMap<String, Object> projectHistoryHashMap = new HashMap<>();
+		projectHistoryHashMap.put("results", projectHistory);
+		
+		return projectHistoryHashMap;
+	}
+	
 	
 	
 	

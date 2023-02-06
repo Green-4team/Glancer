@@ -9,12 +9,12 @@ import FreelancerList from "./FreelancerList";
 
 
 
-const FreelancerMain = (props) => {
+const FreelancerMain = ({loginInfo}) => {
     
     return (
         <div>
 
-            <FreelancerHeader />
+            <FreelancerHeader loginInfo={loginInfo} />
 
             <FreelancerList />
 
