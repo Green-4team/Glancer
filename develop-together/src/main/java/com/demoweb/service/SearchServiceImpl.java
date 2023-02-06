@@ -52,17 +52,4 @@ public abstract class SearchServiceImpl implements SearchService{
 		return SearchList;
 	}
 	
-
-	@Override
-	public SearchDto showSearchHeader() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<SearchDto> findSearchList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

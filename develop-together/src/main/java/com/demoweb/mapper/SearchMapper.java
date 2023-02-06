@@ -31,15 +31,6 @@ public interface SearchMapper {
 			);
 	
 	@Select("SELECT * " +
-			"FROM education " +
-			"WHERE eduname or academy  " +
-			"LIKE '%#{searchKeyword}%' " +
-			"ORDER BY startdate DESC")
-	List<SearchDto> selectEducationBySearch(
-			@Param("searchKeyword")String searchKeyword
-			);
-	
-	@Select("SELECT * " +
 			"FROM teacher a, memberdetail b " +
 			"WHERE a.content or b.name  " +
 			"LIKE '%#{searchKeyword}%' " +
@@ -48,6 +39,15 @@ public interface SearchMapper {
 			@Param("searchKeyword")String searchKeyword
 			);
 	
+	@Select("SELECT * " +
+			"FROM education " +
+			"WHERE eduname or academy  " +
+			"LIKE '%#{searchKeyword}%' " +
+			"ORDER BY startdate DESC")
+	List<SearchDto> selectEducationBySearch(
+			@Param("searchKeyword")String searchKeyword
+			);
+
 
 }
 
