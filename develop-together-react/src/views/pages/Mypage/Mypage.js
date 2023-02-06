@@ -31,7 +31,8 @@ const Mypage = (props) => {
         </CCollapse>
       </CContainer>
     </CNavbar>
-    <FreeLancerProfil loginInfo={loginInfo}/>
+    { loginInfo.membertype === 0 ? <FreeLancerProfil loginInfo={loginInfo}/> :  loginInfo.membertype === 1 ? <div>asdasdsadas</div> : <div>asdsadsad</div>}
+    
   </>
     )
 
