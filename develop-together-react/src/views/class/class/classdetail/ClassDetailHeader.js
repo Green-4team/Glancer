@@ -14,6 +14,7 @@ import { MdSubject } from "react-icons/md"
 import { GrMoney } from "react-icons/gr"
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 // const HoverBlueBlock = styled.div`
 // .hoverBlue:hover {color: #24a0ed;}
@@ -41,7 +42,7 @@ function aa(){
 
 const ClassDetailHeader = ({ classno }) => {
     const [results, setResults] = useState(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const loadClassDetailHeader = async (e) => {
             const url = `http://127.0.0.1:8081/class/class/classdetail?classno=${classno}`;
@@ -55,9 +56,27 @@ const ClassDetailHeader = ({ classno }) => {
         return;
     }
 
+    
+
+    const deleteClass = () => {
+    // 유효성 검사
+    const url = "http://127.0.0.1:8081/class/delete?classno=" + results.classno;
+    axios.get(url)
+          .then( response => {
+            alert('강의가 삭제되었습니다.');
+            navigate('/class/class');
+          })
+          .catch(e => {
+            alert('error');
+          });
+        }
+   
     return (
+         
             <CRow>
                 <CCol xs={10} style={{ margin: "auto" }}>
+
+
                     <CCard className="mb-2">
                         <CCardBody>
                             <CContainer>
@@ -95,15 +114,49 @@ const ClassDetailHeader = ({ classno }) => {
                                     </CCol>
                                     <br></br>
                                     <hr></hr>
-                                    <CCol xs={{ span: 4 }}>
-                                        
-                                        <h5><strong>강의 평점 : {results.rate}
-                                        <div style={{display:"inline",marginLeft:"30px" }} >
+                                    <CCol xs={{ span: 4 }}>평점 : &nbsp;
+                                        {results.rate === 0 ? 
+                                        <>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 1 ? 
+                                        <>
                                         <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill size="20" color="orange"/>
-                                        <BsFillStarFill size="20" color="orange"/>
-                                        <BsFillStarFill size="20" color="orange"/>
-                                        <AiOutlineStar size="23"/></div></strong></h5>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 2 ? 
+                                        <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 3 ?
+                                        <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 4 ?
+                                        <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        </>}
                                     </CCol>              
                                        
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -113,7 +166,14 @@ const ClassDetailHeader = ({ classno }) => {
                                             &nbsp;&nbsp;
                                             <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
                                             &nbsp;&nbsp;
-                                            <CButton color="primary" value='delete' shape="rounded-pill" size="middle">삭제</CButton>
+                                            <CButton color="primary" value='delete' shape="rounded-pill" size="middle"
+                                                onClick={
+                                                    (e) => {
+                                                        deleteClass();
+                                                        e.preventDefault();
+                                                    }
+                                                }>삭제</CButton>
+                                            
                                         </div>
                                     </CCol>
 
@@ -141,9 +201,9 @@ const ClassDetailHeader = ({ classno }) => {
             </CCardBody>
             </CCard>
             </CCol>
-
             </CRow>
-    );
-};
+    )
+               
+}
 
 export default ClassDetailHeader;

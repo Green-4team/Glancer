@@ -113,13 +113,50 @@ const ClassList = (props) => {
                             &nbsp;
                             <CCol xs={{ span: 12 }}>
                                         
-                                        <h5><strong>평점 : {result.rate}
+                                        <h5><strong>평점 : 
                                         <div style={{display:"inline",marginLeft:"30px" }} >
+                                        {results.rate === 0 ? 
+                                        <>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 1 ? 
+                                        <>
                                         <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill size="20" color="orange"/>
-                                        <BsFillStarFill size="20" color="orange"/>
-                                        <BsFillStarFill size="20" color="orange"/>
-                                        <AiOutlineStar size="23"/></div></strong></h5>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 2 ? 
+                                        <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 3 ?
+                                        <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : results.rate === 4 ?
+                                        <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <AiOutlineStar size="23"/>
+                                        </> : <>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        <BsFillStarFill  size="20" color="orange"/>
+                                        </>}</div></strong></h5>
                                         
                                     </CCol>                             
                             </CCardBody>

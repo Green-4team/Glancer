@@ -26,6 +26,7 @@ import {
   CFormLabel,
   CInputGroup,
   CInputGroupText,
+  CFormTextarea,
   CRow,
 } from '@coreui/react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
@@ -60,6 +61,7 @@ const ClassRegisterHeader = (props) => {
     
     name: '',
     crowd: '',
+    price: '',
     region: '',
     languages: '',
     startdate: '',
@@ -119,10 +121,17 @@ const ClassRegisterHeader = (props) => {
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>정원</CInputGroupText>
-                        <CFormInput placeholder="정원을 입력해주세요." 
+                        <CFormInput placeholder="숫자로만 입력해주세요." 
                          value={register.crowd} 
                          onChange={(e) => {setRegister({...register, "crowd": e.target.value})}}
                         autoComplete="crowd" />
+                      </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText>강의 비용</CInputGroupText>
+                        <CFormInput placeholder="숫자로만 입력해주세요." 
+                         value={register.price} 
+                         onChange={(e) => {setRegister({...register, "price": e.target.value})}}
+                        autoComplete="price" />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>지역</CInputGroupText>
@@ -175,17 +184,17 @@ const ClassRegisterHeader = (props) => {
                             autoComplete="enddate"/>
                       </CInputGroup>
 
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>강의 소개</CInputGroupText>
-                        <CFormInput placeholder="소개 내용을 입력해주세요." 
-                         value={register.content} 
-                         onChange={(e) => {setRegister({...register, "content": e.target.value})}}
-                        autoComplete="content" />
-                      </CInputGroup>
+                      <CFormLabel className="col-sm-2 col-form-label" >상세 소개</CFormLabel>
+                    <CFormTextarea 
+                      value={register.content}
+                      onChange={(e) => {setRegister({...register, "content": e.target.value})}}
+                      rows={5}
+                      text="강의 내용을 상세하게 적어주시면 수강생들에게 도움이 됩니다."
+                ></CFormTextarea>
+                <br></br>
                                    
                       <div className="d-grid">
                         <button
-                        itemID='submitClass'
                         onClick={
                           (e) => {                         
                             insertClass(register);
