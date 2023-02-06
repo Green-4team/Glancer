@@ -1,6 +1,7 @@
 import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -26,7 +27,7 @@ const FreeLancerProfil = ({loginInfo}) => {
         <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<button>프로필 수정</button>
+            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/FreeEdit" state={{FreeLancerInfo:FreeLancerInfo}}>프로필 수정</Link>
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">              

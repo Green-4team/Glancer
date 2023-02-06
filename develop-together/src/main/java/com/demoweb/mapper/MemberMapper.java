@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
@@ -75,6 +76,12 @@ public interface MemberMapper {
 
 	@Select("select memberId, name, birthday, email, phone, occupation, workstate, startdate from memberdetail where memberid = #{memberId} " )
 	FreeLancerRegisterDetailDto loadFreeLancerInfo(String memberId);
+
+
+	@Update("update memberdetail " + 
+			"set name = #{ name } , birthday = #{birthday} , email = #{email} , phone = #{phone} , occupation = #{occupation} , workstate = #{workstate} , startdate = #{startdate}  " +
+			"where memberid = #{memderId} " )
+	void updateFreeLancerInfo(String memberId);
 	
 	
 

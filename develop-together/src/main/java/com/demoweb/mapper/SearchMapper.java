@@ -12,32 +12,42 @@ import com.demoweb.dto.SearchDto;
 public interface SearchMapper {
 	
 	
-	@Select("SELECT memberid " +
+	@Select("SELECT * " +
 			"FROM freelancer " +
-			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}' " +
+			"WHERE title " +
 			"LIKE '%#{searchKeyword}%' " +
-			"ORDER BY boardno DESC")
-	List<SearchDto> selectFreelancerResultBySearch(
-			@Param("field")String field,
-			@Param("tech")String tech,
-			@Param("local")String local,
-			@Param("skill")String skill,
+			"ORDER BY rate DESC")
+	List<SearchDto> selectFreelancerBySearch(
 			@Param("searchKeyword")String searchKeyword
 			);
 	
-	@Select("SELECT projectno " +
+	@Select("SELECT * " +
 			"FROM project " +
-			"WHERE field='#{field}', tech='#{tech}', local='#{local}', skill='#{skill}' " +
+			"WHERE title " +
 			"LIKE '%#{searchKeyword}%' " +
-			"ORDER BY boardno DESC")
-	List<SearchDto> selectProjectResultBySearch(
-			@Param("field")String field,
-			@Param("tech")String tech,
-			@Param("local")String local,
-			@Param("skill")String skill,
+			"ORDER BY rate DESC")
+	List<SearchDto> selectProjectBySearch(
 			@Param("searchKeyword")String searchKeyword
 			);
 	
+	@Select("SELECT * " +
+			"FROM teacher a, memberdetail b " +
+			"WHERE a.content or b.name  " +
+			"LIKE '%#{searchKeyword}%' " +
+			"ORDER BY rate DESC")
+	List<SearchDto> selectTeacherBySearch(
+			@Param("searchKeyword")String searchKeyword
+			);
+	
+	@Select("SELECT * " +
+			"FROM education " +
+			"WHERE eduname or academy  " +
+			"LIKE '%#{searchKeyword}%' " +
+			"ORDER BY startdate DESC")
+	List<SearchDto> selectEducationBySearch(
+			@Param("searchKeyword")String searchKeyword
+			);
+
 
 }
 

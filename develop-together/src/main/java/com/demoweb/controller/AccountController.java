@@ -153,7 +153,19 @@ public class AccountController {
 		return response;
 	}
 	
-	
+	@CrossOrigin
+	@PostMapping(path = {"/freelancerUpdate"})
+	@ResponseBody
+	public Object FreeLancerUpdate(String memberId, HttpServletRequest req) {
+		
+		ServletContext application = req.getServletContext();
+		
+		
+		accountService.updateFreeLancerInfo(memberId);
+		
+		
+		return "";
+	}
 		
 }
 

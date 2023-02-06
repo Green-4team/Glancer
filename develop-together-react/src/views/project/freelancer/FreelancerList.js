@@ -35,29 +35,29 @@ const FreelancerList = (props) => {
 
     return (
             <>
-                <CCol xs={10} style={{margin: "auto"}}>
-                    {results.map((result) => {
-                        return (
-                            <CCard className='mb-3 border-gray' textColor='dark'  style={{margin:7}}>
-                            <CCardBody>
-                                <div className="clearfix">
-                                    <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid}} style={{textDecoration: "none", color: "black"}}>
-                                    <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
-                                    <CCardBody style={{ marginLeft:'150px'}}>
-                                    <h4>{result.name} | {result.occupation} </h4>
-                                    <h2 style={{ marginBottom:"10px"}}>{result.title}</h2>                            
-                                        { aa() } 
-                                    
-                                    <br></br><br></br>
-                                    <h5 style={{marginTop:"-10px"}}>수행프로젝트 : 헬로자바, 헬로자바, 헬로자바</h5>                             
-                                    </CCardBody>
-                                    </Link>
-                                </div>
-                            </CCardBody>
-                        </CCard>                       
-                        )
-                    })}
-                </CCol>
+            <CCol xs={10} style={{margin: "auto"}}>
+                {results.map((result) => {
+                    return (
+                        <CCard className='mb-3 border-gray' textColor='dark'  style={{margin:7}}>
+                        <CCardBody>
+                            <div className="clearfix">
+                                <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid}} style={{textDecoration: "none", color: "black"}}>
+                                <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
+                                <CCardBody style={{ marginLeft:'150px'}}>
+                                <h4>{result.name} | {result.occupation} </h4>
+                                <h2 style={{ marginBottom:"10px"}}>{result.title}</h2>                            
+                                    { aa() } 
+                                
+                                <br></br><br></br>
+                                <h5 style={{marginTop:"-10px"}}>수행프로젝트 : 헬로자바, 헬로자바, 헬로자바</h5>                             
+                                </CCardBody>
+                                </Link>
+                            </div>
+                        </CCardBody>
+                    </CCard>                       
+                    )
+                })}
+            </CCol>
             </>
         );
 
