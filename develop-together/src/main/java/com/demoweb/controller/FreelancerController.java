@@ -84,10 +84,12 @@ public class FreelancerController {
 		
 		System.out.println("333");
 		
+		
 		List<ProjectHistoryDto> projectHistory = freelancerService.findprojectHistoryy(memberid);
+		HashMap<String, Object> projectHistoryHashMap = new HashMap<>();
+		projectHistoryHashMap.put("results", projectHistory);
 		
-		
-		return projectHistory;
+		return projectHistoryHashMap;
 	}
 	
 	
