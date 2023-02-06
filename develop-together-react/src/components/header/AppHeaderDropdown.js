@@ -23,6 +23,7 @@ import {
   cilAlignLeft,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
+import { Link } from 'react-router-dom'
 
 const AppHeaderDropdown = ({onLogout, loginInfo}) => {
  
@@ -36,23 +37,22 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownHeader className="bg-light fw-semibold py-2">{loginInfo.memberId}님 환영합니다</CDropdownHeader>
         <CDropdownItem href="" >
-          <CButton onClick={ (e) => {     
+          <button onClick={ (e) => {     
             
             onLogout();
             e.preventDefault();} } 
-            style={{direction: 'none'}} >
+            style={{textDecoration: 'none', border:'none', backgroundColor:'white',marginLeft:'-7px', fontSize:"15px"}} >
         <CIcon icon={cilLockLocked} className="me-2" />
           Logout
-          </CButton>          
+          </button>          
         </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilEnvelopeOpen} className="me-2" />
-          Messages
-          <CBadge color="success" className="ms-2">
-            42
-          </CBadge>
+        <CDropdownItem>
+          <Link to="/Mypage" state={{loginInfo: loginInfo}}>
+          <CIcon icon={cilUser} className="me-2" />
+          My Page
+          </Link>         
         </CDropdownItem>
-        <CDropdownItem href="#">
+        {/* <CDropdownItem href="#">
           <CIcon icon={cilTask} className="me-2" />
           Tasks
           <CBadge color="danger" className="ms-2">
@@ -93,7 +93,7 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
         <CDropdownItem href="#">
           
           Lock Account
-        </CDropdownItem>
+        </CDropdownItem> */}
       </CDropdownMenu>
     </CDropdown>
   )

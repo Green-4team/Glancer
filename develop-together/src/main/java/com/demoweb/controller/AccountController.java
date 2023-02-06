@@ -138,6 +138,22 @@ public class AccountController {
 		
 		return companyregisters;
 	}
+	
+	
+	@CrossOrigin
+	@GetMapping(path = {"/loadFreelancerInfo"})
+	@ResponseBody
+	public HashMap<String, Object> loadFreeLancerInfo(String memberId) {
+		
+		FreeLancerRegisterDetailDto results = accountService.loadFreeLancerInfo(memberId);
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("results", results);
+		
+		return response;
+	}
+	
+	
 		
 }
 

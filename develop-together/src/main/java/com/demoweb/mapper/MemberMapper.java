@@ -26,8 +26,8 @@ public interface MemberMapper {
 //	MemberDto selectMemberByIdAndPasswd(@Param("memberId")String memberId, @Param("passwd") String passwd);
 
 	
-	@Insert("INSERT INTO member (memberid, password) " +
-			"VALUES ( #{ memberId }, #{ password  }) ")
+	@Insert("INSERT INTO member (memberid, password, membertype ) " +
+			"VALUES ( #{ memberId }, #{ password  }, #{ membertype } ) ")
 	void insertFreeLancerInfo(AllMemberRegisterDto freelancerregister);
 
 	
@@ -37,8 +37,8 @@ public interface MemberMapper {
 
 
 	
-	@Insert("INSERT INTO member (memberid, password ) " +
-			"VALUES ( #{ memberId }, #{ password  } ) ")
+	@Insert("INSERT INTO member (memberid, password , membertype ) " +
+			"VALUES ( #{ memberId }, #{ password  } , #{ membertype } ) ")
 	void insertacademyInfo(AllMemberRegisterDto academyregister);
 
 
@@ -55,8 +55,8 @@ public interface MemberMapper {
 	@Select("select count(*) from member where memberId = #{ memberId }" )
 	int selectCountByMemberId(String memberId);
 
-	@Insert("INSERT INTO member (memberid, password ) " +
-			"VALUES ( #{ memberId }, #{ password  } ) ")
+	@Insert("INSERT INTO member (memberid, password, membertype ) " +
+			"VALUES ( #{ memberId }, #{ password  } ,#{membertype} ) ")
 	void insertCompanyInfo(AllMemberRegisterDto companyregister);
 
 	@Insert("insert into company (memberid, name, mname, mpostion, mphone, memail, address, companytype ) " + 
@@ -69,8 +69,12 @@ public interface MemberMapper {
 	void insertCompanyMoreDetailInfo(CompanyDetailDto companyMoreDetail);
 
 
-	@Select("select memberid, password from member where memberid = #{ memberId } and password = #{ password } " )
+	@Select("select memberid, password, membertype from member where memberid = #{ memberId } and password = #{ password } " )
 	AllMemberRegisterDto selectCustomerByIdAndPasswd(@Param("memberId") String memberId, @Param("password") String password);
+
+
+	@Select("select memberId, name, birthday, email, phone, occupation, workstate, startdate from memberdetail where memberid = #{memberId} " )
+	FreeLancerRegisterDetailDto loadFreeLancerInfo(String memberId);
 	
 	
 

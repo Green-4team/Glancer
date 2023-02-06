@@ -23,8 +23,8 @@ const Login = ({onLogin}) => {
 
   const [loginInfo, setLoginInfo] = useState({
     memberId: '',
-    password: '',       
-
+    password: '',
+    membertype: '',
   });
   const login = () => {
     
@@ -47,7 +47,7 @@ const Login = ({onLogin}) => {
               alert('error');
               return;
             } else {
-              onLogin(loginInfo);
+              onLogin(response.data);
               alert('로그인 완료');
               navigate('/project/project');
             }
@@ -96,7 +96,7 @@ const Login = ({onLogin}) => {
                         <CButton color="primary"
                         onClick={
                           (e) => {   
-                            login(loginInfo);           
+                            login(loginInfo);
                            
                             e.preventDefault();
                         } 

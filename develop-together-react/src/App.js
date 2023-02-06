@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import './scss/style.scss'
+import Mypage from './views/pages/Mypage/Mypage'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -49,7 +50,7 @@ class App extends Component {
             <Route exact path="/ChooseRegisterType" name="Register Type Page" element={<ChooseRegisterType />} />
             <Route exact path="/RegisterFreeLancer" name="RegisterFreeLancer Page" element={<RegisterFreeLancer />} />
             <Route exact path="/RegisterCompany" name="RegisterCompany Page" element={<RegisterCompany />} />
-            <Route exact path="/RegisterAcademy" name="RegisterAcademy Page" element={<RegisterAcademy />} />
+            <Route exact path="/RegisterAcademy" name="RegisterAcademy Page" element={<RegisterAcademy />} />            
             <Route exact path="/404" name="Page 404" element={<Page404 />} />
             <Route exact path="/500" name="Page 500" element={<Page500 />} />
             <Route path="*" name="Home" element={<DefaultLayout loginInfo={this.state.loginInfo} onLogout={this.setLogout} />} />

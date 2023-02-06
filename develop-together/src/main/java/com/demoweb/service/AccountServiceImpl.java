@@ -111,4 +111,12 @@ public class AccountServiceImpl implements AccountService {
 		return login;
 	}
 
+	@Override
+	public FreeLancerRegisterDetailDto loadFreeLancerInfo(String memberId) {
+		
+		FreeLancerRegisterDetailDto results = memberMapper.loadFreeLancerInfo(memberId);
+		
+		return results;
+	}
+
 }
