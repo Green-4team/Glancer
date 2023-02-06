@@ -14,8 +14,7 @@ public class ProjectHistoryDto {
 	private String client;
 	private String company;
 	private String position;
-	private String device;
-	private String os;
+	private String datatransmission;
 	private String language;
 	private String dbms;
 	private String tool;

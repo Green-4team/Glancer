@@ -62,7 +62,14 @@ public class ClassController {
 		
 		ClassDto results = classService.findClassDetail(classno);
 		List<ClassTagDto> tags = classService.findClassTagByClassNo(results.getClassno(), "class");
+		
 		results.setTags(tags);
+		
+//		for (ClassDto result : results) {
+//			List<ClassTagDto> tags = classService.findClassTag(result.getClassno());
+//			System.out.println(tags);
+//			result.setTags(tags);
+//		}
 		
 		HashMap<String, Object> classDetail = new HashMap<>();
 		classDetail.put("results", results);
@@ -88,13 +95,14 @@ public class ClassController {
 		return "register/write";
 	}
 
-	
-	@GetMapping(path = {"/{classno}/delete" })
-	public String deleteClass(@PathVariable("classno") int classno, Model model) {
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/delete" })
+	public String deleteClass(int classno) {
 		
 		classService.deleteClass(classno);
 		
-		return "redirect:/class/class";
+		return "success";
 		
 	}
 }

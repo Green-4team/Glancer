@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.demoweb.dto.BoardTagDto;
 import com.demoweb.dto.ClassDto;
@@ -17,12 +18,13 @@ import com.demoweb.dto.ClassTagDto;
 public interface ClassMapper {
 
 	@Select("SELECT * FROM class " +
+			"WHERE deleted = 0 " +
 			"ORDER BY classno DESC ")
 	List<ClassDto> selectAllClassList();
 
 	@Select("SELECT classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
 			"FROM class " +
-			"WHERE classno = #{ classno } AND deleted = '0' ")
+			"WHERE classno = #{ classno } AND deleted = 0 ")
 	ClassDto selectClassDetail(int classno);
 
 	@Select("SELECT ct.classTagNo, ct.tagNo, ct.classno, ct.classType, t.tagName " +
@@ -38,13 +40,14 @@ public interface ClassMapper {
 	List<ClassTagDto> selectClassTag(int classno);
 	
 	
-	@Delete("DELETE from class " +
-			"WHERE classno = #{classno} ")
+	@Update("UPDATE class " +
+			"SET deleted = 1 " +
+			"WHERE classno = #{classno} " )
 	void deleteClass(int classno);
 
 	
-	@Insert("INSERT INTO class (name, crowd, region, startdate, enddate, content) " +
-			"VALUES (#{name}, #{crowd}, #{region}, #{startdate}, #{enddate}, #{content}) ")
+	@Insert("INSERT INTO class (name, crowd, price, region, startdate, enddate, content) " +
+			"VALUES (#{name}, #{crowd}, #{price}, #{region}, #{startdate}, #{enddate}, #{content}) ")
 	@Options(useGeneratedKeys = true, keyColumn = "classno", keyProperty = "classno")
 	void insertClass(ClassDto register);
 

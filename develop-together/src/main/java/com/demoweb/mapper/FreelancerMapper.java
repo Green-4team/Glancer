@@ -35,14 +35,15 @@ public interface FreelancerMapper {
 
 
 	
-	@Insert("insert into projecthistory ( projectname, projectstart, projectend, client, company, position, device, os, language, dbms, tool, work, memberid ) " +
-			"values ( #{ projectname } , #{ projectstart }, #{ projectend } , #{ client } ,#{ company } ,#{ position } , #{ device }, #{ os }, #{ language }, #{ dbms }, #{ tool }, #{ work }, #{ memberid }) ")
+	@Insert("insert into projecthistory ( projectname, projectstart, projectend, client, company, position, language, dbms, tool, work, datatransmission, memberid ) " +
+			"values ( #{ projectname } , #{ projectstart }, #{ projectend } , #{ client } ,#{ company } ,#{ position }, #{ language }, #{ dbms }, #{ tool }, #{ work }, #{datatransmission}, #{ memberid }) ")
 	void insertProjectHistory(ProjectHistoryDto projectHistoryRegist);
 
 	
 
-	@Select("SELECT projectname, projectstart, projectend, client, company, position, device, os, language, dbms, tool, work, memberid from projecthistory " +
-			"WHERE memberid = #{memberid} ")
+	@Select("SELECT projectname, projectstart, projectend, client, company, position, language, dbms, tool, work, datatransmission, memberid from projecthistory " +
+			"WHERE memberid = #{memberid} " +
+			"ORDER BY projecthistoryno DESC ")
 	List<ProjectHistoryDto> findProjectHistory(String memberid);
 
 	

@@ -26,6 +26,7 @@ import {
   CFormLabel,
   CInputGroup,
   CInputGroupText,
+  CFormTextarea,
   CRow,
 } from '@coreui/react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
@@ -60,8 +61,10 @@ const ClassRegisterHeader = (props) => {
     
     name: '',
     crowd: '',
+    price: '',
     region: '',
     languages: '',
+    classtime: '',
     startdate: '',
     enddate: '',
     content: ''
@@ -119,10 +122,17 @@ const ClassRegisterHeader = (props) => {
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>정원</CInputGroupText>
-                        <CFormInput placeholder="정원을 입력해주세요." 
+                        <CFormInput placeholder="숫자로만 입력해주세요." 
                          value={register.crowd} 
                          onChange={(e) => {setRegister({...register, "crowd": e.target.value})}}
                         autoComplete="crowd" />
+                      </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText>강의 비용</CInputGroupText>
+                        <CFormInput placeholder="숫자로만 입력해주세요." 
+                         value={register.price} 
+                         onChange={(e) => {setRegister({...register, "price": e.target.value})}}
+                        autoComplete="price" />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>지역</CInputGroupText>
@@ -136,16 +146,6 @@ const ClassRegisterHeader = (props) => {
                         <CInputGroupText>사용 언어</CInputGroupText>
                         &nbsp;&nbsp;&nbsp;
                         <div style={{marginTop: 0}}>
-                        {/* <CFormSelect value={register.classno} onChange={(e) => {setRegister({...register, "classno": e.target.value})}}>
-                          <option>사용 언어을 선택해주세요</option>
-                          <option value={1}>maven</option>
-                          <option value={2}>gradle</option>
-                          <option value={3}>java</option>
-                          <option value={4}>python</option>
-                          <option value={5}>javascript</option>
-                          <option value={6}>cpu</option>
-                          <option value={7}>sql</option>
-                        </CFormSelect> */}
                         {/* <CFormCheck value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}}> */}
                         <CFormCheck inline id="inlineCheckbox1" value={1} onChange={ changeLanguage } label="maven"/>
                         <CFormCheck inline id="inlineCheckbox2" value={2} onChange={ changeLanguage } label="gradle"/>
@@ -158,7 +158,13 @@ const ClassRegisterHeader = (props) => {
                         {/* </CFormCheck> */}
                         </div>
                       </CInputGroup>
-                      
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText>총 강의 시간</CInputGroupText>
+                        <CFormInput placeholder="총 강의 시간" 
+                         value={register.classtime} 
+                         onChange={(e) => {setRegister({...register, "classtime": e.target.value})}}
+                        autoComplete="classtime" />
+                      </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 시작일</CInputGroupText>
                         <CFormInput type='date' placeholder="강의 시작일"
@@ -175,17 +181,17 @@ const ClassRegisterHeader = (props) => {
                             autoComplete="enddate"/>
                       </CInputGroup>
 
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>강의 소개</CInputGroupText>
-                        <CFormInput placeholder="소개 내용을 입력해주세요." 
-                         value={register.content} 
-                         onChange={(e) => {setRegister({...register, "content": e.target.value})}}
-                        autoComplete="content" />
-                      </CInputGroup>
+                      <CFormLabel className="col-sm-2 col-form-label" >상세 소개</CFormLabel>
+                    <CFormTextarea 
+                      value={register.content}
+                      onChange={(e) => {setRegister({...register, "content": e.target.value})}}
+                      rows={5}
+                      text="강의 내용을 상세하게 적어주시면 수강생들에게 도움이 됩니다."
+                ></CFormTextarea>
+                <br></br>
                                    
                       <div className="d-grid">
                         <button
-                        itemID='submitClass'
                         onClick={
                           (e) => {                         
                             insertClass(register);
