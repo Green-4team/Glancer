@@ -98,11 +98,14 @@ const FreelancerDetailList = ({memberid}) => {
                         <CCol xs={12} >
                    <CCard textColor='dark' style={{margin:5}}>
                      <CCardBody style={{ marginLeft:'0px'}}>
-                    <strong>개발, PL</strong> <br></br>
-                    <h4>{result.device} </h4>
-                    <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
-                    <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
-                         { aa() }                                       
+                        <strong>{result.position}</strong> <br></br>
+                        <h4>{result.projectname} </h4>
+                        <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
+                        <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
+                        <CBadge style={{margin:"2px"}}color="success">{result.language}</CBadge>
+                        <CBadge style={{margin:"2px"}}color="danger">{result.dbms}</CBadge>
+                        <CBadge style={{margin:"2px"}}color="warning">{result.tool}</CBadge>
+                        <CBadge style={{margin:"2px"}}color="info">{result.datatransmission}</CBadge>
                      </CCardBody>
                  </CCard>
              </CCol>

@@ -21,7 +21,7 @@ const FreelancerHeader = ({loginInfo}) => {
                                         <div className="p-1"> <h2>프로젝트를 등록하면</h2></div>
                                     </CCol>
                                     <CCol xs={{ span: 5 }}>
-                                    <Link to="/project/freelancer/ProjectRegist" loginInfo={loginInfo} state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                    <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"85px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
                                     </Link>
                                     </CCol>                          

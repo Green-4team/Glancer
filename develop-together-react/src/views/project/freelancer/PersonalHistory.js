@@ -121,6 +121,11 @@ const insertProjectHistoryRegist = () => {
                     <CFormLabel className="col-sm-2 col-form-label" >개발환경</CFormLabel>
                     
                     <CCol sm={2}>
+                      <CFormInput placeholder="OS" 
+                                  value={projectRegist.os}
+                                  onChange={(e) => {setProjectRegist({...projectRegist, "os": e.target.value})}}/>
+                    </CCol>
+                    <CCol sm={2}>
                       <CFormInput placeholder="언어"
                                   value={projectRegist.language}
                                   onChange={(e) => {setProjectRegist({...projectRegist, "language": e.target.value})}}/>
@@ -130,13 +135,6 @@ const insertProjectHistoryRegist = () => {
                                   value={projectRegist.dbms}
                                   onChange={(e) => {setProjectRegist({...projectRegist, "dbms": e.target.value})}}/>
                     </CCol>
-                    <CCol sm={2}>
-                      <CFormInput placeholder="TOOL" 
-                                  value={projectRegist.tool}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "tool": e.target.value})}}/>
-                    </CCol>
-                   
-                   
                     <CCol sm={2}>
                       <CFormInput placeholder="전송"
                                   value={projectRegist.datatransmission}
