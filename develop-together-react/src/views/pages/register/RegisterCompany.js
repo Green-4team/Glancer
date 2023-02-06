@@ -64,6 +64,7 @@ const RegisterCompany = (props) => {
     annualsales: '',
     crn: '',
     brFile: null,
+    membertype: '1',
   });
   const insertCompanyInfo = () => {
   

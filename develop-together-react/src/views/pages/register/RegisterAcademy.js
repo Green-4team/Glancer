@@ -50,6 +50,7 @@ const [academyInfo, setAcademyInfo] = useState({
   memail: '',
   address:'',
   companytype: '1',
+  membertype: '2',
 });
 const insertAcademyInfo = () => {
 

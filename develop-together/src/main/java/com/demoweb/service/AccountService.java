@@ -32,4 +32,6 @@ public interface AccountService {
 
 	AllMemberRegisterDto findCustomerByIdAndPasswd(String memberId, String password);
 
+	FreeLancerRegisterDetailDto loadFreeLancerInfo(String memberId);
+
 }
