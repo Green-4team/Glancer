@@ -65,6 +65,8 @@ public class ClassController {
 		
 		results.setTags(tags);
 		
+//		ClassDto results = classService.findClass();
+//		
 //		for (ClassDto result : results) {
 //			List<ClassTagDto> tags = classService.findClassTag(result.getClassno());
 //			System.out.println(tags);
@@ -89,10 +91,28 @@ public class ClassController {
 		return "success";
 	}
 	
+
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/classEdit"})
+	private String editClass(ClassDto register, String languages) {
+		String[] languages2 = languages.split(",");
+//		System.out.println(register);
+		classService.editClass(register, languages2);
+		
+		return "success";
+	}
+	
 	@GetMapping(path = {"/write"})
 	public String showRegisterClassForm() {
 		
 		return "register/write";
+	}
+	
+	@GetMapping(path = {"/edit"})
+	public String showEditClassForm() {
+		
+		return "register/edit";
 	}
 
 	@CrossOrigin
