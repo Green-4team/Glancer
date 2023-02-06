@@ -14,27 +14,44 @@ import com.demoweb.mapper.FreelancerMapper;
 import com.demoweb.mapper.SearchMapper;
 
 @Service("searchService")
-public class SearchServiceImpl implements SearchService{
+public abstract class SearchServiceImpl implements SearchService{
 
 	@Autowired
 	@Qualifier("searchMapper")
 	private SearchMapper searchMapper;
 	
 	@Override
-	public List<SearchDto> selectFreelancerResultBySearch(String field, String tech, String local, String skill, String searchKeyword) {
+	public List<SearchDto> selectFreelancerBySearch(String searchKeyword) {
 
-		List<SearchDto> SearchList = searchMapper.selectFreelancerResultBySearch(field, tech, local, skill, searchKeyword);
+		List<SearchDto> SearchList = searchMapper.selectFreelancerBySearch(searchKeyword);
 		
 		return SearchList;
 	}
 	
 	@Override
-	public List<SearchDto> selectProjectResultBySearch(String field, String tech, String local, String skill, String searchKeyword) {
+	public List<SearchDto> selectProjectBySearch(String searchKeyword) {
 
-		List<SearchDto> SearchList = searchMapper.selectProjectResultBySearch(field, tech, local, skill, searchKeyword);
+		List<SearchDto> SearchList = searchMapper.selectProjectBySearch(searchKeyword);
 		
 		return SearchList;
 	}
+	
+	@Override
+	public List<SearchDto> selectEducationBySearch(String searchKeyword) {
+
+		List<SearchDto> SearchList = searchMapper.selectEducationBySearch(searchKeyword);
+		
+		return SearchList;
+	}
+	
+	@Override
+	public List<SearchDto> selectTeacherBySearch(String searchKeyword) {
+
+		List<SearchDto> SearchList = searchMapper.selectTeacherBySearch(searchKeyword);
+		
+		return SearchList;
+	}
+	
 
 	@Override
 	public SearchDto showSearchHeader() {
