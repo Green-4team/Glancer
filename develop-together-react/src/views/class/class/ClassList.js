@@ -156,7 +156,7 @@ const ClassList = (props) => {
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
-                                        </>}</div></strong></h5>
+                                        </>}&nbsp;&nbsp;({result.rate}점)</div></strong></h5>
                                         
                                     </CCol>                             
                             </CCardBody>

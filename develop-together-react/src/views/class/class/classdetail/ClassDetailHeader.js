@@ -12,9 +12,11 @@ import { BsFillPersonFill } from "react-icons/bs"
 import { BiBuildingHouse } from "react-icons/bi"
 import { MdSubject } from "react-icons/md"
 import { GrMoney } from "react-icons/gr"
+import { RxCalendar } from "react-icons/rx"
 import axios from 'axios';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ClassEdit from '../classregister/ClassEdit';
 
 // const HoverBlueBlock = styled.div`
 // .hoverBlue:hover {color: #24a0ed;}
@@ -41,6 +43,7 @@ function aa(){
 }
 
 const ClassDetailHeader = ({ classno }) => {
+
     const [results, setResults] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
@@ -65,6 +68,18 @@ const ClassDetailHeader = ({ classno }) => {
           .then( response => {
             alert('강의가 삭제되었습니다.');
             navigate('/class/class');
+          })
+          .catch(e => {
+            alert('error');
+          });
+        }
+
+    const editClass = () => {
+    // 유효성 검사
+    const url = "http://127.0.0.1:8081/class/classEdit";
+    axios.post(url, results, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
+          .then( response => {
+            navigate('/class/classEdit');
           })
           .catch(e => {
             alert('error');
@@ -96,19 +111,14 @@ const ClassDetailHeader = ({ classno }) => {
                                             results.tags.map((tag) => {
                                             const { tagName } = tag;
                                             return  (
-                                                // <CNavLink to='/dashboard' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
-                                                //     <HoverBlueBlock>
-                                                //         <div class="hoverBlue">#{ tagName }</div>
-                                                //     </HoverBlueBlock>
-                                                // </CNavLink>
                                                     <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
                                                 )
                                             })
                                         }</strong></div>
                                         <div><strong>< GrMoney />&nbsp;강의 비용 : {results.price}</strong></div>
                                         <div><strong>< BiTime />&nbsp;총 강의 시간 : {results.classtime}</strong></div>
-                                        <div><strong>< BiTime />&nbsp;강의 시작일 : {results.startdate}</strong></div>
-                                        <div><strong>< BiTime />&nbsp;강의 종료일 : {results.enddate}</strong></div>
+                                        <div><strong>< RxCalendar />&nbsp;강의 시작일 : {results.startdate}</strong></div>
+                                        <div><strong>< RxCalendar />&nbsp;강의 종료일 : {results.enddate}</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
@@ -159,7 +169,7 @@ const ClassDetailHeader = ({ classno }) => {
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
                                         <BsFillStarFill  size="20" color="orange"/>
-                                        </>}</div></strong></h5>
+                                        </>}&nbsp;&nbsp;({results.rate}점)</div></strong></h5>
                                     </CCol>              
                                        
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -167,7 +177,9 @@ const ClassDetailHeader = ({ classno }) => {
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}> 
                                             <CButton color="primary" value='submit' shape="rounded-pill" size="middle">강의 신청</CButton>
                                             &nbsp;&nbsp;
-                                            <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                                            <Link to="/class/class/classEdit">
+                                                <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
+                                            </Link>
                                             &nbsp;&nbsp;
                                             <CButton color="primary" value='delete' shape="rounded-pill" size="middle"
                                                 onClick={

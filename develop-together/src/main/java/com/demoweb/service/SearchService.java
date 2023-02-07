@@ -8,15 +8,12 @@ import com.demoweb.dto.SearchDto;
 
 public interface SearchService {
 
-	SearchDto showSearchHeader();
-	
-	List<SearchDto> selectFreelancerResultBySearch(String field, String tech, String local, String skill,
-			String SearchKeyword);
+	List<SearchDto> selectFreelancerBySearch(String searchKeyword);
 
-	List<SearchDto> selectProjectResultBySearch(String field, String tech, String local, String skill,
-			String searchKeyword);
+	List<SearchDto> selectProjectBySearch(String searchKeyword);
 
-	List<SearchDto> findSearchList();
-		
+	List<SearchDto> selectTeacherBySearch(String searchKeyword);
 	
+	List<SearchDto> selectEducationBySearch(String searchKeyword);
+
 }
