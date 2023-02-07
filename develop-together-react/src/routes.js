@@ -74,6 +74,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const Mypage = React.lazy(() => import('./views/pages/Mypage/Mypage'))
 const FreeEdit = React.lazy(() => import('./views/pages/Mypage/edit/FreeEdit'))
+const CompanyEdit = React.lazy(() => import('./views/pages/Mypage/edit/CompanyEdit'))
 
 const routes = [
   
@@ -144,6 +145,7 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/Mypage', name: 'Mypage', element: Mypage },
   { path: '/FreeEdit', name: 'FreeEdit', element: FreeEdit },
+  { path: '/CompanyEdit', name: 'CompanyEdit', element: CompanyEdit },
 ]
 
 

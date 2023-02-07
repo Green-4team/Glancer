@@ -1,10 +1,11 @@
 import { CCard, CCardBody, CCardHeader, CCol, CCollapse, CContainer, CNavbar, CNavbarBrand, CNavbarNav, CNavbarToggler, CNavItem, CNavLink, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react"
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom"
+import CompanyProfil from "./Profil/CompanyProfil";
 import FreeLancerProfil from "./Profil/FreeLancerProfil";
 
 
-const Mypage = (props) => {
+const Mypage = () => {
     
     
     const location = useLocation();
@@ -16,7 +17,7 @@ const Mypage = (props) => {
         <>
     <CNavbar expand="lg" colorScheme="light" className="">
       <CContainer fluid>
-        <CNavbarBrand><Link to="/Mypage" style={{textDecoration:'none', color:'black'}}>나의 프로필 관리</Link></CNavbarBrand>
+        <CNavbarBrand><Link to="/Mypage" state={{loginInfo:loginInfo}} style={{textDecoration:'none', color:'black'}}>나의 프로필 관리</Link></CNavbarBrand>
         <CNavbarToggler
           aria-label="Toggle navigation"         
         />
@@ -31,7 +32,7 @@ const Mypage = (props) => {
         </CCollapse>
       </CContainer>
     </CNavbar>
-    { loginInfo.membertype === 0 ? <FreeLancerProfil loginInfo={loginInfo}/> :  loginInfo.membertype === 1 ? <div>asdasdsadas</div> : <div>asdsadsad</div>}
+    { loginInfo.membertype === 0 ? <FreeLancerProfil loginInfo={loginInfo}/> :  loginInfo.membertype === 1 ? <CompanyProfil loginInfo={loginInfo}/> : <div>asdsadsad</div>}
     
   </>
     )
