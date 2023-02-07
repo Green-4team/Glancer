@@ -258,7 +258,7 @@ const RegisterCompany = (props) => {
                     } 
                     }
                     >
-                      <div>Create FreeLancer Account</div>
+                      <div>Create Company Account</div>
                     <span className='first'></span>
                     <span className='second'></span>
                     <span className='third'></span>

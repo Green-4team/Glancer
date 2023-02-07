@@ -27,7 +27,6 @@ import com.demoweb.common.Util;
 import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
-import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
 
 
@@ -156,17 +155,52 @@ public class AccountController {
 	@CrossOrigin
 	@PostMapping(path = {"/freelancerUpdate"})
 	@ResponseBody
-	public Object FreeLancerUpdate(String memberId, HttpServletRequest req) {
-		
-		ServletContext application = req.getServletContext();
+	public Object FreeLancerUpdate(FreeLancerRegisterDetailDto Freeupdate) {
 		
 		
-		accountService.updateFreeLancerInfo(memberId);
+		accountService.updateFreeLancerInfo(Freeupdate);
 		
 		
 		return "";
 	}
 		
+	@CrossOrigin
+	@GetMapping(path = {"/loadCompanyrInfo"})
+	@ResponseBody
+	public HashMap<String, Object> loadCompanyrInfo(String memberId) {
+		
+		CompanyDto results = accountService.loadCompanyrInfo(memberId);
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("results", results);
+		
+		return response;
+	}
+	
+	@CrossOrigin
+	@PostMapping(path = {"/CompanyUpdate"})
+	@ResponseBody
+	public Object CompanyUpdate(CompanyDto company, CompanyDetailDto companydetail) {
+		
+		
+		accountService.updateCompanyInfo(company);
+		accountService.updateCompanyDetailInfo(companydetail);
+		
+		return "";
+	}
+		
+	@CrossOrigin
+	@PostMapping(path = {"/AcademyUpdate"})
+	@ResponseBody
+	public Object AcademyUpdate(CompanyDto academy) {
+		
+		
+		accountService.updateAcademyInfo(academy);
+		
+		
+		return "";
+	}
+	
 }
 
 
