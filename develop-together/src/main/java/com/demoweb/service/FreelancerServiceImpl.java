@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.PersonalHistoryDto;
 import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.mapper.ClassMapper;
 import com.demoweb.mapper.FreelancerMapper;
@@ -51,6 +52,11 @@ public class FreelancerServiceImpl implements FreelancerService{
 		
 	}
 
+	@Override
+	public void insertpersonalHistory(PersonalHistoryDto personalHistoryRegist) {
+	
+		freelancerMapper.insertPersonalHistory(personalHistoryRegist);
+	}
 
 
 
@@ -62,6 +68,21 @@ public class FreelancerServiceImpl implements FreelancerService{
 		
 		return projectHistory;
 	}
+
+
+
+
+	// 이력서 출력
+	@Override
+	public PersonalHistoryDto findPersonalHistory(String memberid) {
+		PersonalHistoryDto personalHistory = freelancerMapper.findPersonalHistory(memberid);
+		return null; 
+	}
+
+
+
+
+
 
 	
 	

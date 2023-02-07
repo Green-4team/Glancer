@@ -32,23 +32,6 @@ function aa(){
 
 const FreelancerDetailList = ({memberid}) => {
 
-
-//     arr.push(<CCol xs={12} >
-//                 <CCard textColor='dark' style={{margin:5}}>
-//                     <CCardBody style={{ marginLeft:'0px'}}>
-//                     <strong>개발, PL</strong> <br></br>
-//                     <h4>{results.name} </h4>
-//                     <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
-//                     <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
-//                         { aa() }                                       
-//                     </CCardBody>
-//                 </CCard>
-//             </CCol>)
-//     }
-//     return arr
-// }
-
-
     const [activeKey, setActiveKey] = useState(1)
     const [results, setResults] = useState(null);
 
@@ -56,10 +39,12 @@ const FreelancerDetailList = ({memberid}) => {
       const loadFreelancerDetailList = async (e) => {
         const response = await axios.get(`http://127.0.0.1:8081/project/freelancerDetailList?memberid=${memberid}` )
         setResults(response.data.results)
-        console.log(response.data.results)
+        //console.log(response.data.results)
       }
       loadFreelancerDetailList();
     }, [memberid])
+
+    
 
     if (!results) {
       return;
@@ -96,25 +81,20 @@ const FreelancerDetailList = ({memberid}) => {
                     {results.map((result) => {
                       return(
                         <CCol xs={12} >
-                   <CCard textColor='dark' style={{margin:5}}>
-                     <CCardBody style={{ marginLeft:'0px'}}>
-                        <strong>{result.position}</strong> <br></br>
-                        <h4>{result.projectname} </h4>
-                        <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
-                        <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
-                        <CBadge style={{margin:"2px"}}color="success">{result.language}</CBadge>
-                        <CBadge style={{margin:"2px"}}color="danger">{result.dbms}</CBadge>
-                        <CBadge style={{margin:"2px"}}color="warning">{result.tool}</CBadge>
-                        <CBadge style={{margin:"2px"}}color="info">{result.datatransmission}</CBadge>
-                     </CCardBody>
-                 </CCard>
-             </CCol>
-
-
-
+                          <CCard textColor='dark' style={{margin:5}}>
+                            <CCardBody style={{ marginLeft:'0px'}}>
+                                <strong>{result.position}</strong> <br></br>
+                                <h4>{result.projectname} </h4>
+                                <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
+                                <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
+                                <CBadge style={{margin:"2px"}}color="success">{result.language}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.dbms}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="warning">{result.tool}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="info">{result.datatransmission}</CBadge>
+                            </CCardBody>
+                        </CCard>
+                    </CCol>
                       )
-
-
                     })}
                 </DramaMainMediaBlock>
               </CCardBody>
@@ -125,7 +105,12 @@ const FreelancerDetailList = ({memberid}) => {
               <CCardBody>
                 <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>
                     <div>이력서 내용</div>
-                    
+                    {results.map((result) => {
+                      return (
+                        {result.company}
+                        
+                      )
+                    })}
                 </DramaMainMediaBlock>
               </CCardBody>
             </CCol>
