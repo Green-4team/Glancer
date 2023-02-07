@@ -183,10 +183,10 @@ const RegisterFreeLancer = (props) => {
                     <div style={{marginTop:'5px'}}>
                     <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" 
                     value={memberInfo.workstate} 
-                    onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 0})}} label="가능" defaultChecked/>
+                    onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 1})}} label="가능" defaultChecked/>
                     <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" 
                     value={memberInfo.workstate} 
-                    onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 1})}}
+                    onChange={(e) => {setMemberInfo({...memberInfo, "workstate": 0})}}
                     label="불가능" />
                     </div>
                   </CInputGroup>                      

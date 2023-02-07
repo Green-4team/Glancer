@@ -34,6 +34,16 @@ public interface AccountService {
 
 	FreeLancerRegisterDetailDto loadFreeLancerInfo(String memberId);
 
-	void updateFreeLancerInfo(String memberId);
+	void updateFreeLancerInfo(FreeLancerRegisterDetailDto Freeupdate);
+
+	CompanyDto loadCompanyrInfo(String memberId);
+
+	void updateCompanyInfo(CompanyDto company);
+
+	void updateCompanyDetailInfo(CompanyDetailDto companydetail);
+
+	void updateAcademyInfo(CompanyDto academy);
+
+	
 
 }
