@@ -95,6 +95,9 @@ public interface MemberMapper {
 			"set name = #{name}, mname = #{mname}, mpostion = #{mpostion}, mphone = #{mphone}, memail = #{memail}, address = #{address} " +
 			"where memberid = #{memberId} " )
 	void updateAcademyInfo(CompanyDto academy);
+
+	@Select("select memberid, password, membertype from member where memberid = #{ memberId } and password = #{ password } " )
+	AllMemberRegisterDto logincheck(String memberId, String password);
 	
 	
 
