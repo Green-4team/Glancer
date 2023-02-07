@@ -14,7 +14,7 @@ div {
 .hoverBlue:hover {color: #24a0ed;}
 `;
 
-const QnAList = (props) => {
+const QnAList = (loginInfo) => {
   const [results, setResults] = useState(null);
   const [page, setPage] = useState(1);
   const [pager, setPager] = useState(null);
@@ -43,7 +43,7 @@ const QnAList = (props) => {
           <CCardBody>
             <div style={{display: 'flex'}}>
               <div style={{display: 'inline-block', marginRight: 'auto'}}>
-                <CNavLink to='/board/qna/write' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
+                <CNavLink to='/board/qna/write' component={NavLink} style={{display: 'inline-block', marginRight: 10}} state={{ loginInfo: loginInfo}}>
                   <CButton color="info" style={{color: 'white', fontSize: 12}}><CIcon icon={cilPencil} size="sm"/> 작성하기</CButton>
                 </CNavLink>
               </div>
@@ -90,7 +90,7 @@ const QnAList = (props) => {
               </thead>
               <tbody>
                 {results.map((result) => {
-                  return <QnAListItem key={result.boardNo} result={result} />
+                  return <QnAListItem key={result.boardNo} result={result} loginInfo={loginInfo} />
                 })}
               </tbody>
             </table>

@@ -2,37 +2,40 @@ import { CButton, CCard, CCardBody, CCol, CForm, CFormInput, CFormLabel, CFormSe
 import Tagify from "@yaireo/tagify";
 import "@yaireo/tagify/dist/tagify.css"; // Tagify CSS
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CFormCKEditor from "../../other/CFormCKEditor";
 
-const QnAWrite = (props) => {
-
-  const [board, setBoard] = useState({
-    topicNo: '',
-    memberId: 'gyu',
-    title: '',
-    content: '',
-    tag: ''
-  })
-
+const QnAWrite = ({loginInfo}) => {
 
   const input = document.querySelector('input[name=basic]');
   let tagify = new Tagify(input); // initialize Tagify
-  
+
   // 태그가 추가되면 이벤트 발생
   tagify.on('add', function() {
     console.log(tagify.value); // 입력된 태그 정보 객체
   })
-  tagify = new Tagify(input, {
-    whitelist : ["apple"],
-    blacklist : ["fuck", "shit"]
+
+  const [board, setBoard] = useState({
+    topicNo: '',
+    memberId: '',
+    title: '',
+    content: '',
+    tagNames: ''
   })
 
   const navigate = useNavigate();
   const insertBoard = () => {
+    debugger;
     const url = "http://127.0.0.1:8081/board/qnaWrite";
-    axios.post(url, board, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+    console.log(tagify.value)
+    let tags = null;
+    if(tagify.value.length > 0) {
+      tags = tagify.value.map((v)=> v.value)
+    }
+    // setBoard({...board, "tag": tagify.value})
+    console.log(board)
+    axios.post(url, {...board, "memberId": loginInfo.loginInfo.memberId, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
           .then( response => {
             alert('게시물이 등록되었습니다');
             navigate('/board/qna/list');
@@ -41,6 +44,15 @@ const QnAWrite = (props) => {
             alert('error');
           });
   };
+
+  useEffect(()=> {
+    if (loginInfo.loginInfo === null) {
+      alert("로그인이 필요합니다")
+      navigate('/login');
+    } 
+  })
+  
+  
 
   return (
     <>
@@ -66,15 +78,12 @@ const QnAWrite = (props) => {
               <CFormLabel>태그</CFormLabel>
               {/* <MultipleValueTextInput
                 onItemAdded={(item, allItems) => console.log(`item added: ${board.tag}`)}
-                onItemDeleted={(item, allItems) => console.log(`Item removed: ${board.tag}`)}
+                onItemDeleted={(item, allItems) => console.log(`item removed: ${board.tag}`)}
                 placeholder="hi" /> */}
 
               <div>
-              <input name='basic' value={board.tag} onChange={ (e) => {setBoard({...board, "tag": e.target.value})}}></input>
+                <input style={{border: 'solid 1px', borderColor: 'lightgray', width: 122, height: 42.5}} name='basic'></input>
               </div>
-
-
-
 
             </div>
             <div style={{marginTop: 30}}>
@@ -93,7 +102,6 @@ const QnAWrite = (props) => {
                      onClick={(e) => { if (window.confirm("게시물을 등록하시겠습니까?")) {
                                         insertBoard(board);
                                         e.preventDefault();
-                                        console.log(board);
                                         // window.location.replace('#/board/qna/list');
                                         // window.location.reload();
                                       } else {

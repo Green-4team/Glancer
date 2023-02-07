@@ -30,5 +30,6 @@ public class BoardDto {
 	
 	private String topicName;
 	private List<BoardTagDto> tags;
+	private String tagNames;
 	
 }

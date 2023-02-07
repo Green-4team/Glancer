@@ -10,7 +10,7 @@ const HoverBlueBlock = styled.div`
 .hoverBlue:hover {color: #24a0ed;}
 `;
 
-const QnAListItem = ({ result }) => {
+const QnAListItem = ({ result, loginInfo }) => {
   const { /* topicNo, content, deleted, */ boardNo, memberId, title, regDate, views, topicName, tags } = result;
 
   return (

@@ -88,6 +88,7 @@ public class BoardController {
 	private String writeBoard(BoardDto board) {
 		
 		System.out.println(board);
+		
 		boardService.writeBoard(board);
 		
 		return "success";
