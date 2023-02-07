@@ -15,6 +15,4 @@ public class MemberDto {
 	private Date regDate;
 	private boolean active;
 	
-
-
 }

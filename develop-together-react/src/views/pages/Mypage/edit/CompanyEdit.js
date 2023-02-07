@@ -53,8 +53,8 @@ const FreeEdit = (props) => {
             <CCard className="mx-2" style={{zIndex: 0}}>
               <CCardBody className="p-4">
                 <CForm>
-                  <h1>기업 계정 생성</h1>
-                  <p className="text-medium-emphasis">Create company account</p>                  
+                  <h1>기업 계정 변경</h1>
+                  <p className="text-medium-emphasis">Change company account</p>                  
                   <CInputGroup className="mb-3">
                     <CInputGroupText>기업 명</CInputGroupText>
                     <CFormInput placeholder={CompanyInfo.name}
@@ -143,7 +143,7 @@ const FreeEdit = (props) => {
                     } 
                     }
                     >
-                      <div>Create FreeLancer Account</div>
+                      <div>Change your account</div>
                     <span className='first'></span>
                     <span className='second'></span>
                     <span className='third'></span>

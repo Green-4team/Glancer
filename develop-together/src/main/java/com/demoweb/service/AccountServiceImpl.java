@@ -148,6 +148,13 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+	@Override
+	public void updateAcademyInfo(CompanyDto academy) {
+		
+		memberMapper.updateAcademyInfo(academy);
+		
+	}
+
 	
 
 	

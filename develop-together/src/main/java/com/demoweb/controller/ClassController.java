@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.demoweb.common.Util;
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.ClassDto;
@@ -121,6 +122,17 @@ public class ClassController {
 	public String deleteClass(int classno) {
 		
 		classService.deleteClass(classno);
+		
+		return "success";
+		
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/application" })
+	public String applicationClass(ApplicationDto apply) {
+		
+		classService.applicationClass(apply);
 		
 		return "success";
 		

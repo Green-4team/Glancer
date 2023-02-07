@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import classimg from "src/assets/images/class.jpg"
 import { CCard, CRow, CContainer, CButton, CCardBody,CImage,CBadge, CCol,  } from "@coreui/react"
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
 import axios from 'axios';
@@ -29,6 +29,11 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-nativ
 //   });
 
 const ClassList = (props) => {
+    
+    
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
+
     const[results, setResults] = useState(null);
 
     useEffect(() => {
@@ -79,7 +84,7 @@ const ClassList = (props) => {
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
                             <div className="clearfix">
-                            <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
+                            <Link to="/class/class/classdetail" state={{classno: result.classno, loginInfo: loginInfo}} style={{textDecoration: "none", color: "black"}}>
                             {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
                             <div style={{textAlign:"center",
                                         display:'inline-block',

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.BoardTagDto;
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.ClassTagDto;
@@ -30,7 +31,8 @@ public interface ClassMapper {
 	@Select("SELECT ct.classTagNo, ct.tagNo, ct.classno, ct.classType, t.tagName " +
 			"FROM tag t, classtag ct " +
 			"WHERE t.tagNo = ct.tagNo " +
-			"AND ct.classno = #{ classno } AND ct.classType = #{ classType } ")
+			//"AND ct.classno = #{ classno } AND ct.classType = #{ classType } ")
+			"AND ct.classno = #{ classno }")
 	List<ClassTagDto> selectClassTagByClassNo(@Param("classno") int classno, @Param("classType") String classType);
 	
 	
@@ -56,8 +58,17 @@ public interface ClassMapper {
 	void insertClassTags(ClassTagDto classTagDto);
 
 	@Update("UPDATE class " +
-			"SET name = #{name}, crowd = #{crowd}, price = #{price}, classtime = #{classtime}, region = #{region}, startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
+			"SET name = #{name}, crowd = #{crowd}, price = #{price}, region = #{region}, classtime = #{classtime},  startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
 			"WHERE classno = #{classno}")
 	void editClass(ClassDto register);
-	
+
+	@Delete("DELETE FROM classtag " +
+			"WHERE classno = #{ classno }")
+	void deleteTags(int classno);
+
+	@Insert("INSERT INTO application (classno, memberid) " +
+			"VALUES (#{classno}, #{memberid}) ")
+	@Options(useGeneratedKeys = true, keyColumn = "applicationno", keyProperty = "applicationno")
+	void applicationClass(ApplicationDto apply);
+
 }
