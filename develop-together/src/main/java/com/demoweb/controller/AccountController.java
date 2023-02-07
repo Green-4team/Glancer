@@ -189,6 +189,17 @@ public class AccountController {
 		return "";
 	}
 		
+	@CrossOrigin
+	@PostMapping(path = {"/AcademyUpdate"})
+	@ResponseBody
+	public Object AcademyUpdate(CompanyDto academy) {
+		
+		
+		accountService.updateAcademyInfo(academy);
+		
+		
+		return "";
+	}
 	
 }
 

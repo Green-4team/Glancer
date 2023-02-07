@@ -75,9 +75,11 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+//Mypage
 const Mypage = React.lazy(() => import('./views/pages/Mypage/Mypage'))
 const FreeEdit = React.lazy(() => import('./views/pages/Mypage/edit/FreeEdit'))
 const CompanyEdit = React.lazy(() => import('./views/pages/Mypage/edit/CompanyEdit'))
+const AcademyEdit = React.lazy(() => import('./views/pages/Mypage/edit/AcademyEdit'))
 
 const routes = [
   
@@ -149,9 +151,16 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+
+
+
   { path: '/Mypage', name: 'Mypage', element: Mypage },
   { path: '/FreeEdit', name: 'FreeEdit', element: FreeEdit },
   { path: '/CompanyEdit', name: 'CompanyEdit', element: CompanyEdit },
+  { path: '/AcademyEdit', name: 'AcademyEdit', element: AcademyEdit },
+
+
+
 ]
 
 

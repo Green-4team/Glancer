@@ -100,6 +100,11 @@ public interface MemberMapper {
 			"set headcount = #{headcount}, contnent = #{contnent}, annualsales = #{annualsales}, crn = #{crn} " + 
 			"where memberid = #{memberId} " )
 	void updateCompanyDetailInfo(CompanyDetailDto companydetail);
+
+	@Update("update company " + 
+			"set name = #{name}, mname = #{mname}, mpostion = #{mpostion}, mphone = #{mphone}, memail = #{memail}, address = #{address} " +
+			"where memberid = #{memberId} " )
+	void updateAcademyInfo(CompanyDto academy);
 	
 	
 

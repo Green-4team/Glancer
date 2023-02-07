@@ -202,7 +202,7 @@ const insertAcademyInfo = () => {
                     } 
                     }
                     >
-                      <div>Create FreeLancer Account</div>
+                      <div>Create Academy Account</div>
                     <span className='first'></span>
                     <span className='second'></span>
                     <span className='third'></span>

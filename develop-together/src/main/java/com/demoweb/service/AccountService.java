@@ -42,6 +42,8 @@ public interface AccountService {
 
 	void updateCompanyDetailInfo(CompanyDetailDto companydetail);
 
+	void updateAcademyInfo(CompanyDto academy);
+
 	
 
 }
