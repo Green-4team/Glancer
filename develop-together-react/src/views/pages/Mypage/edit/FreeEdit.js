@@ -123,8 +123,7 @@ const FreeEdit = (props) => {
                     <button type='submit'
                     onClick={
                       (e) => {                         
-                        UpdateMemberInfo(FreelancerInfomaction);
-                        <Link to='/Mypage' state={{loginInfo:loginInfo}}></Link>
+                        UpdateMemberInfo(FreelancerInfomaction);                       
                         e.preventDefault();
                     } 
                     }

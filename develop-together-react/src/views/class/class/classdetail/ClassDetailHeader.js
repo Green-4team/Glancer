@@ -15,7 +15,7 @@ import { GrMoney } from "react-icons/gr"
 import { RxCalendar } from "react-icons/rx"
 import axios from 'axios';
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ClassEdit from '../classregister/ClassEdit';
 
 // const HoverBlueBlock = styled.div`
@@ -43,14 +43,21 @@ function aa(){
 }
 
 const ClassDetailHeader = ({ classno }) => {
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
 
     const [results, setResults] = useState(null);
+    const [apply, setApply] = useState({
+        memberid: loginInfo.memberId,
+        classno: classno
+    });
+
     const navigate = useNavigate();
     useEffect(() => {
         const loadClassDetailHeader = async (e) => {
             const url = `http://127.0.0.1:8081/class/class/classdetail?classno=${classno}`;
             const response = await axios.get(url);
-            debugger;
+            
             setResults(response.data.results);
         };
         loadClassDetailHeader();
@@ -61,6 +68,20 @@ const ClassDetailHeader = ({ classno }) => {
     }
 
     
+
+    const applicationClass = () => {
+        // 유효성 검사
+        const url = "http://127.0.0.1:8081/class/application";
+        axios.post(url, apply, { headers: { "Content-Type": "application/x-www-form-urlencoded"}})
+              .then( response => {
+                alert('수강신청이 완료되었습니다.');
+                navigate('/Mypage', { state: { loginInfo:loginInfo} });
+              })
+              .catch(e => {
+                
+                alert('error');
+              });
+            }
 
     const deleteClass = () => {
     // 유효성 검사
@@ -175,8 +196,14 @@ const ClassDetailHeader = ({ classno }) => {
                                        
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <CCol xs={{ span: 4 }}>
-                                        <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}> 
-                                            <CButton color="primary" value='submit' shape="rounded-pill" size="middle">강의 신청</CButton>
+                                        <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}>
+                                            <CButton color="primary" value='submit' shape="rounded-pill" size="middle"
+                                            onClick={
+                                                (e) => {
+                                                    applicationClass(apply);
+                                                    e.preventDefault();
+                                                }
+                                            }>강의 신청</CButton>
                                             &nbsp;&nbsp;
                                             <Link to="/class/class/classEdit" state={{results: results}}>
                                                 <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
