@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.BoardTagDto;
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.ClassTagDto;
@@ -64,5 +65,10 @@ public interface ClassMapper {
 	@Delete("DELETE FROM classtag " +
 			"WHERE classno = #{ classno }")
 	void deleteTags(int classno);
+
+	@Insert("INSERT INTO application (classno, memberid) " +
+			"VALUES (#{classno}, #{memberid}) ")
+	@Options(useGeneratedKeys = true, keyColumn = "applicationno", keyProperty = "applicationno")
+	void applicationClass(ApplicationDto apply);
 
 }

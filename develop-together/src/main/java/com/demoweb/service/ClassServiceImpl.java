@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.BoardTagDto;
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.ClassTagDto;
@@ -90,6 +91,13 @@ public class ClassServiceImpl implements ClassService{
 						classMapper.insertClassTags(dto);
 					}
 				}
+	}
+
+	@Override
+	public void applicationClass(ApplicationDto apply) {
+		
+		classMapper.applicationClass(apply);
+		
 	}
 
 }
