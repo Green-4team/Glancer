@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import './scss/style.scss'
@@ -28,6 +29,13 @@ class App extends Component {
     this.state = {
       "loginInfo": null,
     }
+
+    // 로그인 여부 조회
+    axios.get("http://127.0.0.1:8081/account/LoginCheck")
+         .then((response) => {
+          console.log(response.data)
+          this.setState( {...this.state, "loginInfo": response.data ? response.data : null });
+         })
   }
 
   setUserInfo = (loginInfo) => {

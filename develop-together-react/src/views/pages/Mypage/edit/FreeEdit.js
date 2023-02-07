@@ -58,8 +58,7 @@ const FreeEdit = (props) => {
                     autoComplete="name" />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
-                    <CInputGroupText>생년월일</CInputGroupText>
-                    <CInputGroupText>{FreeLancerInforma.birthday}</CInputGroupText>       
+                    <CInputGroupText>생년월일</CInputGroupText>                    
                     <CFormInput type='date' placeholder={FreeLancerInforma.birthday}
                     value={FreelancerInfomaction.birthday} 
                     onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "birthday": e.target.value})}}
@@ -92,7 +91,6 @@ const FreeEdit = (props) => {
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>업무 시작 가능일</CInputGroupText>
-                    <CInputGroupText>{FreeLancerInforma.startdate}</CInputGroupText>
                     <CFormInput type="date" placeholder={FreeLancerInforma.startdate}
                     value={FreelancerInfomaction.startdate} 
                     onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "startdate": e.target.value})}}
@@ -104,17 +102,17 @@ const FreeEdit = (props) => {
                     <div style={{marginTop:'5px'}}>
                      {FreeLancerInforma.workstate === true ? <> <CFormCheck inline type="radio" name="inlineRadioOptions"
                     value={FreelancerInfomaction.workstate} 
-                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 0})}} label="가능" defaultChecked/>
+                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 1 })}} label="가능" defaultChecked/>
                     <CFormCheck inline type="radio" name="inlineRadioOptions"
                     value={FreelancerInfomaction.workstate} 
-                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 1})}}
+                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 0})}}
                     label="불가능" /></> : <>
                      <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" 
                     value={FreelancerInfomaction.workstate} 
-                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 0})}} label="가능" />
+                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 1})}} label="가능" />
                     <CFormCheck inline type="radio" name="inlineRadioOptions"
                     value={FreelancerInfomaction.workstate} 
-                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 1})}}
+                    onChange={(e) => {setFreelancerInfomaction({...FreelancerInfomaction, "workstate": 0})}}
                     label="불가능" defaultChecked/>
 
                     </>}   
@@ -125,8 +123,7 @@ const FreeEdit = (props) => {
                     <button type='submit'
                     onClick={
                       (e) => {                         
-                        UpdateMemberInfo(FreelancerInfomaction);
-                        <Link to='/Mypage' state={{loginInfo:loginInfo}}></Link>
+                        UpdateMemberInfo(FreelancerInfomaction);                       
                         e.preventDefault();
                     } 
                     }

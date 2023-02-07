@@ -39,6 +39,7 @@ public class AccountController {
 	private AccountService accountService;
 	
 	
+	//로그인
 	@CrossOrigin
 	@PostMapping(path = {"/login"})
 	@ResponseBody
@@ -46,22 +47,27 @@ public class AccountController {
 		
 		AllMemberRegisterDto login = accountService.findCustomerByIdAndPasswd(memberId, password); // 회원 정보 조회(아이디, 비밀번호)
 		
-//		
-//		System.out.println(login);
-//		if(login == null ) {
-//			
-//			System.out.println("hello");
-//			
-//			HashMap<String, Object> response = new HashMap<>();
-//			response.put("loginfail", login);
-//			return response;
-//			
-//			
-//		}
+		if (login != null ) {
+			session.setAttribute("loginuser", login);
+		} else {
+			return "fail";
+		}
+		
 		return login;
 	}
 	
+	@CrossOrigin
+	@GetMapping(path = {"/LoginCheck"})
+	@ResponseBody
+	public Object LoginCheck(HttpSession session) {
+		
+		AllMemberRegisterDto loginUser = (AllMemberRegisterDto)session.getAttribute("loginuser");
+		
+			
+		return loginUser;
+	}
 	
+	//프리랜서 회원가입
 	@CrossOrigin
 	@PostMapping(path = {"/freelancerRegister"})
 	@ResponseBody
@@ -76,6 +82,7 @@ public class AccountController {
 		return freelancerregisters;
 	}
 	
+	//학원 회원가입
 	@CrossOrigin
 	@PostMapping(path = {"/academyRegister"})
 	@ResponseBody
@@ -90,6 +97,7 @@ public class AccountController {
 		return academyregisters;
 	}
 
+	//아이디 중복 체크
 	@CrossOrigin
 	@GetMapping(path = {"/checkDuplication"})
 	@ResponseBody
@@ -103,6 +111,7 @@ public class AccountController {
 		return response;
 	}
 	
+	//기업 회원가입
 	@CrossOrigin
 	@PostMapping(path = {"/comapanyRegister"})
 	@ResponseBody
@@ -138,7 +147,7 @@ public class AccountController {
 		return companyregisters;
 	}
 	
-	
+	//프리랜서 불러오기
 	@CrossOrigin
 	@GetMapping(path = {"/loadFreelancerInfo"})
 	@ResponseBody
@@ -151,7 +160,7 @@ public class AccountController {
 		
 		return response;
 	}
-	
+	//프리랜서 수정
 	@CrossOrigin
 	@PostMapping(path = {"/freelancerUpdate"})
 	@ResponseBody
@@ -163,7 +172,7 @@ public class AccountController {
 		
 		return "";
 	}
-		
+	//기업 학원 불러오기	
 	@CrossOrigin
 	@GetMapping(path = {"/loadCompanyrInfo"})
 	@ResponseBody
@@ -176,7 +185,7 @@ public class AccountController {
 		
 		return response;
 	}
-	
+	//기업 수정
 	@CrossOrigin
 	@PostMapping(path = {"/CompanyUpdate"})
 	@ResponseBody
@@ -188,7 +197,7 @@ public class AccountController {
 		
 		return "";
 	}
-		
+	//학원 수정	
 	@CrossOrigin
 	@PostMapping(path = {"/AcademyUpdate"})
 	@ResponseBody

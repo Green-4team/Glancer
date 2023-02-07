@@ -87,7 +87,7 @@ const AppHeader = (props) => {
             <div class="dropdown">
               <button class="dropbtn">강의</button>
               <div class="dropdown-content">
-                <CNavLink to='/class/class' component={NavLink}>강의</CNavLink>
+                <CNavLink to='/class/class' state={{loginInfo: loginInfo}}  component={NavLink}>강의</CNavLink>
                 <CNavLink to='/class/teacher' component={NavLink}>강사</CNavLink>
               </div>
             </div>
