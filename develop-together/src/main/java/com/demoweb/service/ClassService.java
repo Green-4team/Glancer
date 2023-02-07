@@ -19,5 +19,7 @@ public interface ClassService {
 	List<ClassTagDto> findClassTag(int classno);
 
 	void writeClass(ClassDto register, String[] tags);
+
+	void editClass(ClassDto register, String[] tags);
 	
 }

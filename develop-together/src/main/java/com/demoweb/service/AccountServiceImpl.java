@@ -120,9 +120,36 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void updateFreeLancerInfo(String memberId) {
+	public void updateFreeLancerInfo(FreeLancerRegisterDetailDto Freeupdate) {
 		
-		memberMapper.updateFreeLancerInfo(memberId);
+		 memberMapper.updateFreeLancerInfo(Freeupdate);
+		
+		
 	}
+
+	@Override
+	public CompanyDto loadCompanyrInfo(String memberId) {
+		
+		CompanyDto results = memberMapper.loadCompanyrInfo(memberId);
+		
+		
+		return results;
+	}
+
+	@Override
+	public void updateCompanyInfo(CompanyDto company) {
+		memberMapper.updateCompanyInfo(company);
+		
+	}
+
+	@Override
+	public void updateCompanyDetailInfo(CompanyDetailDto companydetail) {
+		memberMapper.updateCompanyDetailInfo(companydetail);
+		
+	}
+
+	
+
+	
 
 }

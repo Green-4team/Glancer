@@ -27,7 +27,7 @@ const FreeLancerProfil = ({loginInfo}) => {
         <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/FreeEdit" state={{FreeLancerInfo:FreeLancerInfo}}>프로필 수정</Link>
+            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/FreeEdit" style={{color:'black'}} state={{FreeLancerInfo:FreeLancerInfo, loginInfo:loginInfo}}>프로필 수정</Link>
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">              

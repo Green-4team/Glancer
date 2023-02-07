@@ -43,6 +43,7 @@ const Validation = React.lazy(() => import('./views/forms/validation/Validation'
 const ClassMain = React.lazy(() => import('./views/class/class/ClassMain'))
 const ClassDetailMain = React.lazy(() => import('./views/class/class/classdetail/ClassDetailMain'))
 const ClassRegisterMain = React.lazy(() => import('./views/class/class/classregister/ClassRegisterMain'))
+const ClassEdit = React.lazy(() => import('./views/class/class/classregister/ClassEdit'))
 const TeacherMain = React.lazy(() => import('./views/class/teacher/TeacherMain'))
 const TeacherDetailMain = React.lazy(() => import('./views/class/teacher/teacherdetail/TeacherDetailMain'))
 const TeacherRegisterMain = React.lazy(() => import('./views/class/teacher/teacherregister/TeacherRegisterMain'))
@@ -76,6 +77,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const Mypage = React.lazy(() => import('./views/pages/Mypage/Mypage'))
 const FreeEdit = React.lazy(() => import('./views/pages/Mypage/edit/FreeEdit'))
+const CompanyEdit = React.lazy(() => import('./views/pages/Mypage/edit/CompanyEdit'))
 
 const routes = [
   
@@ -117,6 +119,8 @@ const routes = [
   { path: '/class/class', name: 'ClassMain', element: ClassMain },
   { path: '/class/class/classdetail', name: 'ClassDetailMain', element: ClassDetailMain },
   { path: '/class/class/classregister', name: 'ClassRegisterMain', element: ClassRegisterMain },
+  { path: '/class/class/classedit', name: 'ClassEdit', element: ClassEdit },
+
   { path: '/class/teacher', name: 'TeacherMain', element: TeacherMain },
   { path: '/class/teacher/teacherdetail', name: 'TeacherDetailMain', element: TeacherDetailMain },
   { path: '/class/teacher/teacherregister', name: 'TeacherRegisterMain', element: TeacherRegisterMain },
@@ -147,6 +151,7 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/Mypage', name: 'Mypage', element: Mypage },
   { path: '/FreeEdit', name: 'FreeEdit', element: FreeEdit },
+  { path: '/CompanyEdit', name: 'CompanyEdit', element: CompanyEdit },
 ]
 
 

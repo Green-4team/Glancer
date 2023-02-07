@@ -1,6 +1,7 @@
 package com.demoweb.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -16,4 +17,10 @@ public class CompanyDto {
 	private String address;
 	private boolean companytype;
 
+	private int headcount;
+	private String contnent;
+	private String annualsales;
+	private String crn;	
+	private String br;
+	private String uniquebr;
 }

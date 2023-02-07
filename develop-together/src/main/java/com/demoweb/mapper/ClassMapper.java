@@ -46,13 +46,18 @@ public interface ClassMapper {
 	void deleteClass(int classno);
 
 	
-	@Insert("INSERT INTO class (name, crowd, price, region, startdate, enddate, content) " +
-			"VALUES (#{name}, #{crowd}, #{price}, #{region}, #{startdate}, #{enddate}, #{content}) ")
+	@Insert("INSERT INTO class (name, crowd, price, classtime, region, startdate, enddate, content) " +
+			"VALUES (#{name}, #{crowd}, #{price}, #{classtime}, #{region}, #{startdate}, #{enddate}, #{content}) ")
 	@Options(useGeneratedKeys = true, keyColumn = "classno", keyProperty = "classno")
 	void insertClass(ClassDto register);
 
 	@Insert("INSERT INTO classtag (tagno, classno) " +
 			"VALUES (#{tagNo}, #{classno})")
 	void insertClassTags(ClassTagDto classTagDto);
+
+	@Update("UPDATE class " +
+			"SET name = #{name}, crowd = #{crowd}, price = #{price}, classtime = #{classtime}, region = #{region}, startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
+			"WHERE classno = #{classno}")
+	void editClass(ClassDto register);
 	
 }
