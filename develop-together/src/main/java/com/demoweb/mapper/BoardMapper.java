@@ -3,16 +3,11 @@ package com.demoweb.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
 
-import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.BoardTagDto;
 
@@ -57,6 +52,22 @@ public interface BoardMapper {
 			"LIMIT #{ from }, #{ count }")
 	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("count")int count);
 	
+	@Select("SELECT b.boardNo, b.topicNo, b.memberId, b.title, b.content, b.regDate, b.views, b.deleted, t.topicName " +
+			"FROM board b " +
+			"INNER JOIN topic t " +
+			"ON b.topicNo = t.topicNo " +
+			"WHERE b.topicNo = #{ topicNo } " +
+			"ORDER BY boardno DESC " +
+			"LIMIT #{ from }, #{ count } ")
+	List<BoardDto> selectBoardByPageAndTopicNo(@Param("from")int from, @Param("count")int count, @Param("topicNo")int topicNo);
+	
+	@Select("SELECT b.boardNo, b.topicNo, b.memberId, b.title, b.content, b.regDate, b.views, b.deleted, t.topicName " +
+			"FROM board b, topic t, boardtag bt " +
+			"WHERE b.topicNo = t.topicNo AND b.boardNo = bt.boardNo AND bt.tagNo = #{ tagNo } AND bt.boardType = 'board' " +
+			"ORDER BY boardno DESC " +
+			"LIMIT #{ from }, #{ count } ")
+	List<BoardDto> selectBoardByPageAndTagNo(@Param("from")int from, @Param("count")int count, @Param("tagNo")int tagNo);
+
 	@Select("SELECT bt.boardTagNo, bt.tagNo, bt.boardNo, bt.boardType, t.tagName " +
 			"FROM tag t, boardtag bt " +
 			"WHERE t.tagNo = bt.tagNo " +
@@ -66,6 +77,15 @@ public interface BoardMapper {
 	@Select("SELECT COUNT(*) FROM board ")
 	int selectBoardCount();
 	
+	@Select("SELECT COUNT(*) FROM board " +
+			"WHERE topicNo = #{ topicNo } ")
+	int selectBoardCountByTopicNo(int topicNo);
+	
+	@Select("SELECT COUNT(*) " +
+			"FROM board b, boardtag bt " +
+			"WHERE b.boardNo = bt.boardNo AND bt.tagNo = #{ tagNo } AND bt.boardType = 'board' ")
+	int selectBoardCountByTagNo(int tagNo);
+
 	@Select("SELECT b.boardno, b.topicno, b.memberid, b.title, b.content, b.regdate, b.views, b.deleted, t.topicname " +
 			"FROM board b, topic t " +
 			"WHERE b.topicno = t.topicno AND boardno = #{ boardNo } AND deleted = '0' ")
@@ -98,6 +118,9 @@ public interface BoardMapper {
 	@Insert("INSERT INTO boardtag (tagno, boardno, boardtype) " +
 			"VALUES (#{ tagNo }, #{ boardNo }, 'board' ) ")
 	void insertBoardTag(BoardTagDto tagDto);
+
+
+
 	
 }
 

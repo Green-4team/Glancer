@@ -4,7 +4,17 @@ import "@yaireo/tagify/dist/tagify.css"; // Tagify CSS
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import CFormCKEditor from "../../other/CFormCKEditor";
+
+const TagBlock = styled.div`
+.tagify{    
+  width: 100%;
+  height: 38px;
+  border-color: silver;
+  border-radius: 5px;
+}
+`;
 
 const QnAWrite = ({loginInfo}) => {
 
@@ -32,7 +42,7 @@ const QnAWrite = ({loginInfo}) => {
       tags = tagify.value.map((v)=> v.value)
     }
     
-    axios.post(url, {...board, "memberId": loginInfo.loginInfo.memberId, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+    axios.post(url, {...board, "memberId": loginInfo.memberId, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
           .then( response => {
             alert('게시물이 등록되었습니다');
             navigate('/board/qna/list', {state: { loginInfo: loginInfo }});
@@ -43,7 +53,7 @@ const QnAWrite = ({loginInfo}) => {
   };
 
   useEffect(()=> {
-    if (loginInfo.loginInfo === null) {
+    if (loginInfo === null) {
       alert("로그인이 필요합니다")
       navigate('/login');
     } 
@@ -78,9 +88,13 @@ const QnAWrite = ({loginInfo}) => {
                 onItemDeleted={(item, allItems) => console.log(`item removed: ${board.tag}`)}
                 placeholder="hi" /> */}
 
-              <div>
-                <input style={{border: 'solid 1px', borderColor: 'lightgray', width: 122, height: 42.5}} name='basic'></input>
-              </div>
+              <TagBlock>
+                <input style={{ width: '100%', 
+                                height: '38px',
+                                border: 'solid 1px',
+                                borderColor: 'silver',
+                                borderRadius: '5px' }} name='basic'></input>
+              </TagBlock>
 
             </div>
             <div style={{marginTop: 30}}>

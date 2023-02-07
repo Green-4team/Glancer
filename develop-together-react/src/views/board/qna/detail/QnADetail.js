@@ -10,7 +10,7 @@ import QnADetailItem from "./QnADetailtem";
 // .hoverBlue:hover {color: #24a0ed;}
 // `;
 
-const QnADetail = ({ boardNo }) => {
+const QnADetail = ({ boardNo, loginInfo }) => {
   const [result, setResult] = useState(null);
   
   // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
@@ -35,7 +35,7 @@ const QnADetail = ({ boardNo }) => {
       <CCol xs={8} style={{margin: 'auto'}}>
         <CCard className="mb-4" style={{border: 0}}>
           <CCardBody>
-            <QnADetailItem key={result.boardNo} result={result} />
+            <QnADetailItem key={result.boardNo} result={result} loginInfo={loginInfo} />
           </CCardBody>
         </CCard>
       </CCol>

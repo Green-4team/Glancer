@@ -47,14 +47,40 @@ public class BoardController {
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/qnaList"})
-	private HashMap<String, Object> showBoardList(int pageNo) {
+	private HashMap<String, Object> showBoardList(int pageNo, int topicNo) {
 		
-		List<BoardDto> results = boardService.findBoardByPage(pageNo, PAGE_SIZE);
+		List<BoardDto> results = boardService.findBoardByPageAndTopicNo(pageNo, PAGE_SIZE, topicNo);
+		int boardCount = boardService.findBoardCountByTopicNo(topicNo);
+		
 		for (BoardDto result : results) {
 			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
 			result.setTags(tags);
 		}
-		int boardCount = boardService.findBoardCount();
+		
+		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
+		
+		HashMap<String, Object> boardList = new HashMap<>();
+		boardList.put("page", pageNo);
+		boardList.put("results", results);
+		boardList.put("pager", pager);
+		
+		return boardList;
+		
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/qnaTagSearch"})
+	private HashMap<String, Object> showTagSearchList(int pageNo, int tagNo) {
+		
+		List<BoardDto> results = boardService.findBoardByPageAndTagNo(pageNo, PAGE_SIZE, tagNo);
+		int boardCount = boardService.findBoardCountByTagNo(tagNo);
+		
+		for (BoardDto result : results) {
+			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+			result.setTags(tags);
+		}
+		
 		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
 		
 		HashMap<String, Object> boardList = new HashMap<>();
@@ -109,6 +135,7 @@ public class BoardController {
 		return "success";
 	}
 	
+	///////////////////////////////////////////////////////////////////////////////
 		
 	@GetMapping(path = { "/detail" })
 	public String showBoardDetail(@RequestParam(defaultValue = "-1") int boardNo, 

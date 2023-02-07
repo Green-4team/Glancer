@@ -10,9 +10,9 @@ const HoverBlueBlock = styled.div`
 .hoverBlue:hover {color: #24a0ed;}
 `;
 
-const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
+const QnATagSearchItem = ({ result, loginInfo, onSetTopicNo }) => {
   const { /* content, deleted, */ boardNo, memberId, title, regDate, views, topicName, tags, topicNo } = result;
-  
+  console.log(tags)
   return (
     <>
       
@@ -43,9 +43,9 @@ const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
                                display: 'inline-block'}}>{topicName}</CButton>
               {
                 tags.map((tag) => {
-                  const { tagName, tagNo } = tag;
+                  const { tagName } = tag;
                   return  (
-                            <CNavLink to='/board/qna/tagsearch' component={NavLink} style={{display: 'inline-block', marginRight: 10}} state={{ tagNo: tagNo, loginInfo: loginInfo }}>
+                            <CNavLink to='/board/qna/tagsearch' component={NavLink} style={{display: 'inline-block', marginRight: 10}} state={{ tagName: tagName, loginInfo: loginInfo }}>
                               <HoverBlueBlock>
                                 <div class="hoverBlue">#{ tagName }</div>
                               </HoverBlueBlock>
@@ -64,4 +64,4 @@ const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
   )
 }
 
-export default QnAListItem
+export default QnATagSearchItem

@@ -4,9 +4,12 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
+
+// QnA
 const QnAList = React.lazy(() => import('./views/board/qna/list/QnA'))
 const QnADetail = React.lazy(() => import('./views/board/qna/detail/QnA'))
 const QnAWrite = React.lazy(() => import('./views/board/qna/write/QnA'))
+const QnATagSearch = React.lazy(() => import('./views/board/qna/tagsearch/QnA'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -91,6 +94,7 @@ const routes = [
   { path: '/board/qna/list', name: 'Q&AList', element: QnAList },
   { path: '/board/qna/detail', name: 'Q&ADetail', element: QnADetail },
   { path: '/board/qna/write', name: 'Q&AWrite', element: QnAWrite },
+  { path: '/board/qna/tagsearch', name: 'Q&ATagSearch', element: QnATagSearch },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },

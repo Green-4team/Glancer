@@ -35,12 +35,16 @@ public interface BoardService {
 
 	/////////////////////////////////////////////////
 	
-	List<BoardDto> findBoardByPage(int pageNo, int pageSize);
+	List<BoardDto> findBoardByPageAndTopicNo(int pageNo, int pageSize, int topicNo);
+	
+	int findBoardCountByTopicNo(int topicNo);
 	
 	List<BoardTagDto> findBoardTagByBoardNo(int boardNo, String boardType);
 	
-	int findBoardCount();
-	
+	List<BoardDto> findBoardByPageAndTagNo(int pageNo, int pageSize, int tagNo);
+
+	int findBoardCountByTagNo(int tagNo);
+
 	BoardDto findBoardByBoardNo(int boardNo);
 	
 	void writeBoard(BoardDto board);
@@ -54,5 +58,10 @@ public interface BoardService {
 	int findLastTagNo();
 
 	void writeBoardTag(BoardTagDto tagDto);
+
+
+
+
+	
 
 }
