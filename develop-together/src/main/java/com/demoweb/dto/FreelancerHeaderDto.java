@@ -18,5 +18,18 @@ public class FreelancerHeaderDto {
 	private String name;
 	private String occupation;
 	private int careeryear;
-
+	private String value1;
+	private String value2;
+	private String value3;
+	private String value4;
+	private String program1;
+	private String program2;
+	private String program3;
+	private String program4;
+	private String language1;
+	private String language2;
+	private String language3;
+	private String language4;
+	
+	
 }

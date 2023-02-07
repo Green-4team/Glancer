@@ -13,7 +13,7 @@ public class PersonalHistoryDto {
 	private String depart;
 	private String position;
 	private String startdate;
-	private String  enddate;
+	private String enddate;
 	private String memberid;
 	private String schoolname;
 	private String schoolstart;

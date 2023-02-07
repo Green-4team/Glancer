@@ -76,6 +76,17 @@ public class FreelancerController {
 		return "";
 	}
 	
+	// 프리랜서 프로필 등록
+	@CrossOrigin
+	@PostMapping(path = {"/freelancerProfileRegister"})
+	@ResponseBody
+	private Object freelancerProfileRegist(FreelancerHeaderDto freelancerHeaderDto) {
+		
+		freelancerService.insertFreelancerProfile(freelancerHeaderDto);
+			
+		return "";
+	}
+	
 	@CrossOrigin
 	@PostMapping(path = {"/projectRegister"})
 	@ResponseBody
@@ -92,12 +103,11 @@ public class FreelancerController {
 	private Object showProjectHistoryList(String memberid) {
 		
 		List<ProjectHistoryDto> projectHistory = freelancerService.findprojectHistoryy(memberid);
-		PersonalHistoryDto personalHistory = freelancerService.findPersonalHistory(memberid);
+		
 		HashMap<String, Object> projectHistoryHashMap = new HashMap<>();
 		projectHistoryHashMap.put("results", projectHistory);
-		projectHistoryHashMap.put("results2", personalHistory);
 		
-		System.out.println(personalHistory);
+		
 
 		
 		return projectHistoryHashMap;
@@ -112,11 +122,11 @@ public class FreelancerController {
 		System.out.println("444444444");
 		
 		
-		List<ProjectHistoryDto> projectHistory = freelancerService.findprojectHistoryy(memberid);
-//		HashMap<String, Object> projectHistoryHashMap = new HashMap<>();
-//		projectHistoryHashMap.put("results", projectHistory);
+		PersonalHistoryDto personaltHistory = freelancerService.findPersonalHistory(memberid);
+		HashMap<String, Object> personalHistoryHashMap = new HashMap<>();
+		personalHistoryHashMap.put("results2", personaltHistory);
 		
-		return projectHistory;
+		return personalHistoryHashMap;
 	}
 	
 	

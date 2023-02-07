@@ -51,6 +51,8 @@ public class FreelancerServiceImpl implements FreelancerService{
 		freelancerMapper.insertProjectHistory(projectHistoryRegist);
 		
 	}
+	
+	
 
 	@Override
 	public void insertpersonalHistory(PersonalHistoryDto personalHistoryRegist) {
@@ -60,7 +62,7 @@ public class FreelancerServiceImpl implements FreelancerService{
 
 
 
-
+	
 	@Override
 	public List<ProjectHistoryDto> findprojectHistoryy(String memberid) {
 
@@ -76,7 +78,17 @@ public class FreelancerServiceImpl implements FreelancerService{
 	@Override
 	public PersonalHistoryDto findPersonalHistory(String memberid) {
 		PersonalHistoryDto personalHistory = freelancerMapper.findPersonalHistory(memberid);
-		return null; 
+		return personalHistory; 
+	}
+
+
+
+
+
+	@Override
+	public void insertFreelancerProfile(FreelancerHeaderDto freelancerHeaderDto) {
+		freelancerMapper.insertFreelancerProfile(freelancerHeaderDto);
+		
 	}
 
 
