@@ -78,6 +78,10 @@ public class ClassServiceImpl implements ClassService{
 				classMapper.editClass(register);
 				// register.getClassno() == 새로 만들어진 classno
 				
+				classMapper.deleteTags(register.getClassno());
+				// 기존의 태그 삭제 처리( 클래스 번호 사용 )
+				
+				
 				if (tags != null) {
 					for (String tagno : tags) {
 						ClassTagDto dto = new ClassTagDto();

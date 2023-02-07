@@ -16,8 +16,6 @@ const TeacherDetailMain = (props) => {
            
             <TeacherDetailHeader />
 
-            <TeacherDetailList />
-
         </div> 
       
     );

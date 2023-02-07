@@ -50,6 +50,7 @@ const ClassDetailHeader = ({ classno }) => {
         const loadClassDetailHeader = async (e) => {
             const url = `http://127.0.0.1:8081/class/class/classdetail?classno=${classno}`;
             const response = await axios.get(url);
+            debugger;
             setResults(response.data.results);
         };
         loadClassDetailHeader();
@@ -74,17 +75,17 @@ const ClassDetailHeader = ({ classno }) => {
           });
         }
 
-    const editClass = () => {
-    // 유효성 검사
-    const url = "http://127.0.0.1:8081/class/classEdit";
-    axios.post(url, results, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
-          .then( response => {
-            navigate('/class/classEdit');
-          })
-          .catch(e => {
-            alert('error');
-          });
-        }
+    // const editClass = () => {
+    // // 유효성 검사
+    // const url = "http://127.0.0.1:8081/class/classEdit";
+    // axios.post(url, results, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
+    //       .then( response => {
+    //         navigate('/class/classEdit');
+    //       })
+    //       .catch(e => {
+    //         alert('error');
+    //       });
+    //     }
    
     return (
          
@@ -177,7 +178,7 @@ const ClassDetailHeader = ({ classno }) => {
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}> 
                                             <CButton color="primary" value='submit' shape="rounded-pill" size="middle">강의 신청</CButton>
                                             &nbsp;&nbsp;
-                                            <Link to="/class/class/classEdit">
+                                            <Link to="/class/class/classEdit" state={{results: results}}>
                                                 <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
                                             </Link>
                                             &nbsp;&nbsp;

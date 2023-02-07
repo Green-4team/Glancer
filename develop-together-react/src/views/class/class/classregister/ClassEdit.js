@@ -31,7 +31,7 @@ import {
 } from '@coreui/react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { CFormCheck, CFormSelect } from '@coreui/react/dist'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -56,23 +56,29 @@ const styles = StyleSheet.create({
 // }
 
 const ClassEdit = (props) => {
+  const location = useLocation();
+  const editClassInfo = location.state.results;
 
   const [registers, setRegisters] = useState({
-    
-    name: '',
-    crowd: '',
-    price: '',
-    region: '',
-    languages: '',
-    classtime: '',
-    startdate: '',
-    enddate: '',
-    content: ''
+    classno: editClassInfo.classno,
+    name: editClassInfo.name,
+    crowd: editClassInfo.crowd,
+    price: editClassInfo.price,
+    region: editClassInfo.region,
+    // languages: editClassInfo.tags,
+    classtime: editClassInfo.classtime,
+    startdate: editClassInfo.startdate,
+    enddate: editClassInfo.enddate,
+    content: editClassInfo.content
   })
 
   const changeLanguage = (e) => {
     
-    let languages = (registers.languages.length === 0) ? [] : registers.languages.split(",");
+    let languages = []
+    //languages = registers.languages.map((i) => i.tagNo)
+    //console.log(languages)
+    //setRegisters({...registers, "languages": languages.toString()});
+    languages = (registers.languages == null || registers.languages.length === 0) ? [] : registers.languages.toString().split(",");
     if (e.target.checked) {
       languages = [...languages, e.target.value];
     } else {
@@ -90,13 +96,14 @@ const ClassEdit = (props) => {
   const navigate = useNavigate();
   const editClass = () => {
     // 유효성 검사
-    const url = "http://127.0.0.1:8081/class/classEdit";
+    const url = "http://127.0.0.1:8081/class/classEdit"; //+ "&languages=" + registers.languages;
     axios.post(url, registers, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강의가 수정되었습니다.');
             navigate('/class/class');
           })
           .catch(e => {
+            debugger;
             alert('빈 항목을 입력해주세요.');
           });
         }
@@ -146,7 +153,7 @@ const ClassEdit = (props) => {
                         <CInputGroupText>사용 언어</CInputGroupText>
                         &nbsp;&nbsp;&nbsp;
                         <div style={{marginTop: 0}}>
-                        {/* <CFormCheck value={register.language} onChange={(e) => {setRegister({...register, "language": e.target.value})}}> */}
+                        {/* <CFormCheck value={registers.language} onChange={(e) => {setRegisters({...registers, "language": e.target.value})}}> */}
                         <CFormCheck inline id="inlineCheckbox1" value={1} onChange={ changeLanguage } label="maven"/>
                         <CFormCheck inline id="inlineCheckbox2" value={2} onChange={ changeLanguage } label="gradle"/>
                         <CFormCheck inline id="inlineCheckbox3" value={3} onChange={ changeLanguage } label="java"/>
