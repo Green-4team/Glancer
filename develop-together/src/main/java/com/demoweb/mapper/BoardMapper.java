@@ -19,13 +19,6 @@ import com.demoweb.dto.BoardTagDto;
 @Mapper
 public interface BoardMapper {
 	
-	
-	
-	
-	
-	
-	
-	
 //	@Select("SELECT boardno, title, writer, content, readcount, regdate " +
 //			"FROM board " +
 //			"WHERE boardno = #{ boardNo } AND deleted = '0'")
@@ -84,6 +77,27 @@ public interface BoardMapper {
 //	@SelectKey(statement = "SELECT LAST_INSERT_ID()", 
 //			   resultType = Integer.class, keyProperty = "boardNo", before = false)
 	void insertBoard(BoardDto board);
+
+	@Select("SELECT MAX(boardNo) " +
+			"FROM board ")
+	int selectLastBoardNo();
+
+	@Select("SELECT * " +
+			"FROM tag " +
+			"WHERE tagname = #{ tagName } ")
+	BoardTagDto selectTagByTagName(String tagName);
+
+	@Insert("INSERT INTO tag (tagName) " +
+			"VALUES (#{ tagName }) ")
+	void insertTag(String tagName);
+
+	@Select("SELECT MAX(tagNo) " +
+			"FROM tag ")
+	int selectLastTagNo();
+
+	@Insert("INSERT INTO boardtag (tagno, boardno, boardtype) " +
+			"VALUES (#{ tagNo }, #{ boardNo }, 'board' ) ")
+	void insertBoardTag(BoardTagDto tagDto);
 	
 }
 

@@ -202,6 +202,42 @@ public class BoardServiceImpl implements BoardService {
 //		}
 		
 	}
+
+	@Override
+	public int findLastBoardNo() {
+		
+		int boardNo = boardMapper.selectLastBoardNo();
+		
+		return boardNo;
+	}
+
+	@Override
+	public BoardTagDto findTagByTagName(String tagName) {
+		
+		BoardTagDto tagDto = boardMapper.selectTagByTagName(tagName);
+		
+		return tagDto;
+	}
+
+	@Override
+	public void writeTag(String tagName) {
+		
+		boardMapper.insertTag(tagName);
+		
+	}
+
+	@Override
+	public int findLastTagNo() {
+		int tagNo = boardMapper.selectLastTagNo();
+		return tagNo;
+	}
+
+	@Override
+	public void writeBoardTag(BoardTagDto tagDto) {
+
+		boardMapper.insertBoardTag(tagDto);
+		
+	}
 	
 }
 

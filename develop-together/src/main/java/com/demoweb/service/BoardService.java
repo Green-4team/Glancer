@@ -45,4 +45,14 @@ public interface BoardService {
 	
 	void writeBoard(BoardDto board);
 
+	int findLastBoardNo();
+
+	BoardTagDto findTagByTagName(String tagName);
+
+	void writeTag(String tagName);
+
+	int findLastTagNo();
+
+	void writeBoardTag(BoardTagDto tagDto);
+
 }

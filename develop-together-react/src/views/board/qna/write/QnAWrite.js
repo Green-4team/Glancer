@@ -26,19 +26,16 @@ const QnAWrite = ({loginInfo}) => {
 
   const navigate = useNavigate();
   const insertBoard = () => {
-    debugger;
     const url = "http://127.0.0.1:8081/board/qnaWrite";
-    console.log(tagify.value)
     let tags = null;
     if(tagify.value.length > 0) {
       tags = tagify.value.map((v)=> v.value)
     }
-    // setBoard({...board, "tag": tagify.value})
-    console.log(board)
+    
     axios.post(url, {...board, "memberId": loginInfo.loginInfo.memberId, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
           .then( response => {
             alert('게시물이 등록되었습니다');
-            navigate('/board/qna/list');
+            navigate('/board/qna/list', {state: { loginInfo: loginInfo }});
           })
           .catch( e => {
             alert('error');

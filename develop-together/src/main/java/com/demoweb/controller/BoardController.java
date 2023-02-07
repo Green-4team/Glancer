@@ -87,9 +87,24 @@ public class BoardController {
 	@PostMapping(path = {"/qnaWrite"})
 	private String writeBoard(BoardDto board) {
 		
-		System.out.println(board);
-		
 		boardService.writeBoard(board);
+		int boardNo = boardService.findLastBoardNo();
+		String[] tags = board.getTagNames().split(",");
+		for (String tag : tags) {
+			BoardTagDto tagDto = boardService.findTagByTagName(tag);
+			
+			if (tagDto == null) {
+				boardService.writeTag(tag);
+				int tagNo = boardService.findLastTagNo();
+				tagDto = new BoardTagDto();
+				tagDto.setTagNo(tagNo);
+				tagDto.setTagName(tag);
+			}
+			tagDto.setBoardNo(boardNo);
+			boardService.writeBoardTag(tagDto);
+			
+		}
+		
 		
 		return "success";
 	}
@@ -131,11 +146,6 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-	@GetMapping(path = { "/write" })
-	public String showWriteBoardForm() {
-		
-		return "board/write";
-	}
 
 //	@PostMapping(path = { "/write" })
 //	public String writeBoard(BoardDto board, 
