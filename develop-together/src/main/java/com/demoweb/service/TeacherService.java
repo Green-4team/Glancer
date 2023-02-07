@@ -8,4 +8,12 @@ public interface TeacherService {
 
 	List<TeacherDto> findTeacher();
 
+	TeacherDto findTeacherDetail(int teacherno);
+
+	void registerTeacher(TeacherDto register);
+
+	void editTeacher(TeacherDto register);
+
+	void deleteTeacher(int teacherno);
+
 }

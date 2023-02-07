@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,10 +32,55 @@ public class TeacherController {
 		
 		List<TeacherDto> results = teacherService.findTeacher();
 		
-		HashMap<String, Object> TeacherList = new HashMap<>();
-		TeacherList.put("results", results);
+		HashMap<String, Object> teacherList = new HashMap<>();
+		teacherList.put("results", results);
 		
-		return TeacherList;
+		return teacherList;
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/teacher/teacherdetail"})
+	private HashMap<String, Object> showTeacherDetail(int teacherno) {
+		
+		TeacherDto results = teacherService.findTeacherDetail(teacherno);
+		
+		HashMap<String, Object> teacherDetail = new HashMap<>();
+		teacherDetail.put("results", results);
+		
+		
+		return teacherDetail;
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/teacherRegister"})
+	private String registerTeacher(TeacherDto register) {
+		
+		teacherService.registerTeacher(register);
+		
+		return "success";
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/teacherEdit"})
+	private String editTeacher(TeacherDto register) {
+		
+		teacherService.editTeacher(register);
+		
+		return "success";
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/deleteTeacher" })
+	public String deleteTeacher(int teacherno) {
+		
+		teacherService.deleteTeacher(teacherno);
+		
+		return "success";
+		
 	}
 
 }

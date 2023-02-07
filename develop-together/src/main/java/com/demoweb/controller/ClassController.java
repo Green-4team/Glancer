@@ -66,14 +66,6 @@ public class ClassController {
 		
 		results.setTags(tags);
 		
-//		ClassDto results = classService.findClass();
-//		
-//		for (ClassDto result : results) {
-//			List<ClassTagDto> tags = classService.findClassTag(result.getClassno());
-//			System.out.println(tags);
-//			result.setTags(tags);
-//		}
-		
 		HashMap<String, Object> classDetail = new HashMap<>();
 		classDetail.put("results", results);
 		
