@@ -155,6 +155,13 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+	@Override
+	public AllMemberRegisterDto logincheck(String memberId, String password) {
+		password = Util.getHashedString(password, "SHA-256");
+		AllMemberRegisterDto logincheck = memberMapper.logincheck(memberId, password);
+		return logincheck;
+	}
+
 	
 
 	

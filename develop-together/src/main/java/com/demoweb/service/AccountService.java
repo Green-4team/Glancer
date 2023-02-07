@@ -44,6 +44,8 @@ public interface AccountService {
 
 	void updateAcademyInfo(CompanyDto academy);
 
+	AllMemberRegisterDto logincheck(String memberId, String password);
+
 	
 
 }

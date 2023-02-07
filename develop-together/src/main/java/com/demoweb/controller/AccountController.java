@@ -47,7 +47,24 @@ public class AccountController {
 		
 		AllMemberRegisterDto login = accountService.findCustomerByIdAndPasswd(memberId, password); // 회원 정보 조회(아이디, 비밀번호)
 		
+		if (login != null ) {
+			session.setAttribute("loginuser", login);
+		} else {
+			return "fail";
+		}
+		
 		return login;
+	}
+	
+	@CrossOrigin
+	@GetMapping(path = {"/LoginCheck"})
+	@ResponseBody
+	public Object LoginCheck(HttpSession session) {
+		
+		AllMemberRegisterDto loginUser = (AllMemberRegisterDto)session.getAttribute("loginuser");
+		
+			
+		return loginUser;
 	}
 	
 	//프리랜서 회원가입
