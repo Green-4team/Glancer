@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
 
 
 
-const FreelancerDetailHeader = ({memberid}) => {
+const FreelancerDetailHeader = ({memberid , loginInfo}) => {
     const [results, setResults] = useState(null);
-    const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    // const location = useLocation();
+    // const loginInfo = location.state.loginInfo;
 
     useEffect(() => {
         const loadFreelancerDetailHeader = async (e) => {
@@ -68,20 +68,29 @@ const FreelancerDetailHeader = ({memberid}) => {
                                         <div className="p-1"> <h3>{results.title}</h3></div>
                                     </CCol>
                                     <CCol xs={{ span: 3}}>
-                                        {loginInfo.memberId === memberid ? 
+                                        {/* {logininfo.memberId === memberid ? 
                                         <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
                                         </Link> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
-                                        </Link></div>}
+                                        </Link></div>} */}
+
+                                        {loginInfo === null ? <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
+                                        </Link></div> 
+                                        : loginInfo.memberId === memberid ? <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
+                                        </Link></div> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
+                                        </Link></div>}      
                                     </CCol>     
                                     <CCol xs={{ span: 3 }}>
-                                        {loginInfo.memberId === memberid ?
+                                        {/* {loginInfo.memberId === memberid ?
                                         <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
                                          <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 수정하기</CButton></div>
                                         </Link> : <div><Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
                                          <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
-                                       </Link></div>}
+                                       </Link></div>} */}
                                     
                                     </CCol>                            
                                     <CCol xs={{ span: 12 }}>

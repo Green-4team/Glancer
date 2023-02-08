@@ -13,13 +13,14 @@ import { useLocation } from 'react-router-dom';
 const FreelancerMain = (props) => {
     const location = useLocation();
     const memberid = location.state.memberid;
+    const loginInfo = location.state.loginInfo;
     
     return (
         <div>
            
-            <FreelancerDetailHeader memberid={memberid}/>
+            <FreelancerDetailHeader memberid={memberid} loginInfo={loginInfo}/>
 
-            <FreelancerDetailList memberid={memberid} />
+            <FreelancerDetailList memberid={memberid} loginInfo={loginInfo}/>
 
         </div> 
       
