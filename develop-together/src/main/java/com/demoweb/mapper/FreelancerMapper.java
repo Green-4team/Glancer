@@ -23,9 +23,10 @@ public interface FreelancerMapper {
 //			"ORDER BY memberid DESC ")
 //	List<FreelancerHeaderDto> selectFreelancerMainList();
 	
-	// 메인화면 프리랜서 프로필 리스트 (반복문)
-	@Select("SELECT title, introduce, careeryear, rate, name, occupation, program1, program2, program3, program4, language1, language2, language3, language4, value1, value2, value3, value4, memberid " +
-			"FROM freelancer " +
+	// 메인화면 프리랜서 프로필 리스트 출력(반복문)
+	@Select("SELECT f.title, f.introduce, f.careeryear, f.rate, f.occupation, f.program1, f.program2, f.program3, f.program4, f.language1, f.language2, f.language3, f.language4, f.value1, f.value2, f.value3, f.value4, f.memberid, m.memberid, m.name " +
+			"FROM freelancer f, memberdetail m " +
+			"WHERE f.memberid = m.memberid " +
 			"ORDER BY freelancerno DESC ")
 	List<FreelancerHeaderDto> selectFreelancerMainList();
 	
@@ -66,8 +67,8 @@ public interface FreelancerMapper {
 	PersonalHistoryDto findPersonalHistory(String memberid);
 
 	// 프리랜서 프로필 등록
-	@Insert("insert into freelancer ( title, careeryear, rate, name, occupation, program1, program2, program3, program4, language1, language2, language3, language4, value1, value2, value3, value4, memberid ) " +
-			"values ( #{ title } , #{ careeryear } , #{ rate } ,#{ name } ,#{ occupation }, #{ program1 }, #{ program2 }, #{ program3 }, #{ program4 }, #{language1}, #{ language2 }, #{ language3 }, #{ language4 }, #{ value1 }, #{ value2 }, #{ value3 }, #{ value4 }, #{ memberid }) ")
+	@Insert("insert into freelancer ( title, careeryear, rate, occupation, program1, program2, program3, program4, language1, language2, language3, language4, value1, value2, value3, value4, memberid ) " +
+			"values ( #{ title } , #{ careeryear } , #{ rate } ,#{ occupation }, #{ program1 }, #{ program2 }, #{ program3 }, #{ program4 }, #{language1}, #{ language2 }, #{ language3 }, #{ language4 }, #{ value1 }, #{ value2 }, #{ value3 }, #{ value4 }, #{ memberid }) ")
 	void insertFreelancerProfile(FreelancerHeaderDto freelancerHeaderDto);
 
 

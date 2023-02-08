@@ -34,10 +34,6 @@ const SearchList = (searchKeyword, category) => {
                       
                 {results.map((result) => {
                     return (
-
-
-                        
-
                         <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
                         <CCardBody>
                         <div className="clearfix">

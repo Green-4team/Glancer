@@ -36,6 +36,8 @@ public class FreelancerController {
 	@Qualifier("freelancerService")
 	private FreelancerService freelancerService;
 
+	
+	// 프리랜서 메인 리스트 출력 (반복문)
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/freelancer"})
@@ -49,6 +51,7 @@ public class FreelancerController {
 		return freelancerList;
 	}
 	
+	// 프리랜서 디테일 헤더 출력
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/freelancer/freelancerdetail"})

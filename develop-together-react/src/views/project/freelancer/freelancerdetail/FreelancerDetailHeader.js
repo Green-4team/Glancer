@@ -21,18 +21,18 @@ const styles = StyleSheet.create({
    }
 });
 
-function aa(){
-    var arr = [];
-    for (var i = 0; i < 10; i++) {
-    arr.push(<CBadge style={{margin:"2px"}}color="danger">danger</CBadge>)
-    }
-    return arr
-}
+// function aa(){
+//     var arr = [];
+//     for (var i = 0; i < 10; i++) {
+//     arr.push(<CBadge style={{margin:"2px"}}color="danger">danger</CBadge>)
+//     }
+//     return arr
+// }
 
 
 
 
-const FreelancerDetailHeader = ({memberid }) => {
+const FreelancerDetailHeader = ({memberid}) => {
     const [results, setResults] = useState(null);
     const location = useLocation();
     const loginInfo = location.state.loginInfo;
@@ -69,14 +69,20 @@ const FreelancerDetailHeader = ({memberid }) => {
                                     </CCol>
                                     <CCol xs={{ span: 3}}>
                                         {loginInfo.memberId === memberid ? 
-                                    <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
-                                    <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
-                                    </Link> :  <div></div>}
+                                        <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
+                                        </Link> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
+                                        </Link></div>}
                                     </CCol>     
                                     <CCol xs={{ span: 3 }}>
-                                    <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
-                                    <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
-                                    </Link>
+                                        {loginInfo.memberId === memberid ?
+                                        <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
+                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 수정하기</CButton></div>
+                                        </Link> : <div><Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
+                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
+                                       </Link></div>}
+                                    
                                     </CCol>                            
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>{results.name} | 평점{results.rate} 점 | 경력 {results.careeryear}년</strong></div>
@@ -143,9 +149,19 @@ const FreelancerDetailHeader = ({memberid }) => {
                                        <br></br>
                                         
                                     </CCol>
+                                    
                                     <CCol xs={{ span: 6 }}>
                                         <div style={{marginLeft:"20px", height:"200px", borderLeft: "1px solid #aaa"}}>
-                                            <div style={{marginLeft:"20px"}}>{ aa() }</div>
+                                            <div style={{marginLeft:"20px"}}>
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.program1}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.program2}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.program3}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.program4}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.language1}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.language2}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.language3}</CButton>&nbsp;
+                                            <CButton style={{margin:"3px", fontWeight:"bold"}}color="warning" >{results.language4}</CButton>&nbsp;
+                                            </div>
                                         </div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>

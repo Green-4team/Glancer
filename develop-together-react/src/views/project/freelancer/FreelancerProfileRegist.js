@@ -26,6 +26,8 @@ const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
 
+
+
 const [freelancerProfileRegist, setFreelancerProfileRegist] = useState({
 
 });
@@ -53,17 +55,6 @@ const insertFreelancerProfileRegist = () => {
               <CForm>
                 <h1>프리랜서 프로필 등록</h1>
                 <br></br><br></br>
-
-
-               
-               
-
-
-
-
-
-
-           
                 <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >직종</CFormLabel>
                   <CCol sm={3}>
