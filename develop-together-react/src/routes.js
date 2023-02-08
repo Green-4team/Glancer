@@ -47,6 +47,8 @@ const ClassMain = React.lazy(() => import('./views/class/class/ClassMain'))
 const ClassDetailMain = React.lazy(() => import('./views/class/class/classdetail/ClassDetailMain'))
 const ClassRegisterMain = React.lazy(() => import('./views/class/class/classregister/ClassRegisterMain'))
 const ClassEdit = React.lazy(() => import('./views/class/class/classregister/ClassEdit'))
+
+// Teacher
 const TeacherMain = React.lazy(() => import('./views/class/teacher/TeacherMain'))
 const TeacherDetailMain = React.lazy(() => import('./views/class/teacher/teacherdetail/TeacherDetailMain'))
 const TeacherRegisterMain = React.lazy(() => import('./views/class/teacher/teacherregister/TeacherRegisterMain'))

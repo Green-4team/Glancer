@@ -18,14 +18,14 @@ public interface TeacherMapper {
 			"ORDER BY teacherno DESC ")
 	List<TeacherDto> selectAllTeacherList();
 
-	@Select("SELECT t.memberid, t.content, t.rate, t.region, m.name, m.email, m.phone, m.occupation " +
+	@Select("SELECT t.teacherno, t.memberid, t.content, t.rate, t.region, m.name, m.email, m.phone, m.occupation " +
 			"FROM teacher t, memberdetail m " +
-			"WHERE t.memberid = m.memberid and m.memberid = #{memberid} ")
-	TeacherDto selectTeacherDetail(int teacherno);
+			"WHERE t.memberid = m.memberid and t.memberid = #{memberid} ")
+	TeacherDto selectTeacherDetail(String memberid);
 
 	
-	@Insert("INSERT INTO teacher (name, email, phone, content, region) " +
-			"VALUES (#{name}, #{email}, #{phone}, #{content}, #{region}) ")
+	@Insert("INSERT INTO teacher (name, memberid, email, phone, content, region) " +
+			"VALUES (#{name}, #{email}, #{memberid}, #{phone}, #{content}, #{region}) ")
 	@Options(useGeneratedKeys = true, keyColumn = "teacherno", keyProperty = "teacherno")
 	void registerTeacher(TeacherDto register);
 
