@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
@@ -98,6 +99,14 @@ public interface MemberMapper {
 
 	@Select("select memberid, password, membertype from member where memberid = #{ memberId } and password = #{ password } " )
 	AllMemberRegisterDto logincheck(String memberId, String password);
+
+
+	@Select("select a.applicationstate, a.classno ,c.name, c.region, c.startdate, c.enddate, c.price, c.rate " + 
+			"from application a " + 
+			"left outer join class c " +
+			"on a.classno = c.classno " +
+			"where a.memberid = #{memberId} " )
+	List<ApplicationDto> loadClassApplyInfoInfo(String memberId);
 	
 	
 

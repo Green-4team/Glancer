@@ -36,18 +36,17 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownHeader className="bg-light fw-semibold py-2">{loginInfo.memberId}님 환영합니다</CDropdownHeader>
-        <CDropdownItem>
-          <button onClick={ (e) => {     
-            
+        <div onClick={ (e) => {                
             onLogout();
             e.preventDefault();} } 
-            style={{textDecoration: 'none', border:'none', backgroundColor:'white',marginLeft:'-7px', fontSize:"15px"}} >
-        <CIcon icon={cilLockLocked} className="me-2" />
-          Logout
-          </button>          
+            >
+        <CDropdownItem>          
+        <CIcon icon={cilLockLocked} className="me-2"  style={{color:'black'}}/>
+          <div style={{color:'black',display:'inline-block' , cursor:'pointer'}}>Logout</div>                
         </CDropdownItem>
+        </div>    
         <CDropdownItem>
-          <Link to="/Mypage" state={{loginInfo: loginInfo}}>
+          <Link to="/Mypage" state={{loginInfo: loginInfo}} style={{color:'black', textDecoration:'none'}}>
           <CIcon icon={cilUser} className="me-2" />
           My Page
           </Link>         

@@ -55,7 +55,6 @@ class App extends Component {
   };
   
   setLogout = () => {
-    debugger;
     this.setState({...this.state, "loginInfo": null })
     window.sessionStorage.removeItem("loginInfo");
   };
