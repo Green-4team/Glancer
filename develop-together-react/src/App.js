@@ -24,28 +24,40 @@ const RegisterAcademy = React.lazy(() => import('./views/pages/register/Register
 
 
 class App extends Component {
-  constructor(loginInfo) {
-    super(loginInfo);
+  constructor(props) {
+    super(props);
+
+    const loginInfoString = window.sessionStorage.getItem("loginInfo");
+    console.log(loginInfoString);
+    let loginInfo = null;
+    if (loginInfoString) {
+      loginInfo = JSON.parse(loginInfoString);      
+    }
+
     this.state = {
-      "loginInfo": null,
+      "loginInfo": loginInfo
     }
 
     // 로그인 여부 조회
-    axios.get("http://127.0.0.1:8081/account/LoginCheck")
-         .then((response) => {
-          console.log(response.data)
-          this.setState( {...this.state, "loginInfo": response.data ? response.data : null });
-         })
+    // axios.get("http://127.0.0.1:8081/account/LoginCheck")
+    //      .then((response) => {
+    //       console.log(response.data)
+    //       this.setState( {...this.state, "loginInfo": response.data ? response.data : null });
+    //      })
+
   }
 
-  setUserInfo = (loginInfo) => {
+  setUserInfo = (loginInfo) => {    
     this.setState( {...this.state, "loginInfo": loginInfo })
+    const loginInfoString = JSON.stringify(loginInfo);
+    window.sessionStorage.setItem("loginInfo", loginInfoString);
     
   };
   
   setLogout = () => {
+    debugger;
     this.setState({...this.state, "loginInfo": null })
-
+    window.sessionStorage.removeItem("loginInfo");
   };
 
   render() {
