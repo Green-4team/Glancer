@@ -5,6 +5,7 @@ import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import java.util.List;
 
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
@@ -45,6 +46,8 @@ public interface AccountService {
 	void updateAcademyInfo(CompanyDto academy);
 
 	AllMemberRegisterDto logincheck(String memberId, String password);
+
+	List<ApplicationDto> loadClassApplyInfoInfo(String memberId);
 
 	
 

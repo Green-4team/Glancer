@@ -25,6 +25,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.common.Util;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.service.AccountService;
@@ -208,6 +209,20 @@ public class AccountController {
 		
 		
 		return "";
+	}
+	
+	//마이페이지 수강신청 정보 불러오기
+	@CrossOrigin
+	@GetMapping(path = {"/loadClassApplyInfoInfo"})
+	@ResponseBody
+	public HashMap<String, Object> loadClassApplyInfoInfo(String memberId) {
+		
+		List<ApplicationDto> applydto = accountService.loadClassApplyInfoInfo(memberId);
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("results", applydto);
+		
+		return response;
 	}
 	
 }

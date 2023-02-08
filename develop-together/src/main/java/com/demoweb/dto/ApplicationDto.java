@@ -13,4 +13,14 @@ public class ApplicationDto {
 	private boolean applicationstate;
 	
 	private ClassDto apply;
+	
+	
+	
+	private String name;
+	private String region;
+	
+	private String startdate;
+	private String enddate;
+	private int price;
+	private int rate;
 }
