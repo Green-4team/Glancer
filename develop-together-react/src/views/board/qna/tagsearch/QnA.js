@@ -9,7 +9,7 @@ const QnA = (props) => {
     
     return (
         <>
-            <QnATagSearch loginInfo={loginInfo} tagName={tagNo} />
+            <QnATagSearch loginInfo={loginInfo} tagNo={tagNo} />
         </>
     );
 

@@ -23,7 +23,10 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-alignment": "^36.0.1",
     "@ckeditor/ckeditor5-build-classic": "^36.0.0",
+    "@ckeditor/ckeditor5-editor-decoupled": "^36.0.1",
+    "@ckeditor/ckeditor5-font": "^36.0.1",
     "@ckeditor/ckeditor5-react": "^5.0.6",
     "@coreui/chartjs": "^3.0.0",
     "@coreui/coreui": "^4.2.1",
