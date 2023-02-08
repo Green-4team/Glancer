@@ -2,13 +2,13 @@ import { CButton, CCard, CCardBody, CCol, CContainer, CRow } from "@coreui/react
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import SearchList from "./SearchList";
 
 const SearchHeader = (props) => {
 
 
     const [searchKeyword, setSearchKeyword] = useState(null);
-    const [checkedInputs, setCheckedInputs] = useState([]);
-
+    const [category, setCategory] = useState("freelancer");
 
     return (
         <>
@@ -18,7 +18,7 @@ const SearchHeader = (props) => {
 
             <button
             onClick={ () => {
-                axios.get('/search',{
+                SearchList.get('/search/'+{category},{
                     params:{
                     searchKeyword : searchKeyword
                     }
