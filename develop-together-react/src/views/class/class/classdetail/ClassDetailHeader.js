@@ -47,6 +47,7 @@ const ClassDetailHeader = ({ classno }) => {
     const loginInfo = location.state.loginInfo;
 
     const [results, setResults] = useState(null);
+   
     const [apply, setApply] = useState({
         memberid: loginInfo.memberId,
         classno: classno
@@ -59,6 +60,7 @@ const ClassDetailHeader = ({ classno }) => {
             const response = await axios.get(url);
             
             setResults(response.data.results);
+            console.log(response.data.results)
         };
         loadClassDetailHeader();
     }, [classno]);

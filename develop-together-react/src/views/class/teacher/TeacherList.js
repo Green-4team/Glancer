@@ -8,26 +8,6 @@ import { AiOutlineStar } from "react-icons/ai";
 import axios from 'axios';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
-// function aa(){
-//     var arr = [];
-//     for (var i = 0; i < 10; i++) {
-//     arr.push(<CBadge style={{margin:"2px"}}color="info">danger</CBadge>)
-//     }
-//     return arr
-// }
-
-// const styles = StyleSheet.create({
-//     namecard: { 
-//       textAlign:"center",
-//       backgroundColor: "skyblue",
-//       height:"400px",
-//       width:"300px",
-//       borderRadius:"10px",
-//       fontSize:"30px",
-//       marginBottom:"50px"
-//      }
-//   });
-
 const TeacherList = (props) => {
     
     
@@ -83,9 +63,9 @@ const TeacherList = (props) => {
                         return (
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
-                            <div className="clearfix">
+                            <div className="clearfix">{console.log(result.memberid)}
                             <Link to="/class/teacher/teacherdetail" 
-                            // state={{classno: result.classno, loginInfo: loginInfo}} 
+                            state={{memberid: result.memberid}} 
                             style={{textDecoration: "none", color: "black"}}
                             >
                             {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}

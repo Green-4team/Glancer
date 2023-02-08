@@ -5,7 +5,6 @@ import {} from "@coreui/react"
 import TeacherList from "./TeacherList";
 
 
-
 const TeacherMain = (props) => {
     
     return (
