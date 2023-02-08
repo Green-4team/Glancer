@@ -10,9 +10,8 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-nativ
 
 const TeacherList = (props) => {
     
-    
-    // const location = useLocation();
-    // const loginInfo = location.state.loginInfo;
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
 
     const[results, setResults] = useState(null);
 
@@ -43,7 +42,7 @@ const TeacherList = (props) => {
                                     </CCol>                                
                                     <CCol xs={{ span: 0 }}>
                                         <div className="p-1" > <h2>원하는 강사를 찾아주세요.</h2> <br></br>
-                                        <Link to="/class/teacher/teacherregister">
+                                        <Link to="/class/teacher/teacherregister" state={{loginInfo : loginInfo}}>
                                             <CButton color="primary" shape="rounded-pill" size="lg">강사 등록</CButton>
                                         </Link>
                                         </div>
@@ -63,9 +62,9 @@ const TeacherList = (props) => {
                         return (
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
-                            <div className="clearfix">{console.log(result.memberid)}
+                            <div className="clearfix">
                             <Link to="/class/teacher/teacherdetail" 
-                            state={{memberid: result.memberid}} 
+                            state={{memberid: result.memberid, loginInfo: loginInfo, teacherno: result.teacherno}} 
                             style={{textDecoration: "none", color: "black"}}
                             >
                             {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}

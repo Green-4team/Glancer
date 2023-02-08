@@ -31,7 +31,7 @@ import {
 } from '@coreui/react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { CFormCheck, CFormSelect } from '@coreui/react/dist'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -56,9 +56,11 @@ const styles = StyleSheet.create({
 // }
 
 const ClassRegisterHeader = (props) => {
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
 
   const [register, setRegister] = useState({
-    
+    memberid: loginInfo.memberId,
     name: '',
     crowd: '',
     price: '',
@@ -94,7 +96,7 @@ const ClassRegisterHeader = (props) => {
     axios.post(url, register, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강의가 등록되었습니다.');
-            navigate('/class/class');
+            navigate('/class/class',{ state: { loginInfo:loginInfo} });
           })
           .catch(e => {
             alert('빈 항목을 입력해주세요.');

@@ -10,6 +10,10 @@ public class TeacherDto {
 	private String content;
 	private int rate;
 	private String region;
+	private String education;
+	private String career;
 	
-	private MemberDto member;
+	private String name;
+	private String email;
+	private String phone;	
 }

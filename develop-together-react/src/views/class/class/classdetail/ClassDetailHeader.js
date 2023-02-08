@@ -60,7 +60,7 @@ const ClassDetailHeader = ({ classno }) => {
             const response = await axios.get(url);
             
             setResults(response.data.results);
-            console.log(response.data.results)
+            
         };
         loadClassDetailHeader();
     }, [classno]);
@@ -97,18 +97,6 @@ const ClassDetailHeader = ({ classno }) => {
             alert('error');
           });
         }
-
-    // const editClass = () => {
-    // // 유효성 검사
-    // const url = "http://127.0.0.1:8081/class/classEdit";
-    // axios.post(url, results, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
-    //       .then( response => {
-    //         navigate('/class/classEdit');
-    //       })
-    //       .catch(e => {
-    //         alert('error');
-    //       });
-    //     }
    
     return (
          
