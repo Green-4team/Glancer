@@ -47,6 +47,7 @@ const ClassDetailHeader = ({ classno }) => {
     const loginInfo = location.state.loginInfo;
 
     const [results, setResults] = useState(null);
+
     const [apply, setApply] = useState(loginInfo !== null ? {
         memberid: loginInfo.memberId,
         classno: classno
@@ -59,6 +60,7 @@ const ClassDetailHeader = ({ classno }) => {
             const response = await axios.get(url);
             
             setResults(response.data.results);
+            
         };
         loadClassDetailHeader();
     }, [classno]);
@@ -95,18 +97,6 @@ const ClassDetailHeader = ({ classno }) => {
             alert('error');
           });
         }
-
-    // const editClass = () => {
-    // // 유효성 검사
-    // const url = "http://127.0.0.1:8081/class/classEdit";
-    // axios.post(url, results, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
-    //       .then( response => {
-    //         navigate('/class/classEdit');
-    //       })
-    //       .catch(e => {
-    //         alert('error');
-    //       });
-    //     }
    
     return (
          

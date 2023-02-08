@@ -31,7 +31,7 @@ public class TeacherController {
 	private HashMap<String, Object> showTeacherList() {
 		
 		List<TeacherDto> results = teacherService.findTeacher();
-		
+		System.out.println(results);
 		HashMap<String, Object> teacherList = new HashMap<>();
 		teacherList.put("results", results);
 		
@@ -41,9 +41,9 @@ public class TeacherController {
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/teacher/teacherdetail"})
-	private HashMap<String, Object> showTeacherDetail(int teacherno) {
+	private HashMap<String, Object> showTeacherDetail(String memberid, int teacherno) {
 		
-		TeacherDto results = teacherService.findTeacherDetail(teacherno);
+		TeacherDto results = teacherService.findTeacherDetail(memberid, teacherno);
 		
 		HashMap<String, Object> teacherDetail = new HashMap<>();
 		teacherDetail.put("results", results);
