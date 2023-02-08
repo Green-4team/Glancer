@@ -7,7 +7,9 @@ import {
   CCol,
   CContainer,
   CForm,
+
   CFormInput,
+
   CFormLabel,
   CFormTextarea,
   CRow,
@@ -15,175 +17,193 @@ import {
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
-const ProjectHistoryRegist = ({loginInfo}) => {
+const PersonalHistoryRegist = ({loginInfo}) => {
 
 const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
 
-const [projectRegist, setProjectRegist] = useState({
-  projectno: '',
-  projectname: '',
-  projectstart: '',
-  projectend: '',
-  client: '',
-  company: '',
-  position: '',
-  device: '',
-  os:'',
-  language:'',
-  dbms:'',
-  tool:'',
-  work:'',
-  memberid:'',
-
+const [personalHistoryRegist, setPersonalHistoryRegist] = useState({
 
 });
-const insertProjectHistoryRegist = () => {
 
-          axios.post("http://127.0.0.1:8081/project/projectRegister", 
-                      projectRegist,
-                    { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
-              .then( response => {
-                alert('프로젝트 등록 완료');
-                navigate('/project/freelancer');
-              })
-              .catch( e => {          
-                alert('error');
-              });
-        };
+const insertPersonalHistoryRegist = () => {
+  axios.post("http://127.0.0.1:8081/project/personalHistoryRegister", 
+              personalHistoryRegist,
+            { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+      .then( response => {
+        alert('이력서 등록 완료');
+        navigate('/project/freelancer');
+      })
+      .catch( e => {          
+        alert('error');
+      });
+};
    
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <CContainer>
-        <CRow className="justify-content-center">
-          <CCol md={12} lg={7} xl={8}>
-            <CCard className="mx-2" style={{zIndex: 0}}>
-              <CCardBody className="p-4">
-                <CForm>
-                  <h1>이력서 등록</h1>
-                  <p className="text-medium-emphasis">Regist your projects</p>
-                                    
-                  <CRow className="mb-3">
-                  <p className="text-medium-emphasis"><h3>근무 이력</h3></p>
-                    <CFormLabel className="col-sm-2 col-form-label" >회사명</CFormLabel>
-                    <CCol sm={3}>
-                      <CFormInput placeholder="memberid를 입력해주세요" 
-                                  value={projectRegist.memberid}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "memberid": e.target.value})}}/>
+    <CContainer>
+      <CRow className="justify-content-center">
+        <CCol md={12} lg={7} xl={8}>
+          <CCard className="mx-2" style={{zIndex: 0}}>
+            <CCardBody className="p-4">
+              <CForm>
+                <h1>이력서 등록</h1>
+                <h3>근무경력</h3>
+                                  
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >회사명</CFormLabel>
+                  <CCol sm={4}>
+                    <CFormInput placeholder="회사명" 
+                                value={personalHistoryRegist.company}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "company": e.target.value})}}/>
+                  </CCol>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="부서" 
+                                value={personalHistoryRegist.depart}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "depart": e.target.value})}}/>
+                  </CCol>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="직급" 
+                                value={personalHistoryRegist.position}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "position": e.target.value})}}/>
+                  </CCol>
+                </CRow>
+               
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >근무년월</CFormLabel>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2021-05-01"
+                                value={personalHistoryRegist.startdate}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "startdate": e.target.value})}}/>
+                  </CCol>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2022-04-30" 
+                                 value={personalHistoryRegist.enddate}
+                                 onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "enddate": e.target.value})}}/>
+                  </CCol>
+                </CRow>
+                <hr></hr>
+                <h3>학력사항</h3>
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >학교명</CFormLabel>
+                    <CCol sm={4}>
+                    <CFormInput placeholder="학교명"
+                                value={personalHistoryRegist.schoolname}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "schoolname": e.target.value})}}/>
+                  </CCol>
+                  <CCol sm={2}>
+                    <CFormInput placeholder="ex)4년제"
+                                value={personalHistoryRegist.schoolyeartype}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "schoolyeartype": e.target.value})}}/>
+                  </CCol>                
+                </CRow>
+
+                
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >재학기간</CFormLabel>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2021-05-01"
+                                value={personalHistoryRegist.schoolstart}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "schoolstart": e.target.value})}}/>
+                  </CCol>
+                  ~
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2022-04-30" 
+                                 value={personalHistoryRegist.schoolend}
+                                 onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "schoolend": e.target.value})}}/>
+                  </CCol>
+                  <CCol sm={2}>
+                    <CFormInput placeholder="ex) 졸업" 
+                                 value={personalHistoryRegist.schooltype}
+                                 onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "schooltype": e.target.value})}}/>
+                  </CCol>
+                </CRow>
+                <hr></hr>
+                <h3>교육사항</h3>
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >학교명</CFormLabel>
+                    <CCol sm={4}>
+                    <CFormInput placeholder="교육명"
+                                value={personalHistoryRegist.eduname}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "eduname": e.target.value})}}/>
                     </CCol>
-                    <CCol sm={3}>
-                      <CFormInput placeholder="memberid를 입력해주세요" 
-                                  value={projectRegist.memberid}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "memberid": e.target.value})}}/>
-                    </CCol>
-                    <CCol sm={3}>
-                      <CFormInput placeholder="memberid를 입력해주세요" 
-                                  value={projectRegist.memberid}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "memberid": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
-                  <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label" >프로젝트 명</CFormLabel>
-                    <CCol sm={10}>
-                      <CFormInput placeholder="프로젝트명을 입력해 주세요." 
-                                  value={projectRegist.projectname}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "projectname": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
-                  <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label" >기간</CFormLabel>
-                    <CCol sm={5}>
-                      <CFormInput placeholder="ex) 2021-05-01"
-                                  value={projectRegist.projectstart}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "projectstart": e.target.value})}}/>
-                    </CCol>
-                    <CCol sm={5}>
-                      <CFormInput placeholder="ex) 2022-04-30" 
-                                   value={projectRegist.projectend}
-                                   onChange={(e) => {setProjectRegist({...projectRegist, "projectend": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
-                  <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label" >고객사</CFormLabel>
-                    <CCol sm={10}>
-                      <CFormInput placeholder="고객사를 입력해 주세요."
-                                  value={projectRegist.client}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "client": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
-                  <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label" >근무사</CFormLabel>
-                    <CCol sm={10}>
-                      <CFormInput placeholder="근무사를 입력해 주세요."
-                                  value={projectRegist.company}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "company": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
-                  <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label" >직종</CFormLabel>
-                    <CCol sm={10}>
-                      <CFormInput placeholder="ex) 개발, 운영, 기획 etc..." 
-                                  value={projectRegist.position}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "position": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
-                  <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label" >개발환경</CFormLabel>
-                    
-                    <CCol sm={2}>
-                      <CFormInput placeholder="OS" 
-                                  value={projectRegist.os}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "os": e.target.value})}}/>
-                    </CCol>
-                    <CCol sm={2}>
-                      <CFormInput placeholder="언어"
-                                  value={projectRegist.language}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "language": e.target.value})}}/>
-                    </CCol>
-                    <CCol sm={2}>
-                      <CFormInput placeholder="DBMS" 
-                                  value={projectRegist.dbms}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "dbms": e.target.value})}}/>
-                    </CCol>
-                    <CCol sm={2}>
-                      <CFormInput placeholder="전송"
-                                  value={projectRegist.datatransmission}
-                                  onChange={(e) => {setProjectRegist({...projectRegist, "datatransmission": e.target.value})}}/>
-                    </CCol>
-                  </CRow>
+                    <CCol sm={4}>
+                    <CFormInput placeholder="교육기관"
+                                value={personalHistoryRegist.edudepart}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "edudepart": e.target.value})}}/>
+                    </CCol>                
+                </CRow>
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >교육기간</CFormLabel>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2016-03-05"
+                                value={personalHistoryRegist.edustart}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "edustart": e.target.value})}}/>
+                  </CCol>
+                  ~
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2016-09-05" 
+                                 value={personalHistoryRegist.eduend}
+                                 onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "eduend": e.target.value})}}/>
+                  </CCol>                 
+                </CRow>
+                <hr></hr>
+                <h3>자격사항</h3>
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >자격증명명</CFormLabel>
+                    <CCol sm={4}>
+                    <CFormInput placeholder="자격증명"
+                                value={personalHistoryRegist.certiname}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "certiname": e.target.value})}}/>
+                  </CCol>
+                  <CCol sm={4}>
+                    <CFormInput placeholder="발행처"
+                                value={personalHistoryRegist.certipublisher}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "certipublisher": e.target.value})}}/>
+                  </CCol>                
+                </CRow>
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >취득년월</CFormLabel>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2016-03-05"
+                                value={personalHistoryRegist.certidate}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "certidate": e.target.value})}}/>
+                  </CCol>               
+                </CRow>
+                <CRow className="mb-3">
+                  <CFormLabel className="col-sm-2 col-form-label" >memberid</CFormLabel>
+                  <CCol sm={3}>
+                    <CFormInput placeholder="ex) 2016-03-05"
+                                value={personalHistoryRegist.memberid}
+                                onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "memberid": e.target.value})}}/>
+                  </CCol>               
+                </CRow>
+                
                   
-                    <CFormLabel className="col-sm-2 col-form-label" >담당업무</CFormLabel>
-                    <CFormTextarea 
-                      value={projectRegist.work}
-                      onChange={(e) => {setProjectRegist({...projectRegist, "work": e.target.value})}}
-                      rows={3}
-                      text="담당업무를 상세하게 적어주시면 프로젝트 추천 시 도움이 됩니다."
-                ></CFormTextarea>
-                                   
-                  <br></br><br></br> 
-                  <div className="col-4 mx-auto">
-                  <CButton type='submit' color="dark" size="lg" 
-                  onClick={
-                    (e) => {                         
-                      insertProjectHistoryRegist(projectRegist); 
-                      // setAcademyInfo({});
-                      e.preventDefault();
-                  } 
-                  }
-                  >Regist your project!!</CButton> 
-                  </div>          
-                 </CForm>
-              </CCardBody>
-            </CCard>
-          </CCol>
-        </CRow>
-      </CContainer>
-    </div>
+                <br></br><br></br> 
+                <div className="col-4 mx-auto">
+                <CButton type='submit' color="dark" size="lg" 
+                onClick={
+                  (e) => {                         
+                    insertPersonalHistoryRegist(personalHistoryRegist); 
+                    // setAcademyInfo({});
+                    e.preventDefault();
+                } 
+                }
+                >이력서를 등록하세요!!</CButton> 
+                </div>          
+               </CForm>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+    </CContainer>
+  </div>
   )
 }
 
-export default ProjectHistoryRegist
+export default PersonalHistoryRegist
 
 
 

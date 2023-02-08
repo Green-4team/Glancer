@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from 'react'
-import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CImage } from "@coreui/react"
+import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CImage, CButton } from "@coreui/react"
 import { StyleSheet } from 'react-native'
 import classimg from "src/assets/images/class.jpg"
 import { BsFillStarFill } from "react-icons/bs";  
 import { AiOutlineStar } from "react-icons/ai";  
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const styles = StyleSheet.create({
@@ -33,6 +34,8 @@ function aa(){
 
 const FreelancerDetailHeader = ({memberid }) => {
     const [results, setResults] = useState(null);
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
 
     useEffect(() => {
         const loadFreelancerDetailHeader = async (e) => {
@@ -56,13 +59,25 @@ const FreelancerDetailHeader = ({memberid }) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                 <div style={styles.namecard}>
-                                    <div style={{fontSize:"50px", marginTop:"60px"}}>개발자 {results.name} 입니다.</div>
+                                    <div style={{fontSize:"50px", marginTop:"60px"}}> {results.name} 님의 프로필 입니다.</div>
 
                                 </div>
+                                    
                                                                   
-                                    <CCol xs={{ span: 12 }}>
+                                    <CCol xs={{ span: 6 }}>
                                         <div className="p-1"> <h3>{results.title}</h3></div>
-                                    </CCol>                                
+                                    </CCol>
+                                    <CCol xs={{ span: 3}}>
+                                        {loginInfo.memberId === memberid ? 
+                                    <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                    <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
+                                    </Link> :  <div></div>}
+                                    </CCol>     
+                                    <CCol xs={{ span: 3 }}>
+                                    <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
+                                    <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
+                                    </Link>
+                                    </CCol>                            
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>{results.name} | 평점{results.rate} 점 | 경력 {results.careeryear}년</strong></div>
                                     </CCol>

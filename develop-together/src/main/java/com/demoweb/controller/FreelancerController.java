@@ -23,6 +23,7 @@ import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.PersonalHistoryDto;
 import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.service.ClassService;
 import com.demoweb.service.FreelancerService;
@@ -64,16 +65,35 @@ public class FreelancerController {
 		return freelancerDetailHeader;
 	}
 	
+	// 이력서 등록
+	@CrossOrigin
+	@PostMapping(path = {"/personalHistoryRegister"})
+	@ResponseBody
+	private Object personalHistoryRegist(PersonalHistoryDto personalHistoryRegist) {
+		
+		freelancerService.insertpersonalHistory(personalHistoryRegist);
+			
+		return "";
+	}
+	
+	// 프리랜서 프로필 등록
+	@CrossOrigin
+	@PostMapping(path = {"/freelancerProfileRegister"})
+	@ResponseBody
+	private Object freelancerProfileRegist(FreelancerHeaderDto freelancerHeaderDto) {
+		
+		freelancerService.insertFreelancerProfile(freelancerHeaderDto);
+			
+		return "";
+	}
+	
 	@CrossOrigin
 	@PostMapping(path = {"/projectRegister"})
 	@ResponseBody
 	private Object projectHistoryRegist(ProjectHistoryDto projectHistoryRegist) {
 		
-		
-		
 		freelancerService.insertprojectHistory(projectHistoryRegist);
-		
-		
+				
 		return "";
 	}
 	
@@ -82,14 +102,31 @@ public class FreelancerController {
 	@ResponseBody
 	private Object showProjectHistoryList(String memberid) {
 		
-		System.out.println("333");
-		
-		
 		List<ProjectHistoryDto> projectHistory = freelancerService.findprojectHistoryy(memberid);
+		
 		HashMap<String, Object> projectHistoryHashMap = new HashMap<>();
 		projectHistoryHashMap.put("results", projectHistory);
 		
+		
+
+		
 		return projectHistoryHashMap;
+	}
+	
+	//이력서 출력
+	@CrossOrigin
+	@GetMapping(path = {"/showPersonalHistory"})
+	@ResponseBody
+	private Object showPersonalHistory(String memberid) {
+		
+		System.out.println("444444444");
+		
+		
+		PersonalHistoryDto personaltHistory = freelancerService.findPersonalHistory(memberid);
+		HashMap<String, Object> personalHistoryHashMap = new HashMap<>();
+		personalHistoryHashMap.put("results2", personaltHistory);
+		
+		return personalHistoryHashMap;
 	}
 	
 	

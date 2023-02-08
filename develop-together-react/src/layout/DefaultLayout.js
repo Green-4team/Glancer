@@ -3,13 +3,13 @@ import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/inde
 
 const DefaultLayout = (props) => {
 
-  const {loginInfo} = props; 
+  const {loginInfo, onLogout} = props; 
 
   return (
     <div>
       
       <div className="wrapper d-flex flex-column min-vh-100">
-        <AppHeader loginInfo={loginInfo}/>
+        <AppHeader loginInfo={loginInfo} onLogout={ onLogout }/>
         <div className="body flex-grow-1 px-3">
           <AppContent />
         </div>

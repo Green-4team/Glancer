@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.PersonalHistoryDto;
 import com.demoweb.dto.ProjectHistoryDto;
 
 public interface FreelancerService {
@@ -19,6 +20,12 @@ public interface FreelancerService {
 	void insertprojectHistory(ProjectHistoryDto projectHistoryRegist);
 
 	List<ProjectHistoryDto> findprojectHistoryy(String memberid);
+
+	void insertpersonalHistory(PersonalHistoryDto personalHistoryRegist);
+
+	PersonalHistoryDto findPersonalHistory(String memberid);
+
+	void insertFreelancerProfile(FreelancerHeaderDto freelancerHeaderDto);
 		
 	
 }

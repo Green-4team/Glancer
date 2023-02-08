@@ -1,7 +1,7 @@
 
 import React from 'react'
 import classimg from "src/assets/images/class.jpg"
-import { CCard, CCardBody, CCol,CBadge,CImage, CCardHeader, CNav, CNavItem, CNavLink, CTabContent, CTabPane  } from "@coreui/react";
+import { CCard, CCardBody, CCol,CBadge,CImage, CCardHeader, CNav, CNavItem, CNavLink, CTabContent, CTabPane, CForm, CFormTextarea, CContainer, CRow, CButton  } from "@coreui/react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -32,34 +32,30 @@ function aa(){
 
 const FreelancerDetailList = ({memberid}) => {
 
-
-//     arr.push(<CCol xs={12} >
-//                 <CCard textColor='dark' style={{margin:5}}>
-//                     <CCardBody style={{ marginLeft:'0px'}}>
-//                     <strong>개발, PL</strong> <br></br>
-//                     <h4>{results.name} </h4>
-//                     <strong style={{ marginBottom:"10px"}}>프로젝트 기간 </strong> <br></br> 
-//                     <strong style={{ marginBottom:"10px"}}>프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,ㅍ, 프로젝트 내용, 프로젝트 내용, 프로젝트 내용,  </strong> <br></br>
-//                         { aa() }                                       
-//                     </CCardBody>
-//                 </CCard>
-//             </CCol>)
-//     }
-//     return arr
-// }
-
-
     const [activeKey, setActiveKey] = useState(1)
     const [results, setResults] = useState(null);
+    const [results2, setResults2] = useState(null)
 
     useEffect(() => {
       const loadFreelancerDetailList = async (e) => {
         const response = await axios.get(`http://127.0.0.1:8081/project/freelancerDetailList?memberid=${memberid}` )
         setResults(response.data.results)
+       
         console.log(response.data.results)
       }
       loadFreelancerDetailList();
     }, [memberid])
+
+    useEffect(() => {
+      const loadPersonalHistory = async (e) => {
+        const response = await axios.get(`http://127.0.0.1:8081/project/showPersonalHistory?memberid=${memberid}` )
+        setResults2(response.data.results2)
+    
+        console.log(response.data.results2)
+      }
+      loadPersonalHistory();
+    }, [memberid])
+
 
     if (!results) {
       return;
@@ -92,41 +88,97 @@ const FreelancerDetailList = ({memberid}) => {
           <CTabPane role="동영상탭" aria-labelledby="" visible={activeKey === 1}>
             <CCol xs={15}>
               <CCardBody>
-                <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>
+                {results !== null ? 
+                <CContainer>
+                <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>                   
                     {results.map((result) => {
-                      return(
+                      return(                        
                         <CCol xs={12} >
-                   <CCard textColor='dark' style={{margin:5}}>
-                     <CCardBody style={{ marginLeft:'0px'}}>
-                        <strong>{result.position}</strong> <br></br>
-                        <h4>{result.projectname} </h4>
-                        <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
-                        <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
-                        <CBadge style={{margin:"2px"}}color="success">{result.language}</CBadge>
-                        <CBadge style={{margin:"2px"}}color="danger">{result.dbms}</CBadge>
-                        <CBadge style={{margin:"2px"}}color="warning">{result.tool}</CBadge>
-                        <CBadge style={{margin:"2px"}}color="info">{result.datatransmission}</CBadge>
-                     </CCardBody>
-                 </CCard>
-             </CCol>
-
-
-
+                          <CCard textColor='dark' style={{margin:5}}>
+                            <CCardBody style={{ marginLeft:'0px'}}>
+                                <strong>{result.position}</strong> <br></br>
+                                <h4>{result.projectname} </h4>
+                                <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
+                                <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
+                                <CBadge style={{margin:"2px"}}color="success">{result.language}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.dbms}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="warning">{result.tool}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="info">{result.datatransmission}</CBadge>
+                            </CCardBody>
+                        </CCard>
+                    </CCol>                  
                       )
-
-
                     })}
+                    
                 </DramaMainMediaBlock>
+                </CContainer>
+                :
+                
+                <div>등록된 프로젝트가 없습니다.</div>
+                }
               </CCardBody>
             </CCol>
           </CTabPane>
           <CTabPane role="배경" aria-labelledby="" visible={activeKey === 2}>
             <CCol xs={15}>
               <CCardBody>
-                <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>
-                    <div>이력서 내용</div>
-                    
-                </DramaMainMediaBlock>
+              {/* <strong>학력</strong><br></br>
+              {results2.schoolstart} ~ {results2.schoolend}<br></br><br></br>
+              <strong>경력</strong><br></br>
+              {results2.startdate} ~ {results2.enddate}<br></br><br></br> */}
+              {results2 !== null ? 
+                <CContainer>
+                  <CRow xs={{ gutter: 0 }}>
+                    <CCol xs={{ span: 12 }}>
+                        <strong>학력</strong>
+                    </CCol>                                
+                    <CCol style={{marginTop:"3px"}} xs={{ span: 4 }}>
+                    {results2.schoolstart} ~ {results2.schoolend}
+                    </CCol>
+                    <CCol xs={{ span: 8 }}>
+                    {results2.schoolname} / {results2.schoolmajor} / {results2.schoolyeartype} / {results2.schooltype}
+                    </CCol>                  
+                  </CRow>
+
+                  <CRow xs={{ gutter: 0 }}>
+                    <CCol  style={{marginTop:"20px"}} xs={{ span: 12 }}>
+                        <strong>경력</strong>
+                    </CCol>                                
+                    <CCol style={{marginTop:"3px"}} xs={{ span: 4 }}>
+                    {results2.startdate} ~ {results2.enddate}
+                    </CCol>
+                    <CCol xs={{ span: 8 }}>
+                    {results2.company} / {results2.depart} / {results2.position}
+                    </CCol>                  
+                  </CRow>
+
+                  <CRow xs={{ gutter: 0 }}>
+                    <CCol  style={{marginTop:"20px"}} xs={{ span: 12 }}>
+                        <strong>자격증</strong>
+                    </CCol>                                
+                    <CCol style={{marginTop:"3px"}} xs={{ span: 4 }}>
+                    {results2.certidate}
+                    </CCol>
+                    <CCol xs={{ span: 8 }}>
+                    {results2.certiname} / {results2.certipublisher} 
+                    </CCol>                  
+                  </CRow>
+
+                  <CRow xs={{ gutter: 0 }}>
+                    <CCol  style={{marginTop:"20px"}} xs={{ span: 12 }}>
+                        <strong>교육내용</strong>
+                    </CCol>                                
+                    <CCol style={{marginTop:"3px"}} xs={{ span: 4 }}>
+                    {results2.edustart} ~ {results2.eduend}
+                    </CCol>
+                    <CCol xs={{ span: 8 }}>
+                    {results2.eduname} / {results2.edudepart} 
+                    </CCol>                  
+                  </CRow>
+                </CContainer>
+                  :
+                  <div>등록된 이력서가 없습니다.</div>
+                  }
               </CCardBody>
             </CCol>
           </CTabPane> 
