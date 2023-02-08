@@ -47,10 +47,11 @@ const ClassDetailHeader = ({ classno }) => {
     const loginInfo = location.state.loginInfo;
 
     const [results, setResults] = useState(null);
-    const [apply, setApply] = useState({
+
+    const [apply, setApply] = useState(loginInfo !== null ? {
         memberid: loginInfo.memberId,
         classno: classno
-    });
+    }: null );
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -59,6 +60,7 @@ const ClassDetailHeader = ({ classno }) => {
             const response = await axios.get(url);
             
             setResults(response.data.results);
+            console.log(response.data.results)
         };
         loadClassDetailHeader();
     }, [classno]);
