@@ -24,4 +24,32 @@ public class TeacherServiceImpl implements TeacherService {
 		List<TeacherDto> teacherList = teacherMapper.selectAllTeacherList();
 		return teacherList;
 	}
+
+	@Override
+	public TeacherDto findTeacherDetail(int teacherno) {
+		
+		TeacherDto teacherDetail = teacherMapper.selectTeacherDetail(teacherno);
+		return teacherDetail;
+	}
+
+	@Override
+	public void registerTeacher(TeacherDto register) {
+		
+		teacherMapper.registerTeacher(register);
+		
+	}
+
+	@Override
+	public void editTeacher(TeacherDto register) {
+		
+		teacherMapper.editTeacher(register);
+		
+	}
+
+	@Override
+	public void deleteTeacher(int teacherno) {
+		
+		teacherMapper.deleteTeacher(teacherno);
+		
+	}
 }

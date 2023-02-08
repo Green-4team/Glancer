@@ -1,21 +1,25 @@
 import { CButton, CFormTextarea, CNavLink } from '@coreui/react';
 import moment from 'moment';
 import { BsEye } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HoverBlueBlock = styled.div`
 .hoverBlue:hover {color: #24a0ed;}
 `;
 
-const QnADetailItem = ({ result }) => {
-  const { /* boardNo, topicNo, deleted, */ memberId, title, content, regDate, views, topicName, tags } = result;
-
+const QnADetailItem = ({ result, loginInfo }) => {
+  const { /* boardNo, deleted, */ memberId, title, content, regDate, views, topicName, tags, topicNo } = result;
+  const navigate = useNavigate();
   return (
     <>
       <HoverBlueBlock>
         <div style={{display: "inline-block", marginRight: 5}} class="hoverBlue">Q&A</div>/
-        <div style={{display: "inline-block", marginLeft: 5}} class="hoverBlue">{topicName}</div>
+        <div style={{display: "inline-block", marginLeft: 5}}
+             class="hoverBlue"
+             onClick={() => {
+              navigate('/board/qna/list', {state: { loginInfo: loginInfo, topicNo: topicNo }});
+             }} >{topicName}</div>
         <hr />
         <div>
           <div>{memberId}</div>

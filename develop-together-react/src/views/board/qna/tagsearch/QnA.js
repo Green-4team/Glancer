@@ -1,15 +1,15 @@
 import { useLocation } from "react-router-dom";
-import QnAList from "./QnAList";
+import QnATagSearch from "./QnATagSearch";
 
 const QnA = (props) => {
 
     const location = useLocation();
     const loginInfo = location.state.loginInfo;
-    const topicNo = location.state.topicNo;
+    const tagNo = location.state.tagNo;
     
     return (
         <>
-            <QnAList loginInfo={loginInfo} topicNo={topicNo} />
+            <QnATagSearch loginInfo={loginInfo} tagName={tagNo} />
         </>
     );
 

@@ -1,12 +1,11 @@
-import { cilMenu, cilSearch } from '@coreui/icons'
+import { cilSearch } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import {
   CContainer,
   CHeader,
   CHeaderBrand,
   CHeaderDivider,
-  CHeaderNav,
-  CHeaderToggler, CNavItem, CNavLink
+  CHeaderNav, CNavItem, CNavLink
 } from '@coreui/react'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +13,6 @@ import { Link, NavLink } from 'react-router-dom'
 
 
 import { logo } from 'src/assets/brand/logo'
-import FreelancerDetailList from 'src/views/project/freelancer/freelancerdetail/FreelancerDetailList'
 import styled from 'styled-components'
 import { AppHeaderDropdown } from './header/index'
 import { AppBreadcrumb } from './index'
@@ -100,7 +98,7 @@ const AppHeader = (props) => {
             <div class="dropdown">
               <button class="dropbtn">게시판</button>
               <div class="dropdown-content">
-                <CNavLink to='/board/qna/list' component={NavLink}>Q&A</CNavLink>
+                <Link to='/board/qna/list' component={NavLink} state={{ loginInfo: loginInfo }}>Q&A</Link>
                 <CNavLink to='/#' component={NavLink}>Link 2</CNavLink>
               </div>
             </div>

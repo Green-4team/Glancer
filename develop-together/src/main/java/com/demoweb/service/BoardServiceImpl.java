@@ -1,12 +1,11 @@
 package com.demoweb.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demoweb.dao.BoardDao;
 import com.demoweb.dto.BoardAttachDto;
@@ -15,8 +14,6 @@ import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.BoardTagDto;
 import com.demoweb.mapper.BoardCommentMapper;
 import com.demoweb.mapper.BoardMapper;
-
-import lombok.Setter;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -142,14 +139,49 @@ public class BoardServiceImpl implements BoardService {
 	////////////////////////////////////////////////////////
 	
 	@Override
-	public List<BoardDto> findBoardByPage(int pageNo, int pageSize) {
+	public List<BoardDto> findBoardByPageAndTopicNo(int pageNo, int pageSize, int topicNo) {
+		int from = (pageNo - 1) * pageSize;
+		int count = pageSize;
+		
+		List<BoardDto> boards = new ArrayList<BoardDto>();
+		if (topicNo == 0)
+			boards = boardMapper.selectBoardByPage(from, from + count);
+		else 
+			boards = boardMapper.selectBoardByPageAndTopicNo(from, from + count, topicNo);
+		
+		return boards;
+	}
+	
+	@Override
+	public int findBoardCountByTopicNo(int topicNo) {
+		
+		int boardCount;
+		if (topicNo == 0)
+			boardCount = boardMapper.selectBoardCount();
+		else
+			boardCount = boardMapper.selectBoardCountByTopicNo(topicNo);
+		
+		return boardCount;
+		
+	}
+
+	@Override
+	public List<BoardDto> findBoardByPageAndTagNo(int pageNo, int pageSize, int tagNo) {
 		
 		int from = (pageNo - 1) * pageSize;
 		int count = pageSize;
 		
-		List<BoardDto> boards = boardMapper.selectBoardByPage(from, from + count);
-		return boards;
+		List<BoardDto> board = boardMapper.selectBoardByPageAndTagNo(from, from + count, tagNo);
 		
+		return board;
+	}
+
+	@Override
+	public int findBoardCountByTagNo(int tagNo) {
+		
+		int boardCount = boardMapper.selectBoardCountByTagNo(tagNo);
+		
+		return boardCount;
 	}
 	
 	@Override
@@ -157,14 +189,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		List<BoardTagDto> tags = boardMapper.selectBoardTagByBoardNo(boardNo, boardType);
 		return tags;
-		
-	}
-	
-	@Override
-	public int findBoardCount() {
-		
-		int boardCount = boardMapper.selectBoardCount();
-		return boardCount;
 		
 	}
 	
@@ -202,7 +226,44 @@ public class BoardServiceImpl implements BoardService {
 //		}
 		
 	}
-	
+
+	@Override
+	public int findLastBoardNo() {
+		
+		int boardNo = boardMapper.selectLastBoardNo();
+		
+		return boardNo;
+	}
+
+	@Override
+	public BoardTagDto findTagByTagName(String tagName) {
+		
+		BoardTagDto tagDto = boardMapper.selectTagByTagName(tagName);
+		
+		return tagDto;
+	}
+
+	@Override
+	public void writeTag(String tagName) {
+		
+		boardMapper.insertTag(tagName);
+		
+	}
+
+	@Override
+	public int findLastTagNo() {
+		int tagNo = boardMapper.selectLastTagNo();
+		return tagNo;
+	}
+
+	@Override
+	public void writeBoardTag(BoardTagDto tagDto) {
+
+		boardMapper.insertBoardTag(tagDto);
+		
+	}
+
+
 }
 
 

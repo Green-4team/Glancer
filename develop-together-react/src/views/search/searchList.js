@@ -11,7 +11,6 @@ const SearchList = (searchKeyword, category) => {
 
     const url = `http://127.0.0.1:8081/search/`;
 
-
     useEffect(() => {
         if ( category != null ) {
             const loadSearchList = async (e)  => {

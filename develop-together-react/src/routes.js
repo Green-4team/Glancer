@@ -4,9 +4,12 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
+
+// QnA
 const QnAList = React.lazy(() => import('./views/board/qna/list/QnA'))
 const QnADetail = React.lazy(() => import('./views/board/qna/detail/QnA'))
 const QnAWrite = React.lazy(() => import('./views/board/qna/write/QnA'))
+const QnATagSearch = React.lazy(() => import('./views/board/qna/tagsearch/QnA'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -47,6 +50,7 @@ const ClassEdit = React.lazy(() => import('./views/class/class/classregister/Cla
 const TeacherMain = React.lazy(() => import('./views/class/teacher/TeacherMain'))
 const TeacherDetailMain = React.lazy(() => import('./views/class/teacher/teacherdetail/TeacherDetailMain'))
 const TeacherRegisterMain = React.lazy(() => import('./views/class/teacher/teacherregister/TeacherRegisterMain'))
+const TeacherEdit = React.lazy(() => import('./views/class/teacher/teacherregister/TeacherEdit'))
 
 //Project
 const FreelancerMain = React.lazy(() => import('./views/project/freelancer/FreelancerMain'))
@@ -96,6 +100,7 @@ const routes = [
   { path: '/board/qna/list', name: 'Q&AList', element: QnAList },
   { path: '/board/qna/detail', name: 'Q&ADetail', element: QnADetail },
   { path: '/board/qna/write', name: 'Q&AWrite', element: QnAWrite },
+  { path: '/board/qna/tagsearch', name: 'Q&ATagSearch', element: QnATagSearch },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
@@ -132,6 +137,7 @@ const routes = [
   { path: '/class/teacher', name: 'TeacherMain', element: TeacherMain },
   { path: '/class/teacher/teacherdetail', name: 'TeacherDetailMain', element: TeacherDetailMain },
   { path: '/class/teacher/teacherregister', name: 'TeacherRegisterMain', element: TeacherRegisterMain },
+  { path: '/class/teacher/teacheredit', name: 'TeacherEdit', element: TeacherEdit },
   
   
   { path: '/search', name: 'SearchMain', element: SearchMain },
