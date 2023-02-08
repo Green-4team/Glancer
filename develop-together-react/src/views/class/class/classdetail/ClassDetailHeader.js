@@ -47,11 +47,11 @@ const ClassDetailHeader = ({ classno }) => {
     const loginInfo = location.state.loginInfo;
 
     const [results, setResults] = useState(null);
-   
-    const [apply, setApply] = useState({
+
+    const [apply, setApply] = useState(loginInfo !== null ? {
         memberid: loginInfo.memberId,
         classno: classno
-    });
+    }: null );
 
     const navigate = useNavigate();
     useEffect(() => {

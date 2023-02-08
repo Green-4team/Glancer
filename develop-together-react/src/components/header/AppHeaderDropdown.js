@@ -36,7 +36,7 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownHeader className="bg-light fw-semibold py-2">{loginInfo.memberId}님 환영합니다</CDropdownHeader>
-        <CDropdownItem href="" >
+        <CDropdownItem>
           <button onClick={ (e) => {     
             
             onLogout();

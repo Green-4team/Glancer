@@ -60,6 +60,11 @@ const ProjectMain = React.lazy(() => import('./views/project/project/ProjectMain
 const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer/freelancerdetail/FreelancerDetailMain'))
 const ProjectRegist = React.lazy(() => import('./views/project/freelancer/ProjectRegist'))
 const PersonalHistoryRegist = React.lazy(() => import('./views/project/freelancer/PersonalHistoryRegist'))
+const FreelancerProfileRegist = React.lazy(() => import('./views/project/freelancer/FreelancerProfileRegist'))
+
+
+
+
 
 //Search
 const SearchMain = React.lazy(() => import('./views/search/SearchMain'))
@@ -123,6 +128,7 @@ const routes = [
   { path: '/project/freelancer/freelancerdetail', name: 'FreelancerDetailMain', element: FreelancerDetailMain },
   { path: '/project/freelancer/projectregist', name: 'ProjectRegist', element: ProjectRegist },
   { path: '/project/freelancer/personalhistoryregist', name: 'PersonalHistoryRegist', element: PersonalHistoryRegist },
+  { path: '/project/freelancer/freelancerprofileregist', name: 'FreelancerProfileRegist', element: FreelancerProfileRegist },
 
   
   { path: '/class/class', name: 'ClassMain', element: ClassMain },

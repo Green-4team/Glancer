@@ -57,7 +57,7 @@ const DropMenuBlock = styled.div`
 `;
 const AppHeader = (props) => {
 
-  const {loginInfo, logout} = props; 
+  const {loginInfo, onLogout} = props; 
   
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
@@ -76,8 +76,8 @@ const AppHeader = (props) => {
             <div class="dropdown">
               <button class="dropbtn">구인&구직</button>
               <div class="dropdown-content">
-                <Link to='/project/freelancer' loginInfo={loginInfo} component={NavLink}>프리랜서</Link>
-                <CNavLink to='/project/project' component={NavLink}>프로젝트</CNavLink>
+                <Link to='/project/freelancer' state={{loginInfo: loginInfo}}  component={NavLink}>프리랜서</Link>
+                <CNavLink to='/project/project' state={{loginInfo: loginInfo}}  component={NavLink}>프로젝트</CNavLink>
               </div>
             </div>
           </CNavItem>
@@ -126,7 +126,7 @@ const AppHeader = (props) => {
           { loginInfo === null ? <CNavLink to="/login" component={NavLink} >로그인</CNavLink> 
           : 
           <CHeaderNav className="ms-3">
-          <AppHeaderDropdown loginInfo={loginInfo} logout={logout} />
+          <AppHeaderDropdown loginInfo={loginInfo} onLogout={onLogout} />
         </CHeaderNav>}
           </CNavItem>
         </CHeaderNav>

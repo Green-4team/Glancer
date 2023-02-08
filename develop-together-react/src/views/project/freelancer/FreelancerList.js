@@ -17,7 +17,7 @@ function aa(){
     return arr
 }
 
-const FreelancerList = (props) => {
+const FreelancerList = ({loginInfo}) => {
     const[results, setResults] = useState(null);
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const FreelancerList = (props) => {
                         <CCard className='mb-3 border-gray' textColor='dark'  style={{margin:7}}>
                         <CCardBody>
                             <div className="clearfix">
-                                <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid}} style={{textDecoration: "none", color: "black"}}>
+                                <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid, loginInfo:loginInfo}} style={{textDecoration: "none", color: "black"}}>
                                 <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
                                 <CCardBody style={{ marginLeft:'150px'}}>
                                 <h4>{result.name} | {result.occupation} </h4>

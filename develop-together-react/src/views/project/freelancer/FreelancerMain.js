@@ -4,19 +4,24 @@ import React from 'react'
 import {} from "@coreui/react"
 import FreelancerHeader from "./FreelancerHeader";
 import FreelancerList from "./FreelancerList";
+import { useLocation } from 'react-router-dom';
 
 
 
 
 
-const FreelancerMain = ({loginInfo}) => {
+const FreelancerMain = (props) => {
     
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
+
+
     return (
         <div>
 
             <FreelancerHeader loginInfo={loginInfo} />
 
-            <FreelancerList />
+            <FreelancerList loginInfo={loginInfo}/>
 
         </div> 
       
