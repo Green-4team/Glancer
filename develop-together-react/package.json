@@ -23,10 +23,7 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-alignment": "^36.0.1",
     "@ckeditor/ckeditor5-build-classic": "^36.0.0",
-    "@ckeditor/ckeditor5-editor-decoupled": "^36.0.1",
-    "@ckeditor/ckeditor5-font": "^36.0.1",
     "@ckeditor/ckeditor5-react": "^5.0.6",
     "@coreui/chartjs": "^3.0.0",
     "@coreui/coreui": "^4.2.1",
@@ -48,7 +45,6 @@
     "react-dom": "^18.2.0",
     "react-froala-wysiwyg": "^4.0.17",
     "react-icons": "^4.7.1",
-    "react-multivalue-text-input": "^2.3.0",
     "react-native": "^0.71.1",
     "react-native-web": "^0.18.12",
     "react-redux": "^8.0.2",

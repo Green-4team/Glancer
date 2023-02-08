@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CFormCKEditor from "../../other/CFormCKEditor";
+import Editor from "../../other/Editor";
 
 const TagBlock = styled.div`
 .tagify{    
@@ -60,6 +61,10 @@ const QnAWrite = ({loginInfo}) => {
     }
   };
 
+  const setContent = (data) => {
+    setBoard({...board, "content": data})
+  }
+
   useEffect(()=> {
     if (loginInfo === null) {
       alert("로그인이 필요합니다")
@@ -88,11 +93,6 @@ const QnAWrite = ({loginInfo}) => {
             </div>
             <div style={{marginTop: 30}}>
               <CFormLabel>태그</CFormLabel>
-              {/* <MultipleValueTextInput
-                onItemAdded={(item, allItems) => console.log(`item added: ${board.tag}`)}
-                onItemDeleted={(item, allItems) => console.log(`item removed: ${board.tag}`)}
-                placeholder="hi" /> */}
-
               <TagBlock>
                 <input style={{ width: '100%', 
                                 height: '38px',
@@ -100,18 +100,11 @@ const QnAWrite = ({loginInfo}) => {
                                 borderColor: 'silver',
                                 borderRadius: '5px' }} name='basic'></input>
               </TagBlock>
-
             </div>
             <div style={{marginTop: 30}}>
               본문
-              <CFormCKEditor onChange2={(data)=> {setBoard({...board, "content": data})}} />
-              {/* <Editor data={board.content}
-                      uploadFolder="Test"
-                      onChange={(event, editor) => { const data = editor.getData();
-                                                     setBoard({...board, "content": data})
-                                                     // setContent(data);
-                                                     console.log({ event, editor, data });
-                                                    }} /> */}
+              {/* <CFormCKEditor onChange2={(data)=> {setBoard({...board, "content": data})}} /> */}
+              <Editor setContent={setContent} />
             </div>
             <div style={{textAlign: "right"}}>
             <CButton color="light"

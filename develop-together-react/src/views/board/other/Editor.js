@@ -1,167 +1,71 @@
 import React from "react";
-import CKEditor from "@ckeditor/ckeditor5-react";
-import DecoupledEditor from "@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor";
-import Essentials from "@ckeditor/ckeditor5-essentials/src/essentials";
-import Paragraph from "@ckeditor/ckeditor5-paragraph/src/paragraph";
-import Bold from "@ckeditor/ckeditor5-basic-styles/src/bold";
-import Italic from "@ckeditor/ckeditor5-basic-styles/src/italic";
-import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline";
-import Strikethrough from "@ckeditor/ckeditor5-basic-styles/src/strikethrough";
-import BlockQuote from "@ckeditor/ckeditor5-block-quote/src/blockquote";
-import Link from "@ckeditor/ckeditor5-link/src/link";
-import PasteFromOffice from "@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice";
-import Heading from "@ckeditor/ckeditor5-heading/src/heading";
-import Font from "@ckeditor/ckeditor5-font/src/font";
-import Image from "@ckeditor/ckeditor5-image/src/image";
-import ImageStyle from "@ckeditor/ckeditor5-image/src/imagestyle";
-import ImageToolbar from "@ckeditor/ckeditor5-image/src/imagetoolbar";
-import ImageUpload from "@ckeditor/ckeditor5-image/src/imageupload";
-import ImageResize from "@ckeditor/ckeditor5-image/src/imageresize";
-import List from "@ckeditor/ckeditor5-list/src/list";
-import Alignment from "@ckeditor/ckeditor5-alignment/src/alignment";
-import Table from "@ckeditor/ckeditor5-table/src/table";
-import TableToolbar from "@ckeditor/ckeditor5-table/src/tabletoolbar";
-import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformation";
-import Indent from "@ckeditor/ckeditor5-indent/src/indent";
-import IndentBlock from "@ckeditor/ckeditor5-indent/src/indentblock";
-import TableProperties from "@ckeditor/ckeditor5-table/src/tableproperties";
-import TableCellProperties from "@ckeditor/ckeditor5-table/src/tablecellproperties";
-import Base64UploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import styled from "styled-components";
+import axios from "axios";
 
-const Editor = (props) => {
+const API_URL = "http://127.0.0.1:8081";
+
+const CKEditorBlock = styled.div`
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 200px;
+    margin-bottom: 20px;
+}
+`;
+
+export default function Editor({ handleChange, setContent }) {
+  function uploadAdapter(loader) {
+    return {
+      upload: () => {
+        return new Promise((resolve, reject) => {
+            debugger;
+          const body = new FormData();
+          const url = "http://127.0.0.1:8081/board/uploadFiles";
+          loader.file.then((file) => {
+            body.append("files", file);
+            axios.post(url, body, { headers: { "Content-Type": "multipart/form-data" } })
+              .then((res) => {
+                resolve({
+                  default: `${API_URL}${res.data}`
+                });
+              })
+              .catch((err) => {
+                reject(err);
+              });
+          });
+        });
+      }
+    };
+  }
+
+  function uploadPlugin(editor) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+      return uploadAdapter(loader);
+    };
+  }
+
   return (
-    <div>
-      <CKEditor
-        onInit={(editor) => {
-          editor.ui
-            .getEditableElement()
-            .parentElement.insertBefore(
-              editor.ui.view.toolbar.element,
-              editor.ui.getEditableElement()
-            );
-        }}
+    <CKEditorBlock>
+    <div className="form-wrapper">
+      <CKEditor className='editor'
         config={{
-          language: "ko",
-          plugins: [
-            Essentials,
-            Paragraph,
-            Bold,
-            Italic,
-            Heading,
-            Indent,
-            IndentBlock,
-            Underline,
-            Strikethrough,
-            BlockQuote,
-            Font,
-            Alignment,
-            List,
-            Link,
-            PasteFromOffice,
-            Image,
-            ImageStyle,
-            ImageToolbar,
-            ImageUpload,
-            ImageResize,
-            Base64UploadAdapter,
-            Table,
-            TableToolbar,
-            TableProperties,
-            TableCellProperties,
-            TextTransformation
-          ],
-          toolbar: props.toolbar
-            ? props.toolbar
-            : [
-                "heading",
-                "|",
-                "bold",
-                "italic",
-                "underline",
-                "strikethrough",
-                "|",
-                "fontSize",
-                "fontColor",
-                "fontBackgroundColor",
-                "|",
-                "alignment",
-                "outdent",
-                "indent",
-                "bulletedList",
-                "numberedList",
-                "blockQuote",
-                "|",
-                "link",
-                "insertTable",
-                "imageUpload",
-                "|",
-                "undo",
-                "redo",
-              ],
-          fontSize: {
-            options: [
-              14,
-              15,
-              16,
-              17,
-              18,
-              19,
-              'default',
-              21,
-              22,
-              23,
-              24,
-              25,
-              26,
-              27,
-              28,
-              29,
-              30,
-            ],
-          },
-          alignment: {
-            options: ["justify", "left", "center", "right"],
-          },
-          table: {
-            contentToolbar: [
-              "tableColumn",
-              "tableRow",
-              "mergeTableCells",
-              "tableProperties",
-              "tableCellProperties",
-            ],
-          },
-          image: {
-            resizeUnit: "px",
-            toolbar: [
-              "imageStyle:alignLeft",
-              "imageStyle:full",
-              "imageStyle:alignRight",
-              "|",
-              "imageTextAlternative",
-            ],
-            styles: ["full", "alignLeft", "alignRight"],
-            type: ["JPEG", "JPG", "GIF", "PNG"],
-          },
-          typing: {
-            transformations: {
-              remove: [
-                "enDash",
-                "emDash",
-                "oneHalf",
-                "oneThird",
-                "twoThirds",
-                "oneForth",
-                "threeQuarters",
-              ],
-            },
-          },
+          extraPlugins: [uploadPlugin]
         }}
-        editor={DecoupledEditor}
-        {...props}
+        editor={ClassicEditor}
+        onReady={(editor) => {}}
+        onBlur={(event, editor) => {}}
+        onFocus={(event, editor) => {}}
+        // onChange={(event, editor) => {
+        //   handleChange(editor.getData())
+        //   console.log(editor.getData())
+        // }}
+        onChange={(event, editor) => {
+          const data2 = editor.getData();
+          setContent(data2)
+          console.log(data2)
+        }}
       />
     </div>
+    </CKEditorBlock>
   );
-};
-
-export default Editor;
+}
