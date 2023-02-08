@@ -78,8 +78,8 @@ const AppHeader = (props) => {
             <div class="dropdown">
               <button class="dropbtn">구인&구직</button>
               <div class="dropdown-content">
-                <Link to='/project/freelancer' loginInfo={loginInfo} component={NavLink}>프리랜서</Link>
-                <CNavLink to='/project/project' component={NavLink}>프로젝트</CNavLink>
+                <Link to='/project/freelancer' state={{loginInfo: loginInfo}}  component={NavLink}>프리랜서</Link>
+                <CNavLink to='/project/project' state={{loginInfo: loginInfo}}  component={NavLink}>프로젝트</CNavLink>
               </div>
             </div>
           </CNavItem>

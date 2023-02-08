@@ -16,10 +16,12 @@ import {
   CRow,
 } from '@coreui/react'
 import axios from 'axios'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 
-const FreelancerProfileRegist = ({loginInfo}) => {
-
+const FreelancerProfileRegist = (props) => {
+  const location = useLocation();
+  const loginInfo = location.state.loginInfo;   
+  const memberid = loginInfo.memberId
 const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
@@ -29,12 +31,12 @@ const [freelancerProfileRegist, setFreelancerProfileRegist] = useState({
 });
 
 const insertFreelancerProfileRegist = () => {
-  axios.post("http://127.0.0.1:8081/project/freelancerProfileRegister", 
+  axios.post(`http://127.0.0.1:8081/project/freelancerProfileRegister?memberid=${memberid}`, 
               freelancerProfileRegist,
             { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
       .then( response => {
         alert('프로필 등록 완료');
-        navigate('/project/freelancer');
+        navigate('/project/freelancer', { state: { loginInfo:loginInfo} });
       })
       .catch( e => {          
         alert('error');
@@ -54,14 +56,14 @@ const insertFreelancerProfileRegist = () => {
 
 
                
-                <CRow className="mb-3">
-                  <CFormLabel className="col-sm-2 col-form-label" >이름</CFormLabel>
-                  <CCol sm={3}>
-                    <CFormInput placeholder=""
-                                value={freelancerProfileRegist.name}
-                                onChange={(e) => {setFreelancerProfileRegist({...freelancerProfileRegist, "name": e.target.value})}}/>
-                  </CCol>
-                </CRow>
+               
+
+
+
+
+
+
+           
                 <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >직종</CFormLabel>
                   <CCol sm={3}>
@@ -169,14 +171,14 @@ const insertFreelancerProfileRegist = () => {
                                 onChange={(e) => {setFreelancerProfileRegist({...freelancerProfileRegist, "value4": e.target.value})}}/>
                     </CCol>
                 </CRow>
-                <CRow className="mb-3">
+                {/* <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >memberid</CFormLabel>
                     <CCol sm={2}>
                     <CFormInput placeholder=""
                                 value={freelancerProfileRegist.memberid}
                                 onChange={(e) => {setFreelancerProfileRegist({...freelancerProfileRegist, "memberid": e.target.value})}}/>
                     </CCol>
-                </CRow>
+                </CRow> */}
 
 
                 <br></br><br></br> 

@@ -2,10 +2,14 @@
 import React from 'react'
 
 import { CCard, CCardBody, CCol, CRow, CContainer, CButton } from "@coreui/react"
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const FreelancerHeader = ({loginInfo}) => {
-    
+const FreelancerHeader = (props) => {
+    const {loginInfo} = props;
+
+
+
+
     return (
         <div>
             <CRow>
@@ -21,7 +25,7 @@ const FreelancerHeader = ({loginInfo}) => {
                                         <div className="p-1"> <h2>프로젝트를 등록하면</h2></div>
                                     </CCol>
                                     <CCol xs={{ span: 3 }}>
-                                    <Link to="/project/freelancer/FreelancerProfileRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                    <Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 등록하기</CButton></div>
                                     </Link>
                                     </CCol> 

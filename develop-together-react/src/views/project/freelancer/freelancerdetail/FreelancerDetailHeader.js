@@ -7,7 +7,7 @@ import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";  
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const styles = StyleSheet.create({
@@ -34,6 +34,8 @@ function aa(){
 
 const FreelancerDetailHeader = ({memberid }) => {
     const [results, setResults] = useState(null);
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
 
     useEffect(() => {
         const loadFreelancerDetailHeader = async (e) => {
@@ -66,9 +68,10 @@ const FreelancerDetailHeader = ({memberid }) => {
                                         <div className="p-1"> <h3>{results.title}</h3></div>
                                     </CCol>
                                     <CCol xs={{ span: 3}}>
+                                        {loginInfo.memberId === memberid ? 
                                     <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
-                                    </Link>
+                                    </Link> :  <div></div>}
                                     </CCol>     
                                     <CCol xs={{ span: 3 }}>
                                     <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
