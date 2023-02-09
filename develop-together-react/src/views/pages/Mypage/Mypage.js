@@ -11,13 +11,13 @@ import FreeLancerProfil from "./Profil/FreeLancerProfil";
 const Mypage = () => {
    
   
-  const navigate = useNavigate();
+ 
   let loginInfo = window.sessionStorage.getItem("loginInfo");
   loginInfo = JSON.parse(loginInfo);
-  
+  const navigate = useNavigate();
 
   useEffect( () => {
-    if (loginInfo=== null || loginInfo === "") {
+    if (loginInfo=== null) {
       navigate('/login');
     } 
   });
