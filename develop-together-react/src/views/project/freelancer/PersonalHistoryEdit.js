@@ -25,7 +25,8 @@ const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-
 const navigate = useNavigate();
 const location = useLocation();
 const results2 = location.state.results2
-loginInfo = window.sessionStorage.getItem("loginInfo");
+
+
 
 const [personalHistoryEdit, setPersonalHistoryEdit] = useState({
   careerno: results2.careerno,

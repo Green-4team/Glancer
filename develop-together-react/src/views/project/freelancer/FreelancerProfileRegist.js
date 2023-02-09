@@ -20,7 +20,8 @@ import { useLocation, useNavigate } from 'react-router'
 
 const FreelancerProfileRegist = (props) => {
 const location = useLocation();
-const loginInfo = window.sessionStorage.getItem("loginInfo");
+let loginInfo = window.sessionStorage.getItem("loginInfo");
+loginInfo = JSON.parse(loginInfo);
 const memberid = loginInfo.memberId
 
 
@@ -41,7 +42,7 @@ const insertFreelancerProfileRegist = () => {
             { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
       .then( response => {
         alert('프로필 등록 완료');
-        navigate('/project/freelancer');
+        navigate('/project/freelancer', { state: { loginInfo:loginInfo} });
       })
       .catch( e => {          
         alert('error');

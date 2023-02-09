@@ -36,7 +36,6 @@ const FreelancerDetailHeader = ({memberid , loginInfo}) => {
     const [results, setResults] = useState(null);
     // const location = useLocation();
     // const loginInfo = location.state.loginInfo;
-    loginInfo = window.sessionStorage.getItem("loginInfo");
 
     useEffect(() => {
         const loadFreelancerDetailHeader = async (e) => {
@@ -70,12 +69,12 @@ const FreelancerDetailHeader = ({memberid , loginInfo}) => {
                                     </CCol>
                                     <CCol xs={{ span: 3}}>
                                     
-                                        {loginInfo === null ? <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        {loginInfo === null ? <div><Link to="/project/freelancer/ProjectRegist" state={{memberid }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
                                         </Link></div> 
-                                        : loginInfo.memberId === memberid ? <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        : loginInfo.memberId === memberid ? <div><Link to="/project/freelancer/ProjectRegist" state={{ memberid }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
-                                        </Link></div> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        </Link></div> : <div><Link to="/project/freelancer/ProjectRegist" state={{memberid  }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
                                         </Link></div>}      
                                     </CCol>   
@@ -91,7 +90,7 @@ const FreelancerDetailHeader = ({memberid , loginInfo}) => {
                                         
                                         </CCol>                            
                                     <CCol xs={{ span: 12 }}>
-                                       <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>{results.name} | 평점{results.rate} 점 | 경력 {results.careeryear}년</strong></div>
+                                       <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>{results.name}| 평점{results.rate} 점 | 경력 {results.careeryear}년</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>

@@ -15,13 +15,13 @@ import {
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
-const ProjectHistoryRegist = ({memberid}) => {
+const ProjectHistoryRegist = ({loginInfo, memberid}) => {
 
 const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
-const loginInfo = window.sessionStorage.getItem("loginInfo");
-
+// let loginInfo = window.sessionStorage.getItem("loginInfo");
+//     loginInfo = JSON.parse(loginInfo);
 
 const [projectRegist, setProjectRegist] = useState({
   projectno: '',
@@ -42,7 +42,7 @@ const [projectRegist, setProjectRegist] = useState({
 
 });
 const insertProjectHistoryRegist = () => {
-  // `http://127.0.0.1:8081/project/freelancerProfileRegister?memberid=${memberid}`
+
           axios.post(`http://127.0.0.1:8081/project/projectRegister?memberid=${memberid}`, 
                       projectRegist,
                     { headers: { "Content-Type": "application/x-www-form-urlencoded" } })

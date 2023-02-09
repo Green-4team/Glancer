@@ -6,7 +6,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const FreelancerHeader = ({memberid }) => {
  
-    const loginInfo = window.sessionStorage.getItem("loginInfo");
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
+
     const [results, setResults] = useState(null);
     const location = useLocation();
     

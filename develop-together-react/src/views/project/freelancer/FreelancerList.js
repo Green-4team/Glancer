@@ -20,7 +20,7 @@ import axios from 'axios';
 const FreelancerList = ({loginInfo}) => {
     const[results, setResults] = useState(null);
     
-    loginInfo = window.sessionStorage.getItem("loginInfo");
+    
 
     useEffect(() => {
         const loadFreelancerList = async (e) => {
@@ -43,10 +43,10 @@ const FreelancerList = ({loginInfo}) => {
                         <CCard className='mb-3 border-gray' textColor='dark'  style={{margin:7}}>
                         <CCardBody>
                             <div className="clearfix">
-                                <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid, loginInfo:loginInfo}} style={{textDecoration: "none", color: "black"}}>
+                                <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid}} style={{textDecoration: "none", color: "black"}}>
                                 <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
                                 <CCardBody style={{ marginLeft:'150px'}}>
-                                <h4>{result.name} | {result.occupation} </h4>
+                                <h4>{result.name} | {result.memberid} {result.occupation} </h4>
                                 <h2 style={{ marginBottom:"10px"}}>{result.title}</h2>                            
                                 <CBadge style={{margin:"2px"}}color="danger">{result.program1}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="danger">{result.program2}</CBadge>
