@@ -8,25 +8,6 @@ import { AiOutlineStar } from "react-icons/ai";
 import axios from 'axios';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
-// function aa(){
-//     var arr = [];
-//     for (var i = 0; i < 10; i++) {
-//     arr.push(<CBadge style={{margin:"2px"}}color="info">danger</CBadge>)
-//     }
-//     return arr
-// }
-
-// const styles = StyleSheet.create({
-//     namecard: { 
-//       textAlign:"center",
-//       backgroundColor: "skyblue",
-//       height:"400px",
-//       width:"300px",
-//       borderRadius:"10px",
-//       fontSize:"30px",
-//       marginBottom:"50px"
-//      }
-//   });
 
 const ClassList = (props) => {
     
@@ -68,7 +49,7 @@ const ClassList = (props) => {
                                             : loginInfo.membertype === 2 && loginInfo !== null ?
                                             <Link to="/class/class/classregister"state={{loginInfo : loginInfo}}>
                                             <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
-                                            </Link> :  loginInfo === null ?<div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}
+                                            </Link> :  loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}
                                             
                                         
                                         </div>

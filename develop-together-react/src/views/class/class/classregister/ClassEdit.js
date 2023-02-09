@@ -34,27 +34,6 @@ import { CFormCheck, CFormSelect } from '@coreui/react/dist'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-
-
-const styles = StyleSheet.create({
-  namecard: { 
-    textAlign:"center",
-    backgroundColor: "skyblue",
-    height:"200px",
-    borderRadius:"10px",
-    fontSize:"30px",
-    marginBottom:"50px"
-   }
-});
-
-// function aa(){
-//     var arr = [];
-//     for (var i = 0; i < 10; i++) {
-//     arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
-//     }
-//     return arr
-// }
-
 const ClassEdit = (props) => {
   const location = useLocation();
   const editClassInfo = location.state.results;
@@ -103,7 +82,6 @@ const ClassEdit = (props) => {
             navigate('/class/class');
           })
           .catch(e => {
-            debugger;
             alert('빈 항목을 입력해주세요.');
           });
         }
