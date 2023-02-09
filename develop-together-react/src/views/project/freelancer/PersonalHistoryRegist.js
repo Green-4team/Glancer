@@ -23,7 +23,6 @@ const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
 
-
 const [personalHistoryRegist, setPersonalHistoryRegist] = useState({
 
 });

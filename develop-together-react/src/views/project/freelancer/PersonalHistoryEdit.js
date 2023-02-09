@@ -26,8 +26,6 @@ const navigate = useNavigate();
 const location = useLocation();
 const results2 = location.state.results2
 
-
-
 const [personalHistoryEdit, setPersonalHistoryEdit] = useState({
   careerno: results2.careerno,
   company: results2.company,

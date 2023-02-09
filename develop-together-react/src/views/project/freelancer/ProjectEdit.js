@@ -21,8 +21,6 @@ const navigate = useNavigate();
 
 const location = useLocation();
 const result = location.state.result;   
-let loginInfo = window.sessionStorage.getItem("loginInfo");
-loginInfo = JSON.parse(loginInfo);
 
 
 const [projectEdit, setProjectEdit] = useState({

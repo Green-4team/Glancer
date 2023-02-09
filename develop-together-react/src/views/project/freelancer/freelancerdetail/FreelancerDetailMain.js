@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 const FreelancerMain = (props) => {
     const location = useLocation();
     const memberid = location.state.memberid;
-    const loginInfo = window.sessionStorage.getItem("loginInfo");
+    const loginInfo = location.state.loginInfo;
     
     return (
         <div>

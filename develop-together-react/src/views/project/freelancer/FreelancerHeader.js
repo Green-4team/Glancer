@@ -4,14 +4,10 @@ import React, { useEffect, useState } from 'react'
 import { CCard, CCardBody, CCol, CRow, CContainer, CButton } from "@coreui/react"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const FreelancerHeader = ({memberid }) => {
+const FreelancerHeader = ({loginInfo }) => {
  
-    let loginInfo = window.sessionStorage.getItem("loginInfo");
-    loginInfo = JSON.parse(loginInfo);
-
     const [results, setResults] = useState(null);
-    const location = useLocation();
-    
+    const loginInfo = location.state.loginInfo;
     
 
     // const navigate = useNavigate();
@@ -41,14 +37,14 @@ const FreelancerHeader = ({memberid }) => {
                                     </CCol>
                                     <CCol xs={{ span: 3 }}>
                                     {loginInfo === null ?    
-                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{ memberid}} style={{textDecoration: "none", color: "black"}}>   
+                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{ loginInfo}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 등록하기</CButton></div>
                                     </Link></div>
                                     :
-                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{ memberid}} style={{textDecoration: "none", color: "black"}}>   
+                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{ loginInfo}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 수정하기</CButton></div>
                                     </Link></div>
-                                
+
                                     }
                                     
 

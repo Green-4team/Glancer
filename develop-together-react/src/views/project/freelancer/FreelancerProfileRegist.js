@@ -19,18 +19,12 @@ import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router'
 
 const FreelancerProfileRegist = (props) => {
-const location = useLocation();
-let loginInfo = window.sessionStorage.getItem("loginInfo");
-loginInfo = JSON.parse(loginInfo);
-const memberid = loginInfo.memberId
-
-
+  const location = useLocation();
+  const loginInfo = location.state.loginInfo;   
+  const memberid = loginInfo.memberId
+const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
-useEffect( () => {
-    if (loginInfo === null ) {
-      navigate('/login');
-    }
-  })
 
 const [freelancerProfileRegist, setFreelancerProfileRegist] = useState({
 
@@ -46,7 +40,7 @@ const insertFreelancerProfileRegist = () => {
       })
       .catch( e => {          
         alert('error');
-    });
+      });
 };
    
   return (
@@ -57,7 +51,7 @@ const insertFreelancerProfileRegist = () => {
           <CCard className="mx-2" style={{zIndex: 0}}>
             <CCardBody className="p-4">
               <CForm>
-                <h1>프리랜서 프로필 등록11</h1>
+                <h1>프리랜서 프로필 등록</h1>
                 <br></br><br></br>
                 <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >직종</CFormLabel>
