@@ -36,27 +36,27 @@ if (!articles) {
             
             {articles.map((article) => {
                 return (
-                   <CContainer >
-                    <CRow  className="justify-content-center">
-                    <CCol xs={8}>
-                        <CCard >
-                            <CCardBody>
-                        <div className="thumbnail">
-                        <a href={article.url}>
-                            <img src={article.urlToImage} alt="news thumbnail" style={{width:'100%'}}/>
-                        </a>
-                    </div><div className="contents">
-                            <h2>
-                                <a href={article.url}>{article.title}</a>
-                            </h2>
-                            <p>{article.description}</p>
-                        </div>
-                        </CCardBody>
-                        </CCard>
-                        
-                    </CCol>
-                    </CRow>
-                    </CContainer> 
+                   <><CContainer>
+                        <CRow className="justify-content-center">
+                            <CCol xs={8}>
+                                <CCard>
+                                    <CCardBody>
+                                        <div className="thumbnail">
+                                            <a href={article.url}>
+                                                <img src={article.urlToImage} alt="news thumbnail" style={{ width: '100%' }} />
+                                            </a>
+                                        </div><div className="contents">
+                                            <h2>
+                                                <a href={article.url} style={{ color: 'black' }}>{article.title}</a>
+                                            </h2>
+                                            <p>{article.description}</p>
+                                        </div>
+                                    </CCardBody>
+                                </CCard>
+
+                            </CCol>
+                        </CRow>
+                    </CContainer><br></br></>
                 )
             })}
             <div>
