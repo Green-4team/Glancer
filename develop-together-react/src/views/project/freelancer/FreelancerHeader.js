@@ -45,7 +45,7 @@ const FreelancerHeader = ({memberid }) => {
                                     <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo, memberid}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 수정하기</CButton></div>
                                     </Link></div>
-
+                                
                                     }
                                     
 
