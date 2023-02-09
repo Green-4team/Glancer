@@ -30,7 +30,7 @@ const FreeEdit = (props) => {
                   { headers: { "Content-Type": "application/x-www-form-urlencoded"}})
             .then( response => {
               alert('회원 정보 변경 완료');
-              navigate('/Mypage' , { state: { loginInfo:loginInfo} } );
+              navigate('/Mypage');
             })
             .catch( e => {          
               alert('error');           

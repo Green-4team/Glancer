@@ -27,7 +27,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const AppHeaderDropdown = ({onLogout, loginInfo}) => {
   const navigate = useNavigate();
-
+  
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>

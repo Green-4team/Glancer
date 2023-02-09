@@ -12,12 +12,11 @@ const Mypage = () => {
    
   
   const navigate = useNavigate();
-    const location = useLocation();
-   const loginInfo = location.state.loginInfo;;
+    const loginInfo = window.sessionStorage.getItem("loginInfo");
   
 
   useEffect( () => {
-    if (location.state.loginInfo === null || location.state.loginInfo === "") {
+    if (loginInfo=== null || loginInfo === "") {
       navigate('/login');
       return;
     } else {
