@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
 
 const ClassRegisterHeader = (props) => {
     const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    // const loginInfo = location.state.loginInfo;
+    const loginInfo = window.sessionStorage.getItem("loginInfo");
 
   const [register, setRegister] = useState({
     memberid: loginInfo.memberId,
@@ -96,7 +97,7 @@ const ClassRegisterHeader = (props) => {
     axios.post(url, register, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강의가 등록되었습니다.');
-            navigate('/class/class',{ state: { loginInfo:loginInfo} });
+            navigate('/class/class');
           })
           .catch(e => {
             alert('빈 항목을 입력해주세요.');
