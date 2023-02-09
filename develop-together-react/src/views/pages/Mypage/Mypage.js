@@ -1,6 +1,6 @@
 import { CCard, CCardBody, CCardHeader, CCol, CCollapse, CContainer, CNavbar, CNavbarBrand, CNavbarNav, CNavbarToggler, CNavItem, CNavLink, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react"
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import AcademyApply from "./apply/AcademyApply";
 import ClassApply from "./apply/ClassApply";
 import AcademyProfil from "./Profil/AcademyProfil";
@@ -9,11 +9,21 @@ import FreeLancerProfil from "./Profil/FreeLancerProfil";
 
 
 const Mypage = () => {
-    
-    
+   
+  
+  const navigate = useNavigate();
     const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+   const loginInfo = location.state.loginInfo;;
+  
 
+  useEffect( () => {
+    if (location.state.loginInfo === null || location.state.loginInfo === "") {
+      navigate('/login');
+      return;
+    } else {
+      
+    }
+  });
     console.log(loginInfo)
 
     return (
