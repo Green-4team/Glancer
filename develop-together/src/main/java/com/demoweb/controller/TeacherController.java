@@ -31,7 +31,7 @@ public class TeacherController {
 	private HashMap<String, Object> showTeacherList() {
 		
 		List<TeacherDto> results = teacherService.findTeacher();
-		System.out.println(results);
+//		System.out.println(results);
 		HashMap<String, Object> teacherList = new HashMap<>();
 		teacherList.put("results", results);
 		
