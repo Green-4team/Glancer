@@ -53,15 +53,7 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.updateBoardReadCount(boardNo);
 		
 	}
-	
-	// 글 번호를 받아서 게시글 삭제
-	@Override
-	public void deleteBoard(int boardNo) {
-		
-		boardDao.deleteBoard(boardNo);
-		
-	}
-	
+
 	// 첨부파일 번호를 받아서 첨부파일 데이터 조회 및 반환
 	@Override
 	public BoardAttachDto findBoardAttachByAttachNo(int attachNo) {
@@ -80,39 +72,12 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
-	@Override
-	public void writeComment(BoardCommentDto comment) {
-		
-		commentMapper.insertComment(comment);
-		
-	}
+	
 
 	@Override
 	public void updateGroupNo(int commentNo, int groupNo) {
 		
 		commentMapper.updateGroupNo(commentNo, groupNo);
-		
-	}
-
-	@Override
-	public void deleteComment(int commentNo) {
-		
-		commentMapper.deleteComment(commentNo);
-		
-	}
-
-	@Override
-	public List<BoardCommentDto> findBoardCommentByBoardNo(int boardNo) {
-		
-		List<BoardCommentDto> comments = commentMapper.selectCommentByBoardNo(boardNo);
-		return comments;
-		
-	}
-
-	@Override
-	public void updateComment(BoardCommentDto comment) {
-		
-		commentMapper.updateComment(comment);
 		
 	}
 
@@ -196,16 +161,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDto findBoardByBoardNo(int boardNo) {
 		
-		// Board와 BoardAttach를 각각 조회
-//			BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);		
-//			if (board != null) {
-//				List<BoardAttachDto> attachments = boardMapper.selectBoardAttachByBoardNo(boardNo);
-//				board.setAttachments(attachments);
-//			}
-		
-		// Board와 BoardAttach를 한 번에 조회
+		boardMapper.viewBoard(boardNo);
 		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);
-//		BoardDto board = boardMapper.selectBoardByBoardNo2(boardNo);
 		
 		return board;
 		
@@ -263,6 +220,58 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void editBoard(BoardDto board) {
+		
+		boardMapper.updateBoard(board);
+		boardMapper.deleteBoardTag(board.getBoardNo());
+		
+	}
+
+	// 글 번호를 받아서 게시글 삭제
+	@Override
+	public void deleteBoard(int boardNo) {
+		
+		boardMapper.deleteBoard(boardNo);
+		
+	}
+	
+	@Override
+	public void writeComment(BoardCommentDto comment) {
+		
+		boardMapper.insertComment(comment);
+		
+	}
+
+	@Override
+	public List<BoardCommentDto> findBoardCommentByBoardNo(int boardNo) {
+		
+		List<BoardCommentDto> comments = boardMapper.selectCommentByBoardNo(boardNo);
+		return comments;
+		
+	}
+	
+	@Override
+	public void editComment(BoardCommentDto comment) {
+		
+		boardMapper.updateComment(comment);
+		
+	}
+	
+	@Override
+	public void deleteComment(int commentNo) {
+		
+		boardMapper.deleteComment(commentNo);
+		
+	}
+
+	@Override
+	public void chooseComment(int boardNo, int commentNo) {
+
+		boardMapper.chooseComment(commentNo);
+		boardMapper.chooseBoard(boardNo);
+		
+	}
 
 }
 

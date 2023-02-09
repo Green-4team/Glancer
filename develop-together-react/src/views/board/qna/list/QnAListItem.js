@@ -11,8 +11,15 @@ const HoverBlueBlock = styled.div`
 `;
 
 const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
-  const { /* content, deleted, */ boardNo, memberId, title, regDate, views, topicName, tags, topicNo } = result;
+  const { /* content, deleted, */ boardNo, memberId, title, regDate, views, topicName, tags, topicNo, comments, chosen } = result;
   
+  let commentCount
+  if (comments === null) {
+    commentCount = 0
+  } else {
+    commentCount = comments.length
+  }
+
   return (
     <>
       
@@ -21,7 +28,13 @@ const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
           <div style={{marginTop: 10, marginBottom: 10}}>
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <div style={{display: 'inline-block'}}>{memberId} · {moment(regDate).startOf('hour').fromNow()}</div>
-            <div style={{display: 'inline-block', textAlign: 'right', marginLeft: 'auto'}}><CIcon icon={cilCheckCircle} size="lg" /></div>
+            <div style={{display: 'inline-block', textAlign: 'right', marginLeft: 'auto'}}>
+              {
+                chosen === false ? 
+                <CIcon icon={cilCheckCircle} size="lg" /> :
+                <CIcon icon={cilCheckCircle} style={{color: '#24a0ed'}} size="lg" />
+              }
+            </div>
           </div>
           <HoverBlueBlock>
             <CNavLink to='/board/qna/detail' component={NavLink} style={{display: 'inline-block', marginRight: 10}} state={{ boardNo: boardNo, loginInfo: loginInfo }}>
@@ -54,7 +67,7 @@ const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
                 })
               }
             </div>
-            <div style={{fontSize: 16}}><BsEye />&nbsp;{views}&nbsp;&nbsp;&nbsp;&nbsp;<BsChatLeftDots />&nbsp;댓글수</div>
+            <div style={{fontSize: 16}}><BsEye />&nbsp;{views}&nbsp;&nbsp;&nbsp;&nbsp;<BsChatLeftDots />&nbsp;{commentCount}</div>
             
           </div>
           </div>

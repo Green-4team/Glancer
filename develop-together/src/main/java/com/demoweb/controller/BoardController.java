@@ -54,7 +54,9 @@ public class BoardController {
 		
 		for (BoardDto result : results) {
 			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+			List<BoardCommentDto> comments = boardService.findBoardCommentByBoardNo(result.getBoardNo());
 			result.setTags(tags);
+			result.setComments(comments);
 		}
 		
 		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
@@ -78,7 +80,9 @@ public class BoardController {
 		
 		for (BoardDto result : results) {
 			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+			List<BoardCommentDto> comments = boardService.findBoardCommentByBoardNo(result.getBoardNo());
 			result.setTags(tags);
+			result.setComments(comments);
 		}
 		
 		ThePager pager = new ThePager(boardCount, pageNo, PAGE_SIZE, PAGER_SIZE, LINK_URL);
@@ -99,7 +103,9 @@ public class BoardController {
 		
 		BoardDto result = boardService.findBoardByBoardNo(boardNo);
 		List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
+		List<BoardCommentDto> comments = boardService.findBoardCommentByBoardNo(result.getBoardNo());
 		result.setTags(tags);
+		result.setComments(comments);
 		
 		HashMap<String, Object> boardDetail = new HashMap<>();
 		boardDetail.put("result", result);
@@ -137,12 +143,47 @@ public class BoardController {
 	
 	@CrossOrigin
 	@ResponseBody
+	@PostMapping(path = {"/qnaEdit"})
+	private String editBoard(BoardDto board) {
+		
+		boardService.editBoard(board); // board 수정, boardtag 삭제
+		
+		int boardNo = board.getBoardNo();
+		String[] tags = board.getTagNames().split(",");
+		for (String tag : tags) {
+			BoardTagDto tagDto = boardService.findTagByTagName(tag); // tag 유무 확인
+			if (tagDto == null) { 			// tag가 없다면
+				boardService.writeTag(tag); // 새로운 tag 생성
+				int tagNo = boardService.findLastTagNo(); // 방금 만든 tag 정보 조회
+				tagDto = new BoardTagDto();
+				tagDto.setTagNo(tagNo);
+				tagDto.setTagName(tag);
+			}
+			
+			tagDto.setBoardNo(boardNo);
+			boardService.writeBoardTag(tagDto); // board와 tag 연결
+		}
+		
+		return "success";
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/qnaDelete"})
+	private String deleteBoard(int boardNo) {
+		
+		boardService.deleteBoard(boardNo); // board 삭제
+		
+		return "success";
+	}
+	
+	@CrossOrigin
+	@ResponseBody
 	@PostMapping(path = {"/uploadFiles"})
 	private String fileUpload(MultipartHttpServletRequest req) {
 		
 		// 1. 요청 데이터 읽기 (전달인자로 대체)
 		MultipartFile attach = req.getFile("files");
-		BoardDto board = new BoardDto();
 		String uniqueFileName = null;
 		
 		if (attach != null) { //내용이 있는 경우
@@ -154,27 +195,58 @@ public class BoardController {
 				uniqueFileName = Util.makeUniqueFileName(fileName);
 				
 				try {				
-					attach.transferTo(new File(path, uniqueFileName));//파일 저장
-					
-					// 첨부파일 정보를 객체에 저장
-//					ArrayList<BoardAttachDto> attachments = new ArrayList<>(); // 첨부파일 정보를 저장하는 DTO 객체
-//					BoardAttachDto attachment = new BoardAttachDto();
-//					attachment.setUserFileName(fileName);
-//					attachment.setSavedFileName(uniqueFileName);
-//					attachments.add(attachment);
-//					board.setAttachments(attachments);
-					
+					attach.transferTo(new File(path, uniqueFileName)); //파일 저장				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
 		
-		System.out.println(board);
-//		boardService.writeBoard(board);
-		// 3. View에서 읽을 수 있도록 데이터 저장
-		// 4. View 또는 Controller로 이동
 		return "/board-attachments/" + uniqueFileName;
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/qnaWriteComment"})
+	private String writeComment(BoardCommentDto comment) {
+		
+		boardService.writeComment(comment);
+		
+		return "success";
+		
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/qnaEditComment"})
+	private String editComment(BoardCommentDto comment) {
+		
+		boardService.editComment(comment);
+		
+		return "success";
+		
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/qnaDeleteComment"})
+	private String deleteComment(int commentNo) {
+		
+		boardService.deleteComment(commentNo);
+		
+		return "success";
+		
+	}
+	
+	@CrossOrigin
+	@ResponseBody
+	@GetMapping(path = {"/qnaChooseComment"})
+	private String chooseComment(int boardNo, int commentNo) {
+		
+		boardService.chooseComment(boardNo, commentNo);
+		
+		return "success";
+		
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////
@@ -215,80 +287,6 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-
-//	@PostMapping(path = { "/write" })
-//	public String writeBoard(BoardDto board, 
-//							 //@RequestParam("attach") MultipartFile[] attaches) {
-//							 @RequestParam("attach") MultipartFile attach) {
-	
-	@PostMapping(path = { "/write" })
-	public String writeBoard(BoardDto board, MultipartHttpServletRequest req) {
-		// 1. 요청 데이터 읽기 (전달인자로 대체)
-		MultipartFile attach = req.getFile("attach");
-
-		if (attach != null) { //내용이 있는 경우
-			// 2. 데이터 처리
-			ServletContext application = req.getServletContext();
-			String path = application.getRealPath("/board-attachments");
-			String fileName = attach.getOriginalFilename(); //파일 이름 가져오기
-			if (fileName != null && fileName.length() > 0) {
-				String uniqueFileName = Util.makeUniqueFileName(fileName);
-				
-				try {				
-					attach.transferTo(new File(path, uniqueFileName));//파일 저장
-					
-					// 첨부파일 정보를 객체에 저장
-					ArrayList<BoardAttachDto> attachments = new ArrayList<>(); // 첨부파일 정보를 저장하는 DTO 객체
-					BoardAttachDto attachment = new BoardAttachDto();
-					attachment.setUserFileName(fileName);
-					attachment.setSavedFileName(uniqueFileName);
-					attachments.add(attachment);
-					board.setAttachments(attachments);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		boardService.writeBoard(board);
-		// 3. View에서 읽을 수 있도록 데이터 저장
-		// 4. View 또는 Controller로 이동
-		return "redirect:list";
-	}
-	
-//	@GetMapping(path = { "/delete" })
-//	public String deleteBoard(@RequestParam(defaultValue = "-1")int boardNo, 
-//							  @RequestParam(defaultValue = "-1")int pageNo,
-//							  Model model) {
-//		if (boardNo == -1 || pageNo == -1) {
-//			//return "redirect:list";
-//			model.addAttribute("error_type", "delete");
-//			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
-//			return "board/error"; //	/WEB-INF/views/ + board/error + .jsp
-//		}
-//		
-//		boardService.deleteBoard(boardNo);
-//		
-//		return "redirect:list?pageNo=" + pageNo;
-//	}
-	@GetMapping(path = { "/{boardNo}/delete" })
-	public String deleteBoard(@PathVariable("boardNo") int boardNo, 
-							  @RequestParam(defaultValue = "-1")int pageNo,
-							  Model model) {	
-		
-		if (pageNo == -1) {
-			//return "redirect:list";
-			model.addAttribute("error_type", "delete");
-			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
-			return "board/error"; //	/WEB-INF/views/ + board/error + .jsp
-		}
-		
-		boardService.deleteBoard(boardNo);
-		
-		return "redirect:/board/list?pageNo=" + pageNo;
-	}
-	
 	@GetMapping(path = { "/download" })
 	public View download(@RequestParam(defaultValue = "-1") int attachNo, Model model) {
 		
@@ -306,45 +304,7 @@ public class BoardController {
 		
 		return view;
 	}
-	
-	@GetMapping(path = { "/edit" })
-	public String showBoardEditForm(@RequestParam(defaultValue = "-1") int boardNo, 
-									@RequestParam(defaultValue = "-1") int pageNo,
-									Model model) {
 		
-		if (boardNo == -1 || pageNo == -1) {
-			model.addAttribute("error_type", "edit");
-			model.addAttribute("message", "글 번호 또는 페이지 번호가 없습니다.");
-			return "board/error";
-		}
-		
-		BoardDto board = boardService.findBoardByBoardNo(boardNo);
-		
-		model.addAttribute("board", board);
-		model.addAttribute("boardNo", boardNo);
-		model.addAttribute("pageNo", pageNo);
-		
-		return "board/edit"; //   /WEB-INF/views/ + board/edit + .jsp
-				
-	}
-	
-	@PostMapping(path = { "/edit" })
-	public String modifyBoard(@RequestParam(defaultValue = "-1") int pageNo,
-							  BoardDto board,
-							  Model model) {
-		
-		if (board.getBoardNo() == 0 || pageNo == -1) {
-			model.addAttribute("error_type", "edit");
-			model.addAttribute("message", "글 번호 또는 페이지 번호가 없습니다.");
-			return "board/error";
-		}
-		
-		boardService.modifyBoard(board);
-		
-		return "redirect:detail?boardNo=" + board.getBoardNo() + "&pageNo=" + pageNo;
-		
-	}
-	
 	/////////////////////////////////////////////////////////////////////////////
 	
 	@GetMapping(path = { "/comment-list" })
@@ -357,21 +317,7 @@ public class BoardController {
 		
 		return "board/comment-list"; //  /WEB-INF/views/ + board/comment-list + .jsp
 	}
-	
-	@PostMapping(path = { "/write-comment" })
-	@ResponseBody
-	public String writeComment(BoardCommentDto commentDto, int pageNo) {
-		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
-		// 2. 요청 처리
-		boardService.writeComment(commentDto); // commentDto에 자동 증가된 commentNo가 저장됩니다.
-		// 최상위 댓글의 글번호를 그룹번호로 저장
-		boardService.updateGroupNo(commentDto.getCommentNo(), commentDto.getCommentNo());		
-		// 3. View에서 읽을 수 있도록 데이터 저장		
-		// 4. View 또는 다른 컨터롤러로 이동
-		// return String.format("redirect:detail?boardNo=%d&pageNo=%d", commentDto.getBoardNo(), pageNo);
-		return "success";
-	}
-	
+		
 //	@GetMapping(path = { "/delete-comment" })
 //	public String deleteComment(@RequestParam(defaultValue = "-1") int commentNo, 
 //								@RequestParam(defaultValue = "-1") int boardNo, 
@@ -384,30 +330,7 @@ public class BoardController {
 //		boardService.deleteComment(commentNo);
 //		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardNo, pageNo);
 //	}
-	@GetMapping(path = { "/delete-comment" })
-	@ResponseBody // 반환 값은 view 이름이 아니고 응답 컨텐츠 입니다.
-	public String deleteComment(@RequestParam(defaultValue = "-1") int commentNo) {
 		
-		//1. 요청 데이터 읽기 (전달인자로 대체)
-		if (commentNo == -1) {
-			return "fail";	// "fail" 문자열을 응답 (@ResponseBody 때문에)
-		}
-		
-		// 2. 데이터 처리
-		boardService.deleteComment(commentNo);		
-		
-		return "success"; // "success" 문자열을 응답 (@ResponseBody 때문에)
-	}
-	
-	@PostMapping(path = { "/update-comment" })
-	@ResponseBody
-	public String updateComment(BoardCommentDto comment) {
-		
-		boardService.updateComment(comment);
-		
-		return "success";
-	}
-	
 	@PostMapping(path = { "/write-recomment" })
 	@ResponseBody
 	public String writeReComment(BoardCommentDto commentDto) {

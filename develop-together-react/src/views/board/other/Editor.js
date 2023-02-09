@@ -1,8 +1,7 @@
-import React from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import styled from "styled-components";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import axios from "axios";
+import styled from "styled-components";
 
 const API_URL = "http://127.0.0.1:8081";
 
@@ -13,7 +12,7 @@ const CKEditorBlock = styled.div`
 }
 `;
 
-export default function Editor({ handleChange, setContent }) {
+export default function Editor({ handleChange, setContent, data }) {
   function uploadAdapter(loader) {
     return {
       upload: () => {
@@ -49,9 +48,11 @@ export default function Editor({ handleChange, setContent }) {
     <div className="form-wrapper">
       <CKEditor className='editor'
         config={{
-          extraPlugins: [uploadPlugin]
+          extraPlugins: [uploadPlugin],
+          placeholder: "내용을 입력해주세요"
         }}
         editor={ClassicEditor}
+        data={data}
         onReady={(editor) => {}}
         onBlur={(event, editor) => {}}
         onFocus={(event, editor) => {}}
