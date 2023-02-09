@@ -16,8 +16,18 @@ const TagBlock = styled.div`
 }
 `;
 
-const QnAWrite = ({loginInfo}) => {
+const SelectBlock = styled.div`
+.selected{    
+ option {
+  selected
+ }
+}
+`;
 
+const QnAEdit = ({loginInfo, result}) => {
+
+  const { /* regDate, topicName, regDate, deleted, */ boardNo, memberId, title, content, views, tags, topicNo } = result;
+  
   const input = document.querySelector('input[name=basic]');
   let tagify = new Tagify(input); // initialize Tagify
 
@@ -26,17 +36,24 @@ const QnAWrite = ({loginInfo}) => {
     console.log(tagify.value); // 입력된 태그 정보 객체
   })
 
+  let tagnames = null;
+  if(tags.length > 0) {
+    tagnames = tags.map((tag)=> tag.tagName)
+  }
+
   const [board, setBoard] = useState({
-    topicNo: '1',
-    memberId: '',
-    title: '',
-    content: '',
-    tagNames: ''
-  })
+    boardNo: boardNo,
+    topicNo: topicNo,
+    memberId: memberId,
+    title: title,
+    content: content,
+    tagNames: tagnames.toString(),
+    views: views
+  })  
 
   const navigate = useNavigate();
-  const insertBoard = () => {
-    const url = "http://127.0.0.1:8081/board/qnaWrite";
+  const editBoard = () => {
+    const url = "http://127.0.0.1:8081/board/qnaEdit";
     let tags = null;
     if(tagify.value.length > 0) {
       tags = tagify.value.map((v)=> v.value)
@@ -49,10 +66,10 @@ const QnAWrite = ({loginInfo}) => {
     } else if (board.content === '') {
       alert('내용을 입력해주세요')
     } else {
-    axios.post(url, {...board, "memberId": loginInfo.memberId, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+    axios.post(url, {...board, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
           .then( response => {
-            alert('게시물이 등록되었습니다');
-            navigate('/board/qna/list', {state: { loginInfo: loginInfo }});
+            alert('게시물이 수정되었습니다');
+            navigate('/board/qna/detail', {state: { loginInfo: loginInfo, boardNo: boardNo }});
           })
           .catch( e => {
             alert('error');
@@ -80,11 +97,13 @@ const QnAWrite = ({loginInfo}) => {
             <h2>궁금증 해결하기</h2>
             <div style={{marginTop: 30}}>
               <CFormLabel>토픽</CFormLabel>
+              <SelectBlock>
               <CFormSelect value={board.topicNo} onChange={(e) => {setBoard({...board, "topicNo": e.target.value})}}>
                 <option value={1}>기술</option>
-                <option value={2}>커리어</option>
-                <option value={3}>기타</option>
+                <option class={{...(board.topicNo === 2 ? '.seleted' : '')}} value={2}>커리어</option>
+                <option class={{...(board.topicNo === 3 ? '.seleted' : '')}} value={3}>기타</option>
               </CFormSelect>
+              </SelectBlock>
             </div>
             <div style={{marginTop: 30}}>
               <CFormLabel>제목</CFormLabel>
@@ -92,8 +111,10 @@ const QnAWrite = ({loginInfo}) => {
             </div>
             <div style={{marginTop: 30}}>
               <CFormLabel>태그</CFormLabel>
-              <TagBlock>
-                <input style={{ width: '100%', 
+              <TagBlock>  
+                <input value={board.tagNames}
+                       onChange={(e) => {setBoard({...board, "tagNames": e.target.value})}}
+                       style={{ width: '100%', 
                                 height: '38px',
                                 border: 'solid 1px',
                                 borderColor: 'silver',
@@ -101,28 +122,25 @@ const QnAWrite = ({loginInfo}) => {
               </TagBlock>
             </div>
             <div style={{marginTop: 30}}>
-              본문
-              <Editor setContent={setContent} />
+              <CFormLabel>본문</CFormLabel>
+              <Editor setContent={setContent} data={board.content} />
             </div>
             <div style={{textAlign: "right"}}>
             <CButton color="light"
-                     onClick={() => { if (window.confirm("작성을 취소하시겠습니까?")) {
-                                        window.location.replace('#/board/qna/list');
-                                        window.location.reload();
+                     onClick={() => { if (window.confirm("수정을 취소하시겠습니까?")) {
+                                      navigate('/board/qna/detail', {state: { loginInfo: loginInfo, boardNo: boardNo }});
                                       } else {
                                         console.log("작성 취소");
                                       }}}>취소</CButton>
             <CButton color="info"
                      style={{color: 'white', marginLeft: 10}}
                      onClick={(e) => { console.log(board)
-                      if (window.confirm("게시물을 등록하시겠습니까?")) {
-                                        insertBoard(board);
+                                       if (window.confirm("수정을 완료하시겠습니까?")) {
+                                        editBoard(board);
                                         e.preventDefault();
-                                        // window.location.replace('#/board/qna/list');
-                                        // window.location.reload();
-                                      } else {
+                                       } else {
                                         console.log("등록 취소");
-                                      }}}>등록</CButton>
+                                       }}}>수정</CButton>
             </div>
             </CForm>
           </CCardBody>
@@ -132,4 +150,4 @@ const QnAWrite = ({loginInfo}) => {
   );
 };
 
-export default QnAWrite;
+export default QnAEdit;

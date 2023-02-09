@@ -2,7 +2,7 @@ import { cilLockLocked, cilUser } from "@coreui/icons"
 import CIcon from "@coreui/icons-react"
 import { CCard, CCardBody, CCol, CContainer, CForm, CFormCheck, CFormInput, CFormSelect, CInputGroup, CInputGroupText, CRow } from "@coreui/react"
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import 'src/views/pages/registerButton.css'
 
@@ -13,6 +13,11 @@ const FreeEdit = (props) => {
     const AcademyInfo = location.state.AcademyInfo;
     let loginInfo = window.sessionStorage.getItem("loginInfo");
     loginInfo = JSON.parse(loginInfo);
+    useEffect( () => {
+      if (loginInfo=== null) {
+        navigate('/login');
+      } 
+    });
     const [AcademyInfomaction, setAcademyInfomaction] = useState({       
       name: AcademyInfo.name,
       mname: AcademyInfo.mname,

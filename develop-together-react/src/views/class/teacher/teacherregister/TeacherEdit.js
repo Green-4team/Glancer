@@ -47,6 +47,7 @@ const TeacherEdit = (props) => {
     region: editTeacherInfo.region,
     education: editTeacherInfo.education,
     career: editTeacherInfo.career,
+    scontent: editTeacherInfo.scontent,
     content: editTeacherInfo.content
   })
 
@@ -72,7 +73,7 @@ const TeacherEdit = (props) => {
                 <CCard className="mx-2 " style={{zIndex:0}}>
                   <CCardBody className="p-4">
                     <CForm>
-                      <h1>강사 수정</h1>
+                      <h1>강사 정보 수정</h1>
                       <p className="text-medium-emphasis">Edit teacher information</p>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 지역</CInputGroupText>
@@ -95,6 +96,13 @@ const TeacherEdit = (props) => {
                          onChange={(e) => {setRegisters({...registers, "career": e.target.value})}}
                         autoComplete="career" />
                       </CInputGroup>
+                      <CFormLabel className="col-sm-2 col-form-label" >한 줄 소개</CFormLabel>
+                    <CFormTextarea 
+                      value={registers.scontent}
+                      onChange={(e) => {setRegisters({...registers, "scontent": e.target.value})}}
+                      rows={1}
+                      text="자신을 한 줄로 표현해주세요."
+                ></CFormTextarea>
                       <CFormLabel className="col-sm-2 col-form-label" >강사 소개</CFormLabel>
                     <CFormTextarea 
                       value={registers.content}

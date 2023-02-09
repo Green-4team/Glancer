@@ -10,6 +10,7 @@ const QnAList = React.lazy(() => import('./views/board/qna/list/QnA'))
 const QnADetail = React.lazy(() => import('./views/board/qna/detail/QnA'))
 const QnAWrite = React.lazy(() => import('./views/board/qna/write/QnA'))
 const QnATagSearch = React.lazy(() => import('./views/board/qna/tagsearch/QnA'))
+const QnAEdit = React.lazy(() => import('./views/board/qna/edit/QnA'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -97,7 +98,7 @@ const Blogs = React.lazy(() => import('./views/pages/blogs/blog'))
 const routes = [
   
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/dashboard', name: 'ClassMain', element: ClassMain },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -105,6 +106,7 @@ const routes = [
   { path: '/board/qna/detail', name: 'Q&ADetail', element: QnADetail },
   { path: '/board/qna/write', name: 'Q&AWrite', element: QnAWrite },
   { path: '/board/qna/tagsearch', name: 'Q&ATagSearch', element: QnATagSearch },
+  { path: '/board/qna/edit', name: 'Q&AEdit', element: QnAEdit },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },

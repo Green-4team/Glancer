@@ -18,10 +18,6 @@ import styled from 'styled-components';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ClassEdit from '../classregister/ClassEdit';
 
-// const HoverBlueBlock = styled.div`
-// .hoverBlue:hover {color: #24a0ed;}
-// `;
-
 
 const styles = StyleSheet.create({
   namecard: { 
@@ -34,18 +30,11 @@ const styles = StyleSheet.create({
    }
 });
 
-function aa(){
-    var arr = [];
-    for (var i = 0; i < 10; i++) {
-    arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
-    }
-    return arr
-}
 
 const ClassDetailHeader = ({ classno }) => {
-    const location = useLocation();
-    // const loginInfo = location.state.loginInfo;
-    const loginInfo = window.sessionStorage.getItem("loginInfo");
+    
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
 
     const [results, setResults] = useState(null);
     const [ApplyList, setApplyList] = useState(null);
@@ -93,7 +82,7 @@ const ClassDetailHeader = ({ classno }) => {
         axios.get(url)
               .then( response => {
                 alert('수강 신청을 수락했습니다.');
-                
+               
               })
               .catch(e => {
                 alert('error');
@@ -155,9 +144,9 @@ const ClassDetailHeader = ({ classno }) => {
                                     <CCol xs={{ span: 12 }}>
                                     <div className="p-1"> <h3>강의 정보</h3></div>
                                         <br></br>
-                                        <div><strong>< BsFillPersonFill />&nbsp;정원 : {results.crowd}</strong></div>
-                                        <div><strong>< BiBuildingHouse />&nbsp;강의 지역 : {results.region}</strong></div>
-                                        <div><strong>< MdSubject />&nbsp;사용 언어 : &nbsp;
+                                        <div style={{fontSize:"18px"}}><strong>< BsFillPersonFill />&nbsp;정원 : {results.crowd}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< BiBuildingHouse />&nbsp;강의 지역 : {results.region}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< MdSubject />&nbsp;사용 언어 : &nbsp;
                                         {
                                             results.tags.map((tag) => {
                                             const { tagName } = tag;
@@ -166,10 +155,10 @@ const ClassDetailHeader = ({ classno }) => {
                                                 )
                                             })
                                         }</strong></div>
-                                        <div><strong>< GrMoney />&nbsp;강의 비용 : {results.price}</strong></div>
-                                        <div><strong>< BiTime />&nbsp;총 강의 시간 : {results.classtime}</strong></div>
-                                        <div><strong>< RxCalendar />&nbsp;강의 시작일 : {results.startdate}</strong></div>
-                                        <div><strong>< RxCalendar />&nbsp;강의 종료일 : {results.enddate}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< GrMoney />&nbsp;강의 비용 : {results.price}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< BiTime />&nbsp;총 강의 시간 : {results.classtime}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< RxCalendar />&nbsp;강의 시작일 : {results.startdate}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< RxCalendar />&nbsp;강의 종료일 : {results.enddate}</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
@@ -226,26 +215,28 @@ const ClassDetailHeader = ({ classno }) => {
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <CCol xs={{ span: 4 }}>
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}>
+                                        {loginInfo === null ? <div></div> : loginInfo.membertype === 0 ? 
                                             <CButton color="primary" value='submit' shape="rounded-pill" size="middle"
                                             onClick={
                                                 (e) => {
                                                     applicationClass(apply);
                                                     e.preventDefault();
                                                 }
-                                            }>강의 신청</CButton>
+                                            }>강의 신청</CButton> : <div></div>}
                                             &nbsp;&nbsp;
+                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 2 ? 
                                             <Link to="/class/class/classEdit" state={{results: results}}>
                                                 <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
-                                            </Link>
+                                            </Link> : <div></div>}
                                             &nbsp;&nbsp;
+                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 2 ? 
                                             <CButton color="primary" value='delete' shape="rounded-pill" size="middle"
-                                                onClick={
-                                                    (e) => {
-                                                        deleteClass();
-                                                        e.preventDefault();
-                                                    }
-                                                }>삭제</CButton>
-                                            
+                                            onClick={
+                                                (e) => {
+                                                    deleteClass();
+                                                    e.preventDefault();
+                                                }
+                                            }>삭제</CButton> : <div></div>}
                                         </div>
                                     </CCol>
 
@@ -273,7 +264,7 @@ const ClassDetailHeader = ({ classno }) => {
             </CCardBody>
             </CCard>
             </CCol>
-            {loginInfo.memberId === results.memberid ?  <CCol xs={10} style={{margin: "auto"}}>
+            {loginInfo !== null && loginInfo.memberId === results.memberid ?  <CCol xs={10} style={{margin: "auto"}}>
             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
             <CCardHeader style={{height:'45px'}}>
             <CNav style={{paddingLeft:0 , marginTop:-5}} variant="tabs" role="tablist">
@@ -300,6 +291,7 @@ const ClassDetailHeader = ({ classno }) => {
                         (e) => {
                             setAcceptApply(applylist.memberid);
                             acceptApply();
+                            window.location.reload();
                             e.preventDefault();
                         }
                     }

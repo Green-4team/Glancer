@@ -2,7 +2,7 @@ import { cilLockLocked, cilUser } from "@coreui/icons"
 import CIcon from "@coreui/icons-react"
 import { CCard, CCardBody, CCol, CContainer, CForm, CFormCheck, CFormInput, CFormSelect, CInputGroup, CInputGroupText, CRow } from "@coreui/react"
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import 'src/views/pages/registerButton.css'
 
@@ -23,6 +23,11 @@ const FreeEdit = (props) => {
       email: FreeLancerInforma.email,
       })
       const navigate = useNavigate();
+      useEffect( () => {
+        if (loginInfo=== null) {
+          navigate('/login');
+        } 
+      });
       //로그인 회원가입 
       const UpdateMemberInfo = () => {
          

@@ -1,8 +1,11 @@
-import { CButton, CFormTextarea, CNavLink } from '@coreui/react';
+import { CNavLink } from '@coreui/react';
+import axios from 'axios';
 import moment from 'moment';
 import { BsEye } from 'react-icons/bs';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import CommentList from '../comment/CommentList';
+import CommentWrite from '../comment/CommentWrite';
 
 const HoverBlueBlock = styled.div`
 .hoverBlue:hover {color: #24a0ed;}
@@ -12,9 +15,29 @@ img {
 `;
 
 const QnADetailItem = ({ result, loginInfo }) => {
-  const { /* boardNo, deleted, */ memberId, title, content, regDate, views, topicName, tags, topicNo } = result;
-  console.log(loginInfo)
+  const { /* deleted, */ boardNo, memberId, title, content, regDate, views, topicName, tags, topicNo, comments, chosen } = result;
+  console.log(result)
   const navigate = useNavigate();
+
+  let commentCount
+  if (comments === null) {
+    commentCount = 0
+  } else {
+    commentCount = comments.length
+  }
+  
+  const deleteBoard = () => {
+    const url = `http://127.0.0.1:8081/board/qnaDelete?boardNo=${boardNo}`;
+    axios.get(url)
+         .then( response => {
+          alert('게시물이 삭제되었습니다');
+          navigate('/board/qna/list', {state: { loginInfo: loginInfo }});
+         })
+         .catch( e => {
+          alert('error');
+         });
+  }
+
   return (
     <>
       <HoverBlueBlock>
@@ -37,9 +60,12 @@ const QnADetailItem = ({ result, loginInfo }) => {
                       }}
                       style={{display: 'inline-block', marginRight: 10}}>수정</div>
                   <div className='hoverBlue'
-                      onClick={() => {
-                        navigate('/board/qna/delete', {state: { loginInfo: loginInfo, result: result }});
-                      }}
+                       onClick={(e) => { if (window.confirm("삭제하시겠습니까?")) {
+                                          deleteBoard(boardNo);
+                                          e.preventDefault();
+                                         } else {
+                                          console.log("삭제 취소");
+                                         }}}
                       style={{display: 'inline-block'}}>삭제</div>
                 </div> : ''
             }
@@ -75,26 +101,10 @@ const QnADetailItem = ({ result, loginInfo }) => {
         </div>
         <hr />
         <div>
-          <div style={{marginBottom: 30}}>0개의 댓글</div>
-          <div style={{border: "1px solid", borderRadius: 10, padding: 20, borderColor: "lightgray"}}>
-            <CFormTextarea style={{resize: "none", borderColor: "lightgray"}} readOnly>
-              댓글을 쓰려면 로그인이 필요합니다.
-            </CFormTextarea>
-            <div style={{marginTop: 10, textAlign: "right", marginBottom: 10}}>
-              <CButton color="info"
-                        style={{color: 'white',
-                                fontSize: 12,
-                                border: "none",
-                                marginRight: "auto",
-                                paddingLeft: 30,
-                                paddingRight: 30,
-                                paddingTop: 10,
-                                paddingBottom: 10}}
-                        disabled>댓글 쓰기</CButton>
-            </div>
-          </div>
+          <div style={{marginBottom: 30}}>{commentCount}개의 댓글</div>
+          <CommentWrite loginInfo={loginInfo} boardNo={boardNo} />
         </div>
-        <div></div>
+        <CommentList loginInfo={loginInfo} comments={comments} writer={memberId} chosen={chosen} />
       </HoverBlueBlock>
     </>
   )

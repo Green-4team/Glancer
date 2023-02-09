@@ -3,17 +3,6 @@ import React, { Component, useState } from 'react'
 
 // import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CButton, CImage } from "@coreui/react"
 
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import classimg from "src/assets/images/class.jpg"
-import CIcon from '@coreui/icons-react';
-import * as icon from '@coreui/icons';
-import { BsFillStarFill } from "react-icons/bs";  
-import { AiOutlineStar } from "react-icons/ai";
-import { BiTime } from "react-icons/bi"
-import { BsFillPersonFill } from "react-icons/bs"
-import { BiBuildingHouse } from "react-icons/bi"
-import { MdSubject } from "react-icons/md"
-
 import 'src/views/pages/registerButton.css'
 import {
   CCard,
