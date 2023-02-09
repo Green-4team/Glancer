@@ -11,9 +11,9 @@ const FreeEdit = (props) => {
 
     const location = useLocation();
     const FreeLancerInforma = location.state.FreeLancerInfo;
-
     
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
     const [FreelancerInfomaction, setFreelancerInfomaction] = useState({       
       name: FreeLancerInforma.name,
       birthday: FreeLancerInforma.birthday,

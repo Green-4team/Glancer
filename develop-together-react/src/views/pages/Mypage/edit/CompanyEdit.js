@@ -11,7 +11,8 @@ const FreeEdit = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const CompanyInfo = location.state.CompanyInfo;
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
     const [CompanyInfomaction, setCompanyInfomaction] = useState({       
       name: CompanyInfo.name,
       mname: CompanyInfo.mname,

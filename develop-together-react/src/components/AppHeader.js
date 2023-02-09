@@ -103,7 +103,7 @@ const AppHeader = (props) => {
           </div>
           <div style={{marginRight: 50}}>
           <CNavItem>
-            <CNavLink href="#">블로그</CNavLink>
+            <CNavLink to="/Blogs" component={NavLink}>블로그</CNavLink>
           </CNavItem>
           </div>
         </CHeaderNav>
