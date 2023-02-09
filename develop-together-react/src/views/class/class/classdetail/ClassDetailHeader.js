@@ -44,7 +44,8 @@ function aa(){
 
 const ClassDetailHeader = ({ classno }) => {
     const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    // const loginInfo = location.state.loginInfo;
+    const loginInfo = window.sessionStorage.getItem("loginInfo");
 
     const [results, setResults] = useState(null);
     const [ApplyList, setApplyList] = useState(null);
@@ -114,7 +115,7 @@ const ClassDetailHeader = ({ classno }) => {
         axios.post(url, apply, { headers: { "Content-Type": "application/x-www-form-urlencoded"}})
               .then( response => {
                 alert('수강신청이 완료되었습니다.');
-                navigate('/Mypage', { state: { loginInfo:loginInfo} });
+                navigate('/Mypage');
               })
               .catch(e => {
                 

@@ -43,7 +43,8 @@ function aa(){
 
 const TeacherDetailHeader = ({memberid}) => {
     const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    // const loginInfo = location.state.loginInfo;
+    const loginInfo = window.sessionStorage.getItem("loginInfo");
     const teacherno = location.state.teacherno;
     // const location = useLocation();
     // const memberid = location.state.memberid;
@@ -77,7 +78,7 @@ const TeacherDetailHeader = ({memberid}) => {
         axios.get(url)
               .then( response => {
                 alert('강사 정보가 삭제되었습니다.');
-                navigate('/class/teacher', { state: { loginInfo:loginInfo} });
+                navigate('/class/teacher');
               })
               .catch(e => {
                 alert('error');

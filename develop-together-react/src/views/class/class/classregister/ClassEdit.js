@@ -68,7 +68,6 @@ const ClassEdit = (props) => {
       }
     }
     setRegisters({...registers, "languages": languages.toString()});
-    console.log(registers);
   }
 
 

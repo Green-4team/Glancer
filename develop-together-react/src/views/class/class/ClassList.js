@@ -13,7 +13,8 @@ const ClassList = (props) => {
     
     
     const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    // const loginInfo = location.state.loginInfo;
+    const loginInfo = window.sessionStorage.getItem("loginInfo");
 
     const[results, setResults] = useState(null);
 
@@ -47,7 +48,7 @@ const ClassList = (props) => {
                                         
                                             { loginInfo.membertype === 0 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> :  loginInfo.membertype === 1 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> 
                                             : loginInfo.membertype === 2 && loginInfo !== null ?
-                                            <Link to="/class/class/classregister"state={{loginInfo : loginInfo}}>
+                                            <Link to="/class/class/classregister">
                                             <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
                                             </Link> :  loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}
                                             
@@ -70,7 +71,7 @@ const ClassList = (props) => {
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
                             <div className="clearfix">
-                            <Link to="/class/class/classdetail" state={{classno: result.classno, loginInfo: loginInfo}} style={{textDecoration: "none", color: "black"}}>
+                            <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
                             {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
                             <div style={{textAlign:"center",
                                         display:'inline-block',

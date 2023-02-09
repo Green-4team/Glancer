@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
 
 const TeacherRegisterHeader = (props) => {
   const location = useLocation();
-  const loginInfo = location.state.loginInfo;
+  // const loginInfo = location.state.loginInfo;
+  const loginInfo = window.sessionStorage.getItem("loginInfo");
 
   const [register, setRegister] = useState({
     memberid: loginInfo.memberId,
@@ -60,22 +61,6 @@ const TeacherRegisterHeader = (props) => {
     // content: ''
   })
 
-  // const changeLanguage = (e) => {
-    
-  //   let languages = (register.languages.length === 0) ? [] : register.languages.split(",");
-  //   if (e.target.checked) {
-  //     languages = [...languages, e.target.value];
-  //   } else {
-  //     for (var i = 0; i < languages.length; i++) {
-  //       if (e.target.value === languages[i]) {
-  //         languages.splice(i, 1);
-  //       }
-  //     }
-  //   }
-  //   setRegister({...register, "languages": languages.toString()});
-  //   console.log(register);
-  // }
-
 
   const navigate = useNavigate();
   const insertTeacher = () => {
@@ -84,7 +69,7 @@ const TeacherRegisterHeader = (props) => {
     axios.post(url, register, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강사 정보가 등록되었습니다.');
-            navigate('/class/teacher', { state: { loginInfo:loginInfo} });
+            navigate('/class/teacher');
           })
           .catch(e => {
             alert('빈 항목을 입력해주세요.');

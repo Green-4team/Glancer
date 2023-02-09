@@ -38,7 +38,8 @@ import axios from 'axios';
 
 const TeacherEdit = (props) => {
   const location = useLocation();
-  const loginInfo = location.state.loginInfo;
+//   const loginInfo = location.state.loginInfo;
+  const loginInfo = window.sessionStorage.getItem("loginInfo");
   const editTeacherInfo = location.state.results;
 
   const [registers, setRegisters] = useState({
@@ -56,7 +57,7 @@ const TeacherEdit = (props) => {
     axios.post(url, registers, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강사 정보가 수정되었습니다.');
-            navigate('/class/teacher', {state : {logininfo : loginInfo }});
+            navigate('/class/teacher');
           })
           .catch(e => {
             alert('빈 항목을 입력해주세요.');
