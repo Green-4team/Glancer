@@ -31,8 +31,8 @@ public interface TeacherMapper {
 
 	
 	@Update("UPDATE teacher " +
-			"SET name = #{name}, email = #{email}, phone = #{phone}, content = #{content}, region = #{region} " +
-			"WHERE teacherno = #{teacherno}")
+			"SET region = #{region}, education = #{education}, career = #{career} " +
+			"WHERE memberid = #{memberid}")
 	void editTeacher(TeacherDto register);
 
 	
