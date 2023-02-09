@@ -19,30 +19,38 @@ import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router'
 
 const FreelancerProfileRegist = (props) => {
+
+  let loginInfo = window.sessionStorage.getItem("loginInfo");
+  loginInfo = JSON.parse(loginInfo);
   const location = useLocation();
-  const loginInfo = location.state.loginInfo;   
-  const memberid = loginInfo.memberId
-const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
-const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-const navigate = useNavigate();
+
+
+  const navigate = useNavigate();
+  useEffect( () => {
+    if (loginInfo === null || loginInfo === '' ) {
+      alert('로그인을 해주세요');
+      navigate('/login');   
+    }
+  })
 
 const [freelancerProfileRegist, setFreelancerProfileRegist] = useState({
 
 });
 
 const insertFreelancerProfileRegist = () => {
-  axios.post(`http://127.0.0.1:8081/project/freelancerProfileRegister?memberid=${memberid}`, 
+  axios.post(`http://127.0.0.1:8081/project/freelancerProfileRegister?memberid=${loginInfo.memberId}`, 
               freelancerProfileRegist,
             { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
       .then( response => {
         alert('프로필 등록 완료');
-        navigate('/project/freelancer', { state: { loginInfo:loginInfo} });
+        navigate('/project/freelancer');
       })
       .catch( e => {          
         alert('error');
       });
 };
-   
+  
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
     <CContainer>
@@ -128,6 +136,9 @@ const insertFreelancerProfileRegist = () => {
                                 onChange={(e) => {setFreelancerProfileRegist({...freelancerProfileRegist, "language4": e.target.value})}}/>
                     </CCol>                             
                 </CRow>
+                <hr></hr>
+                <div style={{ color:"gray", fontSize:"15px"}}>0~100 사이의 숫자로 본인을 평가해 주세요.</div><br></br>
+
                 <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >전문성</CFormLabel>
                     <CCol sm={2}>

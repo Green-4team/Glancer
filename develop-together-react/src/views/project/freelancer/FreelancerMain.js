@@ -12,10 +12,8 @@ import { useLocation } from 'react-router-dom';
 
 const FreelancerMain = (props) => {
     
-    const location = useLocation();
-    const loginInfo = location.state.loginInfo;
-    
-
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
 
     return (
         <div>
