@@ -11,9 +11,6 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-nativ
 
 const ClassList = (props) => {
     
-    
-    const location = useLocation();
-    // const loginInfo = location.state.loginInfo;
     let loginInfo = window.sessionStorage.getItem("loginInfo");
     loginInfo = JSON.parse(loginInfo);
 
@@ -42,19 +39,13 @@ const ClassList = (props) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                     <CCol xs={{ span: 12 }}>
-                                        <div className="p-1"><strong>Glancer가 보증하는 강의!</strong></div>
+                                        <div className="p-1"><h4>Glancer가 보증하는 강의!</h4></div>
                                     </CCol>                                
                                     <CCol xs={{ span: 0 }}>
                                         <div className="p-1" > <h2>원하는 강의를 찾아주세요.</h2> <br></br>
-                                        
-                                            {/* { loginInfo.membertype === 0 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> :  loginInfo.membertype === 1 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> 
-                                            : loginInfo.membertype === 2 && loginInfo !== null ?
-                                            <Link to="/class/class/classregister">
+                                        {loginInfo === null ? <div><h5><strong>※ 학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</strong></h5></div> : loginInfo.membertype === 2 ? <Link to="/class/class/classregister">
                                             <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
-                                            </Link> :  loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>} */}
-                                        {loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : loginInfo.membertype === 2 ? <Link to="/class/class/classregister">
-                                            <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
-                                            </Link> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}    
+                                            </Link> : <div><strong>※ 학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</strong></div>}    
                                         
                                         </div>
                                     </CCol>                           
@@ -75,7 +66,6 @@ const ClassList = (props) => {
                             <CCardBody>
                             <div className="clearfix">
                             <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
-                            {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
                             <div style={{textAlign:"center",
                                         display:'inline-block',
                                         verticalAlign:'top',

@@ -34,31 +34,13 @@ import { CFormCheck, CFormSelect } from '@coreui/react/dist'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-
-
-const styles = StyleSheet.create({
-  namecard: { 
-    textAlign:"center",
-    backgroundColor: "skyblue",
-    height:"200px",
-    borderRadius:"10px",
-    fontSize:"30px",
-    marginBottom:"50px"
-   }
-});
-
-
 const TeacherRegisterHeader = (props) => {
-  const location = useLocation();
-  // const loginInfo = location.state.loginInfo;
-  const loginInfo = window.sessionStorage.getItem("loginInfo");
+
+  let loginInfo = window.sessionStorage.getItem("loginInfo");
+  loginInfo = JSON.parse(loginInfo);
 
   const [register, setRegister] = useState({
-    memberid: loginInfo.memberId,
-    // education: '',
-    // career: '',
-    // region: '',
-    // content: ''
+    memberid: loginInfo.memberId
   })
 
 
@@ -107,6 +89,13 @@ const TeacherRegisterHeader = (props) => {
                          onChange={(e) => {setRegister({...register, "career": e.target.value})}}
                         autoComplete="career" />
                       </CInputGroup>
+                      <CFormLabel className="col-sm-2 col-form-label" >한 줄 소개</CFormLabel>
+                    <CFormTextarea 
+                      value={register.scontent}
+                      onChange={(e) => {setRegister({...register, "scontent": e.target.value})}}
+                      rows={1}
+                      text="자신을 한 줄로 표현해주세요."
+                ></CFormTextarea>
                       <CFormLabel className="col-sm-2 col-form-label" >강사 소개</CFormLabel>
                     <CFormTextarea 
                       value={register.content}
@@ -124,7 +113,7 @@ const TeacherRegisterHeader = (props) => {
                             e.preventDefault();
                           } 
                         }>
-                          <div>강의 등록하기</div>
+                          <div>강사 등록하기</div>
                         <span className='first'></span>
                         <span className='second'></span>
                         <span className='third'></span>

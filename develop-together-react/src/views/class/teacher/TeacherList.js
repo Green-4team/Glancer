@@ -10,9 +10,8 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-nativ
 
 const TeacherList = (props) => {
     
-    const location = useLocation();
-    // const loginInfo = location.state.loginInfo;
-    const loginInfo = window.sessionStorage.getItem("loginInfo");
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
 
     const[results, setResults] = useState(null);
 
@@ -39,13 +38,14 @@ const TeacherList = (props) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                     <CCol xs={{ span: 12 }}>
-                                        <div className="p-1"><strong>Glancer가 보증하는 강사진!</strong></div>
+                                        <div className="p-1"><h4>Glancer가 보증하는 강사진!</h4></div>
                                     </CCol>                                
                                     <CCol xs={{ span: 0 }}>
                                         <div className="p-1" > <h2>원하는 강사를 찾아주세요.</h2> <br></br>
-                                        <Link to="/class/teacher/teacherregister">
-                                            <CButton color="primary" shape="rounded-pill" size="lg">강사 등록</CButton>
-                                        </Link>
+                                        {loginInfo === null ? <div><h5><strong>※ Freelancer 계정으로 로그인 하시면 강사로 등록할 수 있습니다.</strong></h5></div> : loginInfo.membertype === 0 ?
+                                            <Link to="/class/teacher/teacherregister">
+                                                <CButton color="primary" shape="rounded-pill" size="lg">강사 등록</CButton>
+                                            </Link> : <div><strong>※ Freelancer 계정으로 로그인 하시면 강사로 등록할 수 있습니다.</strong></div>}
                                         </div>
                                     </CCol>                           
                                 </CRow>
@@ -65,9 +65,7 @@ const TeacherList = (props) => {
                             <CCardBody>
                             <div className="clearfix">
                             <Link to="/class/teacher/teacherdetail" 
-                            state={{memberid: result.memberid, teacherno: result.teacherno}} 
-                            style={{textDecoration: "none", color: "black"}}
-                            >
+                            state={{memberid: result.memberid, teacherno: result.teacherno}} style={{textDecoration: "none", color: "black"}}>
                             {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
                             <div style={{textAlign:"center",
                                         display:'inline-block',
@@ -83,26 +81,18 @@ const TeacherList = (props) => {
                                     <div style={{borderRadius: 10, display:'inline-block', padding: '70px 0px'}}>{result.memberid}</div>
 
                                 </div>
-                            <CCardBody style={{ textAlign:'center', marginLeft:'80px',  display:'inline-block', width:'500px'}}>
+                            <CCardBody style={{ textAlign:'center', marginLeft:'80px',  display:'inline-block', width:'500px', overflow:'hidden', position:'relative'}}>
                             <h2>{result.memberid}</h2>
                             <br></br>
-                            <h3 style={{ marginBottom:"10px"}}> </h3>                            
-                             <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;강사 소개 : {result.content}</strong>{/*<strong>&nbsp;사용 언어 : &nbsp;
-                            {
-                                result.tags.map((tag) => {
-                                    const { tagName } = tag;
-                                        return  (
-                                                <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
-                                            )
-                                        })
-                            }</strong>*/}</div> 
-                            
+                            <h3 style={{ marginBottom:"10px", overflow:'hidden', position:'absolute'}}> </h3>                            
+                             <div style={{ marginBottom:"10px", fontSize:"20px", position:'relative'}}><strong>&nbsp;한 줄 소개 : {result.scontent}</strong>
+                            </div>    
                             <br></br>
                             &nbsp;
                             <CCol xs={{ span: 12 }}>
                                         
                                         <h5><strong>평점 : 
-                                        <div style={{display:"inline",marginLeft:"30px" }} >
+                                        <div style={{display:"inline",marginLeft:"30px", position:'relative' }} >
                                         {result.rate === 0 ? 
                                         <>
                                         <AiOutlineStar size="23"/>
