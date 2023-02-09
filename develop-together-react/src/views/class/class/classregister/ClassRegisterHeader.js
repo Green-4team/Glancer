@@ -34,30 +34,10 @@ import { CFormCheck, CFormSelect } from '@coreui/react/dist'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-
-
-const styles = StyleSheet.create({
-  namecard: { 
-    textAlign:"center",
-    backgroundColor: "skyblue",
-    height:"200px",
-    borderRadius:"10px",
-    fontSize:"30px",
-    marginBottom:"50px"
-   }
-});
-
-// function aa(){
-//     var arr = [];
-//     for (var i = 0; i < 10; i++) {
-//     arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
-//     }
-//     return arr
-// }
-
 const ClassRegisterHeader = (props) => {
-    const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    
+  let loginInfo = window.sessionStorage.getItem("loginInfo");
+  loginInfo = JSON.parse(loginInfo);
 
   const [register, setRegister] = useState({
     memberid: loginInfo.memberId,
@@ -96,7 +76,7 @@ const ClassRegisterHeader = (props) => {
     axios.post(url, register, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강의가 등록되었습니다.');
-            navigate('/class/class',{ state: { loginInfo:loginInfo} });
+            navigate('/class/class');
           })
           .catch(e => {
             alert('빈 항목을 입력해주세요.');

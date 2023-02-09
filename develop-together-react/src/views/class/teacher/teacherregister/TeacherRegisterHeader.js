@@ -34,47 +34,14 @@ import { CFormCheck, CFormSelect } from '@coreui/react/dist'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-
-
-const styles = StyleSheet.create({
-  namecard: { 
-    textAlign:"center",
-    backgroundColor: "skyblue",
-    height:"200px",
-    borderRadius:"10px",
-    fontSize:"30px",
-    marginBottom:"50px"
-   }
-});
-
-
 const TeacherRegisterHeader = (props) => {
-  const location = useLocation();
-  const loginInfo = location.state.loginInfo;
+
+  let loginInfo = window.sessionStorage.getItem("loginInfo");
+  loginInfo = JSON.parse(loginInfo);
 
   const [register, setRegister] = useState({
-    memberid: loginInfo.memberId,
-    // education: '',
-    // career: '',
-    // region: '',
-    // content: ''
+    memberid: loginInfo.memberId
   })
-
-  // const changeLanguage = (e) => {
-    
-  //   let languages = (register.languages.length === 0) ? [] : register.languages.split(",");
-  //   if (e.target.checked) {
-  //     languages = [...languages, e.target.value];
-  //   } else {
-  //     for (var i = 0; i < languages.length; i++) {
-  //       if (e.target.value === languages[i]) {
-  //         languages.splice(i, 1);
-  //       }
-  //     }
-  //   }
-  //   setRegister({...register, "languages": languages.toString()});
-  //   console.log(register);
-  // }
 
 
   const navigate = useNavigate();
@@ -84,7 +51,7 @@ const TeacherRegisterHeader = (props) => {
     axios.post(url, register, { headers: {"Content-Type": "application/x-www-form-urlencoded"} })
           .then( response => {
             alert('강사 정보가 등록되었습니다.');
-            navigate('/class/teacher', { state: { loginInfo:loginInfo} });
+            navigate('/class/teacher');
           })
           .catch(e => {
             alert('빈 항목을 입력해주세요.');
@@ -101,29 +68,6 @@ const TeacherRegisterHeader = (props) => {
                     <CForm>
                       <h1>강사 등록</h1>
                       <p className="text-medium-emphasis">Register teacher information</p>
-                      
-                      
-                      {/* <CInputGroup className="mb-3">
-                        <CInputGroupText>강사 명</CInputGroupText>
-                        <CFormInput placeholder="강사 명" 
-                         value={register.name} 
-                         onChange={(e) => {setRegister({...register, "name": e.target.value})}}
-                        autoComplete="name" />
-                      </CInputGroup>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>이메일</CInputGroupText>
-                        <CFormInput placeholder="이메일을 입력해주세요." 
-                         value={register.email} 
-                         onChange={(e) => {setRegister({...register, "email": e.target.value})}}
-                        autoComplete="email" />
-                      </CInputGroup>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>연락처</CInputGroupText>
-                        <CFormInput placeholder="연락처를 입력해주세요." 
-                         value={register.phone} 
-                         onChange={(e) => {setRegister({...register, "phone": e.target.value})}}
-                        autoComplete="phone" />
-                      </CInputGroup> */}
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 지역</CInputGroupText>
                         <CFormInput placeholder="강의 지역" 
@@ -145,6 +89,13 @@ const TeacherRegisterHeader = (props) => {
                          onChange={(e) => {setRegister({...register, "career": e.target.value})}}
                         autoComplete="career" />
                       </CInputGroup>
+                      <CFormLabel className="col-sm-2 col-form-label" >한 줄 소개</CFormLabel>
+                    <CFormTextarea 
+                      value={register.scontent}
+                      onChange={(e) => {setRegister({...register, "scontent": e.target.value})}}
+                      rows={1}
+                      text="자신을 한 줄로 표현해주세요."
+                ></CFormTextarea>
                       <CFormLabel className="col-sm-2 col-form-label" >강사 소개</CFormLabel>
                     <CFormTextarea 
                       value={register.content}
@@ -162,7 +113,7 @@ const TeacherRegisterHeader = (props) => {
                             e.preventDefault();
                           } 
                         }>
-                          <div>강의 등록하기</div>
+                          <div>강사 등록하기</div>
                         <span className='first'></span>
                         <span className='second'></span>
                         <span className='third'></span>

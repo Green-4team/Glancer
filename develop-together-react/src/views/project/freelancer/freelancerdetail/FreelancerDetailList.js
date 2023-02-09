@@ -30,18 +30,20 @@ function aa(){
 
 
 
-const FreelancerDetailList = ({memberid}) => {
+const FreelancerDetailList = ({memberid, loginInfo}) => {
 
     const [activeKey, setActiveKey] = useState(1)
     const [results, setResults] = useState(null);
     const [results2, setResults2] = useState(null)
+    
 
     useEffect(() => {
       const loadFreelancerDetailList = async (e) => {
         const response = await axios.get(`http://127.0.0.1:8081/project/freelancerDetailList?memberid=${memberid}` )
         setResults(response.data.results)
+        console.log(results)
        
-        console.log(response.data.results)
+        
       }
       loadFreelancerDetailList();
     }, [memberid])
@@ -51,7 +53,6 @@ const FreelancerDetailList = ({memberid}) => {
         const response = await axios.get(`http://127.0.0.1:8081/project/showPersonalHistory?memberid=${memberid}` )
         setResults2(response.data.results2)
     
-        console.log(response.data.results2)
       }
       loadPersonalHistory();
     }, [memberid])
@@ -95,8 +96,12 @@ const FreelancerDetailList = ({memberid}) => {
                       return(                        
                         <CCol xs={12} >
                           <CCard textColor='dark' style={{margin:5}}>
-                            <CCardBody style={{ marginLeft:'0px'}}>
-                                <strong>{result.position}</strong> <br></br>
+                            <CCardBody style={{ marginLeft:'0px'}}>   
+                                <strong>{result.position}</strong> <br></br>  
+                                <Link to="/project/freelancer/projectedit" state={{result: result}}> 
+                                  <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                                </Link>
+
                                 <h4>{result.projectname} </h4>
                                 <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
                                 <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
@@ -129,6 +134,9 @@ const FreelancerDetailList = ({memberid}) => {
               {results2 !== null ? 
                 <CContainer>
                   <CRow xs={{ gutter: 0 }}>
+                  <Link to="/project/freelancer/personalhistoryedit" state={{results2: results2}}> 
+                                  <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                                </Link>
                     <CCol xs={{ span: 12 }}>
                         <strong>학력</strong>
                     </CCol>                                

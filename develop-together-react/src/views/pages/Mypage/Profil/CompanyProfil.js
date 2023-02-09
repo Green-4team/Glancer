@@ -27,43 +27,43 @@ const CompanyProfil = ({loginInfo}) => {
         <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/CompanyEdit" style={{color:'black'}} state={{CompanyInfo:CompanyInfo, loginInfo:loginInfo}}>프로필 수정</Link>
+            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/CompanyEdit" style={{color:'black'}} state={{CompanyInfo:CompanyInfo}}>프로필 수정</Link>
           </CCardHeader>
           <CCardBody>
               <CTable hover>
                 <CTableBody>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">기업명</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>기업명</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.name}</CTableDataCell>
-                    <CTableDataCell>담당자 명</CTableDataCell>
+                    <CTableDataCell><strong>담당자 명</strong></CTableDataCell>
                     <CTableDataCell>{CompanyInfo.mname}</CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">담당자 직책</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>담당자 직책</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.mpostion}</CTableDataCell>
-                    <CTableDataCell>담당자 연락처</CTableDataCell>
+                    <CTableDataCell><strong>담당자 연락처</strong></CTableDataCell>
                     <CTableDataCell>{CompanyInfo.mphone}</CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">담당자 이메일</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>담당자 이메일</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.memail}</CTableDataCell>
-                    <CTableDataCell>주소</CTableDataCell>
+                    <CTableDataCell><strong>주소</strong></CTableDataCell>
                     <CTableDataCell>{CompanyInfo.address}</CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">인원수</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>인원수</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.headcount}명</CTableDataCell>     
-                    <CTableDataCell >사업 내용</CTableDataCell>
+                    <CTableDataCell ><strong>사업 내용</strong></CTableDataCell>
                     <CTableDataCell>{CompanyInfo.contnent}명</CTableDataCell>                 
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">연간 매출</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>연간 매출</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.annualsales}만원</CTableDataCell>     
-                    <CTableHeaderCell scope="row">사업자 번호</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>사업자 번호</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.crn}</CTableDataCell>                 
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">사업자 등록증</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>사업자 등록증</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.br}</CTableDataCell>                                    
                   </CTableRow>
                 </CTableBody>

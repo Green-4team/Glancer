@@ -62,7 +62,8 @@ const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer
 const ProjectRegist = React.lazy(() => import('./views/project/freelancer/ProjectRegist'))
 const PersonalHistoryRegist = React.lazy(() => import('./views/project/freelancer/PersonalHistoryRegist'))
 const FreelancerProfileRegist = React.lazy(() => import('./views/project/freelancer/FreelancerProfileRegist'))
-
+const ProjectEdit = React.lazy(() => import('./views/project/freelancer/ProjectEdit'))
+const PersonalHistoryEdit = React.lazy(() => import('./views/project/freelancer/PersonalHistoryEdit'))
 
 
 
@@ -92,11 +93,12 @@ const Mypage = React.lazy(() => import('./views/pages/Mypage/Mypage'))
 const FreeEdit = React.lazy(() => import('./views/pages/Mypage/edit/FreeEdit'))
 const CompanyEdit = React.lazy(() => import('./views/pages/Mypage/edit/CompanyEdit'))
 const AcademyEdit = React.lazy(() => import('./views/pages/Mypage/edit/AcademyEdit'))
+const Blogs = React.lazy(() => import('./views/pages/blogs/blog'))
 
 const routes = [
   
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/dashboard', name: 'ClassMain', element: ClassMain },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -129,7 +131,9 @@ const routes = [
   { path: '/project/project', name: 'ProjectMain', element: ProjectMain },
   { path: '/project/freelancer/freelancerdetail', name: 'FreelancerDetailMain', element: FreelancerDetailMain },
   { path: '/project/freelancer/projectregist', name: 'ProjectRegist', element: ProjectRegist },
+  { path: '/project/freelancer/projectedit', name: 'ProjectEdit', element: ProjectEdit },
   { path: '/project/freelancer/personalhistoryregist', name: 'PersonalHistoryRegist', element: PersonalHistoryRegist },
+  { path: '/project/freelancer/personalhistoryedit', name: 'PersonalHistoryEdit', element: PersonalHistoryEdit },
   { path: '/project/freelancer/freelancerprofileregist', name: 'FreelancerProfileRegist', element: FreelancerProfileRegist },
 
   
@@ -174,6 +178,7 @@ const routes = [
   { path: '/FreeEdit', name: 'FreeEdit', element: FreeEdit },
   { path: '/CompanyEdit', name: 'CompanyEdit', element: CompanyEdit },
   { path: '/AcademyEdit', name: 'AcademyEdit', element: AcademyEdit },
+  { path: '/Blogs', name: 'Blogs', element: Blogs },
 
 
 

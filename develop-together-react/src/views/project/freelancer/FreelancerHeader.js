@@ -1,11 +1,23 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { CCard, CCardBody, CCol, CRow, CContainer, CButton } from "@coreui/react"
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const FreelancerHeader = (props) => {
-    const {loginInfo} = props;
+const FreelancerHeader = ({memberid }) => {
+ 
+    const [results, setResults] = useState(null);
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
+    
+
+    // const navigate = useNavigate();
+   
+    // useEffect( () => {
+    //     if (loginInfo === null) {
+    //       navigate('/login');
+    //     }
+    //   })
 
 
 
@@ -25,9 +37,31 @@ const FreelancerHeader = (props) => {
                                         <div className="p-1"> <h2>프로젝트를 등록하면</h2></div>
                                     </CCol>
                                     <CCol xs={{ span: 3 }}>
-                                    <Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo}} style={{textDecoration: "none", color: "black"}}>   
+                                    {loginInfo === null ?    
+                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo, memberid}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 등록하기</CButton></div>
-                                    </Link>
+                                    </Link></div>
+                                    :
+                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo, memberid}} style={{textDecoration: "none", color: "black"}}>   
+                                    <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 수정하기</CButton></div>
+                                    </Link></div>
+
+                                    }
+                                    
+
+{/* 
+                                        {loginInfo.memberId === memberid ? 
+                                        <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
+                                        </Link> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
+                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
+                                        </Link></div>}
+ */}
+
+
+
+
+
                                     </CCol> 
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><h2>더 정확한 추천을 받을 수 있어요</h2></div>

@@ -18,6 +18,7 @@ import { FaHome } from "react-icons/fa"
 import { SiHtmlacademy } from "react-icons/si"
 import { AiFillPhone } from "react-icons/ai"
 import { MdSchool } from "react-icons/md"
+import { BsChatLeftText } from "react-icons/bs"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -33,26 +34,15 @@ const styles = StyleSheet.create({
    }
 });
 
-function aa(){
-    var arr = [];
-    for (var i = 0; i < 10; i++) {
-    arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
-    }
-    return arr
-}
 
 const TeacherDetailHeader = ({memberid}) => {
     const location = useLocation();
-    const loginInfo = location.state.loginInfo;
     const teacherno = location.state.teacherno;
-    // const location = useLocation();
-    // const memberid = location.state.memberid;
+    
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
 
     const [results, setResults] = useState(null);
-    // const [apply, setApply] = useState({
-    //     memberid: loginInfo.memberId,
-    //     classno: classno
-    // });
 
     const navigate = useNavigate();
     
@@ -77,7 +67,7 @@ const TeacherDetailHeader = ({memberid}) => {
         axios.get(url)
               .then( response => {
                 alert('강사 정보가 삭제되었습니다.');
-                navigate('/class/teacher', { state: { loginInfo:loginInfo} });
+                navigate('/class/teacher');
               })
               .catch(e => {
                 alert('error');
@@ -98,12 +88,14 @@ const TeacherDetailHeader = ({memberid}) => {
                                     <CCol xs={{ span: 12 }}>
                                     <div className="p-1"> <h3>강사 정보</h3></div>
                                         <br></br>
-                                        <div><strong>< BsFillPersonFill />&nbsp;이름 : {results.name}</strong></div>
-                                        <div><strong>< AiFillPhone />&nbsp;연락처: {results.phone}</strong></div>
-                                        <div><strong>< TfiEmail />&nbsp;이메일: {results.email}</strong></div>
-                                        <div><strong>< FaHome />&nbsp;강의 지역: {results.region}</strong></div>
-                                        <div><strong>< MdSchool />&nbsp;학력 : {results.education}</strong></div>
-                                        <div><strong>< SiHtmlacademy />&nbsp;경력 : {results.career}</strong></div>
+                                        <div style={{fontSize:"20px"}}><strong>< BsFillPersonFill />&nbsp;이름 : {results.name}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< AiFillPhone />&nbsp;연락처: {results.phone}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< TfiEmail />&nbsp;이메일: {results.email}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< FaHome />&nbsp;강의 지역: {results.region}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< MdSchool />&nbsp;학력 : {results.education}</strong></div>
+                                        <div style={{fontSize:"18px"}}><strong>< SiHtmlacademy />&nbsp;경력 : {results.career}</strong></div>
+                                        <br></br>
+                                        <div style={{fontSize:"18px"}}><strong>< BsChatLeftText />&nbsp;한 줄 소개 : {results.scontent}</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
@@ -159,17 +151,19 @@ const TeacherDetailHeader = ({memberid}) => {
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <CCol xs={{ span: 4 }}>
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}>
+                                        {loginInfo === null ? <div></div> : loginInfo.membertype === 0 ? 
                                             <Link to="/class/teacher/teacherEdit" state={{results: results}}> 
                                                 <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
-                                            </Link>
+                                            </Link> : <div></div>}
                                             &nbsp;&nbsp;
+                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 0 ? 
                                             <CButton color="primary" value='deleteTeacher' shape="rounded-pill" size="middle"
                                             onClick={
                                                 (e) => {
                                                     deleteTeacher();
                                                     e.preventDefault();
                                                 }
-                                            }>삭제</CButton>
+                                            }>삭제</CButton> : <div></div>}
                                         </div>
                                     </CCol>
 

@@ -11,7 +11,8 @@ const FreeEdit = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const CompanyInfo = location.state.CompanyInfo;
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
     const [CompanyInfomaction, setCompanyInfomaction] = useState({       
       name: CompanyInfo.name,
       mname: CompanyInfo.mname,
@@ -34,7 +35,7 @@ const FreeEdit = (props) => {
                   { headers: { "Content-Type": "application/x-www-form-urlencoded"}})
             .then( response => {
               alert('회원 정보 변경 완료');
-              navigate('/Mypage' , { state: { loginInfo:loginInfo} } );
+              navigate('/Mypage');
             })
             .catch( e => {          
               alert('error');           

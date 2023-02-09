@@ -23,4 +23,9 @@ public class ApplicationDto {
 	private String enddate;
 	private int price;
 	private int rate;
+	
+
+	private String birthday;
+	private String email;
+	private String phone;
 }

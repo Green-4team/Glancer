@@ -9,16 +9,18 @@ import axios from 'axios';
 
 
 
-function aa(){
-    var arr = [];
-    for (var i = 0; i < 10; i++) {
-    arr.push(<CBadge style={{margin:"2px"}}color="danger">danger</CBadge>)
-    }
-    return arr
-}
+// function aa(){
+//     var arr = [];
+//     for (var i = 0; i < 2; i++) {
+//     arr.push(<CBadge style={{margin:"2px"}}color="danger">danger</CBadge>)
+//     }
+//     return arr
+// }
 
 const FreelancerList = ({loginInfo}) => {
     const[results, setResults] = useState(null);
+    
+
 
     useEffect(() => {
         const loadFreelancerList = async (e) => {
@@ -46,7 +48,17 @@ const FreelancerList = ({loginInfo}) => {
                                 <CCardBody style={{ marginLeft:'150px'}}>
                                 <h4>{result.name} | {result.occupation} </h4>
                                 <h2 style={{ marginBottom:"10px"}}>{result.title}</h2>                            
-                                    { aa() } 
+                                <CBadge style={{margin:"2px"}}color="danger">{result.program1}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.program2}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.program3}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.program4}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.language1}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.language2}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.language3}</CBadge>
+                                <CBadge style={{margin:"2px"}}color="danger">{result.language4}</CBadge>
+                                
+                               
+
                                 
                                 <br></br><br></br>
                                 <h5 style={{marginTop:"-10px"}}>수행프로젝트 : 헬로자바, 헬로자바, 헬로자바</h5>                             

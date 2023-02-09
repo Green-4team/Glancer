@@ -36,6 +36,8 @@ public class FreelancerController {
 	@Qualifier("freelancerService")
 	private FreelancerService freelancerService;
 
+	
+	// 프리랜서 메인 리스트 출력 (반복문)
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/freelancer"})
@@ -49,6 +51,7 @@ public class FreelancerController {
 		return freelancerList;
 	}
 	
+	// 프리랜서 디테일 헤더 출력
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/freelancer/freelancerdetail"})
@@ -97,6 +100,22 @@ public class FreelancerController {
 		return "";
 	}
 	
+	
+	// 프로젝트 이력 수정
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/editProject"})
+	private String editProject(ProjectHistoryDto projectHistoryEdit) {
+
+		freelancerService.editProject(projectHistoryEdit);
+		
+		return "freelancer";
+	}
+	
+	
+	
+	
+	// 프로젝트 이력 리스트 출력
 	@CrossOrigin
 	@GetMapping(path = {"/freelancerDetailList"})
 	@ResponseBody
@@ -106,10 +125,6 @@ public class FreelancerController {
 		
 		HashMap<String, Object> projectHistoryHashMap = new HashMap<>();
 		projectHistoryHashMap.put("results", projectHistory);
-		
-		
-
-		
 		return projectHistoryHashMap;
 	}
 	
@@ -119,9 +134,6 @@ public class FreelancerController {
 	@ResponseBody
 	private Object showPersonalHistory(String memberid) {
 		
-		System.out.println("444444444");
-		
-		
 		PersonalHistoryDto personaltHistory = freelancerService.findPersonalHistory(memberid);
 		HashMap<String, Object> personalHistoryHashMap = new HashMap<>();
 		personalHistoryHashMap.put("results2", personaltHistory);
@@ -129,6 +141,20 @@ public class FreelancerController {
 		return personalHistoryHashMap;
 	}
 	
+	// 이력서 수정
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/editPersonalHistory"})
+	private String editPersonalHistory(PersonalHistoryDto personalHistoryDto) {
+
+		freelancerService.editPersonalHistory(personalHistoryDto);
+		
+		System.out.println("kkkkkkkkkkk");
+		
+		
+		return "freelancer";
+	}
+		
 	
 	
 	

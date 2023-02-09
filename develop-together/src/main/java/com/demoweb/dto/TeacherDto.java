@@ -7,6 +7,7 @@ public class TeacherDto {
 
 	private int teacherno;
 	private String memberid;
+	private String scontent;
 	private String content;
 	private int rate;
 	private String region;

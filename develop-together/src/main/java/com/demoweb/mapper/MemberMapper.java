@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.ApplicationDto;
+import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
@@ -107,6 +108,29 @@ public interface MemberMapper {
 			"on a.classno = c.classno " +
 			"where a.memberid = #{memberId} " )
 	List<ApplicationDto> loadClassApplyInfoInfo(String memberId);
+
+
+	@Select("select c.classno, c.name, c.startdate, c.price, c.enddate, c.classtime, a.memberid, c.region " + 
+			"from class c " +
+			"left outer join application a " + 
+			"on c.classno = a.classno " +
+			"where c.memberid = #{memberId} " )
+	List<ClassDto> loadClassApplyInfoInAca(String memberId);
+
+	@Select("select count(*) from application where memberid = #{ memberId } " )
+	int selectcheckMultipleApply(String memberId);
+
+	@Select("select a.memberid, md.name, md.phone, md.birthday, md.email, a.applicationstate " + 
+			"from application a " + 
+			"left outer join memberdetail md " + 
+			"on a.memberid = md.memberid " +
+			"where a.classno = #{classno} " )
+	List<ApplicationDto> ApplyList(int classno);
+
+	@Update("UPDATE application " +
+			"SET applicationstate = 1 " +
+			"WHERE memberid = #{memberId} and classno = #{classno} " )
+	void acceptApply(String memberId, int classno);
 	
 	
 

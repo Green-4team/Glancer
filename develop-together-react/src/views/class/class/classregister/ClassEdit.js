@@ -3,17 +3,6 @@ import React, { Component, useState } from 'react'
 
 // import { CCard, CCardBody,CBadge, CCol, CRow, CContainer, CButton, CImage } from "@coreui/react"
 
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import classimg from "src/assets/images/class.jpg"
-import CIcon from '@coreui/icons-react';
-import * as icon from '@coreui/icons';
-import { BsFillStarFill } from "react-icons/bs";  
-import { AiOutlineStar } from "react-icons/ai";
-import { BiTime } from "react-icons/bi"
-import { BsFillPersonFill } from "react-icons/bs"
-import { BiBuildingHouse } from "react-icons/bi"
-import { MdSubject } from "react-icons/md"
-
 import 'src/views/pages/registerButton.css'
 import {
   CCard,
@@ -33,27 +22,6 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import { CFormCheck, CFormSelect } from '@coreui/react/dist'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-
-
-
-const styles = StyleSheet.create({
-  namecard: { 
-    textAlign:"center",
-    backgroundColor: "skyblue",
-    height:"200px",
-    borderRadius:"10px",
-    fontSize:"30px",
-    marginBottom:"50px"
-   }
-});
-
-// function aa(){
-//     var arr = [];
-//     for (var i = 0; i < 10; i++) {
-//     arr.push(<CBadge style={{margin:"2px"}}color="info">tool</CBadge>)
-//     }
-//     return arr
-// }
 
 const ClassEdit = (props) => {
   const location = useLocation();
@@ -89,7 +57,6 @@ const ClassEdit = (props) => {
       }
     }
     setRegisters({...registers, "languages": languages.toString()});
-    console.log(registers);
   }
 
 
@@ -103,7 +70,6 @@ const ClassEdit = (props) => {
             navigate('/class/class');
           })
           .catch(e => {
-            debugger;
             alert('빈 항목을 입력해주세요.');
           });
         }

@@ -23,7 +23,7 @@ public interface ClassMapper {
 			"ORDER BY classno DESC ")
 	List<ClassDto> selectAllClassList();
 
-	@Select("SELECT classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
+	@Select("SELECT memberid, classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
 			"FROM class " +
 			"WHERE classno = #{ classno } AND deleted = 0 ")
 	ClassDto selectClassDetail(int classno);

@@ -8,31 +8,11 @@ import { AiOutlineStar } from "react-icons/ai";
 import axios from 'axios';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
-// function aa(){
-//     var arr = [];
-//     for (var i = 0; i < 10; i++) {
-//     arr.push(<CBadge style={{margin:"2px"}}color="info">danger</CBadge>)
-//     }
-//     return arr
-// }
-
-// const styles = StyleSheet.create({
-//     namecard: { 
-//       textAlign:"center",
-//       backgroundColor: "skyblue",
-//       height:"400px",
-//       width:"300px",
-//       borderRadius:"10px",
-//       fontSize:"30px",
-//       marginBottom:"50px"
-//      }
-//   });
 
 const ClassList = (props) => {
     
-    
-    const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
 
     const[results, setResults] = useState(null);
 
@@ -59,13 +39,14 @@ const ClassList = (props) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                     <CCol xs={{ span: 12 }}>
-                                        <div className="p-1"><strong>Glancer가 보증하는 강의!</strong></div>
+                                        <div className="p-1"><h4>Glancer가 보증하는 강의!</h4></div>
                                     </CCol>                                
                                     <CCol xs={{ span: 0 }}>
                                         <div className="p-1" > <h2>원하는 강의를 찾아주세요.</h2> <br></br>
-                                        <Link to="/class/class/classregister"state={{loginInfo : loginInfo}}>
+                                        {loginInfo === null ? <div><h5><strong>※ 학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</strong></h5></div> : loginInfo.membertype === 2 ? <Link to="/class/class/classregister">
                                             <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
-                                        </Link>
+                                            </Link> : <div><strong>※ 학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</strong></div>}    
+                                        
                                         </div>
                                     </CCol>                           
                                 </CRow>
@@ -84,8 +65,7 @@ const ClassList = (props) => {
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
                             <div className="clearfix">
-                            <Link to="/class/class/classdetail" state={{classno: result.classno, loginInfo: loginInfo}} style={{textDecoration: "none", color: "black"}}>
-                            {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
+                            <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
                             <div style={{textAlign:"center",
                                         display:'inline-block',
                                         verticalAlign:'top',

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.ApplicationDto;
+import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
@@ -48,6 +49,14 @@ public interface AccountService {
 	AllMemberRegisterDto logincheck(String memberId, String password);
 
 	List<ApplicationDto> loadClassApplyInfoInfo(String memberId);
+
+	List<ClassDto> loadClassApplyInfoInAca(String memberId);
+
+	boolean checkMultipleApply(String memberId);
+
+	List<ApplicationDto> ApplyList(int classno);
+
+	void acceptApply(String memberId, int classno);
 
 	
 

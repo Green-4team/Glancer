@@ -26,6 +26,10 @@ public interface FreelancerService {
 	PersonalHistoryDto findPersonalHistory(String memberid);
 
 	void insertFreelancerProfile(FreelancerHeaderDto freelancerHeaderDto);
+
+	void editProject(ProjectHistoryDto projectHistoryEdit);
+
+	void editPersonalHistory(PersonalHistoryDto personalHistoryDto);
 		
 	
 }

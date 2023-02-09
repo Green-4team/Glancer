@@ -23,11 +23,10 @@ import {
   cilAlignLeft,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AppHeaderDropdown = ({onLogout, loginInfo}) => {
- 
-  
+  const navigate = useNavigate();
 
   return (
     <CDropdown variant="nav-item">
@@ -38,9 +37,10 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
         <CDropdownHeader className="bg-light fw-semibold py-2">{loginInfo.memberId}님 환영합니다</CDropdownHeader>
         <div onClick={ (e) => {                
             onLogout();
+            navigate("/class/class");
             e.preventDefault();} } 
             >
-        <CDropdownItem>          
+        <CDropdownItem href=''>          
         <CIcon icon={cilLockLocked} className="me-2"  style={{color:'black'}}/>
           <div style={{color:'black',display:'inline-block' , cursor:'pointer'}}>Logout</div>                
         </CDropdownItem>
