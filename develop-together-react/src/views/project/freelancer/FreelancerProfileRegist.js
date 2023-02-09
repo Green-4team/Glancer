@@ -18,21 +18,13 @@ import {
 import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router'
 
-const FreelancerProfileRegist = (memberid) => {
+const FreelancerProfileRegist = (props) => {
   const location = useLocation();
   const loginInfo = location.state.loginInfo;   
- 
-
-
-  const navigate = useNavigate();
-   
-    useEffect( () => {
-        if (loginInfo === null) {
-          navigate('/login');
-        }
-      })
-
-
+  const memberid = loginInfo.memberId
+const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+const navigate = useNavigate();
 
 const [freelancerProfileRegist, setFreelancerProfileRegist] = useState({
 

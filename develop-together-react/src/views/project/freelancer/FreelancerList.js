@@ -19,7 +19,7 @@ import axios from 'axios';
 
 const FreelancerList = ({loginInfo}) => {
     const[results, setResults] = useState(null);
-
+    
 
 
     useEffect(() => {

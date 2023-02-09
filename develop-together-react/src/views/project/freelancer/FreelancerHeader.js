@@ -9,6 +9,8 @@ const FreelancerHeader = ({memberid }) => {
     const [results, setResults] = useState(null);
     const location = useLocation();
     const loginInfo = location.state.loginInfo;
+    
+
     // const navigate = useNavigate();
    
     // useEffect( () => {
@@ -48,7 +50,7 @@ const FreelancerHeader = ({memberid }) => {
                                     
 
 {/* 
-                                    {loginInfo.memberId === memberid ? 
+                                        {loginInfo.memberId === memberid ? 
                                         <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
                                         </Link> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   

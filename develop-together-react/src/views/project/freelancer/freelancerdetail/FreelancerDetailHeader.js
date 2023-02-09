@@ -68,13 +68,7 @@ const FreelancerDetailHeader = ({memberid , loginInfo}) => {
                                         <div className="p-1"> <h3>{results.title}</h3></div>
                                     </CCol>
                                     <CCol xs={{ span: 3}}>
-                                        {/* {logininfo.memberId === memberid ? 
-                                        <Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
-                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 수정하기</CButton></div>
-                                        </Link> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
-                                        <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
-                                        </Link></div>} */}
-
+                                    
                                         {loginInfo === null ? <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
                                         </Link></div> 
@@ -83,16 +77,18 @@ const FreelancerDetailHeader = ({memberid , loginInfo}) => {
                                         </Link></div> : <div><Link to="/project/freelancer/ProjectRegist" state={{ }} style={{textDecoration: "none", color: "black"}}>   
                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로젝트 등록하기</CButton></div>
                                         </Link></div>}      
-                                    </CCol>     
-                                    <CCol xs={{ span: 3 }}>
-                                        {/* {loginInfo.memberId === memberid ?
-                                        <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
-                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 수정하기</CButton></div>
-                                        </Link> : <div><Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
-                                         <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
-                                       </Link></div>} */}
-                                    
-                                    </CCol>                            
+                                    </CCol>   
+                                        <CCol xs={{ span: 3 }}>
+                                            {loginInfo === null ? <div><Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
+                                            <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
+                                            </Link></div>
+                                            : loginInfo.memberId === memberid ? <Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
+                                            <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 수정하기</CButton></div>
+                                            </Link> : <div><Link to="/project/freelancer/PersonalHistoryRegist" state={{ }} style={{textDecoration: "none", color: "black", display:"inline-block"}}>   
+                                            <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">이력서 등록하기</CButton></div>
+                                        </Link></div>}
+                                        
+                                        </CCol>                            
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"-10px", fontWeight:"bold"}}><strong>{results.name} | 평점{results.rate} 점 | 경력 {results.careeryear}년</strong></div>
                                     </CCol>
