@@ -49,7 +49,7 @@ const AcademyApply = ({loginInfo}) =>{
                             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
                             <CCardBody>
                             <div className="clearfix">
-                            <Link to="/class/class/classdetail" state={{classno: result.classno, loginInfo: loginInfo}} style={{textDecoration: "none", color: "black"}}>
+                            <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
                             {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
                             <div style={{textAlign:"center",
                                         display:'inline-block',

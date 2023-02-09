@@ -27,27 +27,27 @@ const AcademyProfil = ({loginInfo}) => {
         <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/AcademyEdit" style={{color:'black'}} state={{AcademyInfo:AcademyInfo, loginInfo:loginInfo}}>프로필 수정</Link>
+            <strong>{loginInfo.memberId}님의 프로필</strong>&nbsp;&nbsp;&nbsp;<Link to="/AcademyEdit" style={{color:'black'}} state={{AcademyInfo:AcademyInfo}}>프로필 수정</Link>
           </CCardHeader>
           <CCardBody>
               <CTable hover>
                 <CTableBody>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">학원명</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>학원명</strong></CTableHeaderCell>
                     <CTableDataCell>{AcademyInfo.name}</CTableDataCell>
-                    <CTableDataCell>담당자 명</CTableDataCell>
+                    <CTableDataCell><strong>담당자 명</strong></CTableDataCell>
                     <CTableDataCell>{AcademyInfo.mname}</CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">담당자 직책</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>담당자 직책</strong></CTableHeaderCell>
                     <CTableDataCell>{AcademyInfo.mpostion}</CTableDataCell>
-                    <CTableDataCell>담당자 연락처</CTableDataCell>
+                    <CTableDataCell><strong>담당자 연락처</strong></CTableDataCell>
                     <CTableDataCell>{AcademyInfo.mphone}</CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">담당자 이메일</CTableHeaderCell>
+                    <CTableHeaderCell scope="row"><strong>담당자 이메일</strong></CTableHeaderCell>
                     <CTableDataCell>{AcademyInfo.memail}</CTableDataCell>
-                    <CTableDataCell>주소</CTableDataCell>
+                    <CTableDataCell><strong>주소</strong></CTableDataCell>
                     <CTableDataCell>{AcademyInfo.address}</CTableDataCell>
                   </CTableRow>                 
                 </CTableBody>

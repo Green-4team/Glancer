@@ -92,11 +92,12 @@ const Mypage = React.lazy(() => import('./views/pages/Mypage/Mypage'))
 const FreeEdit = React.lazy(() => import('./views/pages/Mypage/edit/FreeEdit'))
 const CompanyEdit = React.lazy(() => import('./views/pages/Mypage/edit/CompanyEdit'))
 const AcademyEdit = React.lazy(() => import('./views/pages/Mypage/edit/AcademyEdit'))
+const Blogs = React.lazy(() => import('./views/pages/blogs/blog'))
 
 const routes = [
   
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/dashboard', name: 'ClassMain', element: ClassMain },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -175,6 +176,7 @@ const routes = [
   { path: '/FreeEdit', name: 'FreeEdit', element: FreeEdit },
   { path: '/CompanyEdit', name: 'CompanyEdit', element: CompanyEdit },
   { path: '/AcademyEdit', name: 'AcademyEdit', element: AcademyEdit },
+  { path: '/Blogs', name: 'Blogs', element: Blogs },
 
 
 
