@@ -11,7 +11,8 @@ const FreeEdit = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const AcademyInfo = location.state.AcademyInfo;
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
     const [AcademyInfomaction, setAcademyInfomaction] = useState({       
       name: AcademyInfo.name,
       mname: AcademyInfo.mname,
@@ -22,7 +23,7 @@ const FreeEdit = (props) => {
       // brFile: null,
       })
       
-      //로그인 회원가입 
+      
       const UpdateAcademyInfo = () => {
          
         axios.post("http://127.0.0.1:8081/account/AcademyUpdate?memberId=" + AcademyInfo.memberId, 

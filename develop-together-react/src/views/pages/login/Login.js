@@ -49,7 +49,7 @@ const Login = ({onLogin}) => {
             } else {
               onLogin(response.data);
               alert('로그인 완료');
-              navigate('/project/freelancer');
+              navigate('/class/class');
             }
           })
         .catch( e => {    
