@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CFormCKEditor from "../../other/CFormCKEditor";
+import Editor from "../../other/Editor";
 
 const TagBlock = styled.div`
 .tagify{    
@@ -27,7 +28,7 @@ const QnAWrite = ({loginInfo}) => {
   })
 
   const [board, setBoard] = useState({
-    topicNo: '',
+    topicNo: '1',
     memberId: '',
     title: '',
     content: '',
@@ -42,6 +43,13 @@ const QnAWrite = ({loginInfo}) => {
       tags = tagify.value.map((v)=> v.value)
     }
     
+    if (board.topicNo === '') {
+      alert('토픽을 선택해주세요')
+    } else if (board.title === '') {
+      alert('제목을 입력해주세요')
+    } else if (board.content === '') {
+      alert('내용을 입력해주세요')
+    } else {
     axios.post(url, {...board, "memberId": loginInfo.memberId, "tagNames": tags.toString()}, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
           .then( response => {
             alert('게시물이 등록되었습니다');
@@ -50,7 +58,12 @@ const QnAWrite = ({loginInfo}) => {
           .catch( e => {
             alert('error');
           });
+    }
   };
+
+  const setContent = (data) => {
+    setBoard({...board, "content": data})
+  }
 
   useEffect(()=> {
     if (loginInfo === null) {
@@ -59,8 +72,6 @@ const QnAWrite = ({loginInfo}) => {
     } 
   })
   
-  
-
   return (
     <>
       <CCol xs={8} style={{margin: 'auto'}}>
@@ -71,7 +82,6 @@ const QnAWrite = ({loginInfo}) => {
             <div style={{marginTop: 30}}>
               <CFormLabel>토픽</CFormLabel>
               <CFormSelect value={board.topicNo} onChange={(e) => {setBoard({...board, "topicNo": e.target.value})}}>
-                <option>토픽을 선택해주세요</option>
                 <option value={1}>기술</option>
                 <option value={2}>커리어</option>
                 <option value={3}>기타</option>
@@ -83,11 +93,6 @@ const QnAWrite = ({loginInfo}) => {
             </div>
             <div style={{marginTop: 30}}>
               <CFormLabel>태그</CFormLabel>
-              {/* <MultipleValueTextInput
-                onItemAdded={(item, allItems) => console.log(`item added: ${board.tag}`)}
-                onItemDeleted={(item, allItems) => console.log(`item removed: ${board.tag}`)}
-                placeholder="hi" /> */}
-
               <TagBlock>
                 <input style={{ width: '100%', 
                                 height: '38px',
@@ -95,10 +100,11 @@ const QnAWrite = ({loginInfo}) => {
                                 borderColor: 'silver',
                                 borderRadius: '5px' }} name='basic'></input>
               </TagBlock>
-
             </div>
             <div style={{marginTop: 30}}>
-              본문<CFormCKEditor onChange2={(data)=> {setBoard({...board, "content": data})}} />
+              본문
+              {/* <CFormCKEditor onChange2={(data)=> {setBoard({...board, "content": data})}} /> */}
+              <Editor setContent={setContent} />
             </div>
             <div style={{textAlign: "right"}}>
             <CButton color="light"
@@ -110,7 +116,8 @@ const QnAWrite = ({loginInfo}) => {
                                       }}}>취소</CButton>
             <CButton color="info"
                      style={{color: 'white', marginLeft: 10}}
-                     onClick={(e) => { if (window.confirm("게시물을 등록하시겠습니까?")) {
+                     onClick={(e) => { console.log(board)
+                      if (window.confirm("게시물을 등록하시겠습니까?")) {
                                         insertBoard(board);
                                         e.preventDefault();
                                         // window.location.replace('#/board/qna/list');

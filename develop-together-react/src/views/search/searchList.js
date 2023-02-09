@@ -8,32 +8,15 @@ import SearchItem from './SearchItem';
 const SearchList = (searchKeyword, category) => {
     
     const [results, setResults] = useState(null);
-
-    const url = `http://127.0.0.1:8081/search/`;
-
-    useEffect(() => {
-        if ( category != null ) {
-            const loadSearchList = async (e)  => {
-                const response = await axios.get(
-                    url + {category},
-                    {params:{searchKeyword : searchKeyword}}
-                    );
-                setResults(response.data.results);
-            };
-            loadSearchList();
-        }
-    }, [url, category, searchKeyword])
-
-
-
-    if (!results) {
-        return;
-    }
     
         <CCol xs={10} style={{margin: "auto"}}>
                       
                 {results.map((result) => {
                     return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8fdbad4ae022c6fd0cbf560f83869965ae768c22
                         <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
                         <CCardBody>
                         <div className="clearfix">

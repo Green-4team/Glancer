@@ -25,6 +25,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.common.Util;
 import com.demoweb.dto.AllMemberRegisterDto;
+import com.demoweb.dto.ApplicationDto;
+import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.service.AccountService;
@@ -210,6 +212,74 @@ public class AccountController {
 		return "";
 	}
 	
+	//마이페이지 수강신청 정보 불러오기
+	@CrossOrigin
+	@GetMapping(path = {"/loadClassApplyInfoInfo"})
+	@ResponseBody
+	public HashMap<String, Object> loadClassApplyInfoInfo(String memberId) {
+		
+		List<ApplicationDto> applydto = accountService.loadClassApplyInfoInfo(memberId);
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("results", applydto);
+		
+		return response;
+	}
+	
+	
+	//마이페이지 수강신청 정보 학원으로 받기 불러오기
+		@CrossOrigin
+		@GetMapping(path = {"/loadClassApplyInfoInAca"})
+		@ResponseBody
+		public HashMap<String, Object> loadClassApplyInfoInAca(String memberId) {
+			
+//			List<ApplicationDto> applydto = accountService.loadClassApplyInfoInfo(memberId);
+			List<ClassDto> classdto = accountService.loadClassApplyInfoInAca(memberId);
+			HashMap<String, Object> response = new HashMap<>();
+			response.put("results", classdto);
+			
+			return response;
+		}
+		
+		//아이디 중복 수강 신청에서 체크
+		@CrossOrigin
+		@GetMapping(path = {"/checkMultipleApply"})
+		@ResponseBody
+		public HashMap<String, Object> checkMultipleApply(String memberId) {
+			
+			boolean valid = accountService.checkMultipleApply(memberId);
+			
+			HashMap<String, Object> response = new HashMap<>();
+			response.put("validation", valid);
+			
+			return response;
+		}
+		
+		//마이페이지 수강신청 정보 불러오기
+		@CrossOrigin
+		@GetMapping(path = {"/ApplyList"})
+		@ResponseBody
+		public HashMap<String, Object> ApplyList(int classno) {
+			
+			List<ApplicationDto> applylistdto = accountService.ApplyList(classno);
+			
+			HashMap<String, Object> response = new HashMap<>();
+			response.put("applylist", applylistdto);
+			
+			return response;
+		}
+		
+		//수강 신청 수락
+		@CrossOrigin
+		@ResponseBody
+		@GetMapping(path = {"/acceptApply" })
+		public String acceptApply(String memberId, int classno) {
+			
+			accountService.acceptApply(memberId, classno);
+			return "success";
+			
+		}
+		
 }
 
 

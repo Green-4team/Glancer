@@ -45,7 +45,6 @@
     "react-dom": "^18.2.0",
     "react-froala-wysiwyg": "^4.0.17",
     "react-icons": "^4.7.1",
-    "react-multivalue-text-input": "^2.3.0",
     "react-native": "^0.71.1",
     "react-native-web": "^0.18.12",
     "react-redux": "^8.0.2",

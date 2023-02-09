@@ -23,7 +23,7 @@ public interface ClassMapper {
 			"ORDER BY classno DESC ")
 	List<ClassDto> selectAllClassList();
 
-	@Select("SELECT classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
+	@Select("SELECT memberid, classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
 			"FROM class " +
 			"WHERE classno = #{ classno } AND deleted = 0 ")
 	ClassDto selectClassDetail(int classno);
@@ -48,8 +48,8 @@ public interface ClassMapper {
 	void deleteClass(int classno);
 
 	
-	@Insert("INSERT INTO class (name, crowd, price, classtime, region, startdate, enddate, content) " +
-			"VALUES (#{name}, #{crowd}, #{price}, #{classtime}, #{region}, #{startdate}, #{enddate}, #{content}) ")
+	@Insert("INSERT INTO class (memberid, name, crowd, price, classtime, region, startdate, enddate, content) " +
+			"VALUES (#{memberid}, #{name}, #{crowd}, #{price}, #{classtime}, #{region}, #{startdate}, #{enddate}, #{content}) ")
 	@Options(useGeneratedKeys = true, keyColumn = "classno", keyProperty = "classno")
 	void insertClass(ClassDto register);
 

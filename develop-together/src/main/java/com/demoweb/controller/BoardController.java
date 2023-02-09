@@ -135,6 +135,48 @@ public class BoardController {
 		return "success";
 	}
 	
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping(path = {"/uploadFiles"})
+	private String fileUpload(MultipartHttpServletRequest req) {
+		
+		// 1. 요청 데이터 읽기 (전달인자로 대체)
+		MultipartFile attach = req.getFile("files");
+		BoardDto board = new BoardDto();
+		String uniqueFileName = null;
+		
+		if (attach != null) { //내용이 있는 경우
+			// 2. 데이터 처리
+			ServletContext application = req.getServletContext();
+			String path = application.getRealPath("/board-attachments");
+			String fileName = attach.getOriginalFilename(); //파일 이름 가져오기
+			if (fileName != null && fileName.length() > 0) {
+				uniqueFileName = Util.makeUniqueFileName(fileName);
+				
+				try {				
+					attach.transferTo(new File(path, uniqueFileName));//파일 저장
+					
+					// 첨부파일 정보를 객체에 저장
+//					ArrayList<BoardAttachDto> attachments = new ArrayList<>(); // 첨부파일 정보를 저장하는 DTO 객체
+//					BoardAttachDto attachment = new BoardAttachDto();
+//					attachment.setUserFileName(fileName);
+//					attachment.setSavedFileName(uniqueFileName);
+//					attachments.add(attachment);
+//					board.setAttachments(attachments);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		System.out.println(board);
+//		boardService.writeBoard(board);
+		// 3. View에서 읽을 수 있도록 데이터 저장
+		// 4. View 또는 Controller로 이동
+		return "/board-attachments/" + uniqueFileName;
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////
 		
 	@GetMapping(path = { "/detail" })

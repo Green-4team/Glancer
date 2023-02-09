@@ -26,9 +26,9 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public TeacherDto findTeacherDetail(String memberid) {
+	public TeacherDto findTeacherDetail(String memberid, int teacherno) {
 		
-		TeacherDto teacherDetail = teacherMapper.selectTeacherDetail(memberid);
+		TeacherDto teacherDetail = teacherMapper.selectTeacherDetail(memberid, teacherno);
 		return teacherDetail;
 	}
 

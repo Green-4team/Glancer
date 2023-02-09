@@ -4,6 +4,7 @@ import { CButton, CCard, CCardBody, CCol, CFormInput } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import QnATagSearchItem from "./QnATagSearchItem";
 
 const HoverBlueBlock = styled.div`
 div {
@@ -77,9 +78,9 @@ const QnATagSearch = ({loginInfo, tagNo}) => {
                 </tr>
               </thead>
               <tbody>
-                {/* {results.map((result) => {
+                {results.map((result) => {
                   return <QnATagSearchItem key={result.boardNo} result={result} loginInfo={loginInfo} />
-                })} */}
+                })}
               </tbody>
             </table>
               {/* <Pagination total={500} page={page} setPage={setPage} /> */}

@@ -9,9 +9,9 @@ import lombok.Data;
 
 @Data
 public class ClassDto {
-
+	
 	private int classno;
-	private String MemberId;
+	private String memberid;
 	private String name;
 	private String region;
 	private int tagno;

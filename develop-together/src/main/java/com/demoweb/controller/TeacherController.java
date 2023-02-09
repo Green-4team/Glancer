@@ -41,9 +41,9 @@ public class TeacherController {
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/teacher/teacherdetail"})
-	private HashMap<String, Object> showTeacherDetail(String memberid) {
+	private HashMap<String, Object> showTeacherDetail(String memberid, int teacherno) {
 		
-		TeacherDto results = teacherService.findTeacherDetail(memberid);
+		TeacherDto results = teacherService.findTeacherDetail(memberid, teacherno);
 		
 		HashMap<String, Object> teacherDetail = new HashMap<>();
 		teacherDetail.put("results", results);

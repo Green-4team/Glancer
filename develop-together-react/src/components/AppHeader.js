@@ -58,9 +58,6 @@ const DropMenuBlock = styled.div`
 const AppHeader = (props) => {
 
   const {loginInfo, onLogout} = props; 
-  
-  const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
 
   return (
     <DropMenuBlock>
@@ -88,7 +85,7 @@ const AppHeader = (props) => {
               <button class="dropbtn">강의</button>
               <div class="dropdown-content">
                 <CNavLink to='/class/class' state={{loginInfo: loginInfo}}  component={NavLink}>강의</CNavLink>
-                <CNavLink to='/class/teacher' component={NavLink}>강사</CNavLink>
+                <CNavLink to='/class/teacher' state={{loginInfo: loginInfo}} component={NavLink}>강사</CNavLink>
               </div>
             </div>
           </CNavItem>

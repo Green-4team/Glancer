@@ -6,10 +6,14 @@ import styled from 'styled-components';
 
 const HoverBlueBlock = styled.div`
 .hoverBlue:hover {color: #24a0ed;}
+img {
+  width: 100%
+}
 `;
 
 const QnADetailItem = ({ result, loginInfo }) => {
   const { /* boardNo, deleted, */ memberId, title, content, regDate, views, topicName, tags, topicNo } = result;
+  console.log(loginInfo)
   const navigate = useNavigate();
   return (
     <>
@@ -22,9 +26,29 @@ const QnADetailItem = ({ result, loginInfo }) => {
              }} >{topicName}</div>
         <hr />
         <div>
-          <div>{memberId}</div>
+          <div style={{display: "flex"}}>
+            <div style={{display: 'inline-block', }}>{memberId}</div>
+            { 
+              loginInfo !== null && loginInfo.memberId === memberId ?
+                <div style={{display: "inline-block", marginLeft: "auto"}}>
+                  <div className='hoverBlue'
+                      onClick={() => {
+                        navigate('/board/qna/edit', {state: { loginInfo: loginInfo, result: result }});
+                      }}
+                      style={{display: 'inline-block', marginRight: 10}}>수정</div>
+                  <div className='hoverBlue'
+                      onClick={() => {
+                        navigate('/board/qna/delete', {state: { loginInfo: loginInfo, result: result }});
+                      }}
+                      style={{display: 'inline-block'}}>삭제</div>
+                </div> : ''
+            }
+          </div>
           <div>{moment(regDate).startOf('hour').fromNow()} · <BsEye /> {views}</div>
+          
+          
           <div style={{fontWeight: "bold", fontSize: 30, marginTop: 20}}>{title}</div>
+          
           <div style={{marginTop: 30, marginBottom: 30}}>
             <div dangerouslySetInnerHTML={{__html: content}}></div>
           </div>

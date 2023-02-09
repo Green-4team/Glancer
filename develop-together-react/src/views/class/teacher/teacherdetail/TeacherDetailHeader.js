@@ -16,6 +16,8 @@ import { MdSubject } from "react-icons/md"
 import { TfiEmail } from "react-icons/tfi"
 import { FaHome } from "react-icons/fa"
 import { SiHtmlacademy } from "react-icons/si"
+import { AiFillPhone } from "react-icons/ai"
+import { MdSchool } from "react-icons/md"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -40,8 +42,9 @@ function aa(){
 }
 
 const TeacherDetailHeader = ({memberid}) => {
-    // const location = useLocation();
-    // const loginInfo = location.state.loginInfo;
+    const location = useLocation();
+    const loginInfo = location.state.loginInfo;
+    const teacherno = location.state.teacherno;
     // const location = useLocation();
     // const memberid = location.state.memberid;
 
@@ -52,17 +55,17 @@ const TeacherDetailHeader = ({memberid}) => {
     // });
 
     const navigate = useNavigate();
-    // console.log(memberid)
-    // debugger;
+    
     useEffect(() => {
         const loadTeacherDetailHeader = async (e) => {
-            const url = `http://127.0.0.1:8081/class/teacher/teacherdetail?memberid=${memberid}`;
+            const url = `http://127.0.0.1:8081/class/teacher/teacherdetail?memberid=${memberid}&teacherno=${teacherno}`;
             const response = await axios.get(url);
             
             setResults(response.data.results);
+            
         };
         loadTeacherDetailHeader();
-    }, [memberid]);
+    }, [memberid, teacherno]);
 
     if (!results) {
         return;
@@ -70,14 +73,13 @@ const TeacherDetailHeader = ({memberid}) => {
 
     const deleteTeacher = () => {
         // 유효성 검사
-        const url = "http://127.0.0.1:8081/class/deleteTeacher?memberid=" + results.memberid;
+        const url = "http://127.0.0.1:8081/class/deleteTeacher?teacherno=" + results.teacherno;
         axios.get(url)
               .then( response => {
                 alert('강사 정보가 삭제되었습니다.');
-                navigate('/class/teacher');
+                navigate('/class/teacher', { state: { loginInfo:loginInfo} });
               })
               .catch(e => {
-                
                 alert('error');
               });
             }
@@ -90,16 +92,18 @@ const TeacherDetailHeader = ({memberid}) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                 <div style={styles.namecard}>
-                                    <div style={{fontSize:"50px", marginTop:"60px"}}>강사 명</div>
+                                    <div style={{fontSize:"50px", marginTop:"60px"}}>{results.memberid}</div>
                                 </div>
                                                                                                  
                                     <CCol xs={{ span: 12 }}>
                                     <div className="p-1"> <h3>강사 정보</h3></div>
                                         <br></br>
                                         <div><strong>< BsFillPersonFill />&nbsp;이름 : {results.name}</strong></div>
+                                        <div><strong>< AiFillPhone />&nbsp;연락처: {results.phone}</strong></div>
                                         <div><strong>< TfiEmail />&nbsp;이메일: {results.email}</strong></div>
-                                        <div><strong>< FaHome />&nbsp;지역: {results.region}</strong></div>
-                                        <div><strong>< SiHtmlacademy />&nbsp;경력 : {results.name}</strong></div>
+                                        <div><strong>< FaHome />&nbsp;강의 지역: {results.region}</strong></div>
+                                        <div><strong>< MdSchool />&nbsp;학력 : {results.education}</strong></div>
+                                        <div><strong>< SiHtmlacademy />&nbsp;경력 : {results.career}</strong></div>
                                     </CCol>
                                     <CCol xs={{ span: 12 }}>
                                        <div className="p-1" style={{marginTop:"20px"}}></div>
@@ -156,10 +160,10 @@ const TeacherDetailHeader = ({memberid}) => {
                                     <CCol xs={{ span: 4 }}>
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}>
                                             <Link to="/class/teacher/teacherEdit" state={{results: results}}> 
-                                                <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                                                <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
                                             </Link>
                                             &nbsp;&nbsp;
-                                            <CButton color="primary" value='delete' shape="rounded-pill" size="middle"
+                                            <CButton color="primary" value='deleteTeacher' shape="rounded-pill" size="middle"
                                             onClick={
                                                 (e) => {
                                                     deleteTeacher();
@@ -182,7 +186,7 @@ const TeacherDetailHeader = ({memberid}) => {
             <CNavItem >
                 <CNavLink style={{height:'42px'}}
                 
-                > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>강의 상세 정보</span>
+                > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>강사 상세 정보</span>
                 </CNavLink>
             </CNavItem>
             </CNav>

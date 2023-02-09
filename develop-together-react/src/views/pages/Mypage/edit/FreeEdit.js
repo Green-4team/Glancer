@@ -11,6 +11,8 @@ const FreeEdit = (props) => {
 
     const location = useLocation();
     const FreeLancerInforma = location.state.FreeLancerInfo;
+
+    
     const loginInfo = location.state.loginInfo;
     const [FreelancerInfomaction, setFreelancerInfomaction] = useState({       
       name: FreeLancerInforma.name,

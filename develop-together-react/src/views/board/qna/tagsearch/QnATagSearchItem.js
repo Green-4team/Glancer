@@ -12,7 +12,7 @@ const HoverBlueBlock = styled.div`
 
 const QnATagSearchItem = ({ result, loginInfo, onSetTopicNo }) => {
   const { /* content, deleted, */ boardNo, memberId, title, regDate, views, topicName, tags, topicNo } = result;
-  console.log(tags)
+  
   return (
     <>
       

@@ -8,7 +8,7 @@ public interface TeacherService {
 
 	List<TeacherDto> findTeacher();
 
-	TeacherDto findTeacherDetail(String memberid);
+	TeacherDto findTeacherDetail(String memberid, int teacherno);
 
 	void registerTeacher(TeacherDto register);
 
