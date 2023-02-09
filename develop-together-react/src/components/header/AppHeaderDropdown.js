@@ -27,7 +27,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const AppHeaderDropdown = ({onLogout, loginInfo}) => {
   const navigate = useNavigate();
-  
+
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
@@ -37,7 +37,7 @@ const AppHeaderDropdown = ({onLogout, loginInfo}) => {
         <CDropdownHeader className="bg-light fw-semibold py-2">{loginInfo.memberId}님 환영합니다</CDropdownHeader>
         <div onClick={ (e) => {                
             onLogout();
-            navigate("/project/freelancer");
+            navigate("/class/class");
             e.preventDefault();} } 
             >
         <CDropdownItem href=''>          

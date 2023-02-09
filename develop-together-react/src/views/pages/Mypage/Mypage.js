@@ -12,7 +12,8 @@ const Mypage = () => {
    
   
   const navigate = useNavigate();
-    const loginInfo = window.sessionStorage.getItem("loginInfo");
+  let loginInfo = window.sessionStorage.getItem("loginInfo");
+  loginInfo = JSON.parse(loginInfo);
   
 
   useEffect( () => {
