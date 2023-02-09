@@ -63,9 +63,14 @@ const ClassList = (props) => {
                                     </CCol>                                
                                     <CCol xs={{ span: 0 }}>
                                         <div className="p-1" > <h2>원하는 강의를 찾아주세요.</h2> <br></br>
-                                        <Link to="/class/class/classregister"state={{loginInfo : loginInfo}}>
+                                        
+                                            { loginInfo.membertype === 0 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> :  loginInfo.membertype === 1 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> 
+                                            : loginInfo.membertype === 2 && loginInfo !== null ?
+                                            <Link to="/class/class/classregister"state={{loginInfo : loginInfo}}>
                                             <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
-                                        </Link>
+                                            </Link> :  loginInfo === null ?<div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}
+                                            
+                                        
                                         </div>
                                     </CCol>                           
                                 </CRow>

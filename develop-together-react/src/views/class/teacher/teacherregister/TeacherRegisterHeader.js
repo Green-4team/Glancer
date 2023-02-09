@@ -101,29 +101,6 @@ const TeacherRegisterHeader = (props) => {
                     <CForm>
                       <h1>강사 등록</h1>
                       <p className="text-medium-emphasis">Register teacher information</p>
-                      
-                      
-                      {/* <CInputGroup className="mb-3">
-                        <CInputGroupText>강사 명</CInputGroupText>
-                        <CFormInput placeholder="강사 명" 
-                         value={register.name} 
-                         onChange={(e) => {setRegister({...register, "name": e.target.value})}}
-                        autoComplete="name" />
-                      </CInputGroup>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>이메일</CInputGroupText>
-                        <CFormInput placeholder="이메일을 입력해주세요." 
-                         value={register.email} 
-                         onChange={(e) => {setRegister({...register, "email": e.target.value})}}
-                        autoComplete="email" />
-                      </CInputGroup>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>연락처</CInputGroupText>
-                        <CFormInput placeholder="연락처를 입력해주세요." 
-                         value={register.phone} 
-                         onChange={(e) => {setRegister({...register, "phone": e.target.value})}}
-                        autoComplete="phone" />
-                      </CInputGroup> */}
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 지역</CInputGroupText>
                         <CFormInput placeholder="강의 지역" 

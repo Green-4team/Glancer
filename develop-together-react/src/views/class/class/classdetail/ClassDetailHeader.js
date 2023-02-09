@@ -92,7 +92,7 @@ const ClassDetailHeader = ({ classno }) => {
         axios.get(url)
               .then( response => {
                 alert('수강 신청을 수락했습니다.');
-                debugger;
+                
               })
               .catch(e => {
                 alert('error');
