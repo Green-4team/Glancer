@@ -58,9 +58,6 @@ const DropMenuBlock = styled.div`
 const AppHeader = (props) => {
 
   const {loginInfo, onLogout} = props; 
-  
-  const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
 
   return (
     <DropMenuBlock>

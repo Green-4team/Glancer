@@ -12,6 +12,7 @@ import com.demoweb.dto.FreeLancerRegisterDetailDto;
 import com.demoweb.dto.AllMemberRegisterDto;
 import com.demoweb.dto.ApplicationDto;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.CompanyDetailDto;
 import com.demoweb.dto.CompanyDto;
 import com.demoweb.dto.MemberDto;
@@ -149,6 +150,32 @@ public class AccountServiceImpl implements AccountService {
 		List<ApplicationDto> applydto = memberMapper.loadClassApplyInfoInfo(memberId);
 		
 		return applydto;
+	}
+
+	@Override
+	public List<ClassDto> loadClassApplyInfoInAca(String memberId) {
+		List<ClassDto> classdto = memberMapper.loadClassApplyInfoInAca(memberId);
+		return classdto;
+	}
+
+	@Override
+	public boolean checkMultipleApply(String memberId) {
+		int count = memberMapper.selectcheckMultipleApply(memberId);
+		return count == 0;
+	}
+
+	@Override
+	public List<ApplicationDto> ApplyList(int classno) {
+		
+		List<ApplicationDto> applylistdto = memberMapper.ApplyList(classno);
+		
+		return applylistdto;
+	}
+
+	@Override
+	public void acceptApply(String memberId, int classno) {
+		memberMapper.acceptApply(memberId, classno);
+		
 	}
 
 	

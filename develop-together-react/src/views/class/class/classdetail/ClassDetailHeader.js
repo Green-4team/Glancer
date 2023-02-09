@@ -47,6 +47,8 @@ const ClassDetailHeader = ({ classno }) => {
     const loginInfo = location.state.loginInfo;
 
     const [results, setResults] = useState(null);
+    const [ApplyList, setApplyList] = useState(null);
+    const [AcceptApply, setAcceptApply] = useState(null);
 
     const [apply, setApply] = useState(loginInfo !== null ? {
         memberid: loginInfo.memberId,
@@ -54,25 +56,60 @@ const ClassDetailHeader = ({ classno }) => {
     }: null );
 
     const navigate = useNavigate();
+    
     useEffect(() => {
         const loadClassDetailHeader = async (e) => {
             const url = `http://127.0.0.1:8081/class/class/classdetail?classno=${classno}`;
             const response = await axios.get(url);
             
             setResults(response.data.results);
-            
         };
         loadClassDetailHeader();
     }, [classno]);
 
+
+    //수강 신청자 목록 조회
+    useEffect(() => {
+        const loadClassDetailHeader = async (e) => {
+            const url = `http://127.0.0.1:8081/account/ApplyList?classno=${classno}`;
+            const response = await axios.get(url);
+            
+            setApplyList(response.data.applylist);
+        };
+        loadClassDetailHeader();
+    }, [classno]);
+
+
+
+
     if (!results) {
         return;
     }
+    //수강신청 받기
+    const acceptApply = () => {
+        // 유효성 검사
+        const url = "http://127.0.0.1:8081/account/acceptApply?memberId=" + AcceptApply + "&classno=" + classno;
+        axios.get(url)
+              .then( response => {
+                alert('수강 신청을 수락했습니다.');
+                debugger;
+              })
+              .catch(e => {
+                alert('error');
+              });
+            }
 
     
 
     const applicationClass = () => {
         // 유효성 검사
+        axios.get("http://127.0.0.1:8081/account/checkMultipleApply?memberId=" + loginInfo.memberId)
+        .then((response) => {
+           if (!response.data.validation) {
+             alert('이미 수강 신청을 하셨습니다.')
+             return;
+           }
+
         const url = "http://127.0.0.1:8081/class/application";
         axios.post(url, apply, { headers: { "Content-Type": "application/x-www-form-urlencoded"}})
               .then( response => {
@@ -83,7 +120,8 @@ const ClassDetailHeader = ({ classno }) => {
                 
                 alert('error');
               });
-            }
+            })
+        }
 
     const deleteClass = () => {
     // 유효성 검사
@@ -234,6 +272,50 @@ const ClassDetailHeader = ({ classno }) => {
             </CCardBody>
             </CCard>
             </CCol>
+            {loginInfo.memberId === results.memberid ?  <CCol xs={10} style={{margin: "auto"}}>
+            <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
+            <CCardHeader style={{height:'45px'}}>
+            <CNav style={{paddingLeft:0 , marginTop:-5}} variant="tabs" role="tablist">
+            <CNavItem >
+                <CNavLink style={{height:'42px'}}
+                
+                > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>수강 신청자 목록</span>
+                </CNavLink>
+            </CNavItem>
+            </CNav>
+            </CCardHeader>
+            <CCardBody>
+            {ApplyList.map((applylist) => {
+                return(
+                <CCol xs={12}>
+                    <div><strong>신청자 아이디 : {applylist.memberid}</strong></div>
+                    <div><strong>신청자 이름 : {applylist.name}</strong></div>
+                    <div><strong>신청자 이메일 : {applylist.email}</strong></div>
+                    <div style={{display: 'flex'}}>
+                    <div style={{display:'inline-block'}}><strong>신청자 연락처 : {applylist.phone}</strong></div>
+                   {applylist.applicationstate === false ?
+                    <CButton style={{display:'inline-block', marginLeft:'auto', marginTop:'-15px'}} 
+                     onClick={
+                        (e) => {
+                            setAcceptApply(applylist.memberid);
+                            acceptApply();
+                            e.preventDefault();
+                        }
+                    }
+                    
+                    >수강 신청 수락하기</CButton>
+                : <div style={{display:'inline-block', marginLeft:'auto', marginTop:'-15px'}}><strong >수강 신청 수락 완료.</strong></div>}
+                    </div>
+                    <hr></hr>
+                </CCol>
+                )    
+            })}
+            
+            </CCardBody>
+            </CCard>
+            </CCol> : <></>}
+                                               
+
             </CRow>
     )
                
