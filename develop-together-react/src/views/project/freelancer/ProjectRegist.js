@@ -15,11 +15,13 @@ import {
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
-const ProjectHistoryRegist = ({loginInfo}) => {
+const ProjectHistoryRegist = ({memberid}) => {
 
 const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 const navigate = useNavigate();
+const loginInfo = window.sessionStorage.getItem("loginInfo");
+
 
 const [projectRegist, setProjectRegist] = useState({
   projectno: '',
@@ -40,8 +42,8 @@ const [projectRegist, setProjectRegist] = useState({
 
 });
 const insertProjectHistoryRegist = () => {
-
-          axios.post("http://127.0.0.1:8081/project/projectRegister", 
+  // `http://127.0.0.1:8081/project/freelancerProfileRegister?memberid=${memberid}`
+          axios.post(`http://127.0.0.1:8081/project/projectRegister?memberid=${memberid}`, 
                       projectRegist,
                     { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
               .then( response => {

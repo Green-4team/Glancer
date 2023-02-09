@@ -21,7 +21,7 @@ const navigate = useNavigate();
 
 const location = useLocation();
 const result = location.state.result;   
-
+const loginInfo = window.sessionStorage.getItem("loginInfo");
 
 const [projectEdit, setProjectEdit] = useState({
   projecthistoryno: result.projecthistoryno,

@@ -32,9 +32,10 @@ function aa(){
 
 const FreelancerDetailList = ({memberid, loginInfo}) => {
 
-    const [activeKey, setActiveKey] = useState(1)
+    const [activeKey, setActiveKey] = useState(1);
     const [results, setResults] = useState(null);
-    const [results2, setResults2] = useState(null)
+    const [results2, setResults2] = useState(null);
+    loginInfo = window.sessionStorage.getItem("loginInfo");
     
 
     useEffect(() => {

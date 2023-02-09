@@ -20,7 +20,7 @@ import axios from 'axios';
 const FreelancerList = ({loginInfo}) => {
     const[results, setResults] = useState(null);
     
-
+    loginInfo = window.sessionStorage.getItem("loginInfo");
 
     useEffect(() => {
         const loadFreelancerList = async (e) => {

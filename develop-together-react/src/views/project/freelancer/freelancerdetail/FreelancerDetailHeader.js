@@ -36,6 +36,7 @@ const FreelancerDetailHeader = ({memberid , loginInfo}) => {
     const [results, setResults] = useState(null);
     // const location = useLocation();
     // const loginInfo = location.state.loginInfo;
+    loginInfo = window.sessionStorage.getItem("loginInfo");
 
     useEffect(() => {
         const loadFreelancerDetailHeader = async (e) => {
