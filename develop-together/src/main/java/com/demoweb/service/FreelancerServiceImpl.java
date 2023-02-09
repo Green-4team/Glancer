@@ -95,6 +95,26 @@ public class FreelancerServiceImpl implements FreelancerService{
 
 
 
+	@Override
+	public void editProject(ProjectHistoryDto projectHistoryEdit) {
+		freelancerMapper.editProjectHistory(projectHistoryEdit);
+		
+	}
+
+
+
+
+
+	@Override
+	public void editPersonalHistory(PersonalHistoryDto personalHistoryDto) {
+		freelancerMapper.editPersonalHistory(personalHistoryDto);
+		
+	}
+
+
+
+
+
 
 	
 	

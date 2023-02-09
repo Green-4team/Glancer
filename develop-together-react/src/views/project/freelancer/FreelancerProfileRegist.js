@@ -53,17 +53,6 @@ const insertFreelancerProfileRegist = () => {
               <CForm>
                 <h1>프리랜서 프로필 등록</h1>
                 <br></br><br></br>
-
-
-               
-               
-
-
-
-
-
-
-           
                 <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >직종</CFormLabel>
                   <CCol sm={3}>

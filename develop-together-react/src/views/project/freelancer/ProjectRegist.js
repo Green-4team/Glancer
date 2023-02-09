@@ -64,14 +64,14 @@ const insertProjectHistoryRegist = () => {
                   <h1>프로젝트 등록</h1>
                   <p className="text-medium-emphasis">Regist your projects</p>
                                     
-                  <CRow className="mb-3">
+                  {/* <CRow className="mb-3">
                     <CFormLabel className="col-sm-2 col-form-label" >멤버아이디</CFormLabel>
                     <CCol sm={10}>
                       <CFormInput placeholder="memberid를 입력해주세요" 
                                   value={projectRegist.memberid}
                                   onChange={(e) => {setProjectRegist({...projectRegist, "memberid": e.target.value})}}/>
                     </CCol>
-                  </CRow>
+                  </CRow> */}
                   <CRow className="mb-3">
                     <CFormLabel className="col-sm-2 col-form-label" >프로젝트 명</CFormLabel>
                     <CCol sm={10}>

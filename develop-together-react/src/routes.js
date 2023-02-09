@@ -61,7 +61,8 @@ const FreelancerDetailMain = React.lazy(() => import('./views/project/freelancer
 const ProjectRegist = React.lazy(() => import('./views/project/freelancer/ProjectRegist'))
 const PersonalHistoryRegist = React.lazy(() => import('./views/project/freelancer/PersonalHistoryRegist'))
 const FreelancerProfileRegist = React.lazy(() => import('./views/project/freelancer/FreelancerProfileRegist'))
-
+const ProjectEdit = React.lazy(() => import('./views/project/freelancer/ProjectEdit'))
+const PersonalHistoryEdit = React.lazy(() => import('./views/project/freelancer/PersonalHistoryEdit'))
 
 
 
@@ -127,7 +128,9 @@ const routes = [
   { path: '/project/project', name: 'ProjectMain', element: ProjectMain },
   { path: '/project/freelancer/freelancerdetail', name: 'FreelancerDetailMain', element: FreelancerDetailMain },
   { path: '/project/freelancer/projectregist', name: 'ProjectRegist', element: ProjectRegist },
+  { path: '/project/freelancer/projectedit', name: 'ProjectEdit', element: ProjectEdit },
   { path: '/project/freelancer/personalhistoryregist', name: 'PersonalHistoryRegist', element: PersonalHistoryRegist },
+  { path: '/project/freelancer/personalhistoryedit', name: 'PersonalHistoryEdit', element: PersonalHistoryEdit },
   { path: '/project/freelancer/freelancerprofileregist', name: 'FreelancerProfileRegist', element: FreelancerProfileRegist },
 
   
