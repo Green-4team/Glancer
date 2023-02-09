@@ -24,7 +24,7 @@ const result = location.state.result;
 
 
 const [projectEdit, setProjectEdit] = useState({
-  
+  projecthistoryno: result.projecthistoryno,
   projectname: result.projectname,
   projectstart: result.projectstart,
   projectend: result.projectend,
@@ -43,7 +43,7 @@ const [projectEdit, setProjectEdit] = useState({
 console.log(result)
 
 const editProject = () => {
-    axios.post("http://127.0.0.1:8081/project/editProject?projecthistoryno=" + result.projecthistoryno, 
+    axios.post("http://127.0.0.1:8081/project/editProject", 
                 projectEdit,
               { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
         .then( response => {

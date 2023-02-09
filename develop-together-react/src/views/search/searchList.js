@@ -13,10 +13,7 @@ const SearchList = (searchKeyword, category) => {
                       
                 {results.map((result) => {
                     return (
-<<<<<<< HEAD
-=======
 
->>>>>>> 8fdbad4ae022c6fd0cbf560f83869965ae768c22
                         <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
                         <CCardBody>
                         <div className="clearfix">
