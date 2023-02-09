@@ -19,10 +19,7 @@ const Mypage = () => {
   useEffect( () => {
     if (loginInfo=== null || loginInfo === "") {
       navigate('/login');
-      return;
-    } else {
-      
-    }
+    } 
   });
     console.log(loginInfo)
 
@@ -30,7 +27,7 @@ const Mypage = () => {
         <>
     <CNavbar expand="lg" colorScheme="light" className="">
       <CContainer fluid>
-        <CNavbarBrand><Link to="/Mypage" state={{loginInfo:loginInfo}} style={{textDecoration:'none', color:'black'}}>나의 프로필 관리</Link></CNavbarBrand>
+        <CNavbarBrand><Link to="/Mypage" style={{textDecoration:'none', color:'black'}}>나의 프로필 관리</Link></CNavbarBrand>
         <CNavbarToggler
           aria-label="Toggle navigation"         
         />
