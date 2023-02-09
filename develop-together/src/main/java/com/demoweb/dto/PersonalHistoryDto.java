@@ -8,7 +8,7 @@ import lombok.Data;
 public class PersonalHistoryDto {
 	
 
-	private String careerno;
+	private int careerno;
 	private String company;
 	private String depart;
 	private String position;

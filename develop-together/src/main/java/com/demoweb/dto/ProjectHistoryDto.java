@@ -20,5 +20,6 @@ public class ProjectHistoryDto {
 	private String tool;
 	private String work;
 	private String memberid;
+	private int projecthistoryno;
 
 }
