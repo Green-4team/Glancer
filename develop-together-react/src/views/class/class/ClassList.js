@@ -14,7 +14,8 @@ const ClassList = (props) => {
     
     const location = useLocation();
     // const loginInfo = location.state.loginInfo;
-    const loginInfo = window.sessionStorage.getItem("loginInfo");
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
 
     const[results, setResults] = useState(null);
 
@@ -46,12 +47,14 @@ const ClassList = (props) => {
                                     <CCol xs={{ span: 0 }}>
                                         <div className="p-1" > <h2>원하는 강의를 찾아주세요.</h2> <br></br>
                                         
-                                            { loginInfo.membertype === 0 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> :  loginInfo.membertype === 1 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> 
+                                            {/* { loginInfo.membertype === 0 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> :  loginInfo.membertype === 1 && loginInfo !== null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> 
                                             : loginInfo.membertype === 2 && loginInfo !== null ?
                                             <Link to="/class/class/classregister">
                                             <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
-                                            </Link> :  loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}
-                                            
+                                            </Link> :  loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>} */}
+                                        {loginInfo === null ? <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div> : loginInfo.membertype === 2 ? <Link to="/class/class/classregister">
+                                            <CButton color="primary" shape="rounded-pill" size="lg">강의 등록</CButton>
+                                            </Link> : <div>학원 계정으로 로그인 하시면 새로운 강의를 등록할 수 있습니다.</div>}    
                                         
                                         </div>
                                     </CCol>                           
