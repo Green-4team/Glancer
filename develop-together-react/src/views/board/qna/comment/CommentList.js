@@ -22,6 +22,10 @@ const CommentList = ({ comments, loginInfo, writer, chosen }) => {
     content: ''
   })
 
+  if (comments === null) {
+    comments = [];
+  }
+
   const setContent = (data) => {
     setEditComment({...editcomment, "content": data})
   }
