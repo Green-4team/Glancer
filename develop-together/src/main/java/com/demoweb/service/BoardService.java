@@ -13,23 +13,13 @@ public interface BoardService {
 
 	void increaseBoardReadCount(int boardNo);
 
-	void deleteBoard(int boardNo);
-
 	BoardAttachDto findBoardAttachByAttachNo(int attachNo);
 
 	void modifyBoard(BoardDto board);
 	
 	////////////////////////////////////////////
 	
-	void writeComment(BoardCommentDto comment);
-	
 	void updateGroupNo(int commentNo, int groupNo);
-
-	void deleteComment(int commentNo);
-
-	List<BoardCommentDto> findBoardCommentByBoardNo(int boardNo);
-
-	void updateComment(BoardCommentDto comment);
 
 	void writeReComment(BoardCommentDto commentDto);
 
@@ -59,9 +49,36 @@ public interface BoardService {
 
 	void writeBoardTag(BoardTagDto tagDto);
 
+	void editBoard(BoardDto board);
 
+	void deleteBoard(int boardNo);
 
+	void writeComment(BoardCommentDto comment);
 
-	
+	List<BoardCommentDto> findBoardCommentByBoardNo(int boardNo);
+
+	void editComment(BoardCommentDto comment);
+
+	void deleteComment(int commentNo);
+
+	void chooseComment(int boardNo, int commentNo);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

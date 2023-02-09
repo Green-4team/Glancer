@@ -16,9 +16,6 @@ public class BoardDto {
 	// Board 테이블과 BoartAttach 테이블 사이의 1:1 관계를 구현한 필드 (변수)
 	// private BoardAttachDto attachment;
 	
-	// Board 테이블과 BoartComment 테이블 사이의 1:Many 관계를 구현한 필드 (변수)
-	private List<BoardCommentDto> comments;
-	
 	private int boardNo;
 	private int topicNo;
 	private String memberId;
@@ -27,9 +24,13 @@ public class BoardDto {
 	private Date regDate;
 	private int views;
 	private boolean deleted;
+	private boolean chosen;
 	
 	private String topicName;
-	private List<BoardTagDto> tags;
 	private String tagNames;
+	
+	// Board 테이블과 BoartComment 테이블 사이의 1:Many 관계를 구현한 필드 (변수)
+	private List<BoardCommentDto> comments;
+	private List<BoardTagDto> tags;
 	
 }
