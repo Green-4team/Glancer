@@ -16,9 +16,9 @@ import com.demoweb.dto.ProjectHistoryDto;
 public interface FreelancerMapper {
 
 	// 메인화면 프리랜서 프로필 리스트 출력(반복문)
-	@Select("SELECT f.title, f.introduce, f.careeryear, f.rate, f.occupation, f.program1, f.program2, f.program3, f.program4, f.language1, f.language2, f.language3, f.language4, f.value1, f.value2, f.value3, f.value4, f.memberid, m.memberid, m.name " +
-			"FROM freelancer f, memberdetail m " +
-			"WHERE f.memberid = m.memberid " +
+	@Select("SELECT f.title, f.introduce, f.careeryear, f.rate, f.occupation, f.program1, f.program2, f.program3, f.program4, f.language1, f.language2, f.language3, f.language4, f.value1, f.value2, f.value3, f.value4, f.memberid, m.memberid, m.name, p.memberid, p.projectname " +
+			"FROM freelancer f, memberdetail m, projecthistory p " +
+			"WHERE f.memberid = m.memberid AND f.memberid = p.memberid " +
 			"ORDER BY freelancerno DESC ")
 	List<FreelancerHeaderDto> selectFreelancerMainList();
 	

@@ -60,7 +60,7 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
     if (!results) {
       return;
     }
-
+    
     return (
         <CCol xs={10} style={{margin: "auto"}}>
     <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
@@ -96,28 +96,30 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
                         <CCol xs={12} >
                           <CCard textColor='dark' style={{margin:5}}>
                             <CCardBody style={{ marginLeft:'0px'}}>   
-                                <strong>{result.position}</strong> <br></br>  
-                                {/* { loginInfo.memberId !== null && result.memberid === loginInfo.memberId  ?
-                                <Link to="/project/freelancer/projectedit" state={{result: result}}> 
-                                  <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
-                                </Link> : 
-                                <div>sss</div>
-                              } */}
-                              {loginInfo === null ? <div>aaaaaaaaaaaa</div> : loginInfo.memberId !== null && result.memberid === loginInfo.memberId  ?
-                                <Link to="/project/freelancer/projectedit" state={{result: result}}> 
-                                  <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
-                                </Link> : 
-                                <div>sss</div>}
-                                
-
+                              <CContainer>
+                                <CRow>
+                                <CCol xs={{ span: 6 }}>
+                                <strong>{result.position}</strong> 
+                                </CCol>
+                                <CCol xs={{ span: 6 }}>
+                                {loginInfo === null ? <div></div> : loginInfo.memberId !== null && result.memberid === loginInfo.memberId  ?
+                                  <Link to="/project/freelancer/projectedit" state={{result: result}}> 
+                                    <CButton style={{marginLeft:"250px"}} color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                                  </Link> : 
+                                  <div></div>}
+                                </CCol>
                                 <h4>{result.projectname} </h4>
                                 <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
                                 <strong style={{ marginBottom:"10px"}}>{result.work}</strong> <br></br>
+                                <CCol xs={{ span: 12 }}>
                                 <CBadge style={{margin:"2px"}}color="success">{result.language}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="danger">{result.dbms}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="warning">{result.tool}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="info">{result.datatransmission}</CBadge>
-                            </CCardBody>
+                                </CCol>
+                              </CRow>
+                          </CContainer>
+                          </CCardBody>
                         </CCard>
                     </CCol>                  
                       )
@@ -126,7 +128,6 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
                 </DramaMainMediaBlock>
                 </CContainer>
                 :
-                
                 <div>등록된 프로젝트가 없습니다.</div>
                 }
               </CCardBody>
@@ -135,29 +136,24 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
           <CTabPane role="배경" aria-labelledby="" visible={activeKey === 2}>
             <CCol xs={15}>
               <CCardBody>
-              {/* <strong>학력</strong><br></br>
-              {results2.schoolstart} ~ {results2.schoolend}<br></br><br></br>
-              <strong>경력</strong><br></br>
-              {results2.startdate} ~ {results2.enddate}<br></br><br></br> */}
+              
               {results2 !== null ? 
                 <CContainer>
                   <CRow xs={{ gutter: 0 }}>
 
-                  {/* {results2.memberid === loginInfo.memberId && loginInfo !== null ?
-                  <Link to="/project/freelancer/personalhistoryedit" state={{results2: results2}}> 
-                    <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
-                  </Link> : 
-                  <div></div>} */}
-
-                  {loginInfo === null ? <div>aaaaaaaaaaaa</div> : results2.memberid === loginInfo.memberId && loginInfo !== null ?
-                  <Link to="/project/freelancer/personalhistoryedit" state={{results2: results2}}> 
-                    <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
-                  </Link> : 
-                  <div>bbbbb</div>}
-
-                    <CCol xs={{ span: 12 }}>
+                  
+                    <CCol xs={{ span: 6 }}>
                         <strong>학력</strong>
-                    </CCol>                                
+                    </CCol>           
+
+                     <CCol xs={{ span: 6 }}>
+                     <div style={{marginLeft:"250px"}}>{loginInfo === null ? <div></div> : results2.memberid === loginInfo.memberId && loginInfo !== null ?
+                  <Link to="/project/freelancer/personalhistoryedit" state={{results2: results2}}> 
+                    <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                  </Link> : 
+                  <div></div>}</div>
+                  
+                    </CCol>                        
                     <CCol style={{marginTop:"3px"}} xs={{ span: 4 }}>
                     {results2.schoolstart} ~ {results2.schoolend}
                     </CCol>
