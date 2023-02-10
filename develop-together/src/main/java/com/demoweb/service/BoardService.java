@@ -25,15 +25,15 @@ public interface BoardService {
 
 	/////////////////////////////////////////////////
 	
-	List<BoardDto> findBoardByPageAndTopicNo(int pageNo, int pageSize, int topicNo);
+	List<BoardDto> findBoardByPageAndTopicNoAndKeyword(int pageNo, int pageSize, int topicNo, String keyword);
 	
-	int findBoardCountByTopicNo(int topicNo);
+	int findBoardCountByTopicNoAndKeyword(int topicNo, String keyword);
 	
 	List<BoardTagDto> findBoardTagByBoardNo(int boardNo, String boardType);
 	
-	List<BoardDto> findBoardByPageAndTagNo(int pageNo, int pageSize, int tagNo);
+	List<BoardDto> findBoardByPageAndTagNoAndKeyword(int pageNo, int pageSize, int tagNo, String keyword);
 
-	int findBoardCountByTagNo(int tagNo);
+	int findBoardCountByTagNoAndKeyword(int tagNo, String keyword);
 
 	BoardDto findBoardByBoardNo(int boardNo);
 	
