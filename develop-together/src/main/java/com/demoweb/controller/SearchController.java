@@ -84,7 +84,7 @@ public class SearchController {
 	@ResponseBody
 	@GetMapping(path = {"/class"})
 	private HashMap<String, Object> selectClassBySearch(@RequestParam String searchKeyword){
-        System.out.println("education, " + searchKeyword);
+        System.out.println("class, " + searchKeyword);
         
         searchService.selectClassBySearch(searchKeyword);
 
