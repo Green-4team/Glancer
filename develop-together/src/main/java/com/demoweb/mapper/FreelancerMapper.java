@@ -29,7 +29,7 @@ public interface FreelancerMapper {
 	FreelancerHeaderDto selectFreelancerHeaderDetail(String memberid);
 	
 	@Insert("insert into projecthistory ( projectname, projectstart, projectend, client, company, position, language, dbms, tool, work, datatransmission, memberid ) " +
-			"values ( #{ projectname } , #{ projectstart }, #{ projectend } , #{ client } ,#{ company } ,#{ position }, #{ language }, #{ dbms }, #{ tool }, #{ work }, #{datatransmission}, #{ memberid }) ")
+			"values ( #{ projectname } , #{ projectstart }, #{ projectend } , #{ client } ,#{ company } ,#{ position }, #{ language }, #{ dbms }, #{ tool }, #{ work }, #{datatransmission}, #{ memberid } ) ")
 	void insertProjectHistory(ProjectHistoryDto projectHistoryRegist);
 
 	// 이력서 등록

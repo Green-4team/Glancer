@@ -70,19 +70,26 @@ const ClassList = (props) => {
                                         display:'inline-block',
                                         verticalAlign:'top',
                                         backgroundColor: "skyblue",
-                                        height:"200px",
-                                        width:"300px",
+                                        height:"280px",
+                                        width:"250px",
                                         borderRadius:"10px",
-                                        fontSize:"30px",
+                                        fontSize:"25px",
                                         marginLeft:"20px",
                                         marginTop:"20px"
                                         }}>
-                                    <div style={{borderRadius: 10, display:'inline-block', padding: '70px 0px'}}>{result.name}</div>
-
+                                    <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.name}</div>
+                                    
                                 </div>
-                            <CCardBody style={{ textAlign:'center', marginLeft:'80px',  display:'inline-block', width:'500px'}}>
+                            <CCardBody style={{ textAlign:'left', marginLeft:'200px', marginTop:'15px', display:'inline-block', width:'500px'}}>
+                            
                             <h2>{result.name}</h2>
                             <br></br>
+
+                            <h3 style={{ marginBottom:"10px"}}> </h3>                            
+                            <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;학원 명 : {result.memberid}
+                            </strong></div>
+                            <br></br>
+                            
                             <h3 style={{ marginBottom:"10px"}}> </h3>                            
                             <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;사용 언어 : &nbsp;
                             {

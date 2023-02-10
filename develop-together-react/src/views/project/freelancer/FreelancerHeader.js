@@ -7,21 +7,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const FreelancerHeader = ({memberid }) => {
  
     const [results, setResults] = useState(null);
-    const location = useLocation();
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
     
-
-    // const navigate = useNavigate();
    
-    // useEffect( () => {
-    //     if (loginInfo === null) {
-    //       navigate('/login');
-    //     }
-    //   })
-
-
-
-
     return (
         <div>
             <CRow>
@@ -38,11 +27,11 @@ const FreelancerHeader = ({memberid }) => {
                                     </CCol>
                                     <CCol xs={{ span: 3 }}>
                                     {loginInfo === null ?    
-                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo, memberid}} style={{textDecoration: "none", color: "black"}}>   
+                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{memberid}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 등록하기</CButton></div>
                                     </Link></div>
                                     :
-                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{loginInfo:loginInfo, memberid}} style={{textDecoration: "none", color: "black"}}>   
+                                    <div><Link to="/project/freelancer/FreelancerProfileRegist" state={{ memberid}} style={{textDecoration: "none", color: "black"}}>   
                                     <div className="p-1" style={{marginLeft:"0px"}}> <CButton color="primary" shape="rounded-pill" size="lg">프로필 수정하기</CButton></div>
                                     </Link></div>
 
@@ -69,6 +58,7 @@ const FreelancerHeader = ({memberid }) => {
                                     <CCol xs={{ span: 2 }} style={{marginRight:"-15px"}}>
                                        <div className="p-1"><CButton  color="warning" shape="rounded-pill">개발자</CButton></div>
                                     </CCol>
+                                    
                                     <CCol xs={{ span: 2 }}>
                                        <div className="p-1"><CButton color="warning" shape="rounded-pill">퍼블리셔</CButton></div>
                                     </CCol>

@@ -94,7 +94,6 @@ const AppHeader = (props) => {
               <button class="dropbtn">게시판</button>
               <div class="dropdown-content">
                 <Link to='/board/qna/list' component={NavLink} state={{ loginInfo: loginInfo }}>Q&A</Link>
-                <CNavLink to='/#' component={NavLink}>Link 2</CNavLink>
               </div>
             </div>
           </CNavItem>

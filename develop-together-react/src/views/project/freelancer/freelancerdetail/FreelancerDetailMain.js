@@ -6,14 +6,11 @@ import FreelancerDetailHeader from "./FreelancerDetailHeader";
 import FreelancerDetailList from "./FreelancerDetailList";
 import { useLocation } from 'react-router-dom';
 
-
-
-
-
 const FreelancerMain = (props) => {
     const location = useLocation();
     const memberid = location.state.memberid;
-    const loginInfo = location.state.loginInfo;
+    let loginInfo = window.sessionStorage.getItem("loginInfo");
+    loginInfo = JSON.parse(loginInfo);
     
     return (
         <div>

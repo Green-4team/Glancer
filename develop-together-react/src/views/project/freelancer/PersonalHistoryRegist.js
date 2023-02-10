@@ -17,15 +17,26 @@ import {
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
-const PersonalHistoryRegist = ({loginInfo}) => {
+const PersonalHistoryRegist = (props) => {
 
-const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
-const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+
+let loginInfo = window.sessionStorage.getItem("loginInfo");
+loginInfo = JSON.parse(loginInfo);
+
 const navigate = useNavigate();
+useEffect( () => {
+  if (loginInfo === null || loginInfo === '' ) {
+    alert('로그인을 해주세요');
+    navigate('/login');   
+  }
+})
+
 
 const [personalHistoryRegist, setPersonalHistoryRegist] = useState({
-
+  memberid:loginInfo.memberId,
 });
+
+
 
 const insertPersonalHistoryRegist = () => {
   axios.post("http://127.0.0.1:8081/project/personalHistoryRegister", 
@@ -171,7 +182,7 @@ const insertPersonalHistoryRegist = () => {
                                 onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "certidate": e.target.value})}}/>
                   </CCol>               
                 </CRow>
-                <CRow className="mb-3">
+                {/* <CRow className="mb-3">
                   <CFormLabel className="col-sm-2 col-form-label" >memberid</CFormLabel>
                   <CCol sm={3}>
                     <CFormInput placeholder="ex) 2016-03-05"
@@ -179,7 +190,7 @@ const insertPersonalHistoryRegist = () => {
                                 onChange={(e) => {setPersonalHistoryRegist({...personalHistoryRegist, "memberid": e.target.value})}}/>
                   </CCol>               
                 </CRow>
-                
+                 */}
                   
                 <br></br><br></br> 
                 <div className="col-4 mx-auto">

@@ -66,22 +66,21 @@ const TeacherList = (props) => {
                             <div className="clearfix">
                             <Link to="/class/teacher/teacherdetail" 
                             state={{memberid: result.memberid, teacherno: result.teacherno}} style={{textDecoration: "none", color: "black"}}>
-                            {/* <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} /> */}
                             <div style={{textAlign:"center",
                                         display:'inline-block',
                                         verticalAlign:'top',
                                         backgroundColor: "skyblue",
-                                        height:"200px",
-                                        width:"300px",
+                                        height:"280px",
+                                        width:"250px",
                                         borderRadius:"10px",
                                         fontSize:"30px",
                                         marginLeft:"20px",
                                         marginTop:"20px"
                                         }}>
-                                    <div style={{borderRadius: 10, display:'inline-block', padding: '70px 0px'}}>{result.memberid}</div>
+                                    <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.memberid}</div>
 
                                 </div>
-                            <CCardBody style={{ textAlign:'center', marginLeft:'80px',  display:'inline-block', width:'500px', overflow:'hidden', position:'relative'}}>
+                            <CCardBody style={{ textAlign:'left', marginLeft:'180px', marginTop:'30px', display:'inline-block', width:'500px', overflow:'hidden', position:'relative'}}>
                             <h2>{result.memberid}</h2>
                             <br></br>
                             <h3 style={{ marginBottom:"10px", overflow:'hidden', position:'absolute'}}> </h3>                            

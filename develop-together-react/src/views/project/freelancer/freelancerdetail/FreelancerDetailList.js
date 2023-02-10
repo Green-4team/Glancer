@@ -34,8 +34,7 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
 
     const [activeKey, setActiveKey] = useState(1)
     const [results, setResults] = useState(null);
-    const [results2, setResults2] = useState(null)
-    
+    const [results2, setResults2] = useState(null);
 
     useEffect(() => {
       const loadFreelancerDetailList = async (e) => {
@@ -98,9 +97,18 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
                           <CCard textColor='dark' style={{margin:5}}>
                             <CCardBody style={{ marginLeft:'0px'}}>   
                                 <strong>{result.position}</strong> <br></br>  
+                                {/* { loginInfo.memberId !== null && result.memberid === loginInfo.memberId  ?
                                 <Link to="/project/freelancer/projectedit" state={{result: result}}> 
                                   <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
-                                </Link>
+                                </Link> : 
+                                <div>sss</div>
+                              } */}
+                              {loginInfo === null ? <div>aaaaaaaaaaaa</div> : loginInfo.memberId !== null && result.memberid === loginInfo.memberId  ?
+                                <Link to="/project/freelancer/projectedit" state={{result: result}}> 
+                                  <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                                </Link> : 
+                                <div>sss</div>}
+                                
 
                                 <h4>{result.projectname} </h4>
                                 <strong style={{ marginBottom:"10px"}}>{result.projectstart} ~ {result.projectend} </strong> <br></br> 
@@ -134,9 +142,19 @@ const FreelancerDetailList = ({memberid, loginInfo}) => {
               {results2 !== null ? 
                 <CContainer>
                   <CRow xs={{ gutter: 0 }}>
+
+                  {/* {results2.memberid === loginInfo.memberId && loginInfo !== null ?
                   <Link to="/project/freelancer/personalhistoryedit" state={{results2: results2}}> 
-                                  <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
-                                </Link>
+                    <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                  </Link> : 
+                  <div></div>} */}
+
+                  {loginInfo === null ? <div>aaaaaaaaaaaa</div> : results2.memberid === loginInfo.memberId && loginInfo !== null ?
+                  <Link to="/project/freelancer/personalhistoryedit" state={{results2: results2}}> 
+                    <CButton color="primary" value='modify' shape="rounded-pill" size="middle">수정</CButton>
+                  </Link> : 
+                  <div>bbbbb</div>}
+
                     <CCol xs={{ span: 12 }}>
                         <strong>학력</strong>
                     </CCol>                                
