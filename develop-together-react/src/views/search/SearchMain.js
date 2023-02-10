@@ -6,7 +6,6 @@ import { CBadge, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardText, 
 
 import {} from "@coreui/react"
 import axios from 'axios';
-import SearchItem from './SearchItem';
 import styled from 'styled-components';
 import { cilAlignLeft, cilChevronDoubleLeft, cilChevronDoubleRight, cilLoopCircular, cilPencil } from '@coreui/icons';
 import { Link } from 'react-router-dom';
