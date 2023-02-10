@@ -78,15 +78,14 @@ const ClassDetailHeader = ({ classno }) => {
     //수강신청 받기
     const acceptApply = () => {
         // 유효성 검사
-        const url = "http://127.0.0.1:8081/account/acceptApply?memberId=" + AcceptApply + "&classno=" + classno;
+        const url = "http://127.0.0.1:8081/account/acceptApply?memberId=" + AcceptApply.memberid + "&classno=" + classno;
         axios.get(url)
               .then( response => {
                 alert('수강 신청을 수락했습니다.');
-               console.log(response.data)
+              window.location.reload();
               })
               .catch(e => {
                 alert('error');
-                debugger;
               });
             }
 
@@ -290,7 +289,7 @@ const ClassDetailHeader = ({ classno }) => {
                     <CButton style={{display:'inline-block', marginLeft:'auto', marginTop:'-15px'}} 
                      onClick={
                         (e) => {
-                            setAcceptApply(applylist.memberid);
+                            setAcceptApply(applylist);
                             acceptApply();
                             window.location.reload();
                             e.preventDefault();
