@@ -15,7 +15,5 @@ public class FreeLancerRegisterDetailDto {
 	private String occupation;
 	private boolean workstate;
 	private String startdate;
-	
-
 
 }
