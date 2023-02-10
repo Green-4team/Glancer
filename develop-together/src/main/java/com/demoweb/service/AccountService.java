@@ -52,7 +52,7 @@ public interface AccountService {
 
 	List<ClassDto> loadClassApplyInfoInAca(String memberId);
 
-	boolean checkMultipleApply(String memberId);
+	boolean checkMultipleApply(String memberId,  int classno);
 
 	List<ApplicationDto> ApplyList(int classno);
 
