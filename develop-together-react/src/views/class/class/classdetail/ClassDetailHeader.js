@@ -224,12 +224,12 @@ const ClassDetailHeader = ({ classno }) => {
                                                 }
                                             }>강의 신청</CButton> : <div></div>}
                                             &nbsp;&nbsp;
-                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 2 ? 
+                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 2 && loginInfo.memberId === results.memberid ? 
                                             <Link to="/class/class/classEdit" state={{results: results}}>
                                                 <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
                                             </Link> : <div></div>}
                                             &nbsp;&nbsp;
-                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 2 ? 
+                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 2 && loginInfo.memberId === results.memberid ? 
                                             <CButton color="primary" value='delete' shape="rounded-pill" size="middle"
                                             onClick={
                                                 (e) => {

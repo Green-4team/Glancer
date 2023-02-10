@@ -57,7 +57,7 @@ const FreeLancerProfil = ({loginInfo}) => {
                   <CTableRow>
                     <CTableHeaderCell scope="row"><strong>직종</strong></CTableHeaderCell>
                     <CTableDataCell>{FreeLancerInfo.occupation}</CTableDataCell>
-                    <CTableDataCell><strong>업무시작일</strong></CTableDataCell>
+                    <CTableDataCell><strong>업무시작 가능일</strong></CTableDataCell>
                     <CTableDataCell>{FreeLancerInfo.startdate}</CTableDataCell>
                   </CTableRow>
                   <CTableRow>

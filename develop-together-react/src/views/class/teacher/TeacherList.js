@@ -69,7 +69,7 @@ const TeacherList = (props) => {
                             <div style={{textAlign:"center",
                                         display:'inline-block',
                                         verticalAlign:'top',
-                                        backgroundColor: "skyblue",
+                                        backgroundColor: "thistle",
                                         height:"280px",
                                         width:"250px",
                                         borderRadius:"10px",

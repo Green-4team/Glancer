@@ -72,7 +72,7 @@ const AppHeader = (props) => {
               <button class="dropbtn">구인&구직</button>
               <div class="dropdown-content">
                 <Link to='/project/freelancer'  component={NavLink}>프리랜서</Link>
-                <CNavLink to='/project/project'  component={NavLink}>프로젝트</CNavLink>
+                {/* <CNavLink to='/project/project'  component={NavLink}>프로젝트</CNavLink> */}
               </div>
             </div>
           </CNavItem>
@@ -100,7 +100,7 @@ const AppHeader = (props) => {
           </div>
           <div style={{marginRight: 50}}>
           <CNavItem>
-            <CNavLink to="/Blogs" component={NavLink}>블로그</CNavLink>
+            <CNavLink to="/Blogs" component={NavLink}>IT뉴스</CNavLink>
           </CNavItem>
           </div>
         </CHeaderNav>
