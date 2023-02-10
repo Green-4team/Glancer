@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 
 import CIcon from "@coreui/icons-react";
-import { CBadge, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardText, CCardTitle, CCol, CFormInput, CImage, CNavLink, CRow } from "@coreui/react";
+import { CBadge, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardText, CCardTitle, CCol, CContainer, CFormInput, CImage, CNavLink, CRow } from "@coreui/react";
 
 import {} from "@coreui/react"
 import axios from 'axios';
@@ -62,7 +62,9 @@ const SearchMain = (props) => {
 
     // const {pageNo, pageCount} = pager;
     
+
     return (
+        
         <>
         <CCol xs={8} style={{margin: 'auto'}}>
         <CCard className="mb-4" style={{border: 0}}>
@@ -149,122 +151,204 @@ const SearchMain = (props) => {
                               </CCol>
                               :
                               (
-                                category === "class" && results !== null
+                                category === "teacher" && results !== null
                                 ?
                                 <CCol xs={10} style={{margin: "auto"}}>
-                
-                    
-                    {results.map((result) => {
-                        return (
-                            <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
-                            <CCardBody>
-                            <div className="clearfix">
-                            <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
-                            <div style={{textAlign:"center",
-                                        display:'inline-block',
-                                        verticalAlign:'top',
-                                        backgroundColor: "skyblue",
-                                        height:"280px",
-                                        width:"250px",
-                                        borderRadius:"10px",
-                                        fontSize:"25px",
-                                        marginLeft:"20px",
-                                        marginTop:"20px"
-                                        }}>
-                                    <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.title}</div>
-                                    
-                                </div>
-                            <CCardBody style={{ textAlign:'left', marginLeft:'200px', marginTop:'15px', display:'inline-block', width:'500px'}}>
-                            
-                            <h2>{result.title}</h2>
-                            <br></br>
+                                    {results.map((result) => {
+                                        return (
+                                            <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
+                                            <CCardBody>
+                                            <div className="clearfix">
+                                            <Link to="/class/teacher/teacherdetail" 
+                                            state={{memberid: result.memberid, teacherno: result.teacherno}} style={{textDecoration: "none", color: "black"}}>
+                                            <div style={{textAlign:"center",
+                                                        display:'inline-block',
+                                                        verticalAlign:'top',
+                                                        backgroundColor: "thistle",
+                                                        height:"280px",
+                                                        width:"250px",
+                                                        borderRadius:"10px",
+                                                        fontSize:"30px",
+                                                        marginLeft:"20px",
+                                                        marginTop:"20px"
+                                                        }}>
+                                                    <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.memberid}</div>
+                                                </div>
+                                            <CCardBody style={{ textAlign:'left', marginLeft:'180px', marginTop:'30px', display:'inline-block', width:'500px', overflow:'hidden', position:'relative'}}>
+                                            <h2>{result.memberid}</h2>
+                                            <br></br>
+                                            <h3 style={{ marginBottom:"10px", overflow:'hidden', position:'absolute'}}> </h3>                            
+                                            <div style={{ marginBottom:"10px", fontSize:"20px", position:'relative'}}><strong>&nbsp;한 줄 소개 : {result.scontent}</strong>
+                                            </div>    
+                                            <br></br>
+                                            &nbsp;
+                                            <CCol xs={{ span: 12 }}>
+                                              <h5><strong>평점 : 
+                                              <div style={{display:"inline",marginLeft:"30px", position:'relative' }} >
+                                              {result.rate === 0 ? 
+                                              <>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              </> : result.rate === 1 ? 
+                                              <>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              </> : result.rate === 2 ? 
+                                              <>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              </> : result.rate === 3 ?
+                                              <>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <AiOutlineStar size="23"/>
+                                              <AiOutlineStar size="23"/>
+                                              </> : result.rate === 4 ?
+                                              <>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <AiOutlineStar size="23"/>
+                                              </> : <>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              <BsFillStarFill  size="20" color="orange"/>
+                                              </>}&nbsp;&nbsp;({result.rate}점)</div></strong></h5>
+                                            </CCol>                             
+                                            </CCardBody>
+                                            </Link>
+                                        </div>
+                                        </CCardBody>
+                                        </CCard>
+                                      )
+                                  })}    
+                                </CCol>
+                                :
+                                (
+                                  category === "class" && results !== null
+                                  ?
+                                  <CCol xs={10} style={{margin: "auto"}}>
+                                  {results.map((result) => {
+                                      return (
+                                          <CCard className='mb-3 border-gray' textColor='dark' style={{margin:3}}>
+                                          <CCardBody>
+                                          <div className="clearfix">
+                                          <Link to="/class/class/classdetail" state={{classno: result.classno}} style={{textDecoration: "none", color: "black"}}>
+                                          <div style={{textAlign:"center",
+                                                      display:'inline-block',
+                                                      verticalAlign:'top',
+                                                      backgroundColor: "skyblue",
+                                                      height:"280px",
+                                                      width:"250px",
+                                                      borderRadius:"10px",
+                                                      fontSize:"25px",
+                                                      marginLeft:"20px",
+                                                      marginTop:"20px"
+                                                      }}>
+                                                  <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.title}</div>
+                                                  
+                                              </div>
+                                          <CCardBody style={{ textAlign:'left', marginLeft:'200px', marginTop:'15px', display:'inline-block', width:'500px'}}>
+                                          
+                                          <h2>{result.title}</h2>
+                                          <br></br>
 
-                            <h3 style={{ marginBottom:"10px"}}> </h3>                            
-                            <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;학원 명 : {result.name}
-                            </strong></div>
-                            <br></br>
-                            
-                            <h3 style={{ marginBottom:"10px"}}> </h3>                            
-                            <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;사용 언어 : &nbsp;
-                            {
-                                // result.tags.map((tag) => {
-                                //     const { tagName } = tag;
-                                //         return  (
-                                //                 <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
-                                //             )
-                                //         })
-                            }</strong></div>
-                            
-                            <br></br>
-                            &nbsp;
-                            <CCol xs={{ span: 12 }}>
-                                        
-                                        <h5><strong>평점 : 
-                                        <div style={{display:"inline",marginLeft:"30px" }} >
-                                        {result.rate === 0 ? 
-                                        <>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        </> : result.rate === 1 ? 
-                                        <>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        </> : result.rate === 2 ? 
-                                        <>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        </> : result.rate === 3 ?
-                                        <>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <AiOutlineStar size="23"/>
-                                        <AiOutlineStar size="23"/>
-                                        </> : result.rate === 4 ?
-                                        <>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <AiOutlineStar size="23"/>
-                                        </> : <>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        <BsFillStarFill  size="20" color="orange"/>
-                                        </>}&nbsp;&nbsp;({result.rate}점)</div></strong></h5>
-                                        
-                                    </CCol>                             
-                            </CCardBody>
-                            </Link>
-                        </div>
-                        </CCardBody>
-                        </CCard>
-                    )})} 
-                  </CCol>
-                                            :
-                                            <></>
-                                          )
-                                        )
-                                      
-                              
-                              
-                            
-                            // results.map( () => {
-                            //     return (<SearchItem searchKeyword={ searchKeyword } category={ category } page={ page }/>);
-                            // })
-                            :
-                            <></>
+                                          <h3 style={{ marginBottom:"10px"}}> </h3>                            
+                                          <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;학원 명 : {result.name}
+                                          </strong></div>
+                                          <br></br>
+                                          
+                                          <h3 style={{ marginBottom:"10px"}}> </h3>                            
+                                          <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;사용 언어 : &nbsp;
+                                          {
+                                              // result.tags.map((tag) => {
+                                              //     const { tagName } = tag;
+                                              //         return  (
+                                              //                 <CBadge style={{margin:"2px"}} color="info">{ tagName }</CBadge>
+                                              //             )
+                                              //         })
+                                          }</strong></div>
+                                          
+                                          <br></br>
+                                          &nbsp;
+                                          <CCol xs={{ span: 12 }}>
+                                                      
+                                                      <h5><strong>평점 : 
+                                                      <div style={{display:"inline",marginLeft:"30px" }} >
+                                                      {result.rate === 0 ? 
+                                                      <>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      </> : result.rate === 1 ? 
+                                                      <>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      </> : result.rate === 2 ? 
+                                                      <>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      </> : result.rate === 3 ?
+                                                      <>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      </> : result.rate === 4 ?
+                                                      <>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <AiOutlineStar size="23"/>
+                                                      </> : <>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      <BsFillStarFill  size="20" color="orange"/>
+                                                      </>}&nbsp;&nbsp;({result.rate}점)</div></strong></h5>
+                                                      
+                                                  </CCol>                             
+                                          </CCardBody>
+                                          </Link>
+                                      </div>
+                                      </CCardBody>
+                                      </CCard>
+                                  )})} 
+                                </CCol>
+                                :
+                                <></>
+                              )
+                            )        
+                          ) 
+                        // results.map( () => {
+                        //     return (<SearchItem searchKeyword={ searchKeyword } category={ category } page={ page }/>);
+                        // }
+                        :
+                        <></>
                         }
                       </HoverBlueBlock>
                     </div>
