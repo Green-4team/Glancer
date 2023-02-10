@@ -18,7 +18,7 @@ import com.demoweb.dto.ClassTagDto;
 @Mapper
 public interface ClassMapper {
 
-	@Select("SELECT c.title, c.rate, cm.name  FROM class c " +
+	@Select("SELECT c.title, c.rate, cm.name, c.classno  FROM class c " +
 			"left outer join company cm " +
 			"on c.memberid = cm.memberid " +
 			"WHERE c.deleted = 0 " +
