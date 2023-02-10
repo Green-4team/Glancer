@@ -245,9 +245,9 @@ public class AccountController {
 		@CrossOrigin
 		@GetMapping(path = {"/checkMultipleApply"})
 		@ResponseBody
-		public HashMap<String, Object> checkMultipleApply(String memberId) {
+		public HashMap<String, Object> checkMultipleApply(String memberId, int classno) {
 			
-			boolean valid = accountService.checkMultipleApply(memberId);
+			boolean valid = accountService.checkMultipleApply(memberId, classno);
 			
 			HashMap<String, Object> response = new HashMap<>();
 			response.put("validation", valid);

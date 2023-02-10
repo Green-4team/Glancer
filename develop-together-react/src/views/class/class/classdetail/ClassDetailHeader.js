@@ -82,10 +82,11 @@ const ClassDetailHeader = ({ classno }) => {
         axios.get(url)
               .then( response => {
                 alert('수강 신청을 수락했습니다.');
-               
+               console.log(response.data)
               })
               .catch(e => {
                 alert('error');
+                debugger;
               });
             }
 
@@ -93,7 +94,7 @@ const ClassDetailHeader = ({ classno }) => {
 
     const applicationClass = () => {
         // 유효성 검사
-        axios.get("http://127.0.0.1:8081/account/checkMultipleApply?memberId=" + loginInfo.memberId)
+        axios.get("http://127.0.0.1:8081/account/checkMultipleApply?memberId=" + loginInfo.memberId + "&classno=" + classno)
         .then((response) => {
            if (!response.data.validation) {
              alert('이미 수강 신청을 하셨습니다.')

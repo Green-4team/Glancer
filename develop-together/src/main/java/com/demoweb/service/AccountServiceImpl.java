@@ -159,8 +159,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean checkMultipleApply(String memberId) {
-		int count = memberMapper.selectcheckMultipleApply(memberId);
+	public boolean checkMultipleApply(String memberId,  int classno) {
+		int count = memberMapper.selectcheckMultipleApply(memberId, classno);
 		return count == 0;
 	}
 

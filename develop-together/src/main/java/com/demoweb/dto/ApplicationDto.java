@@ -15,7 +15,7 @@ public class ApplicationDto {
 	private ClassDto apply;
 	
 	
-	
+	private String title;
 	private String name;
 	private String region;
 	
