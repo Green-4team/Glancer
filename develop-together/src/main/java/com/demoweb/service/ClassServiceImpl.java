@@ -100,4 +100,10 @@ public class ClassServiceImpl implements ClassService{
 		
 	}
 
+//	@Override
+//	public List<ClassDto> findClassName() {
+//		List<ClassDto> forAcaName = classMapper.findClassName();
+//		return forAcaName;
+//	}
+
 }

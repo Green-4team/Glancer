@@ -18,12 +18,14 @@ import com.demoweb.dto.ClassTagDto;
 @Mapper
 public interface ClassMapper {
 
-	@Select("SELECT * FROM class " +
-			"WHERE deleted = 0 " +
-			"ORDER BY classno DESC ")
+	@Select("SELECT c.title, c.rate, cm.name  FROM class c " +
+			"left outer join company cm " +
+			"on c.memberid = cm.memberid " +
+			"WHERE c.deleted = 0 " +
+			"ORDER BY c.classno DESC ")
 	List<ClassDto> selectAllClassList();
 
-	@Select("SELECT memberid, classno, name, region, startdate, enddate, content, classtime, price, rate, crowd " +
+	@Select("SELECT memberid, classno, title, region, startdate, enddate, content, classtime, price, rate, crowd " +
 			"FROM class " +
 			"WHERE classno = #{ classno } AND deleted = 0 ")
 	ClassDto selectClassDetail(int classno);
@@ -48,8 +50,8 @@ public interface ClassMapper {
 	void deleteClass(int classno);
 
 	
-	@Insert("INSERT INTO class (memberid, name, crowd, price, classtime, region, startdate, enddate, content) " +
-			"VALUES (#{memberid}, #{name}, #{crowd}, #{price}, #{classtime}, #{region}, #{startdate}, #{enddate}, #{content}) ")
+	@Insert("INSERT INTO class (memberid, title, crowd, price, classtime, region, startdate, enddate, content) " +
+			"VALUES (#{memberid}, #{title}, #{crowd}, #{price}, #{classtime}, #{region}, #{startdate}, #{enddate}, #{content}) ")
 	@Options(useGeneratedKeys = true, keyColumn = "classno", keyProperty = "classno")
 	void insertClass(ClassDto register);
 
@@ -58,7 +60,7 @@ public interface ClassMapper {
 	void insertClassTags(ClassTagDto classTagDto);
 
 	@Update("UPDATE class " +
-			"SET name = #{name}, crowd = #{crowd}, price = #{price}, region = #{region}, classtime = #{classtime},  startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
+			"SET name = #{title}, crowd = #{crowd}, price = #{price}, region = #{region}, classtime = #{classtime},  startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
 			"WHERE classno = #{classno}")
 	void editClass(ClassDto register);
 
@@ -70,5 +72,12 @@ public interface ClassMapper {
 			"VALUES (#{classno}, #{memberid}) ")
 	@Options(useGeneratedKeys = true, keyColumn = "applicationno", keyProperty = "applicationno")
 	void applicationClass(ApplicationDto apply);
+
+	
+//	@Select("select cm.name " + 
+//			"from class c " + 
+//			"left outer join company cm " +
+//			"on c.memberid = cm.memberid " )
+//	List<ClassDto> findClassName();
 
 }
