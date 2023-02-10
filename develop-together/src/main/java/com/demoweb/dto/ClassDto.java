@@ -13,6 +13,7 @@ public class ClassDto {
 	private int classno;
 	private String memberid;
 	private String name;
+	private String title;
 	private String region;
 	private int tagno;
 	private String startdate;

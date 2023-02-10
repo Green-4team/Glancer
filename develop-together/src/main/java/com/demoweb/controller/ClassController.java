@@ -42,6 +42,7 @@ public class ClassController {
 	private HashMap<String, Object> showClassList() {
 		
 		List<ClassDto> results = classService.findClass();
+//		List<ClassDto> forAcaName = classService.findClassName();
 		
 		for (ClassDto result : results) {
 			List<ClassTagDto> tags = classService.findClassTag(result.getClassno());
@@ -51,7 +52,7 @@ public class ClassController {
 		
 		HashMap<String, Object> classList = new HashMap<>();
 		classList.put("results", results);
-		
+//		classList.put("forname", forAcaName);
 		return classList;
 	}
 	

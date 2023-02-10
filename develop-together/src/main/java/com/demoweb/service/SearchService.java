@@ -4,16 +4,18 @@ import java.util.List;
 
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.dto.SearchDto;
+import com.demoweb.dto.TeacherDto;
 
 public interface SearchService {
 
-	List<SearchDto> selectFreelancerBySearch(String searchKeyword);
+	List<FreelancerHeaderDto> selectFreelancerBySearch(String searchKeyword);
 
-	List<SearchDto> selectProjectBySearch(String searchKeyword);
+	List<ProjectHistoryDto> selectProjectBySearch(String searchKeyword);
 
-	List<SearchDto> selectTeacherBySearch(String searchKeyword);
+	List<TeacherDto> selectTeacherBySearch(String searchKeyword);
 	
-	List<SearchDto> selectEducationBySearch(String searchKeyword);
+	List<ClassDto> selectClassBySearch(String searchKeyword);
 
 }

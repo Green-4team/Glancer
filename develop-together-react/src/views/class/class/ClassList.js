@@ -15,16 +15,28 @@ const ClassList = (props) => {
     loginInfo = JSON.parse(loginInfo);
 
     const[results, setResults] = useState(null);
+    // const[forName, setForName] = useState(null);
 
     useEffect(() => {
         const loadClassList = async (e)  => {
             const url = `http://127.0.0.1:8081/class/class`;
             const response = await axios.get(url);
             setResults(response.data.results);
+            // setForName(response.data.forname);
         };
         loadClassList();
     }, [])
 
+
+    // useEffect(() => {
+    //     const loadClassList = async (e)  => {
+    //         const url = `http://127.0.0.1:8081/class/Acaname?memberid=${results}`;
+    //         const response = await axios.get(url);
+    //         setResults(response.data.results);
+    //         setForName(response.data.forname);
+    //     };
+    //     loadClassList();
+    // }, [])
     if (!results) {
         return;
     }
@@ -77,16 +89,16 @@ const ClassList = (props) => {
                                         marginLeft:"20px",
                                         marginTop:"20px"
                                         }}>
-                                    <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.name}</div>
+                                    <div style={{borderRadius: 10, display:'inline-block', padding: '110px 0px'}}>{result.title}</div>
                                     
                                 </div>
                             <CCardBody style={{ textAlign:'left', marginLeft:'200px', marginTop:'15px', display:'inline-block', width:'500px'}}>
                             
-                            <h2>{result.name}</h2>
+                            <h2>{result.title}</h2>
                             <br></br>
 
                             <h3 style={{ marginBottom:"10px"}}> </h3>                            
-                            <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;학원 명 : {result.memberid}
+                            <div style={{ marginBottom:"10px", fontSize:"20px"}}><strong>&nbsp;학원 명 : {result.name}
                             </strong></div>
                             <br></br>
                             

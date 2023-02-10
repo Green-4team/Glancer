@@ -102,7 +102,7 @@ public interface MemberMapper {
 	AllMemberRegisterDto logincheck(String memberId, String password);
 
 
-	@Select("select a.applicationstate, a.classno ,c.name, c.region, c.startdate, c.enddate, c.price, c.rate " + 
+	@Select("select a.applicationstate, a.classno ,c.title , c.region, c.startdate, c.enddate, c.price, c.rate " + 
 			"from application a " + 
 			"left outer join class c " +
 			"on a.classno = c.classno " +
@@ -110,15 +110,15 @@ public interface MemberMapper {
 	List<ApplicationDto> loadClassApplyInfoInfo(String memberId);
 
 
-	@Select("select c.classno, c.name, c.startdate, c.price, c.enddate, c.classtime, a.memberid, c.region " + 
+	@Select("select c.classno, c.rate, c.title, c.startdate, c.price, c.enddate, c.classtime, a.memberid, c.region " + 
 			"from class c " +
 			"left outer join application a " + 
 			"on c.classno = a.classno " +
-			"where c.memberid = #{memberId} " )
+			"where c.memberid = #{memberId} and c.deleted = 0 " )
 	List<ClassDto> loadClassApplyInfoInAca(String memberId);
 
-	@Select("select count(*) from application where memberid = #{ memberId } " )
-	int selectcheckMultipleApply(String memberId);
+	@Select("select count(*) from application where memberid = #{ memberId } and classno = #{classno} "  )
+	int selectcheckMultipleApply(String memberId,  int classno);
 
 	@Select("select a.memberid, md.name, md.phone, md.birthday, md.email, a.applicationstate " + 
 			"from application a " + 

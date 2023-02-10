@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.BoardTagDto;
+import com.demoweb.dto.ClassDto;
+import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.dto.SearchDto;
+import com.demoweb.dto.TeacherDto;
 import com.demoweb.service.SearchService;
 import com.demoweb.ui.ThePager;
 
@@ -35,7 +39,7 @@ public class SearchController {
 	private HashMap<String, Object> selectFreelancerBySearch(@RequestParam String searchKeyword){
         System.out.println("freelancer, " + searchKeyword);
         
-        List<SearchDto> results = searchService.selectFreelancerBySearch(searchKeyword);
+        List<FreelancerHeaderDto> results = searchService.selectFreelancerBySearch(searchKeyword);
         
         HashMap<String, Object> freelancerList = new HashMap<>();
 		freelancerList.put("results", results);
@@ -51,7 +55,7 @@ public class SearchController {
         
         searchService.selectProjectBySearch(searchKeyword);
         
-        List<SearchDto> results = searchService.selectProjectBySearch(searchKeyword);
+        List<ProjectHistoryDto> results = searchService.selectProjectBySearch(searchKeyword);
         
         HashMap<String, Object> projectList = new HashMap<>();
         projectList.put("results", results);
@@ -68,7 +72,7 @@ public class SearchController {
         
         searchService.selectTeacherBySearch(searchKeyword);
 
-        List<SearchDto> results = searchService.selectTeacherBySearch(searchKeyword);
+        List<TeacherDto> results = searchService.selectTeacherBySearch(searchKeyword);
         
         HashMap<String, Object> teacherList = new HashMap<>();
         teacherList.put("results", results);
@@ -78,17 +82,17 @@ public class SearchController {
 	
 	@CrossOrigin
 	@ResponseBody
-	@GetMapping(path = {"/education"})
-	private HashMap<String, Object> selectEducationBySearch(@RequestParam String searchKeyword){
-        System.out.println("education, " + searchKeyword);
+	@GetMapping(path = {"/class"})
+	private HashMap<String, Object> selectClassBySearch(@RequestParam String searchKeyword){
+        System.out.println("class, " + searchKeyword);
         
-        searchService.selectEducationBySearch(searchKeyword);
+        searchService.selectClassBySearch(searchKeyword);
 
-        List<SearchDto> results = searchService.selectEducationBySearch(searchKeyword);
+        List<ClassDto> results = searchService.selectClassBySearch(searchKeyword);
         
-        HashMap<String, Object> educationList = new HashMap<>();
-        educationList.put("results", results);
-		return educationList;        
+        HashMap<String, Object> classList = new HashMap<>();
+        classList.put("results", results);
+		return classList;
     }
 	
 	
