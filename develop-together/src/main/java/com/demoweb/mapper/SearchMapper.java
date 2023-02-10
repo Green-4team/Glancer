@@ -24,31 +24,18 @@ public interface SearchMapper {
 	List<FreelancerHeaderDto> selectFreelancerBySearch(@Param("searchKeyword")String searchKeyword);
 	
 	@Select("SELECT * " +
-			"FROM project " +
-			"WHERE title " +
-			"AND title LIKE CONCAT('%', #{searchKeyword}, '%') " +
-			"ORDER BY rate DESC")
-	List<ProjectHistoryDto> selectProjectBySearch(
-			@Param("searchKeyword")String searchKeyword
-			);
-	
-	@Select("SELECT * " +
 			"FROM teacher a, memberdetail b " +
-			"WHERE a.content or b.name  " +
-			"AND a.content or b.name LIKE CONCAT('%', #{searchKeyword}, '%') " +
+			"WHERE a.sContent LIKE CONCAT('%', #{searchKeyword}, '%') " +
+			"OR b.name LIKE CONCAT('%', #{searchKeyword}, '%') " +
 			"ORDER BY teacherno DESC")
-	List<TeacherDto> selectTeacherBySearch(
-			@Param("searchKeyword")String searchKeyword
-			);
+	List<TeacherDto> selectTeacherBySearch(@Param("searchKeyword")String searchKeyword);
 	
 	@Select("SELECT * " +
 			"FROM class " +
 			"WHERE title LIKE CONCAT('%', #{searchKeyword}, '%') " +
 			"OR content LIKE CONCAT('%', #{searchKeyword}, '%') " +
 			"ORDER BY classno DESC")
-	List<ClassDto> selectClassBySearch(
-			@Param("searchKeyword")String searchKeyword
-			);
+	List<ClassDto> selectClassBySearch(@Param("searchKeyword")String searchKeyword);
 
 
 }

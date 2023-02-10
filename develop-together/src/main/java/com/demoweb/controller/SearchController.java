@@ -28,6 +28,10 @@ import com.demoweb.ui.ThePager;
 @RequestMapping(path = {"/search"})
 public class SearchController {
 	
+	private final int PAGE_SIZE = 5; 	// 한 페이지에 표시되는 데이터 개수
+	private final int PAGER_SIZE = 5;	// 한 번에 표시할 페이지 번호 개수
+	private final String LINK_URL = "#/board/qna"; // 페이지 번호를 클릭했을 때 이동할 페이지 경로
+	
 	@Autowired	
 	@Qualifier("searchService")
 	private SearchService searchService;
@@ -44,23 +48,6 @@ public class SearchController {
         HashMap<String, Object> freelancerList = new HashMap<>();
 		freelancerList.put("results", results);
 		return freelancerList;
-        
-    }
-	
-	@CrossOrigin
-	@ResponseBody
-	@GetMapping(path = {"/project"})
-	private HashMap<String, Object> selectProjectBySearch(@RequestParam String searchKeyword){
-        System.out.println("project, " + searchKeyword);
-        
-        searchService.selectProjectBySearch(searchKeyword);
-        
-        List<ProjectHistoryDto> results = searchService.selectProjectBySearch(searchKeyword);
-        
-        HashMap<String, Object> projectList = new HashMap<>();
-        projectList.put("results", results);
-		return projectList;
-        
         
     }
 	
