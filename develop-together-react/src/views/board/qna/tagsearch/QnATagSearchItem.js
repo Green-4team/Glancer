@@ -1,6 +1,6 @@
 import { cilCheckCircle } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
-import { CButton, CNavLink } from '@coreui/react';
+import { CNavLink } from '@coreui/react';
 import moment from 'moment/moment';
 import { BsChatLeftDots, BsEye } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
@@ -11,7 +11,7 @@ const HoverBlueBlock = styled.div`
 `;
 
 const QnATagSearchItem = ({ result, loginInfo, onSetTopicNo }) => {
-  const { /* content, deleted, */ boardNo, memberId, title, regDate, views, topicName, tags, topicNo, comments, chosen } = result;
+  const { /* content, deleted, */ boardNo, memberId, title, regDate, views, tags, comments, chosen } = result;
   
   let commentCount
   if (comments === null) {
@@ -43,17 +43,6 @@ const QnATagSearchItem = ({ result, loginInfo, onSetTopicNo }) => {
           </HoverBlueBlock>
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <div>
-
-              <CButton color='light'
-                       size='sm'
-                       onClick={ () => {
-                        onSetTopicNo({ topicNo: topicNo })
-                       }}
-                       style={{color: '#24a0ed',
-                               paddingTop: 0,
-                               paddingBottom: 0,
-                               marginRight: 10,
-                               display: 'inline-block'}}>{topicName}</CButton>
               {
                 tags.map((tag) => {
                   const { tagName, tagNo } = tag;
