@@ -43,8 +43,8 @@ public interface SearchMapper {
 	
 	@Select("SELECT * " +
 			"FROM class " +
-			"WHERE title or content  " +
-			"AND title or content LIKE CONCAT('%', #{searchKeyword}, '%') " +
+			"WHERE title LIKE CONCAT('%', #{searchKeyword}, '%') " +
+			"OR content LIKE CONCAT('%', #{searchKeyword}, '%') " +
 			"ORDER BY classno DESC")
 	List<ClassDto> selectClassBySearch(
 			@Param("searchKeyword")String searchKeyword
