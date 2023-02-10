@@ -26,7 +26,7 @@ import axios from 'axios';
 const styles = StyleSheet.create({
   namecard: { 
     textAlign:"center",
-    backgroundColor: "skyblue",
+    backgroundColor: "thistle",
     height:"200px",
     borderRadius:"10px",
     fontSize:"30px",
@@ -151,12 +151,12 @@ const TeacherDetailHeader = ({memberid}) => {
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <CCol xs={{ span: 4 }}>
                                         <div className="p-1" style={{marginTop:"10px", marginLeft:"80px"}}>
-                                        {loginInfo === null ? <div></div> : loginInfo.membertype === 0 ? 
+                                        {loginInfo === null ? <div></div> : loginInfo.membertype === 0 && loginInfo.memberId === results.memberid ? 
                                             <Link to="/class/teacher/teacherEdit" state={{results: results}}> 
                                                 <CButton color="primary" value='edit' shape="rounded-pill" size="middle">수정</CButton>
                                             </Link> : <div></div>}
                                             &nbsp;&nbsp;
-                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 0 ? 
+                                            {loginInfo === null ? <div></div> : loginInfo.membertype === 0 && loginInfo.memberId === results.memberid ? 
                                             <CButton color="primary" value='deleteTeacher' shape="rounded-pill" size="middle"
                                             onClick={
                                                 (e) => {
