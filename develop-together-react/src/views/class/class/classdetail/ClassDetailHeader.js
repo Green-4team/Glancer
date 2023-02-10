@@ -137,7 +137,7 @@ const ClassDetailHeader = ({ classno }) => {
                             <CContainer>
                                 <CRow xs={{ gutter: 0 }}>
                                 <div style={styles.namecard}>
-                                    <div style={{fontSize:"50px", marginTop:"60px"}}>{results.name}</div>
+                                    <div style={{fontSize:"50px", marginTop:"60px"}}>{results.title}</div>
 
                                 </div>
                                                                                                  

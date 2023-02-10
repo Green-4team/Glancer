@@ -58,11 +58,11 @@ const ClassApply = ({loginInfo}) =>{
                                         marginLeft:"20px",
                                         marginTop:"20px"
                                         }}>
-                                    <div style={{borderRadius: 10, display:'inline-block', padding: '70px 0px'}}>{result.name}</div>
+                                    <div style={{borderRadius: 10, display:'inline-block', padding: '70px 0px'}}>{result.title}</div>
 
                                 </div>
                             <CCardBody style={{ textAlign:'center', marginLeft:'80px',  display:'inline-block', width:'500px'}}>
-                            <h2>{result.name}</h2>
+                            <h2>{result.title}</h2>
                             &nbsp;
                             <div><strong>< GrMoney />&nbsp;강의 비용 : {result.price}</strong></div>
                             <div><strong>< BiBuildingHouse />&nbsp;강의 지역 : {result.region}</strong></div>

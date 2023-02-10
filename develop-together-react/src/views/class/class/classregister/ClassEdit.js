@@ -29,7 +29,7 @@ const ClassEdit = (props) => {
 
   const [registers, setRegisters] = useState({
     classno: editClassInfo.classno,
-    name: editClassInfo.name,
+    title: editClassInfo.title,
     crowd: editClassInfo.crowd,
     price: editClassInfo.price,
     region: editClassInfo.region,
@@ -89,9 +89,9 @@ const ClassEdit = (props) => {
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 명</CInputGroupText>
                         <CFormInput placeholder="강의 명" 
-                         value={registers.name} 
-                         onChange={(e) => {setRegisters({...registers, "name": e.target.value})}}
-                        autoComplete="name" />
+                         value={registers.title} 
+                         onChange={(e) => {setRegisters({...registers, "title": e.target.value})}}
+                        autoComplete="title" />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>정원</CInputGroupText>
