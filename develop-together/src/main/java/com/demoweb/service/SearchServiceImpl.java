@@ -14,7 +14,7 @@ import com.demoweb.mapper.FreelancerMapper;
 import com.demoweb.mapper.SearchMapper;
 
 @Service("searchService")
-public abstract class SearchServiceImpl implements SearchService{
+public class SearchServiceImpl implements SearchService{
 
 	@Autowired
 	@Qualifier("searchMapper")
