@@ -256,10 +256,10 @@ const SearchMain = (props) => {
                                             <></>
                                           )
                                         )
-                                      )
+                                      
                               
                               
-                            )
+                            
                             // results.map( () => {
                             //     return (<SearchItem searchKeyword={ searchKeyword } category={ category } page={ page }/>);
                             // })
