@@ -47,10 +47,10 @@ public class BoardController {
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/qnaList"})
-	private HashMap<String, Object> showBoardList(int pageNo, int topicNo) {
+	private HashMap<String, Object> showBoardList(int pageNo, int topicNo, String search) {
 		
-		List<BoardDto> results = boardService.findBoardByPageAndTopicNo(pageNo, PAGE_SIZE, topicNo);
-		int boardCount = boardService.findBoardCountByTopicNo(topicNo);
+		List<BoardDto> results = boardService.findBoardByPageAndTopicNoAndKeyword(pageNo, PAGE_SIZE, topicNo, search);
+		int boardCount = boardService.findBoardCountByTopicNoAndKeyword(topicNo, search);
 		
 		for (BoardDto result : results) {
 			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");
@@ -73,10 +73,10 @@ public class BoardController {
 	@CrossOrigin
 	@ResponseBody
 	@GetMapping(path = {"/qnaTagSearch"})
-	private HashMap<String, Object> showTagSearchList(int pageNo, int tagNo) {
+	private HashMap<String, Object> showTagSearchList(int pageNo, int tagNo, String search) {
 		
-		List<BoardDto> results = boardService.findBoardByPageAndTagNo(pageNo, PAGE_SIZE, tagNo);
-		int boardCount = boardService.findBoardCountByTagNo(tagNo);
+		List<BoardDto> results = boardService.findBoardByPageAndTagNoAndKeyword(pageNo, PAGE_SIZE, tagNo, search);
+		int boardCount = boardService.findBoardCountByTagNoAndKeyword(tagNo, search);
 		
 		for (BoardDto result : results) {
 			List<BoardTagDto> tags = boardService.findBoardTagByBoardNo(result.getBoardNo(), "board");

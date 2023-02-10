@@ -52,25 +52,28 @@ public interface BoardMapper {
 			"INNER JOIN topic t " +
 			"ON b.topicNo = t.topicNo " +
 			"WHERE b.deleted = 0 " +
+			"AND (b.title LIKE CONCAT('%', #{keyword}, '%') OR b.content LIKE CONCAT('%', #{keyword}, '%')) " +
 			"ORDER BY boardno DESC " +
 			"LIMIT #{ from }, #{ count }")
-	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("count")int count);
+	List<BoardDto> selectBoardByPageAndKeyword(@Param("from")int from, @Param("count")int count, @Param("keyword")String keyword);
 	
 	@Select("SELECT b.boardNo, b.topicNo, b.memberId, b.title, b.content, b.regDate, b.views, b.deleted, b.chosen, t.topicName " +
 			"FROM board b " +
 			"INNER JOIN topic t " +
 			"ON b.topicNo = t.topicNo " +
 			"WHERE b.topicNo = #{ topicNo } AND b.deleted = 0 " +
+			"AND (b.title LIKE CONCAT('%', #{keyword}, '%') OR b.content LIKE CONCAT('%', #{keyword}, '%')) " +
 			"ORDER BY boardno DESC " +
 			"LIMIT #{ from }, #{ count } ")
-	List<BoardDto> selectBoardByPageAndTopicNo(@Param("from")int from, @Param("count")int count, @Param("topicNo")int topicNo);
+	List<BoardDto> selectBoardByPageAndTopicNoAndKeyword(@Param("from")int from, @Param("count")int count, @Param("topicNo")int topicNo, @Param("keyword")String keyword);
 	
 	@Select("SELECT b.boardNo, b.topicNo, b.memberId, b.title, b.content, b.regDate, b.views, b.deleted, b.chosen, t.topicName " +
 			"FROM board b, topic t, boardtag bt " +
 			"WHERE b.topicNo = t.topicNo AND b.boardNo = bt.boardNo AND bt.tagNo = #{ tagNo } AND bt.boardType = 'board' AND b.deleted = 0 " +
+			"AND (b.title LIKE CONCAT('%', #{keyword}, '%') OR b.content LIKE CONCAT('%', #{keyword}, '%')) " +
 			"ORDER BY boardno DESC " +
 			"LIMIT #{ from }, #{ count } ")
-	List<BoardDto> selectBoardByPageAndTagNo(@Param("from")int from, @Param("count")int count, @Param("tagNo")int tagNo);
+	List<BoardDto> selectBoardByPageAndTagNoAndKeyword(@Param("from")int from, @Param("count")int count, @Param("tagNo")int tagNo, @Param("keyword")String keyword);
 
 	@Select("SELECT bt.boardTagNo, bt.tagNo, bt.boardNo, bt.boardType, t.tagName " +
 			"FROM tag t, boardtag bt " +
@@ -78,17 +81,22 @@ public interface BoardMapper {
 			"AND bt.boardNo = #{ boardNo } AND bt.boardType = #{ boardType } ")
 	List<BoardTagDto> selectBoardTagByBoardNo(@Param("boardNo") int boardNo, @Param("boardType") String boardType);
 	
-	@Select("SELECT COUNT(*) FROM board WHERE deleted = 0 ")
-	int selectBoardCount();
+	@Select("SELECT COUNT(*) " +
+			"FROM board b " +
+			"WHERE deleted = 0 " +
+			"AND (b.title LIKE CONCAT('%', #{keyword}, '%') OR b.content LIKE CONCAT('%', #{keyword}, '%')) ")
+	int selectBoardCountByKeyword(String keyword);
 	
-	@Select("SELECT COUNT(*) FROM board " +
-			"WHERE topicNo = #{ topicNo } AND deleted = 0 ")
-	int selectBoardCountByTopicNo(int topicNo);
+	@Select("SELECT COUNT(*) FROM board b " +
+			"WHERE topicNo = #{ topicNo } AND deleted = 0 " +
+			"AND (b.title LIKE CONCAT('%', #{keyword}, '%') OR b.content LIKE CONCAT('%', #{keyword}, '%')) ")
+	int selectBoardCountByTopicNoAndKeyword(@Param("topicNo")int topicNo, @Param("keyword")String keyword);
 	
 	@Select("SELECT COUNT(*) " +
 			"FROM board b, boardtag bt " +
-			"WHERE b.boardNo = bt.boardNo AND bt.tagNo = #{ tagNo } AND bt.boardType = 'board' AND deleted = 0 ")
-	int selectBoardCountByTagNo(int tagNo);
+			"WHERE b.boardNo = bt.boardNo AND bt.tagNo = #{ tagNo } AND bt.boardType = 'board' AND deleted = 0 " +
+			"AND (b.title LIKE CONCAT('%', #{keyword}, '%') OR b.content LIKE CONCAT('%', #{keyword}, '%')) ")
+	int selectBoardCountByTagNoAndKeyword(@Param("tagNo")int tagNo, @Param("keyword")String keyword);
 
 	@Select("SELECT b.boardno, b.topicno, b.memberid, b.title, b.content, b.regdate, b.views, b.deleted, b.chosen, t.topicname " +
 			"FROM board b, topic t " +
