@@ -12,8 +12,6 @@ public interface SearchService {
 
 	List<FreelancerHeaderDto> selectFreelancerBySearch(String searchKeyword);
 
-	List<ProjectHistoryDto> selectProjectBySearch(String searchKeyword);
-
 	List<TeacherDto> selectTeacherBySearch(String searchKeyword);
 	
 	List<ClassDto> selectClassBySearch(String searchKeyword);

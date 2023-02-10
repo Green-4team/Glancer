@@ -31,14 +31,6 @@ public class SearchServiceImpl implements SearchService{
 	}
 	
 	@Override
-	public List<ProjectHistoryDto> selectProjectBySearch(String searchKeyword) {
-
-		List<ProjectHistoryDto> SearchList = searchMapper.selectProjectBySearch(searchKeyword);
-		
-		return SearchList;
-	}
-	
-	@Override
 	public List<ClassDto> selectClassBySearch(String searchKeyword) {
 
 		List<ClassDto> SearchList = searchMapper.selectClassBySearch(searchKeyword);

@@ -53,23 +53,6 @@ public class SearchController {
 	
 	@CrossOrigin
 	@ResponseBody
-	@GetMapping(path = {"/project"})
-	private HashMap<String, Object> selectProjectBySearch(@RequestParam String searchKeyword){
-        System.out.println("project, " + searchKeyword);
-        
-        searchService.selectProjectBySearch(searchKeyword);
-        
-        List<ProjectHistoryDto> results = searchService.selectProjectBySearch(searchKeyword);
-        
-        HashMap<String, Object> projectList = new HashMap<>();
-        projectList.put("results", results);
-		return projectList;
-        
-        
-    }
-	
-	@CrossOrigin
-	@ResponseBody
 	@GetMapping(path = {"/teacher"})
 	private HashMap<String, Object> selectTeacherBySearch(@RequestParam String searchKeyword){
         System.out.println("teacher, " + searchKeyword);
