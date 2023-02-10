@@ -58,7 +58,10 @@ const QnAListItem = ({ result, loginInfo, onSetTopicNo }) => {
                 tags.map((tag) => {
                   const { tagName, tagNo } = tag;
                   return  (
-                            <CNavLink to='/board/qna/tagsearch' component={NavLink} style={{display: 'inline-block', marginRight: 10}} state={{ tagNo: tagNo, loginInfo: loginInfo }}>
+                            <CNavLink to='/board/qna/tagsearch'
+                                      component={NavLink}
+                                      style={{display: 'inline-block', marginRight: 10}}
+                                      state={{ tagNo: tagNo, tagName: tagName, loginInfo: loginInfo }}>
                               <HoverBlueBlock>
                                 <div class="hoverBlue">#{ tagName }</div>
                               </HoverBlueBlock>

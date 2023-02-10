@@ -8,9 +8,7 @@ import {
   CHeaderNav, CNavItem, CNavLink
 } from '@coreui/react'
 
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-
 
 import { logo } from 'src/assets/brand/logo'
 import styled from 'styled-components'
