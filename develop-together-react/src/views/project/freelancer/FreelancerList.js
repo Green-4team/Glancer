@@ -46,7 +46,7 @@ const FreelancerList = ({loginInfo}) => {
                                 <Link to="/project/freelancer/freelancerdetail" state={{ memberid: result.memberid}} style={{textDecoration: "none", color: "black"}}>
                                 <CImage  align="start" style={{borderRadius: 10}} src={classimg} width={150} height={225} />
                                 <CCardBody style={{ marginLeft:'150px'}}>
-                                <h4>{result.name} | {result.occupation} </h4> {result.memberid}
+                                <h4>{result.name} | {result.occupation} </h4>
                                 <h2 style={{ marginBottom:"10px"}}>{result.title}</h2>                            
                                 <CBadge style={{margin:"2px"}}color="danger">{result.program1}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="danger">{result.program2}</CBadge>
@@ -56,12 +56,8 @@ const FreelancerList = ({loginInfo}) => {
                                 <CBadge style={{margin:"2px"}}color="danger">{result.language2}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="danger">{result.language3}</CBadge>
                                 <CBadge style={{margin:"2px"}}color="danger">{result.language4}</CBadge>
-                                
-                               
-
-                                
                                 <br></br><br></br>
-                                <h5 style={{marginTop:"-10px"}}>수행프로젝트 : 헬로자바, 헬로자바, 헬로자바</h5>                             
+                                <h5 style={{marginTop:"-10px"}}>수행프로젝트 : {result.projectname} </h5>                             
                                 </CCardBody>
                                 </Link>
                             </div>
