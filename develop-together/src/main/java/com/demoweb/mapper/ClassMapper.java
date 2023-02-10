@@ -60,7 +60,7 @@ public interface ClassMapper {
 	void insertClassTags(ClassTagDto classTagDto);
 
 	@Update("UPDATE class " +
-			"SET name = #{title}, crowd = #{crowd}, price = #{price}, region = #{region}, classtime = #{classtime},  startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
+			"SET title = #{title}, crowd = #{crowd}, price = #{price}, region = #{region}, classtime = #{classtime},  startdate = #{startdate}, enddate = #{enddate}, content = #{content} " +
 			"WHERE classno = #{classno}")
 	void editClass(ClassDto register);
 
