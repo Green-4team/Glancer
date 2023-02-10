@@ -54,7 +54,7 @@ const CompanyProfil = ({loginInfo}) => {
                     <CTableHeaderCell scope="row"><strong>인원수</strong></CTableHeaderCell>
                     <CTableDataCell>{CompanyInfo.headcount}명</CTableDataCell>     
                     <CTableDataCell ><strong>사업 내용</strong></CTableDataCell>
-                    <CTableDataCell>{CompanyInfo.contnent}명</CTableDataCell>                 
+                    <CTableDataCell>{CompanyInfo.contnent}</CTableDataCell>                 
                   </CTableRow>
                   <CTableRow>
                     <CTableHeaderCell scope="row"><strong>연간 매출</strong></CTableHeaderCell>

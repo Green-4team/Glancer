@@ -82,17 +82,20 @@ const QnADetailItem = ({ result, loginInfo }) => {
           <div style={{marginBottom: 30}}>
           {
             tags.map((tag) => {
-              const { tagName } = tag;
+              const { tagName, tagNo } = tag;
               return  (
-                        <CNavLink to='/dashboard' component={NavLink} style={{display: 'inline-block', marginRight: 10}}>
-                            <div class="hoverBlue"
-                                 style={{backgroundColor: 'gainsboro',
-                                         borderRadius: 15,
-                                         paddingLeft: 10,
-                                         paddingRight: 10,
-                                         paddingTop: 1,
-                                         paddingBottom: 1,
-                                         fontSize: 14}} >#{ tagName }</div>
+                        <CNavLink to='/board/qna/tagsearch'
+                                  component={NavLink}
+                                  style={{ display: 'inline-block', marginRight: 10 }}
+                                  state={{ tagNo: tagNo, tagName: tagName, loginInfo: loginInfo }}>
+                          <div class="hoverBlue"
+                                style={{backgroundColor: 'gainsboro',
+                                        borderRadius: 15,
+                                        paddingLeft: 10,
+                                        paddingRight: 10,
+                                        paddingTop: 1,
+                                        paddingBottom: 1,
+                                        fontSize: 14}} >#{ tagName }</div>
                         </CNavLink>
                       )
             })

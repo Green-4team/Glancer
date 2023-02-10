@@ -104,47 +104,47 @@ public class BoardServiceImpl implements BoardService {
 	////////////////////////////////////////////////////////
 	
 	@Override
-	public List<BoardDto> findBoardByPageAndTopicNo(int pageNo, int pageSize, int topicNo) {
+	public List<BoardDto> findBoardByPageAndTopicNoAndKeyword(int pageNo, int pageSize, int topicNo, String keyword) {
 		int from = (pageNo - 1) * pageSize;
 		int count = pageSize;
 		
 		List<BoardDto> boards = new ArrayList<BoardDto>();
 		if (topicNo == 0)
-			boards = boardMapper.selectBoardByPage(from, from + count);
+			boards = boardMapper.selectBoardByPageAndKeyword(from, from + count, keyword);
 		else 
-			boards = boardMapper.selectBoardByPageAndTopicNo(from, from + count, topicNo);
+			boards = boardMapper.selectBoardByPageAndTopicNoAndKeyword(from, from + count, topicNo, keyword);
 		
 		return boards;
 	}
 	
 	@Override
-	public int findBoardCountByTopicNo(int topicNo) {
+	public int findBoardCountByTopicNoAndKeyword(int topicNo, String keyword) {
 		
 		int boardCount;
 		if (topicNo == 0)
-			boardCount = boardMapper.selectBoardCount();
+			boardCount = boardMapper.selectBoardCountByKeyword(keyword);
 		else
-			boardCount = boardMapper.selectBoardCountByTopicNo(topicNo);
+			boardCount = boardMapper.selectBoardCountByTopicNoAndKeyword(topicNo, keyword);
 		
 		return boardCount;
 		
 	}
 
 	@Override
-	public List<BoardDto> findBoardByPageAndTagNo(int pageNo, int pageSize, int tagNo) {
+	public List<BoardDto> findBoardByPageAndTagNoAndKeyword(int pageNo, int pageSize, int tagNo, String keyword) {
 		
 		int from = (pageNo - 1) * pageSize;
 		int count = pageSize;
 		
-		List<BoardDto> board = boardMapper.selectBoardByPageAndTagNo(from, from + count, tagNo);
+		List<BoardDto> board = boardMapper.selectBoardByPageAndTagNoAndKeyword(from, from + count, tagNo, keyword);
 		
 		return board;
 	}
 
 	@Override
-	public int findBoardCountByTagNo(int tagNo) {
+	public int findBoardCountByTagNoAndKeyword(int tagNo, String keyword) {
 		
-		int boardCount = boardMapper.selectBoardCountByTagNo(tagNo);
+		int boardCount = boardMapper.selectBoardCountByTagNoAndKeyword(tagNo, keyword);
 		
 		return boardCount;
 	}

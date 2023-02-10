@@ -3,6 +3,7 @@ import CIcon from "@coreui/icons-react";
 import { CButton, CCard, CCardBody, CCol, CFormInput, CNavLink } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import QnAListItem from "./QnAListItem";
@@ -23,24 +24,26 @@ const QnAList = ({loginInfo, topicNo}) => {
   const [page, setPage] = useState(1);
   const [pager, setPager] = useState(null);
   const [clicked, setClicked] = useState(topicNo);
-
-  // setClicked(topicNo)
-
+  const [text, setText] = useState('좋은 질문과 답변으로 동료의 시간을 아껴주세요.');
+  const [Search, setSearch] = useState('');
+  let search = '';
+  
   const loadTopic = (data) => {
     setClicked(data.topicNo)
   }
-
+ 
   // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
     const loadQnAList = async (e) => {
-      const url = `http://127.0.0.1:8081/board/qnaList?pageNo=${page}&topicNo=${clicked}`;
+      console.log(Search)
+      const url = `http://127.0.0.1:8081/board/qnaList?pageNo=${page}&topicNo=${clicked}&search=${Search}`;
       const response = await axios.get(url);
       setResults(response.data.results);
       setPage(response.data.page);
       setPager(response.data.pager);
     };
     loadQnAList();
-  }, [page, clicked]);
+  }, [page, clicked, Search]);
 
   if (!results) {
     return;
@@ -52,6 +55,20 @@ const QnAList = ({loginInfo, topicNo}) => {
       <CCol xs={8} style={{margin: 'auto'}}>
         <CCard className="mb-4" style={{border: 0}}>
           <CCardBody>
+            <div style={{height: 100,
+                        margin: "auto",
+                        marginBottom: 20,
+                        paddingTop: 20,
+                        paddingLeft: 40,
+                        border: 'none',
+                        borderRadius: 15,
+                        fontWeight: 'bold',
+                        fontSize: 20,
+                        backgroundColor: '#AAFA82',
+                        color: 'black'}}>
+                <div>Q&A</div>
+                <div style={{fontSize: 14, fontWeight: 'normal'}}>{text}</div>
+            </div>
             <div style={{display: 'flex'}}>
               <div style={{display: 'inline-block', marginRight: 'auto'}}>
                 <CNavLink to='/board/qna/write' component={NavLink} style={{display: 'inline-block', marginRight: 10}} state={{ loginInfo: loginInfo}}>
@@ -59,10 +76,26 @@ const QnAList = ({loginInfo, topicNo}) => {
                 </CNavLink>
               </div>
               <div style={{textAlign: 'center', display: 'inline-block', width: '70%', margin: 'auto'}}>
-                <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={() => setClicked(1)} {...(clicked === 1 ? {active: true} : {})} >기술</CButton>
-                <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={() => setClicked(2)} {...(clicked === 2 ? {active: true} : {})} >커리어</CButton>
-                <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={() => setClicked(3)} {...(clicked === 3 ? {active: true} : {})} >기타</CButton>
-                <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={() => setClicked(0)} {...(clicked === 0 ? {active: true} : {})} >전체</CButton>
+                <CButton color='light'
+                         variant='ghost'
+                         style={{color: 'black', marginRight: 20}}
+                         onClick={() => {setClicked(1); setText('기술적인 질문을 하고 답변을 얻는 공간입니다.')}}
+                         {...(clicked === 1 ? {active: true} : {})}>기술</CButton>
+                <CButton color='light'
+                         variant='ghost'
+                         style={{color: 'black', marginRight: 20}}
+                         onClick={() => {setClicked(2); setText('커리어와 관련된 질문을 하고 답변을 얻는 공간입니다.')}}
+                         {...(clicked === 2 ? {active: true} : {})}>커리어</CButton>
+                <CButton color='light'
+                         variant='ghost'
+                         style={{color: 'black', marginRight: 20}}
+                         onClick={() => {setClicked(3); setText('기술, 커리어 이외의 질문을 하고 답변을 얻는 공간입니다.')}}
+                         {...(clicked === 3 ? {active: true} : {})}>기타</CButton>
+                <CButton color='light'
+                         variant='ghost'
+                         style={{color: 'black', marginRight: 20}}
+                         onClick={() => {setClicked(0); setText('좋은 질문과 답변으로 동료의 시간을 아껴주세요.')}}
+                         {...(clicked === 0 ? {active: true} : {})}>전체</CButton>
               </div>
               <div style={{display: 'inline-block', marginLeft: 'auto'}}>
                 <CButton color="dark" variant='outline' style={{fontSize: 12}}><CIcon icon={cilAlignLeft} size="sm"/> 최신순</CButton>
@@ -79,7 +112,21 @@ const QnAList = ({loginInfo, topicNo}) => {
                       </div>
                     </HoverBlueBlock>
                   </th>
-                  <th style={{width: "40%"}}><CFormInput type="text" placeholder="Q&A 내에서 검색" style={{borderRadius: 40, width: '60%', margin: 'auto'}}/></th>
+                  <th style={{width: "40%"}}>
+                    <HoverBlueBlock>
+                      <div style={{width: '100%'}}>
+                        <div className="hoverBlue">
+                          <AiOutlineSearch style={{position: 'absolute', top: 223, right: 290, fontSize: 22}} onClick={(e) => {setSearch(search)}} />
+                        </div>
+                        <div style={{width: '100%'}}>
+                          <CFormInput type="text"
+                                      placeholder={(clicked === 0 ? 'Q&A' : clicked === 1 ? '기술' : clicked === 2 ? '커리어' : '기타' ) + ' 내에서 검색'}
+                                      style={{borderRadius: 40, width: '100%', margin: 'auto'}}
+                                      onChange={(e) => {search = e.target.value}} />
+                        </div>
+                      </div>
+                    </HoverBlueBlock>
+                  </th>
                   <th style={{width: "30%"}}>
                     <div style={{textAlign: 'right', fontWeight: "normal", fontSize: 14}}>
                       <HoverBlueBlock>

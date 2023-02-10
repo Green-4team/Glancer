@@ -15,33 +15,42 @@ import {
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
-const ProjectHistoryRegist = ({loginInfo}) => {
+const ProjectHistoryRegist = (props) => {
 
-const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
-const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+let loginInfo = window.sessionStorage.getItem("loginInfo");
+loginInfo = JSON.parse(loginInfo);
+
 const navigate = useNavigate();
-
+  useEffect( () => {
+    if (loginInfo === null || loginInfo === '' ) {
+      alert('로그인을 해주세요');
+      navigate('/login');   
+    }
+  })
+const memberid = loginInfo.memberId;
 const [projectRegist, setProjectRegist] = useState({
-  projectno: '',
-  projectname: '',
-  projectstart: '',
-  projectend: '',
-  client: '',
-  company: '',
-  position: '',
-  device: '',
-  os:'',
-  language:'',
-  dbms:'',
-  tool:'',
-  work:'',
-  memberid:'',
+  // projectno: '',
+  // projectname: '',
+  // projectstart: '',
+  // projectend: '',
+  // client: '',
+  // company: '',
+  // position: '',
+  // device: '',
+  // os:'',
+  // language:'',
+  // dbms:'',
+  // tool:'',
+  // work:'',
+  // memberid:loginInfo.memberId,
 
 
 });
+
+
 const insertProjectHistoryRegist = () => {
 
-          axios.post("http://127.0.0.1:8081/project/projectRegister", 
+          axios.post(`http://127.0.0.1:8081/project/projectRegister?memberid=${memberid}`, 
                       projectRegist,
                     { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
               .then( response => {
@@ -52,7 +61,7 @@ const insertProjectHistoryRegist = () => {
                 alert('error');
               });
         };
-   
+console.log(memberid)
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
