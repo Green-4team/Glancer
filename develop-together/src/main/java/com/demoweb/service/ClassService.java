@@ -24,5 +24,7 @@ public interface ClassService {
 	void editClass(ClassDto register, String[] tags);
 
 	void applicationClass(ApplicationDto apply);
+
+//	List<ClassDto> findClassName();
 	
 }

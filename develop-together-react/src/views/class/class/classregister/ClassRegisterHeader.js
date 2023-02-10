@@ -41,7 +41,7 @@ const ClassRegisterHeader = (props) => {
 
   const [register, setRegister] = useState({
     memberid: loginInfo.memberId,
-    name: '',
+    title: '',
     crowd: '',
     price: '',
     region: '',
@@ -98,9 +98,9 @@ const ClassRegisterHeader = (props) => {
                       <CInputGroup className="mb-3">
                         <CInputGroupText>강의 명</CInputGroupText>
                         <CFormInput placeholder="강의 명" 
-                         value={register.name} 
-                         onChange={(e) => {setRegister({...register, "name": e.target.value})}}
-                        autoComplete="name" />
+                         value={register.title} 
+                         onChange={(e) => {setRegister({...register, "title": e.target.value})}}
+                        autoComplete="title" />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
                         <CInputGroupText>정원</CInputGroupText>

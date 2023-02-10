@@ -1,6 +1,7 @@
 package com.demoweb.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -30,6 +31,6 @@ public class FreelancerHeaderDto {
 	private String language2;
 	private String language3;
 	private String language4;
-	
+	private String projectname;
 	
 }

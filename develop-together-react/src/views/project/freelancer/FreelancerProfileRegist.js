@@ -191,7 +191,7 @@ const insertFreelancerProfileRegist = () => {
                     e.preventDefault();
                 } 
                 }
-                >이력서를 등록하세요!!</CButton> 
+                >등록 하기</CButton> 
                 </div>          
                </CForm>
             </CCardBody>

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.demoweb.dto.ClassDto;
 import com.demoweb.dto.FreelancerHeaderDto;
+import com.demoweb.dto.ProjectHistoryDto;
 import com.demoweb.dto.SearchDto;
+import com.demoweb.dto.TeacherDto;
 import com.demoweb.mapper.ClassMapper;
 import com.demoweb.mapper.FreelancerMapper;
 import com.demoweb.mapper.SearchMapper;
@@ -21,33 +23,25 @@ public class SearchServiceImpl implements SearchService{
 	private SearchMapper searchMapper;
 	
 	@Override
-	public List<SearchDto> selectFreelancerBySearch(String searchKeyword) {
+	public List<FreelancerHeaderDto> selectFreelancerBySearch(String searchKeyword) {
 
-		List<SearchDto> SearchList = searchMapper.selectFreelancerBySearch(searchKeyword);
+		List<FreelancerHeaderDto> SearchList = searchMapper.selectFreelancerBySearch(searchKeyword);
 		
 		return SearchList;
 	}
 	
 	@Override
-	public List<SearchDto> selectProjectBySearch(String searchKeyword) {
+	public List<ClassDto> selectClassBySearch(String searchKeyword) {
 
-		List<SearchDto> SearchList = searchMapper.selectProjectBySearch(searchKeyword);
+		List<ClassDto> SearchList = searchMapper.selectClassBySearch(searchKeyword);
 		
 		return SearchList;
 	}
 	
 	@Override
-	public List<SearchDto> selectEducationBySearch(String searchKeyword) {
+	public List<TeacherDto> selectTeacherBySearch(String searchKeyword) {
 
-		List<SearchDto> SearchList = searchMapper.selectEducationBySearch(searchKeyword);
-		
-		return SearchList;
-	}
-	
-	@Override
-	public List<SearchDto> selectTeacherBySearch(String searchKeyword) {
-
-		List<SearchDto> SearchList = searchMapper.selectTeacherBySearch(searchKeyword);
+		List<TeacherDto> SearchList = searchMapper.selectTeacherBySearch(searchKeyword);
 		
 		return SearchList;
 	}

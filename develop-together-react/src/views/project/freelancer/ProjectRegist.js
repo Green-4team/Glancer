@@ -61,6 +61,7 @@ const insertProjectHistoryRegist = () => {
                 alert('error');
               });
         };
+        
 console.log(memberid)
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -171,7 +172,7 @@ console.log(memberid)
                       e.preventDefault();
                   } 
                   }
-                  >Regist your project!!</CButton> 
+                  >등록 하기</CButton> 
                   </div>          
                  </CForm>
               </CCardBody>
