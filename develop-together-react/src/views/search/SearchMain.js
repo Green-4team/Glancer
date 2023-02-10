@@ -31,13 +31,15 @@ const SearchMain = (props) => {
     const [pager, setPager] = useState(null);
 
     useEffect(() => {
-        if ( searchResults !== 0 ) {
+        if ( searchResults !== 0 && searchKeyword !== null) {
             const loadSearchList = async (e)  => {
                 const response = await axios.get(
-                    `http://127.0.0.1:8081/search/${category}`, 
-                    {params:{searchKeyword : searchKeyword}},
+                    // `http://127.0.0.1:8081/search/${category}`, 
+                    // {params:{searchKeyword : searchKeyword}},
+                    `http://127.0.0.1:8081/search/${category}?searchKeyword=${searchKeyword}`, 
                     {headers:{"Content-Type":"Application/x-www.-form-urlencoded"}}
                     ).catch(function() {
+                        console.log(searchKeyword);
                         console.log('검색 실패');
                     });
                 setResults(response.data.results);
@@ -80,7 +82,7 @@ const SearchMain = (props) => {
                 <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={btnClickHandler} {...(category === "freelancer" ? {active: true} : {})} name="freelancer" >개발자</CButton>
                 <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={btnClickHandler} {...(category === "project" ? {active: true} : {})} name="project" >프로젝트</CButton>
                 <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={btnClickHandler} {...(category === "teacher" ? {active: true} : {})} name="teacher" >강사</CButton>
-                <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={btnClickHandler} {...(category === "education" ? {active: true} : {})} name="education" >강의</CButton>
+                <CButton color='light' variant='ghost' style={{color: 'black', marginRight: 20}} onClick={btnClickHandler} {...(category === "class" ? {active: true} : {})} name="class" >강의</CButton>
               </div>
               {/* <div style={{display: 'inline-block', marginLeft: 'auto'}}>
                 <CButton color="dark" variant='outline' style={{fontSize: 12}}><CIcon icon={cilAlignLeft} size="sm"/> 최신순</CButton>
@@ -261,7 +263,7 @@ const SearchMain = (props) => {
                                       </CCol>
                                   :
                                   (
-                                    category === "education"
+                                    category === "class"
                                     ?
                                     <CCol xs={10} style={{margin: "auto"}}>
                 
